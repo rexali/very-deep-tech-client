@@ -5,7 +5,6 @@ import NavBar from '@/components/common/navbar';
 import BottomNavigation from '@/components/common/bottom-navigation';
 import BottomNavbar from '@/components/common/bottom-navbar';
 import AuthProvider from '@/context/AuthContext';
-import { WaqfProvider } from '@/context/WaqfContext';
 import { useJWT } from '@/hooks/use-jwt';
 import { Metadata } from "next";
 import { AppProvider } from '@/context/AppContext';
@@ -32,14 +31,12 @@ export default function RootLayout({
     <html lang="en" >
       <body>
         <AuthProvider>
-            <WaqfProvider>
-              <AppProvider>
-                <NavBar />
-                {children}
-              </AppProvider>
-              <BottomNavigation />
-              <BottomNavbar />
-            </WaqfProvider>
+          <AppProvider>
+            <NavBar />
+            {children}
+          </AppProvider>
+          <BottomNavigation />
+          <BottomNavbar />
         </AuthProvider>
       </body>
     </html>
