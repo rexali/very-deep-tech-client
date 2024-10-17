@@ -10,7 +10,7 @@ import { useJWT } from '@/hooks/use-jwt';
 import { Metadata } from "next";
 import { AppProvider } from '@/context/AppContext';
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: { absolute: "Cash Waqf", template: "%s | an Islamic endowment" },
   description: "It provide different waqf-funded causes to support",
   viewport: {
