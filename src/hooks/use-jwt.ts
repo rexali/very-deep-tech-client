@@ -1,5 +1,3 @@
-'use client'
-
 import React from "react";
 import { saveToken } from "@/utils/saveToken";
 import { getJWToken } from "@/utils/getJWToken";
