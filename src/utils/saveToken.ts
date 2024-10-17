@@ -1,4 +1,4 @@
-import "client-only";
+"use client"
 
 const saveToken = (key: string, value: string) => {
     try {
