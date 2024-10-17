@@ -14,8 +14,8 @@ export default function BottomNavigation() {
         "Services",
         "Contact",
         "News",
-        "Zakat",
-        "Waqf",
+        // "Zakat",
+        // "Waqf",
         "Site map",
         "Privacy policy",
         "Terms and Conditions"

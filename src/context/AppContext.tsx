@@ -4,10 +4,8 @@ import * as React from 'react';
 import reducer from '../store/reducers/app_reducer';
 
 const initialState = {
-    news: [],
-    messages:[],
-    notifications:[],
-    waqfs:[],
+    products: [],
+    carts: [],
     result: {},
 };
 

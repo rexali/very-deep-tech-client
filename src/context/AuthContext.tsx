@@ -13,8 +13,8 @@ const initialState = {
     user: {
         token: "",
         email: "",
-        userId: null,
-        role:""
+        _id: null,
+        role: "user"
     },
 };
 

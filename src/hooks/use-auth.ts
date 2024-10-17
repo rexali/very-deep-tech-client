@@ -3,7 +3,7 @@ import { BASE_URL } from '@/constants/url';
 import { AuthContext } from '@/context/AuthContext';
 import { getToken } from '@/utils/getToken';
 import { saveToken } from '@/utils/saveToken';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
 /**
  * Verify user authentication
@@ -15,10 +15,10 @@ export function useAuth() {
     // define user state
     const [user, setUser] = useState({
         token: "",
-        userId: null,
+        _id: null,
         email: "",
-        photo: "",
-        role: ""
+        role: "",
+        photo: ""
     });
     // declare and assign loading state
     const [loading, setLoading] = useState(true);
@@ -26,10 +26,8 @@ export function useAuth() {
     const [error, setError] = useState(null);
     // get the stored token 
     const token = getToken('token');
-    // get the stored jwt token
-    const jwtoken = getToken("jwtoken");
     // get the dispatch method
-    const { dispatch } = React.useContext(AuthContext);
+    const { dispatch } = useContext(AuthContext);
 
     useEffect(() => {
         // set loading state to true
@@ -43,23 +41,23 @@ export function useAuth() {
             // header with authorization header jwt token
             headers: {
                 "Content-Type": "application/json",
-                "authorization": 'Bearer ' + jwtoken,
+                "authorization": 'Bearer ' + token,
             }
         })
             //    convert the response to json
             .then((res) => res.json())
-            // destructure new response and get result
-            .then(({ result, ...rest }) => {
-                // check if result is true
-                if (result) {
+            // destructure new response and get token
+            .then(({token, ...rest }) => {
+                // check if token is true
+                if (token) {
                     // set loggedIn state to true
                     setLoggedIn(true);
                     // and the user state to 'rest'                     
                     setUser((c) => rest);
-                    saveToken("userId", rest.userId);
+                    saveToken("_id", rest._id);
                     saveToken("email", rest.email);
                     // dispatch the sign-in action 
-                    dispatch(signIn(rest))
+                    dispatch(signIn({token,...rest}))
                 } else {
                     dispatch(signIn({}))
                 }
@@ -68,7 +66,8 @@ export function useAuth() {
             .catch((err) => setError(err))
             // finally set the loading state to false
             .finally(() => setLoading(false));
-    }, [dispatch, jwtoken, token]);
+            
+    }, [dispatch, token]);
 
     return {
         user,

@@ -5,31 +5,25 @@ const reducer = (state: any, action: any) => {
 
   switch (action.type) {
 
-    case ActionTypes.GET_NEWS:
+    case ActionTypes.GET_PRODUCTS:
       return {
         ...state,
-        news: action.payload
+        products: action.payload
       };
 
-    case ActionTypes.GET_WAQFS:
+    case ActionTypes.POST_PRODUCT:
       return {
         ...state,
-        waqfs: action.payload
+        result: action.payload
       };
 
-    case ActionTypes.GET_NOTIFICATIONS:
+    case ActionTypes.GET_CARTS:
       return {
         ...state,
-        notifications: action.payload
+        carts: action.payload
       };
 
-    case ActionTypes.GET_MESSAGES:
-      return {
-        ...state,
-        messages: action.payload
-      };
-
-    case ActionTypes.POST_NEWS:
+    case ActionTypes.POST_CART:
       return {
         ...state,
         result: action.payload

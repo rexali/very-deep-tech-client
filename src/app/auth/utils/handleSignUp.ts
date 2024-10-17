@@ -1,5 +1,4 @@
 import { BASE_URL } from "@/constants/url";
-import { getToken } from "@/utils/getToken";
 
 /**
  * Register a new user
@@ -25,8 +24,7 @@ export async function handleSignUp(
             mode: "cors",
             // set content type and authorization headers
             headers: {
-                'Content-Type': 'application/json',
-                'authorization': 'Bearer ' + getToken("jwtoken"),
+                'Content-Type': 'application/json'
             },
             // convert the body or data to json string
             body: JSON.stringify({
@@ -40,9 +38,11 @@ export async function handleSignUp(
         // wait for registration result
         const result = await resp.json();
         // check result value
-        if (result.affectedRows === 1) {
+        if (result.success==="success") {
             // return result
             return result;
+        } else{
+            return null
         }
 
     } catch (error) {

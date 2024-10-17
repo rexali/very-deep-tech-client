@@ -1,36 +1,27 @@
 
 export const ActionTypes = {
-    GET_NEWS: 'GET_NEWS',
-    GET_WAQFS:'GET_WAQFS',
-    GET_MESSAGES:'GET_MESSAGES',
-    GET_NOTIFICATIONS:'GET_NOTIFICATIONS',
-    POST_NEWS: 'POST_NEWS',
-  };
-  
-  export const getNews = (newsData:any) => ({
-    type: ActionTypes.GET_NEWS,
-    payload: newsData,
-  });
-  
-  export const getMessages = (messagesData:any) => ({
-    type: ActionTypes.GET_MESSAGES,
-    payload: messagesData,
-  });
+  GET_CARTS: 'GET_CARTS',
+  POST_CART: 'POST_CART',
+  GET_PRODUCTS: 'GET_PRODUCTS',
+  POST_PRODUCT: "POST_PRODUCT",
+};
 
-  
-  export const getNotifications = (notificationsData:any) => ({
-    type: ActionTypes.GET_NOTIFICATIONS,
-    payload: notificationsData,
-  });
+export const getCarts = (cartsData: any) => ({
+  type: ActionTypes.GET_CARTS,
+  payload: cartsData,
+});
 
-  
-  export const getWaqfs = (waqfsData:any) => ({
-    type: ActionTypes.GET_WAQFS,
-    payload: waqfsData,
-  });
-  
-  export const postNews = (newsData: any) => ({
-    type: ActionTypes.POST_NEWS,
-    payload:newsData ,
-  });
-  
+export const postCart = (cartData: any) => ({
+  type: ActionTypes.POST_PRODUCT,
+  payload: cartData,
+});
+
+export const getProducts = (productData: any) => ({
+  type: ActionTypes.GET_PRODUCTS,
+  payload: productData,
+});
+
+export const postProduct = (productData: any) => ({
+  type: ActionTypes.POST_PRODUCT,
+  payload: productData,
+});

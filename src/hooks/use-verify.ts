@@ -5,7 +5,7 @@ import { getToken } from "../utils/getToken";
 import { AuthContext } from "@/context/AuthContext";
 import { restoreToken } from "../store/actions/auth-actions";
 
-const useSession = () => {
+const useVerify = () => {
 
     // get dispatch from contex
     const { dispatch } = useContext(AuthContext);
@@ -13,26 +13,25 @@ const useSession = () => {
     React.useEffect(() => {
         // Fetch the token from storage then navigate to our appropriate place
         const bootstrapAsync = async () => {
-            // declare user token
+            // declare user token 
             let userToken;
             try {
                 // Restore token stored in `SecureStore` or any other encrypted storage
                 userToken = getToken('token');
-                //    get jwt token
-                const jwtoken = getToken('jwtoken') as string;
+               
                 // After restoring token, we may need to validate it in production apps
-                const { data: { result, token } } = await axios.post(`${BASE_URL}/auth/verify`, { token: userToken }, {
+                const { data } = await axios.post(`${BASE_URL}/auth/verify`, { token: userToken }, {
                     // header
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json',
-                        'Authorization': 'Bearer '+jwtoken
+                        'Authorization': 'Bearer ' + userToken
                     }
                 });
                 // check if sign is a success
-                if (result) {
+                if (data.success && data.data.token) {
                     // restore token if found
-                    dispatch(restoreToken(token));
+                    dispatch(restoreToken(data.data.token));
                 } else {
                     // make token null 
                     dispatch(restoreToken(null));
@@ -48,4 +47,4 @@ const useSession = () => {
     }, [dispatch])
 }
 
-export { useSession };
+export { useVerify };

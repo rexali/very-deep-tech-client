@@ -1,7 +1,7 @@
 import { ActionTypes } from '../actions/auth-actions';
 
 const reducer = (state: any, action: any) => {
-    
+
     switch (action.type) {
 
         case ActionTypes.SIGN_IN:

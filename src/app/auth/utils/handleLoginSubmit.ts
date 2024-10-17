@@ -20,32 +20,25 @@ export const handleLoginSubmit = (
     // get current form data
     const data = new FormData(event.currentTarget);
     // get email
-    const email = data.get("email");
+    const email = data.get("email"); 
     // get password
     const password = data.get("password");
     // handle login
     handleLogin(email, password)
-        .then(((res: any) => {
+        .then(((result: any) => {
             // check if window is defined
             setLoading(" ");
             setLoginSuccess("Success");
             if (typeof window !== "undefined") {
                 // check if response is true
-                if (res.result === true) {
                     // redirect user to a given url
-                    if (window.localStorage.getItem("path")) {
-                        window.location.assign(window.localStorage.getItem("path") as string);
-                        window.localStorage.clear();
+                    if (result.data.token) {
+                        window.location.assign('/users');
                     } else {
-                        if (res.role === 'admin') {
-                            window.location.assign('/admin');
-                        } else {
-                            window.location.assign(url);
-                        }
+                        window.location.assign(url);
                     }
-                }
             } else {
-                setLoginError(res.error);
+                setLoginError(result.message);
             }
         })).catch((err) => {
             // collect error thru error callback

@@ -27,9 +27,9 @@ export const handleSignUpSubmit = (
                 password.value,
                 remember_me.value
             ).then(((result) => {
-                if (result) {
+                if (result.success==="success") {
                     // send success message
-                    setSignUpSuccess("success");
+                    setSignUpSuccess(result.success);
                 } else {
                     // send failure message
                     setSignUpSuccess("fail");

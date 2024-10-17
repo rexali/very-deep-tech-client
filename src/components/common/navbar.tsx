@@ -19,7 +19,7 @@ import { handleSignOut } from '@/app/auth/utils/handleSignOut';
 import Link from 'next/link';
 import { useAuth } from '@/hooks/use-auth';
 import { BASE_URL } from '@/constants/url';
-import { Avatar } from '@mui/material';
+import { Avatar, Button } from '@mui/material';
 
 
 const pages = [
@@ -27,15 +27,11 @@ const pages = [
   "Services",
   'Contact',
   'Products',
-  // 'Resources', 
-  // "Zakat", 
-  // 'Cart'
+  'Carts'
 ];
 
 const menus = [
   'Users',
-  'Messages',
-  "Notifications",
   'Settings',
   'Logout'
 ];
@@ -150,7 +146,7 @@ function NavBar() {
         </Box>
         {/* Carts component */}
         {!isMobile && <Link prefetch href={'/carts'} style={{ marginRight: 16, color: "white", textDecoration: "none" }} >
-           <Cart sx={{ color: "white" }} />
+        <Button sx={{ color: "white" }} startIcon={<Cart/>}>Cart</Button>
         </Link>}
 
         <Box sx={{ flexGrow: 0 }}>
@@ -189,7 +185,7 @@ function NavBar() {
             <MenuItem key={"signup"} onClick={handleCloseUserMenu}>
               <Link style={{ textDecoration: "none" }} href={`/auth/signup`}>Sign Up</Link>
             </MenuItem>
-
+            {/* Other Menu components */}
             {menus.map((menu, index) => (
               <MenuItem key={menu} onClick={handleCloseUserMenu}>
                 {(menu === "Logout") ? <Link prefetch onClick={handleSignOut} style={{ textDecoration: "none" }} key={index + "s"} href={'#'} >{menu}</Link> : menu === "Users" ? <Link prefetch style={{ textDecoration: "none" }} key={index + "s"} href={`/${menu.toLowerCase()}`}>{"Account"}</Link> : <Link prefetch style={{ textDecoration: "none" }} key={index + "s"} href={`/${menu.toLowerCase()}`}>{menu}</Link>}
