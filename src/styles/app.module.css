@@ -1,0 +1,11 @@
+.formError {
+    color: red;
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.formSuccess {
+    color: green;
+    font-size: 0.8rem;
+    text-align: center;
+}
