@@ -1,5 +1,3 @@
-'use client'
-
 import * as React from 'react';
 import NavBar from '@/components/common/navbar';
 import BottomNavigation from '@/components/common/bottom-navigation';
