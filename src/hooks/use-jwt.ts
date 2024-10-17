@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { saveToken } from "@/utils/saveToken";
 import { getJWToken } from "@/utils/getJWToken";
 
 export const useJWT = () => {
-    const [token, setToken] = React.useState<string>();
+    const [token, setToken] = useState<string>();
 
     const fetchData = async () => {
         try {

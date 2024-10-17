@@ -10,14 +10,15 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { handleForgetPasswordSubmit } from '../utils/handleForgetPasswordSubmit';
 import styles from "../../../styles/app.module.css"
+import { useState } from 'react';
 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
 export default function ForgetPassword() {
 
-  const [error, setError] = React.useState('');
-  const [success, setSuccess] = React.useState('');
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
 
   return (
     <ThemeProvider theme={defaultTheme} >

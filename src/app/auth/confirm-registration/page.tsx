@@ -9,14 +9,14 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useSearchParams } from 'next/navigation';
 import { Alert } from '@mui/material';
 import { confirmRegistrationAPI } from '../api/confirmRegistrationAPI';
-import { Suspense } from 'react'
+import { Suspense, useState } from 'react'
 import Fallback from '@/components/common/fallback';
 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
 export default function ConfirmRegistration() {
-  const [result, setResult] = React.useState()
+  const [result, setResult] = useState()
   const email = useSearchParams().get('email');
   const rCode = useSearchParams().get('rCode');
 

@@ -17,13 +17,14 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Copyright from '@/components/common/copyright';
 import { handleSignUpSubmit } from '../utils/handleSignUpSubmit';
 import styles from "../styles/auth.module.css";
+import { useState } from 'react';
 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
 export default function SignUp() {
-    const [error, setError] = React.useState('');
-    const [success, setSuccess] = React.useState('');
+    const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
 
     return (
         <ThemeProvider theme={defaultTheme}>

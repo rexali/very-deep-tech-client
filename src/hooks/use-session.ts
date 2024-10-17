@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import axios from "axios";
 import { BASE_URL } from "../constants/url";
 import { getToken } from "../utils/getToken";
@@ -8,7 +8,7 @@ import { restoreToken } from "../store/actions/auth-actions";
 const useSession = () => {
 
     // get dispatch from contex
-    const { dispatch } = React.useContext(AuthContext);
+    const { dispatch } = useContext(AuthContext);
 
     React.useEffect(() => {
         // Fetch the token from storage then navigate to our appropriate place
