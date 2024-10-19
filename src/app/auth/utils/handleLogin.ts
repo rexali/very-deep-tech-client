@@ -25,6 +25,8 @@ export async function handleLogin(email: any, password: any) {
         });
         // get the token and result
         const result = await resp.json();
+        console.log(result.data);
+        
         // check if login is success
         if (result.status === "success" && result.data.token) {
             // save token

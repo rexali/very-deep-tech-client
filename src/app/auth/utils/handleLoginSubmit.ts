@@ -25,7 +25,8 @@ export const handleLoginSubmit = (
     const password = data.get("password");
     // handle login
     handleLogin(email, password)
-        .then(((result: any) => {
+        .then((result: any) => {
+            console.log(result);
             if (result.status === "success") {
                 setLoading("");
                 setLoginSuccess(result.status);
@@ -44,7 +45,7 @@ export const handleLoginSubmit = (
             } else {
                 setLoginError(result.status);
             }
-        })).catch((err) => {
+        }).catch((err) => {
             // collect error thru error callback
             setLoginError(err.message);
             // print error

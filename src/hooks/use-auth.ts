@@ -54,7 +54,7 @@ export function useAuth() {
                     setLoggedIn(true);
                     // and the user state to 'rest'                     
                     setUser((c) => res.data);
-                    saveToken("_id", res.data.data_id);
+                    saveToken("_id", res.data._id);
                     saveToken("email", res.data.email);
                     // dispatch the sign-in action 
                     dispatch(signIn({ ...res.data }))
