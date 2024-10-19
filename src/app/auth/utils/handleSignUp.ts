@@ -1,4 +1,4 @@
-import { BASE_URL } from "@/constants/url";
+import { BASE_URL, SERVER_URL } from "@/constants/url";
 
 /**
  * Register a new user
@@ -19,7 +19,7 @@ export async function handleSignUp(
 
     try {
         // fetch a data with method and mode set
-        const resp = await fetch(BASE_URL + "/auth/register", {
+        const resp = await fetch(SERVER_URL + "/auth/register", {
             method: 'POST',
             mode: "cors",
             // set content type and authorization headers
@@ -37,11 +37,12 @@ export async function handleSignUp(
         });
         // wait for registration result
         const result = await resp.json();
+
         // check result value
-        if (result.success==="success") {
+        if (result.status === "success") {
             // return result
             return result;
-        } else{
+        } else {
             return null
         }
 

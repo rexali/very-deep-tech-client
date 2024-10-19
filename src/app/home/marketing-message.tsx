@@ -15,7 +15,7 @@ export default function MarketingMessage() {
         alignItems: "center",
         mt: 1
       }}>
-        <Paper>
+        <Paper sx={{ marginTop:8,}}>
           <Typography sx={{padding:2, textAlign:"center", fontWeight:'bold'}}>
             Want to get good value and price for any item you order? Let Cshop help you today.
           </Typography>

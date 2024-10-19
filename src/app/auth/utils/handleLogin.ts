@@ -19,7 +19,7 @@ export async function handleLogin(email: any, password: any) {
             },
             // user entered data
             body: JSON.stringify({
-                email,
+                email, 
                 password
             }), 
         });

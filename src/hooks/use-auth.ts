@@ -1,5 +1,5 @@
 import { signIn } from '../store/actions/auth-actions';
-import { BASE_URL } from '@/constants/url';
+import { BASE_URL, SERVER_URL } from '@/constants/url';
 import { AuthContext } from '@/context/AuthContext';
 import { getToken } from '@/utils/getToken';
 import { saveToken } from '@/utils/saveToken';
@@ -33,7 +33,7 @@ export function useAuth() {
         // set loading state to true
         setLoading(true);
         // fetch data
-        fetch(BASE_URL + "/auth/verify", {
+        fetch(SERVER_URL + "/auth/verify", {
             mode: 'cors',
             method: "POST",
             // body is token
@@ -41,23 +41,23 @@ export function useAuth() {
             // header with authorization header jwt token
             headers: {
                 "Content-Type": "application/json",
-                "authorization": 'Bearer ' + token,
+                "Authorization": 'Bearer ' + token,
             }
         })
             //    convert the response to json
             .then((res) => res.json())
             // destructure new response and get token
-            .then(({token, ...rest }) => {
+            .then((res) => {
                 // check if token is true
-                if (token) {
+                if (res.status === "success") {
                     // set loggedIn state to true
                     setLoggedIn(true);
                     // and the user state to 'rest'                     
-                    setUser((c) => rest);
-                    saveToken("_id", rest._id);
-                    saveToken("email", rest.email);
+                    setUser((c) => res.data);
+                    saveToken("_id", res.data.data_id);
+                    saveToken("email", res.data.email);
                     // dispatch the sign-in action 
-                    dispatch(signIn({token,...rest}))
+                    dispatch(signIn({ ...res.data }))
                 } else {
                     dispatch(signIn({}))
                 }
@@ -66,7 +66,7 @@ export function useAuth() {
             .catch((err) => setError(err))
             // finally set the loading state to false
             .finally(() => setLoading(false));
-            
+
     }, [dispatch, token]);
 
     return {

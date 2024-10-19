@@ -18,7 +18,7 @@ export default function ProductDetailPage() {
   return (
     <Container maxWidth="md" component={'main'}>
 
-      <Card sx={{ maxWidth: 345, marginTop: 2, marginLeft: "auto", marginRight: "auto" }}>
+      <Card sx={{ maxWidth: 345, marginTop: 10, marginLeft: "auto", marginRight: "auto" }}>
         <CardMedia
           component="img"
           alt={product.product_name}

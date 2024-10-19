@@ -14,7 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import AWFLogo from '@/components/AWFLogo';
 import Image from 'next/image';
 import { useMediaQuery } from 'react-responsive';
-import Cart from '@mui/icons-material/Backpack';
+import Cart from '@mui/icons-material/ShoppingCart';
 import { handleSignOut } from '@/app/auth/utils/handleSignOut';
 import Link from 'next/link';
 import { useAuth } from '@/hooks/use-auth';
@@ -110,7 +110,7 @@ function NavBar() {
           >
             {pages.map((page, index) => (
               <MenuItem key={index + "me"} onClick={handleCloseNavMenu}>
-                {<Link prefetch key={index + "li"} style={{marginLeft:"50px", textDecoration: "none" }} href={`/${page.toLowerCase()}`}>{page}</Link>}
+                {<Link prefetch key={index + "li"} style={{marginLeft:"5px", textDecoration: "none" }} href={`/${page.toLowerCase()}`}>{page}</Link>}
               </MenuItem>
             ))}
           </Menu>
@@ -131,7 +131,7 @@ function NavBar() {
             textDecoration: 'none',
           }}
         >
-          Cwaqf
+          Cshop
         </Typography>
         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
           {pages.map((page, index) => (<Link prefetch

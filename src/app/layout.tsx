@@ -25,8 +25,6 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
 
-  useJWT();
-
   return (
     <html lang="en" >
       <body>

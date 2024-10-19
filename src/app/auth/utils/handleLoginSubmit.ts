@@ -20,25 +20,29 @@ export const handleLoginSubmit = (
     // get current form data
     const data = new FormData(event.currentTarget);
     // get email
-    const email = data.get("email"); 
-    // get password
+    const email = data.get("email");
+    // get password 
     const password = data.get("password");
     // handle login
     handleLogin(email, password)
         .then(((result: any) => {
-            // check if window is defined
-            setLoading(" ");
-            setLoginSuccess("Success");
-            if (typeof window !== "undefined") {
-                // check if response is true
-                    // redirect user to a given url
+            if (result.status === "success") {
+                setLoading("");
+                setLoginSuccess(result.status);
+                // check if window is defined
+                if (typeof window !== "undefined") {
+                    // check if token is defined
                     if (result.data.token) {
+                        // redirect user to a given url
                         window.location.assign('/users');
                     } else {
                         window.location.assign(url);
                     }
+                } else {
+                    setLoginError("window.location is not defined");
+                }
             } else {
-                setLoginError(result.message);
+                setLoginError(result.status);
             }
         })).catch((err) => {
             // collect error thru error callback

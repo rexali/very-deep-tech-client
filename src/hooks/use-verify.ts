@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import axios from "axios";
-import { BASE_URL } from "../constants/url";
+import { BASE_URL, SERVER_URL } from "../constants/url";
 import { getToken } from "../utils/getToken";
 import { AuthContext } from "@/context/AuthContext";
 import { restoreToken } from "../store/actions/auth-actions";
@@ -20,7 +20,7 @@ const useVerify = () => {
                 userToken = getToken('token');
                
                 // After restoring token, we may need to validate it in production apps
-                const { data } = await axios.post(`${BASE_URL}/auth/verify`, { token: userToken }, {
+                const { data } = await axios.post(`${SERVER_URL}/auth/verify`, { token: userToken }, {
                     // header
                     headers: {
                         'Accept': 'application/json',
@@ -29,7 +29,7 @@ const useVerify = () => {
                     }
                 });
                 // check if sign is a success
-                if (data.success && data.data.token) {
+                if (data.status ==="success" && data.data.token) {
                     // restore token if found
                     dispatch(restoreToken(data.data.token));
                 } else {
