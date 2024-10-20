@@ -12,12 +12,14 @@ import Partners from './partners';
 import React from 'react';
 import SubscribeNewsletter from './subscribe-newsletter';
 import ProductPage from "../products/page";
+import SearchCard from "../search/SearchCard";
 
 export default function HomePage() {
   // const isMobile = useMediaQuery({ maxDeviceWidth: 1023 });
   return (
     <main>
       {/* <CssBaseline /> */}
+      <SearchCard />
       <MarketingMessage /> <br/><br/>
       <ProductPage />
       <FAQHowItWorks />

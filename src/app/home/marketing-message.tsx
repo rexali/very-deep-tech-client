@@ -13,9 +13,9 @@ export default function MarketingMessage() {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        mt: 1
+        mt: 2
       }}>
-        <Paper sx={{ marginTop:8,}}>
+        <Paper>
           <Typography sx={{padding:2, textAlign:"center", fontWeight:'bold'}}>
             Want to get good value and price for any item you order? Let Cshop help you today.
           </Typography>

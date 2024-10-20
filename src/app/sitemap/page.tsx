@@ -1,8 +1,10 @@
+import Container from "@mui/material/Container";
+
 export default function SiteMapPage() {
     return (
-      <main>
-        Site map
-      </main>
+      <Container>
+        <p>Site map</p>
+      </Container>
     )
   }
   

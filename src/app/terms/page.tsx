@@ -1,8 +1,10 @@
+import Container from "@mui/material/Container";
+
 export default function TermPage() {
     return (
-      <main>
-        Terms and Conditions
-      </main>
+      <Container>
+        <p>Terms and Conditions</p>
+      </Container>
     )
   }
   
