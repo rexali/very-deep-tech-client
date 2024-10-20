@@ -31,8 +31,8 @@ export default function ProductCard({ product }: { product: any }) {
       </CardContent>
       <CardActions sx={{ display: 'flex', justifyContent: "space-between" }}>
         <Button size="small">N {product.product_price ?? 1000}</Button>
-        <Button size="small" startIcon={<Share />}></Button>
-        <Button size="small" startIcon={<Favorite />}></Button>
+        <Button size="small" onClick={()=>alert("comming soon")} startIcon={<Share />}></Button>
+        <Button size="small" onClick={()=>alert("comming soon")} startIcon={<Favorite />}></Button>
         <Button size="small" href={"/products/" + product?._id}>Buy</Button>
       </CardActions>
     </Card>

@@ -32,9 +32,9 @@ export default function CartCard({ product }: { product: any }) {
         </CardContent>
       </Box>
       <CardActions sx={{ display: 'flex', justifyContent: "space-between" }}>
-        <Button size="small">Remove</Button>
+        <Button size="small" onClick={()=>alert("comming soon")}>Remove</Button>
         <Button size="small">N {product.product_price ?? 1000}</Button>
-        <Button size="small" startIcon={<Favorite />}></Button>
+        <Button size="small" onClick={()=>alert("comming soon")} startIcon={<Favorite />}></Button>
       </CardActions>
     </Card>
   );

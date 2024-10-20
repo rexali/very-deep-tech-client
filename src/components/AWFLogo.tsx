@@ -8,12 +8,12 @@ function AWFLogo() {
         <Link href={'/'}>
             <Image
                 src={require("../assets/images/cshop.png")}
-                width={60}
-                height={60}
+                width={40}
+                height={40}
                 alt="AWF"
                 style={{
                     borderRadius: 40,
-                    margin: 5
+                    marginRight: 10
                 }} />
         </Link>
     );

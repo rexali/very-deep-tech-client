@@ -127,7 +127,7 @@ function NavBar() {
             display: { xs: 'flex', md: 'none' },
             flexGrow: 1,
             fontFamily: 'monospace',
-            fontWeight: 700,
+            fontWeight: 400,
             letterSpacing: '.1rem',
             color: 'inherit',
             textDecoration: 'none',
@@ -146,18 +146,21 @@ function NavBar() {
           </Link>
           ))}
         </Box>
-        {/* Carts component */}
+        {/* Carts components */}
         {!isMobile && <Link prefetch href={'/carts'} style={{ marginRight: 16, color: "white", textDecoration: "none" }} >
-          <Button sx={{ color: "white" }} startIcon={<Cart />}>Cart {state.carts.length ?? 0}</Button>
+          <Button sx={{ color: "white" }} startIcon={<Cart />}>Cart</Button><sup style={{ color: "red" }}>{state.carts?.length ?? 0}</sup>
         </Link>}
-
+        {isMobile && <Link prefetch href={'/carts'} style={{ color: "white", textDecoration: "none" }} >
+          <Cart sx={{ fontSize: 18, }} /><sup style={{ color: "red", marginRight: 10 }}>{state.carts?.length ?? 0}</sup>
+        </Link>}
+        {/* end */}
         <Box sx={{ flexGrow: 0 }}>
           <Tooltip title="Open menu">
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
               {user.photo ? <Image
                 src={`${BASE_URL}/uploads/${user.photo}`}
-                width={40}
-                height={40}
+                width={30}
+                height={30}
                 alt="Account"
                 style={{ borderRadius: 20 }}
               /> : <Avatar />

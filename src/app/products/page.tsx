@@ -29,7 +29,7 @@ export default function ProductPage() {
     }
   });
 
-  if (!data.length) {
+  if (!data?.length) {
     return <Fallback />
   }
 
