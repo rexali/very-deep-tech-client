@@ -1,22 +1,23 @@
 import { SERVER_URL } from "@/constants/url";
 import axios from "axios";
 
-const getCartsAPI = async () => {
+const getProductsAPI = async ()=> {
 
     try {
-        let { data } = await axios.get(`${SERVER_URL}/carts`, {
-            withCredentials: false,
+        let { data } = await axios.get(`${SERVER_URL}/products`,{
+            withCredentials:false,
             headers: {
                 'Content-Type': 'application/json',
             },
+            
         });
-        let carts = data.data.carts.map((cart: any) => cart.product);
-        return carts;
+
+        return data.data.products;
     } catch (error) {
         console.warn(error);
     }
 };
 
 export {
-    getCartsAPI
+    getProductsAPI
 }

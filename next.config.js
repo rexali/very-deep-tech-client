@@ -4,11 +4,12 @@ const nextConfig = {
         remotePatterns: [
             {
                 protocol: 'http',
-                hostname: 'localhost:3001',
+                hostname:  'localhost:3001',
                 port: '',
                 pathname: '/uploads/*'
             }
         ],
+        dangerouslyAllowSVG: true,
         domains: ['images.unsplash.com', 'placehold.co', 'localhost'],
     },
 }

@@ -13,11 +13,11 @@ export default function CartCard({ product }: { product: any }) {
   return (
     <Card sx={{ maxWidth: 345, margin: 1 }}>
       <Box sx={{ display: 'flex', flexDirection: "row", justifyContent: "space-between" }}>
-        <Link href={"/products/" + product.product_id}>
+        <Link href={"/products/" + product._id}>
           <Image
-            src={product.product_picture ?? "https://placehold.co/600x400/orange/white"}
+            src={product.product_picture ?? "https://placehold.co/600x700/orange/white"}
             alt={product.product_name}
-            height={100}
+            height={150}
             width={70}
             style={{borderRadius: 10, alignSelf: "center" }}
           />
@@ -25,7 +25,7 @@ export default function CartCard({ product }: { product: any }) {
         <Box>
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-              {product.product_picture ?? "Lizard"}
+              {product.product_name ?? "Lizard"}
             </Typography>
             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
               {product.product_description ?? "Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica"}

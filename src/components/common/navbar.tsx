@@ -20,6 +20,7 @@ import Link from 'next/link';
 import { useAuth } from '@/hooks/use-auth';
 import { BASE_URL } from '@/constants/url';
 import { Avatar, Button } from '@mui/material';
+import { AppContext } from '@/context/AppContext';
 
 
 const pages = [
@@ -39,6 +40,7 @@ const menus = [
 function NavBar() {
 
   const { user } = useAuth();
+  const { state } = React.useContext(AppContext)
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
 
@@ -110,7 +112,7 @@ function NavBar() {
           >
             {pages.map((page, index) => (
               <MenuItem key={index + "me"} onClick={handleCloseNavMenu}>
-                {<Link prefetch key={index + "li"} style={{marginLeft:"5px", textDecoration: "none" }} href={`/${page.toLowerCase()}`}>{page}</Link>}
+                {<Link prefetch key={index + "li"} style={{ marginLeft: "5px", textDecoration: "none" }} href={`/${page.toLowerCase()}`}>{page}</Link>}
               </MenuItem>
             ))}
           </Menu>
@@ -146,7 +148,7 @@ function NavBar() {
         </Box>
         {/* Carts component */}
         {!isMobile && <Link prefetch href={'/carts'} style={{ marginRight: 16, color: "white", textDecoration: "none" }} >
-        <Button sx={{ color: "white" }} startIcon={<Cart/>}>Cart</Button>
+          <Button sx={{ color: "white" }} startIcon={<Cart />}>Cart {state.carts.length ?? 0}</Button>
         </Link>}
 
         <Box sx={{ flexGrow: 0 }}>
