@@ -5,13 +5,14 @@ import ProductList from "./ProductList";
 import { getProductsAPI } from "./api/getProductsAPI";
 import { AppContext } from "@/context/AppContext";
 import { getProducts } from "@/store/actions/app-actions";
+import Fallback from "@/components/common/fallback";
 
 
 export default function ProductPage() {
 
-  const [data, setData] = useState<any>([{_id: 1 }, {_id: 2 }, {_id: 3 }]);
+  const [data, setData] = useState<any>([]);
   const mountRef = useRef(true);
-  const {dispatch} = useContext(AppContext);
+  const { dispatch } = useContext(AppContext);
 
   async function getData() {
     setData(await getProductsAPI());
@@ -26,7 +27,11 @@ export default function ProductPage() {
         mountRef.current = false;
       }
     }
-  }, []);
+  });
+
+  if (!data.length) {
+    return <Fallback />
+  }
 
   return (
     <Container maxWidth="md" component={'main'}>

@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import Money from "@material-ui/icons/Money";
 
 export default function CartList(props: any) {
 
@@ -104,7 +105,7 @@ export default function CartList(props: any) {
                             fullWidth
                             style={{
                                 color: 'green',
-                            }}>CHECKOUT</Button>
+                            }} startIcon={<Money/>}>CHECKOUT</Button>
                     </Box>
                 </Grid>
             </Grid>

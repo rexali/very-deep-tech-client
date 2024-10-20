@@ -6,10 +6,11 @@ import { AppContext } from "@/context/AppContext";
 import { getCarts } from "@/store/actions/app-actions";
 import { useState, useRef, useContext, useEffect } from "react";
 import { getCartsAPI } from "./api/getCartsAPI";
+import Fallback from "@/components/common/fallback";
 
 export default function CartPage() {
 
-  const [data, setData] = useState<any>([{ _id: 1 }, { _id: 2 }, { _id: 3 }]);
+  const [data, setData] = useState<any>([]);
   const mountRef = useRef(true);
   const { dispatch } = useContext(AppContext);
 
@@ -26,7 +27,11 @@ export default function CartPage() {
         mountRef.current = false;
       }
     }
-  }, []);
+  });
+
+  if (!data.length) {
+    return <Fallback />
+  }
 
   return (
     <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }} >

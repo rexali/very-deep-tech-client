@@ -7,17 +7,20 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Share from '@mui/icons-material/Share';
 import Favorite from '@mui/icons-material/Favorite';
+import Link from 'next/link';
 
 
 export default function ProductCard({ product }: { product: any }) {
   return (
     <Card sx={{ maxWidth: 345, margin: 1 }}>
-      <CardMedia
-        component="img"
-        alt={product.product_name}
-        height="140"
-        image={product.product_picture ?? "https://placehold.co/600x400/orange/white"}
-      />
+      <Link href={"/products/" + product._id}>
+        <CardMedia
+          component="img"
+          alt={product.product_name}
+          height="140"
+          image={product.product_picture ?? "https://placehold.co/600x400/orange/white"}
+        />
+      </Link>
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {product.product_name ?? "Lizard"}
