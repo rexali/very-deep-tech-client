@@ -10,6 +10,7 @@ import UserOrders from "./UserOrders";
 import UserProducts from "./UserProducts";
 import UserProfile from "./UserProfile";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import UserCart from "./UserCart";
 
 export default function UserTabs() {
 
@@ -43,6 +44,10 @@ export default function UserTabs() {
                     </li>
 
                     <li className="nav-item">
+                        <Link className="nav-link" style={styles.navTabs} data-toggle="tab" onClick={() => openTab('cart')} href={""} ><small>Cart</small></Link>
+                    </li>
+
+                    <li className="nav-item">
                         <Link className="nav-link" style={styles.navTabs} data-toggle="tab" onClick={() => openTab('orders')} href={""} ><small>Orders</small></Link>
                     </li>
                 </ul>
@@ -53,6 +58,7 @@ export default function UserTabs() {
                         {tabName === 'products' ? <ProductsTab /> : ''}
                         {tabName === 'messages' ? <MessagesTab /> : ''}
                         {tabName === 'favourites' ? <FavouritesTab /> : ''}
+                        {tabName === 'cart' ? <FavouritesTab /> : ''}
                         {tabName === 'orders' ? <OrderTab /> : ''}
                     </div>
                 </div>
@@ -137,6 +143,25 @@ function FavouritesTab() {
             </Box>
             <Container maxWidth={"md"}>
                 <UserFavourites />
+            </Container>
+        </Container>
+    )
+}
+
+
+function CartTab() {
+
+    return (
+        <Container  maxWidth={"md"} >
+            <Box component={'div'} textAlign={'left'} >
+                <Typography
+                    color='success'
+                >
+                    YOUR CART
+                </Typography>
+            </Box>
+            <Container maxWidth={"md"}>
+                <UserCart />
             </Container>
         </Container>
     )

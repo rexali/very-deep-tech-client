@@ -1,8 +1,8 @@
-import { BASE_URL } from "@/constants/url";
+import { SERVER_URL } from "@/constants/url";
 
 export const instantSearchProductAPI = async (term: string, pageNumber?: string) => {
     try {
-        let response = await fetch(`${BASE_URL}/search?term=${term}&page=${pageNumber}`, {
+        let response = await fetch(`${SERVER_URL}/search?term=${term}&page=${pageNumber}`, {
             method: "GET",
             mode: 'cors',
             headers: {
