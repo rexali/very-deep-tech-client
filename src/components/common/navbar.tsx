@@ -117,24 +117,19 @@ function NavBar() {
             ))}
           </Menu>
         </Box>
-        <Typography
-          variant="h5"
-          noWrap
-          component="a"
-          href="/"
-          sx={{
-            mr: 2,
-            display: { xs: 'flex', md: 'none' },
-            flexGrow: 1,
-            fontFamily: 'monospace',
-            fontWeight: 400,
-            letterSpacing: '.1rem',
-            color: 'inherit',
-            textDecoration: 'none',
-          }}
-        >
+        <Link prefetch href={'/'} style={{
+          textDecoration: "none",
+          marginRight: 2,
+          display: isMobile ? 'flex' : 'none',    ///{ xs: 'flex', md: 'none' },
+          flexGrow: 1,
+          fontFamily: 'monospace',
+          fontWeight: 400,
+          letterSpacing: '.1rem',
+          color: 'inherit',
+        }}>
           Cshop
-        </Typography>
+        </Link>
+        {/* </Typography> */}
         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
           {pages.map((page, index) => (<Link prefetch
             key={index + "p"}

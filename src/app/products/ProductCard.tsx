@@ -23,7 +23,7 @@ export default function ProductCard({ product }: { product: any }) {
       </Link>
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {product.product_description ?? "Lizard"}
+          {product.product_name ?? "Lizard"}
         </Typography>
         <Typography variant="body2" sx={{ color: 'text.secondary' }}>
           {product.product_description ?? "Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica"}
@@ -33,7 +33,7 @@ export default function ProductCard({ product }: { product: any }) {
         <Button size="small">N {product.product_price ?? 1000}</Button>
         <Button size="small" onClick={()=>alert("comming soon")} startIcon={<Share />}></Button>
         <Button size="small" onClick={()=>alert("comming soon")} startIcon={<Favorite />}></Button>
-        <Button size="small" href={"/products/" + product?._id}>Buy</Button>
+      <Link style={{textDecoration:"none",color:'blue'}} href={"/products/" + product?._id}><Button>Buy</Button></Link>
       </CardActions>
     </Card>
   );

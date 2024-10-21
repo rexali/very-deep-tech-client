@@ -11,6 +11,7 @@ import UserProducts from "./UserProducts";
 import UserProfile from "./UserProfile";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import UserCart from "./UserCart";
+import "../products/styles/styles.css"
 
 export default function UserTabs() {
 
@@ -23,35 +24,22 @@ export default function UserTabs() {
     const styles = {
         navTabs: { fontSize: 'small' },
         minheight: { minHeight: 420 },
-        marginTop: { marginTop: 50 }
+        marginTop: { marginTop: 60 }
     }
 
     return (
         <ProtectedRoute>
             <div className="container" style={styles.minheight}>
-                <ul className="nav nav-tabs nav-justified" style={styles.marginTop}>
-                    <li className="nav-item">
-                        <Link className="nav-link" style={styles.navTabs} data-toggle="tab" onClick={() => openTab('profile')} href={""} ><small>Profile</small></Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" style={styles.navTabs} data-toggle="tab" onClick={() => openTab('products')} href={""} ><small>Products</small></Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" style={styles.navTabs} data-toggle="tab" onClick={() => openTab('messages')} href={""} ><small>Messages</small></Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" style={styles.navTabs} data-toggle="tab" onClick={() => openTab('favourites')} href={""} ><small>Favourites</small></Link>
-                    </li>
 
-                    <li className="nav-item">
-                        <Link className="nav-link" style={styles.navTabs} data-toggle="tab" onClick={() => openTab('cart')} href={""} ><small>Cart</small></Link>
-                    </li>
+                <div className="scrollmenu" style={styles.marginTop}>
+                    <Link  style={styles.navTabs} data-toggle="tab" onClick={() => openTab('profile')} href={""} ><small>Profile</small></Link>
+                    <Link  style={styles.navTabs} data-toggle="tab" onClick={() => openTab('products')} href={""} ><small>Products</small></Link>
+                    <Link  style={styles.navTabs} data-toggle="tab" onClick={() => openTab('messages')} href={""} ><small>Messages</small></Link>
+                    <Link  style={styles.navTabs} data-toggle="tab" onClick={() => openTab('favourites')} href={""} ><small>Favourites</small></Link>
+                    <Link  style={styles.navTabs} data-toggle="tab" onClick={() => openTab('cart')} href={""} ><small>Cart</small></Link>
+                    <Link  style={styles.navTabs} data-toggle="tab" onClick={() => openTab('orders')} href={""} ><small>Orders</small></Link>
+                </div>
 
-                    <li className="nav-item">
-                        <Link className="nav-link" style={styles.navTabs} data-toggle="tab" onClick={() => openTab('orders')} href={""} ><small>Orders</small></Link>
-                    </li>
-                </ul>
-        	
                 <div className="tab-content">
                     <div className="tab-pane container active" id="profile">
                         {tabName === 'profile' ? <ProfileTab /> : ''}
