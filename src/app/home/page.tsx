@@ -13,6 +13,7 @@ import React from 'react';
 import SubscribeNewsletter from './subscribe-newsletter';
 import ProductPage from "../products/page";
 import SearchCard from "../search/SearchCard";
+import ProductCategories from "../products/ProductCategory";
 
 export default function HomePage() {
   // const isMobile = useMediaQuery({ maxDeviceWidth: 1023 });
@@ -20,7 +21,7 @@ export default function HomePage() {
     <main>
       {/* <CssBaseline /> */}
       <SearchCard />
-      <MarketingMessage /> <br/><br/>
+      <MarketingMessage /> <br /><br />
       <ProductPage />
       <FAQHowItWorks />
       <Testimonials />

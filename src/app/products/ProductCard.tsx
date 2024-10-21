@@ -23,7 +23,7 @@ export default function ProductCard({ product }: { product: any }) {
       </Link>
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {product.product_name ?? "Lizard"}
+          {product.product_description ?? "Lizard"}
         </Typography>
         <Typography variant="body2" sx={{ color: 'text.secondary' }}>
           {product.product_description ?? "Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica"}
