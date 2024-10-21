@@ -51,14 +51,14 @@ export default function UserTabs() {
                         <Link className="nav-link" style={styles.navTabs} data-toggle="tab" onClick={() => openTab('orders')} href={""} ><small>Orders</small></Link>
                     </li>
                 </ul>
-
+        	
                 <div className="tab-content">
                     <div className="tab-pane container active" id="profile">
                         {tabName === 'profile' ? <ProfileTab /> : ''}
                         {tabName === 'products' ? <ProductsTab /> : ''}
                         {tabName === 'messages' ? <MessagesTab /> : ''}
                         {tabName === 'favourites' ? <FavouritesTab /> : ''}
-                        {tabName === 'cart' ? <FavouritesTab /> : ''}
+                        {tabName === 'cart' ? <CartTab /> : ''}
                         {tabName === 'orders' ? <OrderTab /> : ''}
                     </div>
                 </div>
@@ -70,8 +70,8 @@ export default function UserTabs() {
 function ProductsTab() {
 
     return (
-        
-          <Container maxWidth={"md"}>
+
+        <Container maxWidth={"md"}>
             <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                 <Box component={'div'} textAlign={'left'} >
                     <Typography
@@ -92,16 +92,16 @@ function ProductsTab() {
                     </Button>
                 </Box>
             </Box>
-            
-                <UserProducts />
-            </Container>
+
+            <UserProducts />
+        </Container>
     )
 }
 
 function ProfileTab() {
 
     return (
-        <Container  maxWidth={"md"}>
+        <Container maxWidth={"md"}>
             <Box component={'div'} textAlign={'left'} >
                 <Typography
                     color='success'
@@ -116,7 +116,7 @@ function ProfileTab() {
 
 function MessagesTab() {
     return (
-        <Container  maxWidth={"md"}>
+        <Container maxWidth={"md"}>
             <Box component={'div'} textAlign={'left'} >
                 <Typography
                     color='success'
@@ -133,7 +133,7 @@ function MessagesTab() {
 function FavouritesTab() {
 
     return (
-        <Container  maxWidth={"md"} >
+        <Container maxWidth={"md"} >
             <Box component={'div'} textAlign={'left'} >
                 <Typography
                     color='success'
@@ -152,7 +152,7 @@ function FavouritesTab() {
 function CartTab() {
 
     return (
-        <Container  maxWidth={"md"} >
+        <Container maxWidth={"md"} >
             <Box component={'div'} textAlign={'left'} >
                 <Typography
                     color='success'
@@ -171,7 +171,7 @@ function OrderTab() {
 
     return (
         <Container maxWidth={"md"}>
-          <Box component={'div'} textAlign={'left'} >
+            <Box component={'div'} textAlign={'left'} >
                 <Typography
                     color='success'
                 >
