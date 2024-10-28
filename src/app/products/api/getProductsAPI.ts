@@ -1,16 +1,9 @@
 import { SERVER_URL } from "@/constants/url";
-import axios from "axios";
 
-const getProductsAPI = async ()=> {
+const getProductsAPI = async (page: number = 1) => {
 
     try {
-        let { data } = await axios.get(`${SERVER_URL}/products`,{
-            withCredentials:false,
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            
-        });
+        let data = await fetch(`${SERVER_URL}/products?page=` + page).then(res=>res.json());
 
         return data.data.products;
     } catch (error) {

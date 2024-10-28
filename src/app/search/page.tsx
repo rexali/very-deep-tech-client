@@ -1,40 +1,49 @@
 "use client"
 
 import Fallback from "@/components/common/fallback";
-import { Container } from "@mui/material";
 import { useSearchParams } from "next/navigation";
-import { useState, useRef, useEffect } from "react";
-import ProductList from "../products/ProductList";
-import { searchAPI } from "./api/searchAPI";
+import { useState, Suspense, useRef, useEffect } from "react";
+import SearchList from "./SearchList";
+import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
+import ReactPagination from "@/components/react-pagination";
+import { searchProducts } from "./api/searchProducts";
 
 export default function SearchPage() {
   const searchParams = useSearchParams()
-
+  const mountRef = useRef(true)
   const [data, setData] = useState<any>([]);
-  const mountRef = useRef(true);
+  const [activePage, setActivePage] = useState<number>(1);
 
-  async function getData() {
-    setData(await searchAPI(searchParams.get('term')));
-  }
+  const term = searchParams.get('term');
+
 
   useEffect(() => {
     if (mountRef.current) {
-      getData();
-
-      return () => {
-        mountRef.current = false;
-      }
+      (async () => {
+        setData(await searchProducts(term));
+      })();
     }
-  });
 
-  if (!data?.length) {
-    return <Fallback />
-  }
+    return () => {
+      mountRef.current = false
+    }
+  })
 
   return (
-    <Container maxWidth="md" component={'main'} sx={{mt:10}}>
+    <Container maxWidth="md" component={'main'} sx={{ mt: 10 }}>
       <h2>Products</h2>
-      <ProductList products={data} />
+      <Suspense fallback={<Fallback />}>
+        <SearchList term={term} activePage={activePage} />
+      </Suspense>
+      <Box sx={{ mr: "auto", ml: "auto", maxWidth: 100 }} >
+        <ReactPagination
+          activePage={activePage}
+          itemsCountPerPage={10}
+          totalItemsCount={data?.length}
+          pageRangeDisplayed={5}
+          onchangeCallback={(v: any) => setActivePage(v)} />
+      </Box>
     </Container>
   )
 }

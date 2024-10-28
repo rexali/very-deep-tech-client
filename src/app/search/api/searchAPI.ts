@@ -1,5 +1,3 @@
-'use client'
-
 import {SERVER_URL } from "@/constants/url";
 
 const searchAPI = async (term: any, pageNumber: any = 1) => {
@@ -18,6 +16,8 @@ const searchAPI = async (term: any, pageNumber: any = 1) => {
       console.log(error);
    }
 }
+
+
 
 export {
    searchAPI

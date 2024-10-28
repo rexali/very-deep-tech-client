@@ -17,7 +17,6 @@ const handleContactSubmit = async (event: any,setPostSuccess:any,setPostError:an
         subject: subject.value,
         message: message.value,
     }
-    console.log({ ...contactData });
     await postMessage(contactData,setPostSuccess,setPostError);
 
 };

@@ -1,6 +1,6 @@
 'use client'
 
-import { handleLogin } from "./handleLogin";
+import { logInAPI } from "../api/logInAPI";
 
 /**
  * Sign in a user
@@ -24,7 +24,7 @@ export const handleLoginSubmit = (
     // get password 
     const password = data.get("password");
     // handle login
-    handleLogin(email, password)
+    logInAPI(email, password)
         .then((result: any) => {
             console.log(result);
             if (result.status === "success") {

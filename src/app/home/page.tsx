@@ -12,17 +12,17 @@ import Partners from './partners';
 import React from 'react';
 import SubscribeNewsletter from './subscribe-newsletter';
 import ProductPage from "../products/page";
-import SearchCard from "../search/SearchCard";
-import ProductCategories from "../products/ProductCategory";
+import SearchInput from "../search/SearchInput";
+import FeaturedProducts from "./FeaturedProducts";
 
 export default function HomePage() {
   // const isMobile = useMediaQuery({ maxDeviceWidth: 1023 });
   return (
     <main>
       {/* <CssBaseline /> */}
-      <SearchCard />
+      <SearchInput />
       <MarketingMessage /> <br /><br />
-      <ProductPage />
+      <FeaturedProducts />
       <FAQHowItWorks />
       <Testimonials />
       <Portfolios />

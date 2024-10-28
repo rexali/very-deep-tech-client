@@ -8,9 +8,13 @@ import Typography from '@mui/material/Typography';
 import Share from '@mui/icons-material/Share';
 import Favorite from '@mui/icons-material/Favorite';
 import Link from 'next/link';
-
+import GetQouteModal from '@/components/GetQuoteModal';
+import { shareLink } from '@/utils/shareLink';
 
 export default function ProductCard({ product }: { product: any }) {
+
+  const [open, setOpen] = React.useState(false);
+  
   return (
     <Card sx={{ maxWidth: 345, margin: 1 }}>
       <Link href={"/products/" + product._id}>
@@ -25,15 +29,16 @@ export default function ProductCard({ product }: { product: any }) {
         <Typography gutterBottom variant="h5" component="div">
           {product.product_name ?? "Lizard"}
         </Typography>
-        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-          {product.product_description ?? "Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica"}
+        <Typography gutterBottom variant="h5" component="div">
+          N {product.product_price ?? 1000}
         </Typography>
       </CardContent>
       <CardActions sx={{ display: 'flex', justifyContent: "space-between" }}>
-        <Button size="small">N {product.product_price ?? 1000}</Button>
-        <Button size="small" onClick={()=>alert("comming soon")} startIcon={<Share />}></Button>
-        <Button size="small" onClick={()=>alert("comming soon")} startIcon={<Favorite />}></Button>
-      <Link style={{textDecoration:"none",color:'blue'}} href={"/products/" + product?._id}><Button>Buy</Button></Link>
+      <Button size="small" onClick={() => setOpen(true)}>Get Qoutes</Button>
+      {open && <GetQouteModal closeCallback={setOpen} productId={product.product_id} />}
+        <Button size="small" onClick={() => shareLink(product.product_id)} startIcon={<Share />}></Button>
+        <Button size="small" onClick={() => alert("comming soon")} startIcon={<Favorite />}></Button>
+        <Link style={{ textDecoration: "none", color: 'blue' }} href={"/products/" + product?._id}><Button>Buy</Button></Link>
       </CardActions>
     </Card>
   );

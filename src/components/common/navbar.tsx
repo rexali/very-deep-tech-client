@@ -5,7 +5,6 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
@@ -21,6 +20,8 @@ import { useAuth } from '@/hooks/use-auth';
 import { BASE_URL } from '@/constants/url';
 import { Avatar, Button } from '@mui/material';
 import { AppContext } from '@/context/AppContext';
+import Notifications from '@mui/icons-material/Notifications';
+import Message from '@mui/icons-material/Message';
 
 
 const pages = [
@@ -34,12 +35,15 @@ const pages = [
 const menus = [
   'Users',
   'Settings',
-  'Logout'
+  'Logout',
+  'Messages',
+  'Notifications'
 ];
 
 function NavBar() {
 
   const { user } = useAuth();
+  
   const { state } = React.useContext(AppContext)
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -149,6 +153,10 @@ function NavBar() {
           <Cart sx={{ fontSize: 18, }} /><sup style={{ color: "red", marginRight: 10 }}>{state.carts?.length ?? 0}</sup>
         </Link>}
         {/* end */}
+        {/* Messages component */}
+        {!isMobile && <Link prefetch href={'/messages'} style={{ marginRight: 16 }} ><Message sx={{ color: "white" }} /></Link>}
+        {/* Notification component */}
+        {!isMobile && <Link prefetch href='/notifications' style={{ marginRight: 16 }} ><Notifications sx={{ color: "white" }} /></Link>}
         <Box sx={{ flexGrow: 0 }}>
           <Tooltip title="Open menu">
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -179,7 +187,7 @@ function NavBar() {
             onClose={handleCloseUserMenu}
           >
             <MenuItem key={"signin"} onClick={handleCloseUserMenu}>
-              <Link prefetch style={{ textDecoration: "none" }} href={`/auth/signin`}>Sign In</Link>
+              <Link style={{ textDecoration: "none" }} href={`/auth/signin`}>Sign In</Link>
             </MenuItem>
 
             <MenuItem key={"signup"} onClick={handleCloseUserMenu}>

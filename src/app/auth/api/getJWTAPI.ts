@@ -1,7 +1,7 @@
 import { getJWToken } from "@/utils/getJWToken";
 import { saveToken } from "@/utils/saveToken";
 
-const getJWTData = async () => {
+const getJWTAPI = async () => {
     try {
         const jwt = await getJWToken();
         saveToken('jwtoken', jwt?.jwtoken);
@@ -13,5 +13,5 @@ const getJWTData = async () => {
 };
 
 export {
-    getJWTData
+    getJWTAPI
 }

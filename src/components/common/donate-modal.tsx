@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -17,9 +16,9 @@ const style = {
   p: 4,
 };
 
-export default function DonateModal({children, openCallback}:{children:any, openCallback:any}) {
+export default function DonateModal({ children, openCallback }: { children: any, openCallback: any }) {
   const [open, setOpen] = React.useState(true);
-  
+
   const handleOpen = () => setOpen(true);
 
   const handleClose = () => {

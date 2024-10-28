@@ -1,47 +1,24 @@
 'use client'
-import { useContext, useEffect, useRef, useState } from "react";
-import { Container } from "@mui/material";
+
+import { Suspense, useState } from "react";
+import { Button, Container } from "@mui/material";
 import ProductList from "./ProductList";
-import { getProductsAPI } from "./api/getProductsAPI";
-import { AppContext } from "@/context/AppContext";
-import { getProducts } from "@/store/actions/app-actions";
 import Fallback from "@/components/common/fallback";
-import ProductCategories from "./ProductCategory";
-import { getProductCategories } from "./utils/getProductCategories";
+import Link from "next/link";
 
+export default function ProductsPage() {
 
-export default function ProductPage() {
-
-  const [data, setData] = useState<any>([]);
-  const mountRef = useRef(true);
-  const { dispatch } = useContext(AppContext);
-  const categories = getProductCategories(data);
-  console.log(data);
-  
-  async function getData() {
-    setData(await getProductsAPI());
-    dispatch(getProducts(await getProductsAPI()))
-  }
-
-  useEffect(() => {
-    if (mountRef.current) {
-      getData();
-
-      return () => {
-        mountRef.current = false;
-      }
-    }
-  });
-
-  if (!data?.length) {
-    return <Fallback />
-  }
+  const [activePage, setActivePage] = useState<number>(1);
 
   return (
-    <Container maxWidth="md" component={'main'}>
-      <ProductCategories categories={categories} />
-      <h2>Products</h2>
-      <ProductList products={data} />
+    <Container maxWidth="md" component={'main'} sx={{ mt: 5 }}>
+      <h2 style={{ display: 'flex', justifyContent: "space-between" }}>
+        Products
+        <Link style={{ textDecoration: "none", color: 'blue' }} href={"/products"}><Button>See all</Button></Link>
+      </h2>
+      <Suspense fallback={<Fallback />}>
+        <ProductList setActivePage={setActivePage} activePage={activePage} />
+      </Suspense>
     </Container>
   )
 }

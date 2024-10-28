@@ -1,41 +1,45 @@
-'use client'
-
 import * as React from 'react';
-import Paper from '@mui/material/Paper';
-import InputBase from '@mui/material/InputBase';
-import IconButton from '@mui/material/IconButton';
-import SearchIcon from '@mui/icons-material/Search';
-import { instantSearchProductAPI } from './api/instantSearchAPI';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Share from '@mui/icons-material/Share';
+import Favorite from '@mui/icons-material/Favorite';
 import Link from 'next/link';
+import GetQouteModal from '@/components/GetQuoteModal';
+import { shareLink } from '@/utils/shareLink';
 
+export default function SearchCard({ product }: { product: any }) {
 
-export default function SearchCard() {
-  const [data, setData] = React.useState([]);
+  const [open, setOpen] = React.useState(false);
+  
   return (
-    <Paper
-      component="form"
-      sx={{ p: '2px 2px', maxWidth: 300, mt: 10, marginLeft: "auto", marginRight: "auto" }}
-      action={"/search"}
-    >
-      <InputBase
-        sx={{ ml: 1, flex: 1 }}
-        placeholder="Search products"
-        inputProps={{ 'aria-label': 'search products' }}
-        name='term'
-        onInput={async (event) => {
-          const { value } = event.target as any;
-          setData(await instantSearchProductAPI(value));
-        }
-        }
-      />
-      <IconButton type="submit" sx={{ p: '10px' }} aria-label="search" >
-        <SearchIcon />
-      </IconButton>
-      <Paper>
-        {
-          data?.map((name, i) => <Link key={i} style={{ textDecoration: "none", margin: 1, display: "block" }} href={"/search?term=" + name}>{name}</Link>)
-        }
-      </Paper>
-    </Paper>
+    <Card sx={{ maxWidth: 345, margin: 1 }}>
+      <Link href={"/products/" + product?._id}>
+        <CardMedia
+          component="img"
+          alt={product?.product_name}
+          height="140"
+          image={product?.product_picture ?? "https://placehold.co/600x400/orange/white"}
+        />
+      </Link>
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+          {product?.product_name ?? "Lizard"}
+        </Typography>
+        <Typography gutterBottom variant="h5" component="div">
+          N {product?.product_price ?? 1000}
+        </Typography>
+      </CardContent>
+      <CardActions sx={{ display: 'flex', justifyContent: "space-between" }}>
+      <Button size="small" onClick={() => setOpen(true)}>Get Qoutes</Button>
+      {open && <GetQouteModal closeCallback={setOpen} productId={product?.product_id} />}
+        <Button size="small" onClick={() => shareLink(product?.product_id)} startIcon={<Share />}></Button>
+        <Button size="small" onClick={() => alert("comming soon")} startIcon={<Favorite />}></Button>
+        <Link style={{ textDecoration: "none", color: 'blue' }} href={"/products/" + product?._id}><Button>Buy</Button></Link>
+      </CardActions>
+    </Card>
   );
 }

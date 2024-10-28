@@ -1,16 +1,20 @@
-async function shareLink(waqfId?: any) {
+'use client'
+
+async function shareLink(productId?: any) {
+   
     var shareData: any
-    if (waqfId) {
+    
+    if (productId) {
         shareData = {
-            title: "Almubarak Waqf Foundation",
-            text: "Create or support a waqf",
-            url: `https://almubarakwaqf.org/waqfs/${waqfId}`
+            title: "Siniofarm",
+            text: "Farm products for you to buy",
+            url: `${window.origin}/products/${productId}`
         };
     } else {
         shareData = {
-            title: "Almubarak Waqf Foundation",
-            text: "Create or support a waqf",
-            url: `https://almubarakwaqf.org`
+            title: "Siniofarm",
+            text: "Farm products for you to buy",
+            url: `${window.origin}`
         }
     }
 

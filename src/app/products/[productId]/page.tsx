@@ -1,44 +1,36 @@
-"use client"
-
 import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import Share from '@mui/icons-material/Share';
-import Favourite from '@mui/icons-material/Favorite';
-import AddToCart from '@mui/icons-material/AddShoppingCart'
 import { getProductAPI } from '../api/getProductAPI';
 import Fallback from '@/components/common/fallback';
+import { createCartAPI } from '@/app/carts/api/createCartAPI';
+import { SERVER_URL } from '@/constants/url';
+import ProductCardActions from '../components/ProductCardActions';
 
+export const revalidate = 3600;
 
-export default function ProductDetailPage({ params }: { params: { productId: string } }) {
-  const [product, setProduct] = React.useState<any>({});
-  const mountRef = React.useRef(true);
+export const dynamicParams = true;
 
-  async function getProduct(id: string) {
-    setProduct(await getProductAPI(id));
-  }
+export async function generateStaticParams() {
+  const data = await fetch(SERVER_URL + "/products").then(res => res.json());
+  return data.data.products.map((product: any) => ({
+    productId: product.product_id
+  }))
+}
 
-  React.useEffect(() => {
-    if (mountRef.current) {
-      getProduct(params.productId);
-      return () => {
-        mountRef.current = false;
-      }
-    }
-  });
+export default async function ProductDetailPage({ params }: { params: { productId: string } }) {
+const product = await getProductAPI(params.productId)
 
-  if (!Object.keys(product).length) {
+  if (!Object?.keys(product).length) {
     return <Fallback />
   }
 
   return (
     <Container maxWidth="md" component={'main'}>
-
       <Card sx={{ maxWidth: 345, marginTop: 10, marginLeft: "auto", marginRight: "auto" }}>
         <CardMedia
           component="img"
@@ -55,11 +47,8 @@ export default function ProductDetailPage({ params }: { params: { productId: str
             {product.product_description ?? "Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica"}
           </Typography>
         </CardContent>
-        <CardActions sx={{ display: 'flex', justifyContent: "space-between" }}>
-          <Button size="small">N {product.product_price ?? 1000}</Button>
-          <Button size="small" startIcon={<Share />}></Button>
-          <Button size="small" startIcon={<Favourite />}></Button>
-          <Button size="small" onClick={() => { alert("Coming soon..") }} startIcon={<AddToCart />}>Add</Button>
+        <CardActions>
+          <ProductCardActions product={product} createCartAPI={createCartAPI} />
         </CardActions>
       </Card>
     </Container>

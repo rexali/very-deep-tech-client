@@ -35,7 +35,9 @@ export default function SideDrawer({ children, searchCallback }: { children: any
     // onClick={toggleDrawer(anchor, true)}
     // onKeyDown={toggleDrawer(anchor, true)}
     >
-      <Box textAlign={'right'} ><Button onClick={() => { toggleDrawer(anchor, false); searchCallback(false); }} startIcon={<CloseIcon />} ></Button></Box>
+      <Box textAlign={'right'} >
+        <Button onClick={() => { toggleDrawer(anchor, false); searchCallback(false); }} startIcon={<CloseIcon />} ></Button>
+      </Box>
       {children}
     </Box>
   );

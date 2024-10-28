@@ -1,4 +1,4 @@
-import { handleSignUp } from "./handleSignUp";
+import { signUpAPI } from "../api/signUpAPI";
 
 /**
  * 
@@ -20,7 +20,7 @@ export const handleSignUpSubmit = (
         //   check if user password and confirm password before posting user data   
         if (password.value === confirm_password.value) {
             // call handleSignUp method and collect user data
-            handleSignUp(
+            signUpAPI(
                 first_name.value,
                 last_name.value,
                 email.value,

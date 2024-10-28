@@ -1,3 +1,5 @@
+'use client'
+
 import Pagination from "react-js-pagination";
 import 'bootstrap/dist/css/bootstrap.min.css';
 

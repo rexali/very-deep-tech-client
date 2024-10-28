@@ -6,8 +6,62 @@ import Container from '@mui/material/Container';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Money from "@material-ui/icons/Money";
+import { handleCheckoutSubmit } from './utils/handleCheckoutSubmit';
+import { getUserProfileAPI } from '../users/api/getUserProfileAPI';
+import { getToken } from '@/utils/getToken';
 
 export default function CartList(props: any) {
+    const [error, setError] = React.useState('');
+    const [success, setSuccess] = React.useState('');
+
+    const cartTotal = props.products
+        .map((product: any) => parseInt(product.product_price))
+        .reduce((prev: any, cur: any) => {
+            return prev + cur;
+        }, 0);
+
+    const userId = getToken("_id") ?? "6712c927857f3a3b3492459f" as string;
+    // read profile with user data for the form
+    let userProfile: any;
+    (async () => {
+        userProfile = await getUserProfileAPI(userId);
+    })();
+
+    const orderItems = props.products.map((product: any) => ({
+        productId: product.product_id,
+        quantity: product.cartQuantity,
+        price: product.product_price,
+        total: parseInt(product.cartQuantity) * parseInt(product.product_price)
+    }))
+
+    const orderData = {
+        userId: userId,
+        items: orderItems,
+        orderStatus: "pending",
+        tax: 0,
+        shippingCost: 0,
+        subtotal: orderItems
+            .map((item: any) => parseInt(item.price))
+            .reduce((prev: any, cur: any) => {
+                return prev + cur;
+            }, 0)
+        ,
+        total: cartTotal,
+        paymentStatus:"pending"
+    };
+
+    const transactionData = {
+        userId:userId,
+        orderId:"",
+        amount:orderData.total,
+        type:"payment",
+        reference:"",
+        currency:"NG",
+        paymentMethod:"Paystack"
+
+    }
+
+
 
     return (
         <Container>
@@ -16,13 +70,24 @@ export default function CartList(props: any) {
                 <Grid item xs={12} md={8} sx={{ marginTop: 1 }}>
                     <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                         {props.products.map((product: any) => {
-                            return <Grid key={product._id} item xs={12} md={6}><CartCard product={product} /></Grid>
+                            return <Grid key={product._id} item xs={12} md={6}><CartCard product={product} cb={props.getUserCartsAPI} /></Grid>
                         })}
                     </Grid>
                 </Grid>
 
                 <Grid item xs={12} md={4} sx={{ marginTop: 1 }}>
-                    <Box>
+                    <Box
+                        component="form"
+                        onSubmit={(evt) => handleCheckoutSubmit(
+                            evt, 
+                            setSuccess, 
+                            setError,
+                            orderData,
+                            transactionData
+                        )}
+                        noValidate
+                        sx={{ mt: 1 }}
+                    >
                         <TextField
                             autoComplete="given-name"
                             name="first_name"
@@ -31,6 +96,7 @@ export default function CartList(props: any) {
                             margin={"normal"}
                             id="first_name"
                             label="First Name"
+                            defaultValue={userProfile?.firstName}
                             autoFocus
                         />
 
@@ -42,6 +108,7 @@ export default function CartList(props: any) {
                             margin={"normal"}
                             id="last_name"
                             label="Last Name"
+                            defaultValue={userProfile?.lastName}
                             autoFocus
                         />
 
@@ -53,6 +120,7 @@ export default function CartList(props: any) {
                             margin={"normal"}
                             id="email_address"
                             label="Email Address"
+                            defaultValue={userProfile?.user.email}
                             autoFocus
                         />
 
@@ -64,6 +132,7 @@ export default function CartList(props: any) {
                             margin={"normal"}
                             id="street_address"
                             label="Address"
+                            defaultValue={userProfile?.streetAddress}
                             autoFocus
                         />
 
@@ -75,6 +144,7 @@ export default function CartList(props: any) {
                             margin={"normal"}
                             id="local_govt"
                             label="Local Govt"
+                            defaultValue={userProfile?.localGovt}
                             autoFocus
                         />
 
@@ -86,6 +156,7 @@ export default function CartList(props: any) {
                             margin={"normal"}
                             id="state"
                             label="State"
+                            defaultValue={userProfile?.state}
                             autoFocus
                         />
 
@@ -98,14 +169,60 @@ export default function CartList(props: any) {
                             id="total_amount"
                             label="Total Amount"
                             autoFocus
+                            defaultValue={cartTotal}
+                            disabled
                         />
 
+                        <TextField
+                            autoComplete="given-name"
+                            name="shipping_method"
+                            required
+                            fullWidth
+                            margin={"normal"}
+                            id="shipping_method"
+                            label="Shipping Method"
+                            defaultValue={"GENERAL"}
+                            autoFocus
+                        />
+
+                        <TextField
+                            autoComplete="given-name"
+                            name="shipping_cost"
+                            required
+                            fullWidth
+                            margin={"normal"}
+                            id="shipping_cost"
+                            label="Shipping Cost"
+                            defaultValue={0}
+                            autoFocus
+                        />
+
+                        <TextField
+                            autoComplete="given-name"
+                            name="tax"
+                            required
+                            fullWidth
+                            margin={"normal"}
+                            id="tax"
+                            label="Tax"
+                            defaultValue={0}
+                            autoFocus
+                        />
+                        {success && <Box textAlign={"center"} sx={{ color: "green" }}>{success.toUpperCase()}</Box>}
+                        {error && <Box textAlign={"center"} sx={{ color: "red" }}>{error.toUpperCase()}</Box>}
+
                         <Button
+                            type="submit"
                             size="large"
                             fullWidth
-                            style={{
-                                color: 'green',
-                            }} startIcon={<Money/>}>CHECKOUT</Button>
+                            variant="contained"
+                            color='success'
+                            sx={{ mt: 3, mb: 2 }}
+                            startIcon={<Money />}
+                        >
+                            CHECKOUT
+                        </Button>
+
                     </Box>
                 </Grid>
             </Grid>

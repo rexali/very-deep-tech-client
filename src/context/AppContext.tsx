@@ -6,6 +6,9 @@ import reducer from '../store/reducers/app_reducer';
 const initialState = {
     products: [],
     carts: [],
+    messages: [],
+    favourites: [],
+    notifications: [],
     result: {},
 };
 

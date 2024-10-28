@@ -14,11 +14,12 @@ export default function CartPage() {
   const [data, setData] = useState<any>([]);
   const mountRef = useRef(true);
   const { dispatch } = useContext(AppContext);
-  const userId = getToken("_id") as string;
+  const userId = getToken("_id") ?? "6712c927857f3a3b3492459f";
 
   async function getData() {
-    setData(await getUserCartsAPI(userId));
-    dispatch(getCarts(await getUserCartsAPI(userId)))
+    let userCarts = await getUserCartsAPI(userId);
+    setData(userCarts);
+    dispatch(getCarts(userCarts))
   }
 
   useEffect(() => {
@@ -41,7 +42,7 @@ export default function CartPage() {
 
   return (
     <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }} >
-      <CartList products={data} />
+      <CartList products={data} getUserCartsAPI={getUserCartsAPI} />
     </Container>
   )
 }
