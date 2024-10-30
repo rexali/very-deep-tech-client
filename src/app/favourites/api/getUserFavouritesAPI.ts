@@ -4,7 +4,7 @@ import axios from "axios";
 const getUserFavouritesAPI = async (userId: string, page?: number) => {
 
     try {
-        let { data: { data: { favourites } } } = await axios.get(`${BASE_URL}/favourites/` + userId + "/users?page=" + page, {
+        let { data: { data: { favourites } } } = await axios.get(`${SERVER_URL}/favourites/` + userId, {
             withCredentials: false,
             headers: {
                 'Content-Type': 'application/json',

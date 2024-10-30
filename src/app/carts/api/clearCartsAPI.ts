@@ -4,7 +4,7 @@ import axios from "axios";
 const clearUserCartsAPI = async (id: string) => {
 
     try {
-        let { data } = await axios.delete(`${BASE_URL}/carts/` + id + "/users", {
+        let { data } = await axios.delete(`${SERVER_URL}/carts/` + id + "/users", {
             withCredentials: false,
             headers: {
                 'Content-Type': 'application/json',

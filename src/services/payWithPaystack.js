@@ -1,4 +1,5 @@
 import { clearUserCartsAPI } from "@/app/carts/api/clearCartsAPI";
+import { createOrderAPI } from "@/app/carts/api/createOrderAPI";
 import { createTransactionAPI } from "@/app/carts/api/createTransactionAPI";
 import { getToken } from "@/utils/getToken";
 import PaystackPop from "@paystack/inline-js";
@@ -6,8 +7,10 @@ import PaystackPop from "@paystack/inline-js";
 export function payWithPaystack(
     email,
     amount,
-    orderCallback,
-    transactionData
+    orderData,
+    transactionData,
+    setPostSuccess,
+    setPostError
 ) {
     const paystack = new PaystackPop();
     paystack.newTransaction({
@@ -18,26 +21,34 @@ export function payWithPaystack(
         onSuccess: async (transaction) => {
             try {
                 // payment complete
-                const orderId = await orderCallback(); // callback to handle add order and transaction data
+                const orderId = await createOrderAPI(orderData); // callback to handle add order and transaction data
                 if (orderId) {
+                    setPostSuccess("Order success")
+                    console.log("Order success")
                     const transactionId = await createTransactionAPI({
                         ...transactionData,
-                        userId,
+                        orderId,
                         reference: transaction.reference
                     });
 
                     if (transactionId) {
+                        setPostSuccess("Order success")
                         await clearUserCartsAPI(getToken("_id"));
                     } else {
-                        console.log("Transaction failed")
+                        console.log("Transaction failed");
+                        setPostError("Transaction failed");
                     }
 
                 } else {
-                    console.log("Order failed")
+                    console.log("Order failed");
+                    setPostError("Transaction failed");
+
                 }
 
             } catch (error) {
                 console.warn(error)
+                setPostError("Error! "+error.message);
+
             } finally {
                 console.log(transaction.reference);
             }

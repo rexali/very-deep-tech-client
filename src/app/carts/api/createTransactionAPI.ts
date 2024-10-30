@@ -1,10 +1,10 @@
-import { BASE_URL } from "@/constants/url";
+import { BASE_URL, SERVER_URL } from "@/constants/url";
 // import { getToken } from "@/utils/getToken";
 
 const createTransactionAPI = async (transactionData: any) => {
    try {
       //   let jwtoken = getToken('jwtoken') as string;
-      let response = await fetch(`${BASE_URL}/transactions`, {
+      let response = await fetch(`${SERVER_URL}/transactions`, {
          method: "POST",
          mode: 'cors',
          headers: {

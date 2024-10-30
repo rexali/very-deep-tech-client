@@ -4,7 +4,7 @@ import axios from "axios";
 const updateCartAPI = async (cartData: any) => {
 
     try {
-        let { data } = await axios.patch(`${BASE_URL}/carts`, cartData, {
+        let { data } = await axios.patch(`${SERVER_URL}/carts`, cartData, {
             withCredentials: false,
             headers: {
                 'Content-Type': 'application/json',

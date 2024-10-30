@@ -42,7 +42,7 @@ export default function CartPage() {
 
   return (
     <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }} >
-      <CartList products={data} getUserCartsAPI={getUserCartsAPI} />
+      <CartList products={data} refreshCart={getData} />
     </Container>
   )
 }

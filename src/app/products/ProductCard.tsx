@@ -10,11 +10,19 @@ import Favorite from '@mui/icons-material/Favorite';
 import Link from 'next/link';
 import GetQouteModal from '@/components/GetQuoteModal';
 import { shareLink } from '@/utils/shareLink';
+import { createFavouriteAPI } from '../favourites/api/createFavouriteAPI';
+import { getToken } from '@/utils/getToken';
+import StatusModal from '@/components/common/status-modal';
+import Rating from '@mui/material/Rating';
 
 export default function ProductCard({ product }: { product: any }) {
 
   const [open, setOpen] = React.useState(false);
-  
+  const [openF, setOpenF] = React.useState(false);
+  const handleOpen = () => {
+    setOpenF(true)
+  }
+
   return (
     <Card sx={{ maxWidth: 345, margin: 1 }}>
       <Link href={"/products/" + product._id}>
@@ -32,12 +40,30 @@ export default function ProductCard({ product }: { product: any }) {
         <Typography gutterBottom variant="h5" component="div">
           N {product.product_price ?? 1000}
         </Typography>
+        <Rating name="read-only" value={2} readOnly />
       </CardContent>
       <CardActions sx={{ display: 'flex', justifyContent: "space-between" }}>
-      <Button size="small" onClick={() => setOpen(true)}>Get Qoutes</Button>
-      {open && <GetQouteModal closeCallback={setOpen} productId={product.product_id} />}
-        <Button size="small" onClick={() => shareLink(product.product_id)} startIcon={<Share />}></Button>
-        <Button size="small" onClick={() => alert("comming soon")} startIcon={<Favorite />}></Button>
+        <Button size="small" onClick={() => setOpen(true)}>Get Qoutes</Button>
+        {open && <GetQouteModal closeCallback={setOpen} productId={product.product_id} />}
+        <Button size="small" onClick={() => shareLink(product._id)} startIcon={<Share />}></Button>
+        <Button
+          size="small"
+          onClick={async () => {
+            const favourite = await createFavouriteAPI({
+              product_id: product._id,
+              user_id: getToken("_id") ?? "6712c927857f3a3b3492459f",
+            });
+            console.log(favourite);
+            if (favourite._id) {
+              handleOpen();
+            }
+          }}
+          startIcon={<Favorite />}>
+        </Button>
+        {openF && <StatusModal message={{
+          title: "Favourite Alert",
+          body: "Product added to wish list"
+        }} closeCallback={handleOpen} />}
         <Link style={{ textDecoration: "none", color: 'blue' }} href={"/products/" + product?._id}><Button>Buy</Button></Link>
       </CardActions>
     </Card>

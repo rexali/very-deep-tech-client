@@ -4,7 +4,7 @@ import axios from "axios";
 const getUserCartsAPI = async (userId: string) => {
 
     try {
-        let { data: { data: { carts } } } = await axios.get(`${BASE_URL}/carts/` + userId, {
+        let { data: { data: { carts } } } = await axios.get(`${SERVER_URL}/carts/` + userId, {
             withCredentials: false,
             headers: {
                 'Content-Type': 'application/json',

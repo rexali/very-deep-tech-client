@@ -18,7 +18,7 @@ const style = {
   p: 4,
 };
 
-export default function StatusModal({ message, closeCallback }: { message: {title:string,body:string}, closeCallback:any }) {
+export default function StatusModal({ message, closeCallback }: { message: { title: string, body: string }, closeCallback: any }) {
   const [open, setOpen] = React.useState(true);
 
   const handleOpen = () => setOpen(true);
@@ -34,7 +34,7 @@ export default function StatusModal({ message, closeCallback }: { message: {titl
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Box sx={{ textAlign: 'right' }}> <Button onClick={()=>closeCallback(false)} >X</Button></Box>
+          {/* <Box sx={{ textAlign: 'right' }}> <Button onClick={() => closeCallback(false)} >X</Button></Box> */}
           <Typography id="modal-modal-title" variant="h6" component="h2">
             {message.title}
           </Typography>

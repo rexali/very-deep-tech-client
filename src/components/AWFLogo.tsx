@@ -7,7 +7,7 @@ function AWFLogo() {
     return (
         <Link href={'/'}>
             <Image
-                src={require("../assets/images/cshop.png")}
+                src={require("../assets/images/awf-logo.png")}
                 width={40}
                 height={40}
                 alt="AWF"

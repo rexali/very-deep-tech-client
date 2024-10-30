@@ -1,6 +1,4 @@
 import { payWithPaystack } from "@/services/payWithPaystack";
-import { createOrderAPI } from "../api/createOrderAPI";
-import { createTransactionAPI } from "../api/createTransactionAPI";
 
 const handleCheckoutSubmit = async (
     event: any,
@@ -38,13 +36,15 @@ const handleCheckoutSubmit = async (
         tax: tax.value
     }
 
-    console.log(contactData);
+    console.log(contactData, orderData, transactionData);
 
     payWithPaystack(
-        "alybaba2009@gmail.com",
+        contactData.email ?? "alybaba2009@gmail.com",
         contactData.amount ?? 10000,
-        createOrderAPI(orderData, setPostSuccess, setPostError),
-        createTransactionAPI(transactionData),
+        orderData,
+        transactionData,
+        setPostSuccess,
+        setPostError,
     );
 };
 

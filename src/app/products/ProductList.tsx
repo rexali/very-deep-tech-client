@@ -16,7 +16,7 @@ export default async function ProductList(props: any) {
     products = await getProductsAPI(props?.activePage);
     const categories = getProductCategories(products);
     if (props.featured) {
-        products = products.slice(0, 2)
+        products = products?.slice(0, 2) ?? []
     }
 
 

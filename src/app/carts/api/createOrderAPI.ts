@@ -1,12 +1,13 @@
-import { BASE_URL } from "@/constants/url";
+import { BASE_URL, SERVER_URL } from "@/constants/url";
 // import { getToken } from "@/utils/getToken";
 
-const createOrderAPI = async (orderData: any, setPostSuccess: any, setPostError: any) => {
+const createOrderAPI = async (orderData: any) => {
    try {
       //   let jwtoken = getToken('jwtoken') as string;
-      let response = await fetch(`${BASE_URL}/orders`, {
+      let response = await fetch(`${SERVER_URL}/orders`, {
          method: "POST",
          mode: 'cors',
+         cache:"no-store",
          headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
@@ -16,11 +17,9 @@ const createOrderAPI = async (orderData: any, setPostSuccess: any, setPostError:
       });
       const { status, data } = await response.json();
       if (status === "success") {
-         setPostSuccess("Success");
          return data.order._id;
       }
    } catch (error) {
-      setPostError("Error");
       console.warn(error);
    }
 }

@@ -9,16 +9,22 @@ import Money from "@material-ui/icons/Money";
 import { handleCheckoutSubmit } from './utils/handleCheckoutSubmit';
 import { getUserProfileAPI } from '../users/api/getUserProfileAPI';
 import { getToken } from '@/utils/getToken';
+import ClearCartButton from './components/ClearCartButton';
 
 export default function CartList(props: any) {
     const [error, setError] = React.useState('');
     const [success, setSuccess] = React.useState('');
+    const [cartTotals, setCartTotal] = React.useState<number>();
 
-    const cartTotal = props.products
-        .map((product: any) => parseInt(product.product_price))
-        .reduce((prev: any, cur: any) => {
-            return prev + cur;
-        }, 0);
+    let cartTotal: any;
+
+    (async () => {
+        cartTotal = props.products
+            .map((product: any) => Number(product.product_price) * Number(product.cartQuantity))
+            .reduce((prev: any, cur: any) => {
+                return prev + cur;
+            }, 0);
+    })();
 
     const userId = getToken("_id") ?? "6712c927857f3a3b3492459f" as string;
     // read profile with user data for the form
@@ -47,21 +53,24 @@ export default function CartList(props: any) {
             }, 0)
         ,
         total: cartTotal,
-        paymentStatus:"pending"
+        paymentStatus: "pending",
+        shippingMethod: "GENERAL"
     };
 
     const transactionData = {
-        userId:userId,
-        orderId:"",
-        amount:orderData.total,
-        type:"payment",
-        reference:"",
-        currency:"NG",
-        paymentMethod:"Paystack"
+        userId: userId,
+        orderId: "",
+        amount: orderData.total,
+        type: "payment",
+        reference: "",
+        currency: "NG",
+        paymentMethod: "Paystack"
 
     }
 
-
+    React.useEffect(() => {
+        setCartTotal(cartTotal)
+    })
 
     return (
         <Container>
@@ -70,17 +79,18 @@ export default function CartList(props: any) {
                 <Grid item xs={12} md={8} sx={{ marginTop: 1 }}>
                     <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                         {props.products.map((product: any) => {
-                            return <Grid key={product._id} item xs={12} md={6}><CartCard product={product} cb={props.getUserCartsAPI} /></Grid>
+                            return <Grid key={product._id} item xs={12} md={6}><CartCard product={product} refreshCart={props.refreshCart} /></Grid>
                         })}
                     </Grid>
+                    <ClearCartButton />
                 </Grid>
 
                 <Grid item xs={12} md={4} sx={{ marginTop: 1 }}>
                     <Box
                         component="form"
                         onSubmit={(evt) => handleCheckoutSubmit(
-                            evt, 
-                            setSuccess, 
+                            evt,
+                            setSuccess,
                             setError,
                             orderData,
                             transactionData
@@ -169,7 +179,9 @@ export default function CartList(props: any) {
                             id="total_amount"
                             label="Total Amount"
                             autoFocus
-                            defaultValue={cartTotal}
+                            // defaultValue={cartTotals}
+                            defaultValue={100}
+
                             disabled
                         />
 
