@@ -1,3 +1,4 @@
+'use client'
 
 /**
  * Navigate to a given route for a given loggedIn state.

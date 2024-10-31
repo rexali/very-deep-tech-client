@@ -1,3 +1,5 @@
+'use client'
+
 import { SERVER_URL } from "@/constants/url";
 
 export const instantSearchProductAPI = async (term: string, pageNumber?: string) => {

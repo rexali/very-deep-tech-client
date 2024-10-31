@@ -1,3 +1,5 @@
+'use client'
+
 import { getJWToken } from "@/utils/getJWToken";
 import { saveToken } from "@/utils/saveToken";
 

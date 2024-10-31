@@ -1,3 +1,5 @@
+'use client'
+
 /**
  * Sign out a user
  */

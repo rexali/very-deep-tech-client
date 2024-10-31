@@ -1,3 +1,5 @@
+'use client'
+
 import {SERVER_URL } from "@/constants/url";
 
 const searchAPI = async (term: any, pageNumber: any = 1) => {

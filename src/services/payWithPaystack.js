@@ -1,7 +1,8 @@
+'use client'
+
 import { clearUserCartsAPI } from "@/app/carts/api/clearCartsAPI";
 import { createOrderAPI } from "@/app/carts/api/createOrderAPI";
 import { createTransactionAPI } from "@/app/carts/api/createTransactionAPI";
-import { getToken } from "@/utils/getToken";
 import PaystackPop from "@paystack/inline-js";
 
 export function payWithPaystack(
@@ -33,7 +34,7 @@ export function payWithPaystack(
 
                     if (transactionId) {
                         setPostSuccess("Order success")
-                        await clearUserCartsAPI(getToken("_id"));
+                        await clearUserCartsAPI("");
                     } else {
                         console.log("Transaction failed");
                         setPostError("Transaction failed");

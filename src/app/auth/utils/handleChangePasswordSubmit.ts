@@ -1,3 +1,5 @@
+'use client'
+
 import { changePasswordAPI } from "../api/changePasswordAPI";
 
 const handleChangePasswordSubmit = async (

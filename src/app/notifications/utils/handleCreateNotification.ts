@@ -1,4 +1,4 @@
-import { fetchData } from "@/app/waqfs/api/fetchData";
+import { fetchData } from "@/app/messages/api/fetchDataAPI";
 import { BASE_URL } from "@/constants/url";
 import { getToken } from "@/utils/getToken";
 import { savePathLink } from "@/utils/savePathLink";

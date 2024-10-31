@@ -1,3 +1,5 @@
+'use client'
+
 import { payWithPaystack } from "@/services/payWithPaystack";
 
 const handleCheckoutSubmit = async (
@@ -36,16 +38,14 @@ const handleCheckoutSubmit = async (
         tax: tax.value
     }
 
-    console.log(contactData, orderData, transactionData);
-
-    payWithPaystack(
-        contactData.email ?? "alybaba2009@gmail.com",
-        contactData.amount ?? 10000,
-        orderData,
-        transactionData,
-        setPostSuccess,
-        setPostError,
-    );
+    // payWithPaystack(
+    //     contactData.email ?? "alybaba2009@gmail.com",
+    //     contactData.amount ?? 10000,
+    //     orderData,
+    //     transactionData,
+    //     setPostSuccess,
+    //     setPostError,
+    // );
 };
 
 export {

@@ -1,3 +1,5 @@
+'use client'
+
 import * as React from "react";
 import NotificationCard from "./notification-card";
 import Grid from "@mui/material/Grid";

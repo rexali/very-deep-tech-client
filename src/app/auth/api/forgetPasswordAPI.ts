@@ -1,3 +1,5 @@
+'use client'
+
 import { BASE_URL } from "@/constants/url";
 import { getToken } from "@/utils/getToken";
 import axios from "axios";

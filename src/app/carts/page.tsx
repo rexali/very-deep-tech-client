@@ -7,14 +7,13 @@ import { getCarts } from "@/store/actions/app-actions";
 import { useState, useRef, useContext, useEffect } from "react";
 import Fallback from "@/components/common/fallback";
 import { getUserCartsAPI } from "./api/getUserCartsAPI";
-import { getToken } from "@/utils/getToken";
 
 export default function CartPage() {
 
   const [data, setData] = useState<any>([]);
   const mountRef = useRef(true);
-  const { dispatch } = useContext(AppContext);
-  const userId = getToken("_id") ?? "6712c927857f3a3b3492459f";
+  const { dispatch,state } = useContext(AppContext);
+  const userId = state.user?._id ?? "6712c927857f3a3b3492459f";
 
   async function getData() {
     let userCarts = await getUserCartsAPI(userId);
@@ -30,7 +29,7 @@ export default function CartPage() {
         mountRef.current = false;
       }
     }
-  });
+  },[userId, getData]);
 
   if (!data?.length) {
     return <Fallback />

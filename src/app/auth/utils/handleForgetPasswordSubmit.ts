@@ -1,3 +1,5 @@
+'use client'
+
 import { forgetPasswordAPI } from "../api/forgetPasswordAPI";
 
 const handleForgetPasswordSubmit = async (

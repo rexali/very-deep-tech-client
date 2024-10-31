@@ -1,3 +1,4 @@
+'use client'
 
 /**
  * Find if the checkbox is marked.

@@ -1,3 +1,5 @@
+'use client'
+
 import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import CartCard from "./CartCard";
@@ -8,25 +10,22 @@ import Button from '@mui/material/Button';
 import Money from "@material-ui/icons/Money";
 import { handleCheckoutSubmit } from './utils/handleCheckoutSubmit';
 import { getUserProfileAPI } from '../users/api/getUserProfileAPI';
-import { getToken } from '@/utils/getToken';
 import ClearCartButton from './components/ClearCartButton';
+import { AppContext } from '@/context/AppContext';
 
 export default function CartList(props: any) {
     const [error, setError] = React.useState('');
     const [success, setSuccess] = React.useState('');
     const [cartTotals, setCartTotal] = React.useState<number>();
-
-    let cartTotal: any;
-
-    (async () => {
-        cartTotal = props.products
+    const { dispatch,state } = React.useContext(AppContext);
+    const userId = state.user?._id ?? "6712c927857f3a3b3492459f";
+    let cartTotal = props.products
             .map((product: any) => Number(product.product_price) * Number(product.cartQuantity))
             .reduce((prev: any, cur: any) => {
                 return prev + cur;
             }, 0);
-    })();
+           
 
-    const userId = getToken("_id") ?? "6712c927857f3a3b3492459f" as string;
     // read profile with user data for the form
     let userProfile: any;
     (async () => {
@@ -70,7 +69,7 @@ export default function CartList(props: any) {
 
     React.useEffect(() => {
         setCartTotal(cartTotal)
-    })
+    },[cartTotal])
 
     return (
         <Container>
@@ -179,9 +178,7 @@ export default function CartList(props: any) {
                             id="total_amount"
                             label="Total Amount"
                             autoFocus
-                            // defaultValue={cartTotals}
-                            defaultValue={100}
-
+                            defaultValue={cartTotals}
                             disabled
                         />
 
