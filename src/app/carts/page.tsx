@@ -7,6 +7,7 @@ import { getCarts } from "@/store/actions/app-actions";
 import { useState, useRef, useContext, useEffect } from "react";
 import Fallback from "@/components/common/fallback";
 import { getUserCartsAPI } from "./api/getUserCartsAPI";
+import { CartListComponent } from "./CartListComponent";
 
 export default function CartPage() {
 
@@ -41,7 +42,8 @@ export default function CartPage() {
 
   return (
     <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }} >
-      <CartList products={data} refreshCart={getData} />
+      {/* <CartList products={data} refreshCart={getData} /> */}
+      <CartListComponent products={data} refreshCart={getData} />
     </Container>
   )
 }

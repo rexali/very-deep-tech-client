@@ -38,14 +38,14 @@ const handleCheckoutSubmit = async (
         tax: tax.value
     }
 
-    // payWithPaystack(
-    //     contactData.email ?? "alybaba2009@gmail.com",
-    //     contactData.amount ?? 10000,
-    //     orderData,
-    //     transactionData,
-    //     setPostSuccess,
-    //     setPostError,
-    // );
+    payWithPaystack(
+        contactData.email ?? "alybaba2009@gmail.com",
+        contactData.amount ?? 10000,
+        orderData,
+        transactionData,
+        setPostSuccess,
+        setPostError,
+    );
 };
 
 export {
