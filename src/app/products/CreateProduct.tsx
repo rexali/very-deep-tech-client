@@ -39,7 +39,8 @@ export function CreateProduct() {
                 fullWidth
                 margin={"normal"}
                 id="product_picture"
-                label="Product Category"
+                label="Product Photo(s)"
+                type="file"
                 autoFocus
             />
 

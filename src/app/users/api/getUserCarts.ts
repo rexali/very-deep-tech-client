@@ -1,17 +1,10 @@
-'use client'
+import { SERVER_URL } from "@/constants/url";
 
-import { BASE_URL, SERVER_URL } from "@/constants/url";
-import axios from "axios";
+const getUserCartsAPI = async (userId: string, page: number = 1) => {
 
-const getUserCartsAPI = async (userId: string) => {
- 
     try {
-        let { data: { data: { carts } } } = await axios.get(`${SERVER_URL}/carts/` + userId, {
-            withCredentials: false,
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
+        let data = await fetch(`${SERVER_URL}/carts/`+ userId).then(res => res.json());
+        let carts = data.data.carts;
         let newcarts = carts.map((cart: any) => {
             return {
                 ...cart,

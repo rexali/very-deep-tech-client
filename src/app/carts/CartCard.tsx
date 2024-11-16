@@ -11,15 +11,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { updateCartAPI } from './api/updateCartAPI';
 import { deleteCartAPI } from './api/deleteCartAPI';
-import { AppContext } from '@/context/AppContext';
+import { AuthContext } from '@/context/AuthContext';
 
 export default function CartCard({ product, refreshCart }: { product: any, refreshCart: any }) {
   const [quantity, setQuantity] = React.useState<number>(product?.cartQuantity ?? 0);
-  const { dispatch,state } = React.useContext(AppContext);
+  const { state } = React.useContext(AuthContext);
   const userId = state.user?._id ?? "6712c927857f3a3b3492459f";
 
   var range = (start: number, end: number) => [...Array(end - start + 1)].map((_, i) => start + i);
-
+ 
   return (
     <Card sx={{ maxWidth: 345, margin: 1 }}>
       <Box sx={{ display: 'flex', flexDirection: "row", justifyContent: "space-between" }}>

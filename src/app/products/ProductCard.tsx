@@ -21,7 +21,7 @@ export default function ProductCard({ product }: { product: any }) {
   const [openF, setOpenF] = React.useState(false);
   const handleOpen = () => {
     setOpenF(true)
-  }
+  } 
 
   return (
     <Card sx={{ maxWidth: 345, margin: 1 }}>

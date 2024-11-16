@@ -2,7 +2,6 @@ import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import ProductCard from "./ProductCard";
 import { getProductsAPI } from './api/getProductsAPI';
-import Fallback from '@/components/common/fallback';
 import { getProductCategories } from './utils/getProductCategories';
 import ProductCategories from './ProductCategory';
 import Box from '@mui/material/Box';

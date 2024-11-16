@@ -5,7 +5,7 @@ import TextField from "@mui/material/TextField";
 import React from "react";
 import { handleProductEditSubmit } from "./utils/handleProductEdit.Submit";
 
-export function CreateProduct({ product }: { product: any }) {
+export function EditProduct({ product }: { product: any }) {
 
     const [error, setError] = React.useState('');
     const [success, setSuccess] = React.useState('');

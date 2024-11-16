@@ -11,13 +11,13 @@ import Money from "@material-ui/icons/Money";
 import { handleCheckoutSubmit } from './utils/handleCheckoutSubmit';
 import { getUserProfileAPI } from '../users/api/getUserProfileAPI';
 import ClearCartButton from './components/ClearCartButton';
-import { AppContext } from '@/context/AppContext';
+import { AuthContext } from '@/context/AuthContext';
 
 export default function CartList(props: any) {
     const [error, setError] = React.useState('');
     const [success, setSuccess] = React.useState('');
     const [cartTotals, setCartTotal] = React.useState<number>();
-    const { dispatch,state } = React.useContext(AppContext);
+    const { dispatch,state } = React.useContext(AuthContext);
     const userId = state.user?._id ?? "6712c927857f3a3b3492459f";
     let cartTotal = props.products
             .map((product: any) => Number(product.product_price) * Number(product.cartQuantity))
@@ -25,7 +25,7 @@ export default function CartList(props: any) {
                 return prev + cur;
             }, 0);
            
-
+ 
     // read profile with user data for the form
     let userProfile: any;
     (async () => {
