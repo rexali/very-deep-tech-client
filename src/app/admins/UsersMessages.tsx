@@ -36,9 +36,6 @@ export default function UserMessages() {
 
   return (
     <Container maxWidth="md" component={'main'} sx={{ mt: 10 }}>
-      <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-                Messages<Link href={"/messages/add"}><Button startIcon={<Add />}></Button></Link>
-            </Box>
       <Grid container columnSpacing={1}>
         <MessageList messages={data} role={'admin'} />
       </Grid>

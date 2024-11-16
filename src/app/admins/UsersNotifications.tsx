@@ -9,7 +9,7 @@ import { getUsersNotificationsAPI } from "./api/getUsersNotifications";
 import Link from "next/link";
 import Add from "@material-ui/icons/Add";
 
-export default function UserNotifications() {
+export default function UsersNotifications() {
     const [data, setData] = React.useState([]);
     const [activePage, setActivePage] = React.useState(1);
     const handlePageChange = (pageNumber: any) => {
@@ -36,9 +36,6 @@ export default function UserNotifications() {
 
     return (
         <Container maxWidth="md" component={'main'} sx={{ mt: 10 }}>
-            <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-                Notifications <Link href={"/notifications/add"}><Button startIcon={<Add />}></Button></Link>
-            </Box>
             <Grid container columnSpacing={1}>
                 <NotificationList notifications={data} role={'admin'} />
             </Grid>

@@ -15,13 +15,13 @@ export default function UsersTransactions() {
   const [data, setData] = React.useState([]);
   const [activePage, setActivePage] = React.useState(1);
 
-  React.useEffect(()=>{
-       async function getData(){
-        setData(await getUsersHistoryAPI(activePage));
-       }
-       getData();
+  React.useEffect(() => {
+    async function getData() {
+      setData(await getUsersHistoryAPI(activePage));
+    }
+    getData();
 
-  },[activePage])
+  }, [activePage])
 
   return (
     <TableContainer component={Paper}>
@@ -38,13 +38,13 @@ export default function UsersTransactions() {
         <TableBody>
           {data.map((transaction: any) => (
             <TableRow
-              key={transaction.product.product_name}
+              key={transaction._id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="transaction">
-                {transaction.product.product_name}
+                {transaction.order?.items[0]?.product?.product_name ?? 'Product name instead'}
               </TableCell>
-              <TableCell align="right">{transaction?.createdAt??'12-12-24'}</TableCell>
+              <TableCell align="right">{transaction?.createdAt ?? '12-12-24'}</TableCell>
               <TableCell align="right">{transaction.amount}</TableCell>
               <TableCell align="right">{transaction.user.email}</TableCell>
             </TableRow>

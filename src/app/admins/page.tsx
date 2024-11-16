@@ -4,14 +4,17 @@ import React, { useState } from "react";
 import Link from "next/link";
 import ProtectedRoute from "@/components/protected-route";
 import { Box, Typography, Button, Container } from "@mui/material";
-import UserFavourites from "../users/UserFavourites";
-import UserMessages from "../users/UserMessages";
-import UserOrders from "../users/UserOrders";
-import UserProducts from "../users/UserProducts";
-import UserProfile from "../users/UserProfile";
+import UsersMessages from "../admins/UsersMessages";
+import UsersOrders from "../admins/UsersOrders";
+import UsersTransactions from "../admins/UsersTransactions";
+
+import UsersProducts from "../admins/UsersProducts";
+import UsersProfiles from "../admins/UsersProfiles";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import UserCart from "../users/UserCart";
+import UsersCarts from "../admins/UsersCarts";
 import "../products/styles/styles.css"
+import Add from "@material-ui/icons/Add";
+import UsersNotifications from "./UsersNotifications";
 
 export default function UserTabs() {
 
@@ -32,12 +35,13 @@ export default function UserTabs() {
             <div className="container" style={styles.minheight}>
 
                 <div className="scrollmenu" style={styles.marginTop}>
-                    <Link  style={styles.navTabs} data-toggle="tab" onClick={() => openTab('profile')} href={""} ><small>Profile</small></Link>
-                    <Link  style={styles.navTabs} data-toggle="tab" onClick={() => openTab('products')} href={""} ><small>Products</small></Link>
-                    <Link  style={styles.navTabs} data-toggle="tab" onClick={() => openTab('messages')} href={""} ><small>Messages</small></Link>
-                    <Link  style={styles.navTabs} data-toggle="tab" onClick={() => openTab('favourites')} href={""} ><small>Favourites</small></Link>
-                    <Link  style={styles.navTabs} data-toggle="tab" onClick={() => openTab('cart')} href={""} ><small>Cart</small></Link>
-                    <Link  style={styles.navTabs} data-toggle="tab" onClick={() => openTab('orders')} href={""} ><small>Orders</small></Link>
+                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('profile')} href={""} ><small>Profile</small></Link>
+                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('products')} href={""} ><small>Products</small></Link>
+                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('messages')} href={""} ><small>Messages</small></Link>
+                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('transactions')} href={""} ><small>Transactions</small></Link>
+                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('carts')} href={""} ><small>Carts</small></Link>
+                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('notifications')} href={""} ><small>Notifications</small></Link>
+                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('orders')} href={""} ><small>Orders</small></Link>
                 </div>
 
                 <div className="tab-content">
@@ -45,8 +49,9 @@ export default function UserTabs() {
                         {tabName === 'profile' ? <ProfileTab /> : ''}
                         {tabName === 'products' ? <ProductsTab /> : ''}
                         {tabName === 'messages' ? <MessagesTab /> : ''}
-                        {tabName === 'favourites' ? <FavouritesTab /> : ''}
-                        {tabName === 'cart' ? <CartTab /> : ''}
+                        {tabName === 'notifications' ? <NotificationTab /> : ''}
+                        {tabName === 'transactions' ? <TransactionTab /> : ''}
+                        {tabName === 'carts' ? <CartTab /> : ''}
                         {tabName === 'orders' ? <OrderTab /> : ''}
                     </div>
                 </div>
@@ -65,23 +70,15 @@ function ProductsTab() {
                     <Typography
                         color='success'
                     >
-                        YOUR PRODUCT(S)
+                        Products
                     </Typography>
                 </Box>
-                <Box component={'div'} textAlign={'right'} >
-                    <Button
-                        id='create'
-                        type='button'
-                        variant='contained'
-                        color='success'
-                        onClick={() => window.location.assign("/products/AddProduct")}
-                    >
-                        ADD NEW PRODUCT
-                    </Button>
+                <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+                    Products<Link href={"/products/add"}><Button startIcon={<Add />}></Button></Link>
                 </Box>
             </Box>
 
-            <UserProducts />
+            <UsersProducts />
         </Container>
     )
 }
@@ -94,10 +91,10 @@ function ProfileTab() {
                 <Typography
                     color='success'
                 >
-                    YOUR PROFILE
+                    Profiles
                 </Typography>
             </Box>
-            <UserProfile />
+            <UsersProfiles />
         </Container>
     )
 }
@@ -105,20 +102,29 @@ function ProfileTab() {
 function MessagesTab() {
     return (
         <Container maxWidth={"md"}>
-            <Box component={'div'} textAlign={'left'} >
-                <Typography
-                    color='success'
-                >
-                    YOUR MESSAGE(S)
-                </Typography>
+            <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+                Messages<Link href={"/messages/add"}><Button startIcon={<Add />}></Button></Link>
             </Box>
-            <UserMessages />
+            <UsersMessages />
         </Container>
 
     )
 }
 
-function FavouritesTab() {
+
+function NotificationTab() {
+    return (
+        <Container maxWidth={"md"}>
+            <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+                Notifications <Link href={"/notifications/add"}><Button startIcon={<Add />}></Button></Link>
+            </Box>
+            <UsersNotifications />
+        </Container>
+
+    )
+}
+
+function TransactionTab() {
 
     return (
         <Container maxWidth={"md"} >
@@ -126,11 +132,11 @@ function FavouritesTab() {
                 <Typography
                     color='success'
                 >
-                    YOUR FAVOURITES
+                    Transactions
                 </Typography>
             </Box>
             <Container maxWidth={"md"}>
-                <UserFavourites />
+                <UsersTransactions />
             </Container>
         </Container>
     )
@@ -145,11 +151,11 @@ function CartTab() {
                 <Typography
                     color='success'
                 >
-                    YOUR CART
+                    Carts
                 </Typography>
             </Box>
             <Container maxWidth={"md"}>
-                <UserCart />
+                <UsersCarts />
             </Container>
         </Container>
     )
@@ -163,10 +169,10 @@ function OrderTab() {
                 <Typography
                     color='success'
                 >
-                    YOUR ORDER(S)
+                    Orders
                 </Typography>
             </Box>
-            <UserOrders />
+            <UsersOrders />
         </Container>
     )
 }

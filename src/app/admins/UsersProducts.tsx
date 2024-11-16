@@ -29,9 +29,6 @@ export default function UsersProducts() {
 
   return (
     <Container maxWidth="md" component={'main'} sx={{ mt: 10 }}>
-      <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-        Products<Link href={"/users/products/add"}><Button startIcon={<Add />}></Button></Link>
-      </Box>
       <React.Suspense fallback={<Fallback />} >
         <ProductList products={data} activePage={activePage} setActivePage={setActivePage} />
       </React.Suspense>
