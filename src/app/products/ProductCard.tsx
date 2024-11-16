@@ -14,8 +14,10 @@ import { createFavouriteAPI } from '../favourites/api/createFavouriteAPI';
 import { getToken } from '@/utils/getToken';
 import StatusModal from '@/components/common/status-modal';
 import Rating from '@mui/material/Rating';
+import ProductTopActions from './components/ProductTopActions';
+import ProductBottomActions from './components/ProductBottomActions';
 
-export default function ProductCard({ product }: { product: any }) {
+export default function ProductCard({ product, role }: { product: any, role?:string }) {
 
   const [open, setOpen] = React.useState(false);
   const [openF, setOpenF] = React.useState(false);
@@ -25,6 +27,7 @@ export default function ProductCard({ product }: { product: any }) {
 
   return (
     <Card sx={{ maxWidth: 345, margin: 1 }}>
+      <ProductTopActions product={product} role={role}/>
       <Link href={"/products/" + product._id}>
         <CardMedia
           component="img"
@@ -66,6 +69,7 @@ export default function ProductCard({ product }: { product: any }) {
         }} closeCallback={handleOpen} />}
         <Link style={{ textDecoration: "none", color: 'blue' }} href={"/products/" + product?._id}><Button>Buy</Button></Link>
       </CardActions>
+      <ProductBottomActions product={product} role={role} />
     </Card>
   );
 }

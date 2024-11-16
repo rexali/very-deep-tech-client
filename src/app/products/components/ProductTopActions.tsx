@@ -1,6 +1,8 @@
 'use client'
 
 import Share from "@mui/icons-material/Share";
+import Remove from "@mui/icons-material/Remove";
+
 import Button from "@mui/material/Button";
 import Favourite from '@mui/icons-material/Favorite';
 import { getToken } from "@/utils/getToken";
@@ -9,18 +11,33 @@ import { useState } from "react";
 import StatusModal from "@/components/common/status-modal";
 import { shareLink } from "@/utils/shareLink";
 import { createFavouriteAPI } from "@/app/favourites/api/createFavouriteAPI";
+import { deleteProductAPI } from "../api/deleteProductAPI";
+import { useRouter } from "next/navigation";
 
-export default function ProductTopActions({ product }: { product: any}) {
+export default function ProductTopActions({ product, role }: { product: any, role?: string }) {
     const [open, setOpen] = useState(false);
-    const handleOpen = ()=>{
+    const router = useRouter();
+
+    const handleOpen = () => {
         setOpen(true)
     }
     return (
         <Box sx={{ display: 'flex', justifyContent: "space-between", width: "100%" }}>
-            <Button 
-            size="small" 
-            onClick={(()=>shareLink(product._id))} 
-            startIcon={<Share />}></Button>
+            {
+                role === 'admin' &&
+                <Button
+                    size="small"
+                    onClick={() => {
+                        router.replace(`/products/delete?productId=${product._id}&role=admins`, {});
+                    }
+                    }
+                    startIcon={<Remove />}>
+                </Button>
+            }
+            <Button
+                size="small"
+                onClick={(() => shareLink(product._id))}
+                startIcon={<Share />}></Button>
             <Button
                 size="small"
                 onClick={async () => {

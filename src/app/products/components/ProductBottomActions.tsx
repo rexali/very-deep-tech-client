@@ -3,19 +3,26 @@
 import Button from "@mui/material/Button";
 import { getToken } from "@/utils/getToken";
 import AddToCart from '@mui/icons-material/AddShoppingCart'
+import Edit from '@mui/icons-material/Edit'
+
 import Box from "@mui/material/Box";
-import { useState , useContext} from "react";
+import { useState, useContext } from "react";
 import StatusModal from "@/components/common/status-modal";
 import { AuthContext } from "@/context/AuthContext";
+import { useRouter } from "next/navigation";
+import { createCartAPI } from "@/app/carts/api/createCartAPI";
 
-export default function ProductBottomActions({ product, createCartAPI }: { product: any, createCartAPI: any }) {
+export default function ProductBottomActions({ product,role }: { product: any, role?: string }) {
     const [open, setOpen] = useState(false);
-  const [quantity, setQuantity] =useState<number>(product?.cartQuantity ?? 0);
-  const { state } =useContext(AuthContext);
-  const userId = state.user?._id ?? "6712c927857f3a3b3492459f";
-  var range = (start: number, end: number) => [...Array(end - start + 1)].map((_, i) => start + i);
- 
-    const handleOpen = ()=>{
+    const [quantity, setQuantity] = useState<number>(product?.cartQuantity ?? 0);
+    const { state } = useContext(AuthContext);
+    const userId = state.user?._id ?? "6712c927857f3a3b3492459f";
+    const router = useRouter();
+
+
+    var range = (start: number, end: number) => [...Array(end - start + 1)].map((_, i) => start + i);
+
+    const handleOpen = () => {
         setOpen(true)
     }
     return (
@@ -24,15 +31,21 @@ export default function ProductBottomActions({ product, createCartAPI }: { produ
             {/* add quantity option here using select element */}
             <label>
                 Select Qty: <span style={{ marginRight: 2 }}>{quantity} </span>
-          <select onChange={
-            async (evt: any) => {
-              const { value } = evt.target;
-              setQuantity(value);
+                <select onChange={
+                    async (evt: any) => {
+                        const { value } = evt.target;
+                        setQuantity(value);
+                    }
+                }>
+                    {range(0, Number(product?.product_quantity ?? 1)).map((v) => <option key={v} value={v}>{v}</option>)}
+                </select>
+            </label>
+            {
+                (role === 'admin') && <Button
+                    size="small"
+                    onClick={() => { router.replace('/products/edit', {}) }}
+                    startIcon={<Edit />}></Button>
             }
-          }>
-            {range(0, Number(product?.product_quantity ?? 1)).map((v) => <option key={v} value={v}>{v}</option>)}
-          </select>
-        </label>
             <Button
                 size="small"
                 onClick={async () => {

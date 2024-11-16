@@ -24,7 +24,7 @@ export default async function ProductList(props: any) {
             <ProductCategories categories={categories} />
             <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                 {products.map((product: any) => {
-                    return <Grid key={product._id} item xs={12} md={6}><ProductCard product={product} /></Grid>
+                    return <Grid key={product._id} item xs={12} md={6}><ProductCard product={product} role={props?.role} /></Grid>
                 })}
             </Grid>
             <Box sx={{ mr: "auto", ml: "auto", maxWidth: 100 }} >

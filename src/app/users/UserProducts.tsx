@@ -33,7 +33,7 @@ export default function UserProducts() {
         Products <Link href={"/products/add"}><Button startIcon={<Add />}></Button></Link>
       </Box>
       <React.Suspense fallback={<Fallback />} >
-        <ProductList products={data} activePage={activePage} setActivePage={setActivePage} />
+        <ProductList products={data} activePage={activePage} setActivePage={setActivePage} role={'admin'}/>
       </React.Suspense>
     </Container>
   )
