@@ -30,28 +30,28 @@ export default function MessageCard({
         <Card sx={{ maxWidth: 345, marginTop: 2 }}>
             <CardContent  >
                 <Typography gutterBottom variant="h5" component="div">
-                    {message?.subject}
+                    {message?.title}
                 </Typography>
                 <Typography
                     variant="body2"
                     color="text.secondary"
                     component={'a'}
-                    href={`/messages/${message.messageId}`}
+                    href={`/messages/${message._id}`}
                     sx={{ textDecoration: 'none' }}
                 >
                     {message?.message}
                 </Typography>
                 {role === 'admin' && <Typography sx={{ mt: 2, display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-                    {!isMobile && message.email && <Link href={{
-                        pathname: '/admin/messages',
-                        query: { email: message.email }
+                    {!isMobile && message.sender && <Link href={{
+                        pathname: '/admins/messages',
+                        query: { email: message.sender }
                     }} style={{ textDecoration: 'none' }}><Message /> Reply</Link>} 
-                    {isMobile && message.email && <Link href={`mailto:${message.email}`} style={{ textDecoration: 'none' }}><Message /> Reply</Link>}
+                    {isMobile && message.sender && <Link href={`mailto:${message.sender}`} style={{ textDecoration: 'none' }}><Message /> Reply</Link>}
                     <Link href={'#'} style={{ textDecoration: 'none' }} onClick={() => setEdit(true)}><Edit /> Edit</Link>
                     <Link href={'#'} style={{ textDecoration: 'none' }} onClick={() => setOpen(true)}><DeleteForever /> Delete</Link>
                 </Typography>}
             </CardContent>
-            {open && <DeleleModal cb={() => deleteMessageAPI({ messageId: message.messageId })} closeCallback={setOpen} />}
+            {open && <DeleleModal cb={() => deleteMessageAPI({ messageId: message._id })} closeCallback={setOpen} />}
         </Card>
     );
 }

@@ -1,13 +1,11 @@
 'use client'
 
-import { Box, Button, Grid} from "@mui/material";
+import { Box,Grid} from "@mui/material";
 import Container from "@mui/material/Container";
 import MessageList from "../messages/message-list";
 import * as React from "react";
 import ReactPagination from "@/components/react-pagination";
 import { getUsersMessagesAPI } from "./api/getUsersMessages";
-import Add from "@material-ui/icons/Add";
-import Link from "next/link";
 
 export default function UserMessages() {
   const [data, setData] = React.useState([]);

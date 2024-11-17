@@ -27,13 +27,13 @@ export default function NotificationCard({
         <Card sx={{ maxWidth: 345, marginTop: 2 }}>
             <CardContent >
                 <Typography gutterBottom variant="h5" component="div">
-                    {notification?.subject}
+                    {notification?.title}
                 </Typography>
                 <Typography
                     variant="body2"
                     color="text.secondary"
                     component={'a'}
-                    href={`/notifications/${notification.notificationId}`}
+                    href={`/notifications/${notification._id}`}
                     sx={{ textDecoration: 'none' }}
                 >
                     {notification?.body}
@@ -43,7 +43,7 @@ export default function NotificationCard({
                     <Link href={''} style={{ textDecoration: 'none' }} onClick={() => setOpen(true)}><DeleteForever /> Delete</Link>
                 </Typography>}
             </CardContent>
-            {open && <DeleleModal cb={() => deleteNotificationAPI({ notificationId: notification.notificationId })} closeCallback={setOpen} />}
+            {open && <DeleleModal cb={() => deleteNotificationAPI({ notificationId: notification._id })} closeCallback={setOpen} />}
 
         </Card>
     );

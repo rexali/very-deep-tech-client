@@ -2,10 +2,10 @@ import { fetchData } from "@/app/messages/api/fetchDataAPI";
 import { SERVER_URL } from "@/constants/url";
 import { savePathLink } from "@/utils/savePathLink";
 
-const handleCreateNotification = async (
+const handleCreateMessageAPI = async (
     event: any,
-    setUpdateSuccess: any,
-    setUpdateError: any,
+    setSuccess: any,
+    setError: any,
     userId: any
 ) => {
     // prevent default
@@ -15,22 +15,22 @@ const handleCreateNotification = async (
         try {
             const {
                 title,
-                body,
+                comment,
             } = event.target.elements;
 
-            const noticeData = {
+            const messageData = {
                 userId: userId,
                 title: title.value,
-                body: body.value,
+                comment: comment.value,
             }
-            let result = await fetchData(`${SERVER_URL}/notifications`, { body: JSON.stringify(noticeData), method: "post" });
-            if (result.data.notification._id) {
-                setUpdateSuccess("Success")
+            let result = await fetchData(`${SERVER_URL}/messages`, { body: JSON.stringify(messageData), method: "post" });
+            if (result.data.message._id) {
+                setSuccess("Success")
             } else {
-                setUpdateError("Error!")
+                setError("Error!")
             }
         } catch (error) {
-            setUpdateError("Error!")
+            setError("Error!")
             console.warn(error);
         };
 
@@ -40,5 +40,5 @@ const handleCreateNotification = async (
 }
 
 export {
-    handleCreateNotification
+    handleCreateMessageAPI
 }

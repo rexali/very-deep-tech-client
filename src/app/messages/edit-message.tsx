@@ -23,10 +23,10 @@ export default function EditMessage({ message, callback }: { message: any, callb
     const [error, setError] = React.useState('');
     const [firstName,] = React.useState(message.firstName);
     const [lastName,] = React.useState(message.lastName);
-    const [email,] = React.useState(message.email);
-    const [messageId,] = React.useState(message.messageId);
-    const [subject,] = React.useState(message.subject);
-    const [msg,] = React.useState(message.message);
+    const [sender,] = React.useState(message.sender);
+    const [messageId,] = React.useState(message._id);
+    const [title,] = React.useState(message.title);
+    const [comment,] = React.useState(message.comment);
     const { state: { user } } = React.useContext(AuthContext);
     const { dispatch } = React.useContext(AppContext);
     
@@ -70,7 +70,7 @@ export default function EditMessage({ message, callback }: { message: any, callb
                         <TextField
                             id="email"
                             name="email"
-                            defaultValue={email}
+                            defaultValue={sender}
                             hidden
                         />
                         <TextField
@@ -79,8 +79,8 @@ export default function EditMessage({ message, callback }: { message: any, callb
                             fullWidth
                             id="title"
                             label="Subject"
-                            name="subject"
-                            defaultValue={subject}
+                            name="title"
+                            defaultValue={title}
                             autoFocus
                         />
                         <TextField
@@ -88,11 +88,11 @@ export default function EditMessage({ message, callback }: { message: any, callb
                             required
                             multiline
                             fullWidth
-                            name="message"
-                            defaultValue={msg}
+                            name="comment"
+                            defaultValue={comment} 
                             label="Message"
                             type="text"
-                            id="message_body"
+                            id="comment"
                         />
                         {success && <Box textAlign={'center'} sx={{ color: "green" }}>{success.toUpperCase()}</Box>}
                         {error && <Box textAlign={'center'} sx={{ color: "red" }}>{error.toUpperCase()}</Box>}

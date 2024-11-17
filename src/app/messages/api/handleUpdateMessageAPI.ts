@@ -1,5 +1,4 @@
-import { BASE_URL } from "@/constants/url";
-import { getToken } from "@/utils/getToken";
+import { BASE_URL, SERVER_URL } from "@/constants/url";
 import { savePathLink } from "@/utils/savePathLink";
 import axios from "axios";
 
@@ -7,38 +6,38 @@ const handleUpdateMessageAPI = async (
     event: any,
     setUpdateSuccess: any,
     setUpdateError: any,
-    userId: any) => {
+    userId: any
+) => {
     // prevent default
     event.preventDefault();
     // check userId is defined
     if (userId) {
         try {
             const {
-                subject,
-                message,
+                title,
+                comment,
                 messageId,
                 firstName,
                 lastName,
-                email
+                sender
             } = event.target.elements;
 
             const updateData = {
-                userId: getToken('userId') || userId,
-                subject: subject.value,
-                message: message.value,
-                email: email.value,
+                userId:  userId,
+                title: title.value,
+                comment: comment.value,
+                sender: sender.value,
                 lastName: lastName.value,
                 firstName: firstName.value,
                 messageId: messageId.value
             }
-            let { data } = await axios.patch(`${BASE_URL}/messages`, updateData, {
+            let { data } = await axios.patch(`${SERVER_URL}/messages`, updateData, {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + getToken('jwtoken'),
                 },
             });
-            if (data.affectedRows === 1) {
+            if (data.data.message.modifiedCount) {
                 setUpdateSuccess("Success")
             } else {
                 setUpdateError("Error!")

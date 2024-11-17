@@ -51,39 +51,39 @@ export default function SignIn() {
               margin="normal"
               required
               fullWidth
-              name="firstname"
+              name="firstName"
               label="First Name"
               type="default"
-              id="fullname"
+              id="firstName"
               autoComplete="current-password"
             />
             <TextField
               margin="normal"
               required
               fullWidth
-              name="lastname"
+              name="lastName"
               label="Last Name"
               type="default"
-              id="lastname"
+              id="lastName"
             />
             <TextField
               margin="normal"
               required
               fullWidth
-              name="subject"
+              name="title"
               label="Subject"
               type="default"
-              id="subject"
+              id="title"
             />
 
             <TextField
               margin="normal"
               required
               fullWidth
-              name="message"
+              name="comment"
               label="Message"
               type='default'
-              id="message"
+              id="comment"
               multiline
             />
             {success && <Box textAlign={"center"} sx={{ color: "green" }}>{success.toUpperCase()}</Box>}

@@ -21,7 +21,7 @@ const defaultTheme = createTheme();
 export default function EditNotification({ notification, callback }: { callback: any, notification: any }) {
     const [success, setSuccess] = React.useState('');
     const [error, setError] = React.useState('');
-    const [subject,] = React.useState(notification.subject);
+    const [title,] = React.useState(notification.subject);
     const [body,] = React.useState(notification.body);
     const [notificationId,] = React.useState(notification.notificationId);
     const { state: { user } } = React.useContext(AuthContext);
@@ -58,9 +58,9 @@ export default function EditNotification({ notification, callback }: { callback:
                             required
                             fullWidth
                             id="title"
-                            label="Subject"
-                            name="subject"
-                            defaultValue={subject}
+                            label="Title"
+                            name="title"
+                            defaultValue={title}
                             autoFocus
                         />
                         <TextField
