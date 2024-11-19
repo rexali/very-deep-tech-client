@@ -25,9 +25,18 @@ export default function UserProfile() {
 
   }, [userId]);
 
+  if (!Object.keys(userProfile).length) {
+
+    return (
+      <Container sx={{ mt: 8 }} component={"main"} maxWidth="md">
+        <Box textAlign={'center'}>No profile found</Box>
+      </Container>
+    )
+  }
+
+
   return (
     <Container maxWidth="md" component={'main'} sx={{ mt: 10 }}>
-      <h2>Profile</h2>
       <Box
         component="form"
         onSubmit={(evt) => handleProfileUpdate(

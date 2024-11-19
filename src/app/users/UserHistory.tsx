@@ -6,6 +6,7 @@ import { getToken } from "@/utils/getToken";
 import Fallback from "@/components/common/fallback";
 import { getUserHistoryAPI } from "./api/getUserHistory";
 import TransactionList from "../transactions/TransactionList";
+import Box from "@mui/material/Box";
 
 export default function UserHistory() {
   const [data, setData] = React.useState([]);
@@ -23,6 +24,14 @@ export default function UserHistory() {
  
   }, [userId, activePage]);
 
+  if (!data.length) {
+
+    return (
+      <Container sx={{ mt: 8 }} component={"main"} maxWidth="md">
+        <Box textAlign={'center'}>No transaction(s) found</Box>
+      </Container>
+    )
+  }
   return (
     <Container maxWidth="md" component={'main'} sx={{ mt: 10 }}>
       <React.Suspense fallback={<Fallback />} >

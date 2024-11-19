@@ -29,7 +29,6 @@ export default function UserMessages() {
 
   return (
     <Container maxWidth="md" component={'main'} sx={{ mt: 10 }}>
-      <h3>Messages</h3>
       <Grid container columnSpacing={1}>
         <MessageList messages={messages} role={state.user?.role} />
       </Grid>

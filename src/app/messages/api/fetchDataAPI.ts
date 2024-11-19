@@ -1,4 +1,3 @@
-import { getToken } from "@/utils/getToken";
 
 /**
  * Post or get data using fetch api
@@ -14,7 +13,6 @@ const fetchData = async (url: string, option: any) => {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + getToken('jwtoken'),
             },
         });
 

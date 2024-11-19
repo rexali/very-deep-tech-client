@@ -1,11 +1,10 @@
 'use client'
 
 import { BASE_URL, SERVER_URL } from '@/constants/url';
-import { getToken } from '@/utils/getToken';
 import axios from 'axios';
 import React, { useEffect } from 'react';
 
-export const useMessage = (messageId:any) => {
+export const useMessage = (messageId: any) => {
 
   const [message, setMessage] = React.useState<any>({});
 
@@ -14,15 +13,14 @@ export const useMessage = (messageId:any) => {
     const getMessageData = async () => {
 
       try {
-        let { data } = await axios.get(`${SERVER_URL}/messages/${messageId}`, {
+        let { data: { data: { message } } } = await axios.get(`${SERVER_URL}/messages/${messageId}`, {
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + getToken("jwtoken"),
           }
         });
 
-        setMessage(data[0]);
+        setMessage(message);
 
       } catch (error) {
         console.warn(error);
@@ -34,5 +32,5 @@ export const useMessage = (messageId:any) => {
 
   }, [messageId]);
 
-  return {message};
+  return { message };
 };

@@ -1,6 +1,6 @@
 'use client'
 
-import { BASE_URL } from '@/constants/url';
+import { BASE_URL, SERVER_URL } from '@/constants/url';
 import { getMessages } from '@/store/actions/app-actions';
 import axios from 'axios';
 import React, { useEffect } from 'react';
@@ -14,15 +14,15 @@ export const useUserMessages = (userId:string, dispatch: any, pageNumber?: numbe
     const getMessageData = async () => {
 
       try {
-        let { data } = await axios.get(`${BASE_URL}/messages?page=${pageNumber}&userId=`+userId, {
+        let { data:{data:{messages}} } = await axios.get(`${SERVER_URL}/messages?page=${pageNumber}&userId=`+userId, {
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
           }
         });
 
-        dispatch(getMessages(data))
-        setMessages(data);
+        dispatch(getMessages(messages))
+        setMessages(messages);
 
       } catch (error) {
         console.warn(error);

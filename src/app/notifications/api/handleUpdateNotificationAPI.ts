@@ -21,7 +21,7 @@ const handleUpdateNotificationAPI = async (
             } = event.target.elements;
 
             const updateData = {
-                userId: getToken('userId') || userId,
+                userId: getToken('_id') || userId,
                 subject: subject.value,
                 body: body.value,
                 notificationId:notificationId.value,

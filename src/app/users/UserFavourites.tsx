@@ -6,6 +6,7 @@ import ProductList from "../products/ProductList";
 import { getToken } from "@/utils/getToken";
 import Fallback from "@/components/common/fallback";
 import { getUserFavouritesAPI } from "../favourites/api/getUserFavouritesAPI";
+import Box from "@mui/material/Box";
 
 export default function UserFavourites() {
   const [data, setData] = React.useState([]);
@@ -22,6 +23,14 @@ export default function UserFavourites() {
  
   }, [userId]);
 
+  if (!data.length) {
+
+    return (
+      <Container sx={{ mt: 8 }} component={"main"} maxWidth="md">
+        <Box textAlign={'center'}>No item in your wish bag found</Box>
+      </Container>
+    )
+  }
   return (
     <Container maxWidth="md" component={'main'} sx={{ mt: 10 }}>
       <React.Suspense fallback={<Fallback />} >

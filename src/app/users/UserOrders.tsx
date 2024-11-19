@@ -6,12 +6,14 @@ import { getToken } from "@/utils/getToken";
 import Fallback from "@/components/common/fallback";
 import { getUserOrdersAPI } from "./api/getUserOrders";
 import OrderList from "../orders/OrderList";
+import Box from "@mui/material/Box";
 
 export default function UserOrders() {
   const [data, setData] = React.useState([]);
   const [activePage, setActivePage] = React.useState(1);
 
   const userId = getToken('_id') as string;
+  
   React.useEffect(() => {
     async function getData() {
       const orders = await getUserOrdersAPI(userId,activePage);
@@ -21,6 +23,15 @@ export default function UserOrders() {
     getData();
  
   }, [userId, activePage]);
+
+  if (!data.length) {
+
+    return (
+      <Container sx={{ mt: 8 }} component={"main"} maxWidth="md">
+        <Box textAlign={'center'}>No order(s) found</Box>
+      </Container>
+    )
+  }
 
   return (
     <Container maxWidth="md" component={'main'} sx={{ mt: 10 }}>

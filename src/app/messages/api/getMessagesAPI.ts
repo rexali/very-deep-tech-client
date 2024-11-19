@@ -1,5 +1,4 @@
 import { BASE_URL, SERVER_URL } from "@/constants/url";
-import { getToken } from "@/utils/getToken";
 import axios from "axios";
 
 const getMessagesAPI = async (pageNumber:any=1) => {
@@ -9,7 +8,6 @@ const getMessagesAPI = async (pageNumber:any=1) => {
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + getToken("jwtoken"),
         }
       });
 

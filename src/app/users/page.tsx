@@ -12,6 +12,8 @@ import UserProfile from "./UserProfile";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import UserCart from "./UserCart";
 import "../products/styles/styles.css"
+import Add from "@material-ui/icons/Add";
+import UserHistory from "./UserHistory";
 
 export default function UserTabs() {
 
@@ -24,7 +26,7 @@ export default function UserTabs() {
     const styles = {
         navTabs: { fontSize: 'small' },
         minheight: { minHeight: 420 },
-        marginTop: { marginTop: 60 }
+        marginTop: { marginTop: 60, maginBottom: 30 }
     }
 
     return (
@@ -32,12 +34,13 @@ export default function UserTabs() {
             <div className="container" style={styles.minheight}>
 
                 <div className="scrollmenu" style={styles.marginTop}>
-                    <Link  style={styles.navTabs} data-toggle="tab" onClick={() => openTab('profile')} href={""} ><small>Profile</small></Link>
-                    <Link  style={styles.navTabs} data-toggle="tab" onClick={() => openTab('products')} href={""} ><small>Products</small></Link>
-                    <Link  style={styles.navTabs} data-toggle="tab" onClick={() => openTab('messages')} href={""} ><small>Messages</small></Link>
-                    <Link  style={styles.navTabs} data-toggle="tab" onClick={() => openTab('favourites')} href={""} ><small>Favourites</small></Link>
-                    <Link  style={styles.navTabs} data-toggle="tab" onClick={() => openTab('cart')} href={""} ><small>Cart</small></Link>
-                    <Link  style={styles.navTabs} data-toggle="tab" onClick={() => openTab('orders')} href={""} ><small>Orders</small></Link>
+                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('profile')} href={""} ><small>Profile</small></Link>
+                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('products')} href={""} ><small>Products</small></Link>
+                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('messages')} href={""} ><small>Messages</small></Link>
+                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('favourites')} href={""} ><small>Favourites</small></Link>
+                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('cart')} href={""} ><small>Cart</small></Link>
+                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('orders')} href={""} ><small>Orders</small></Link>
+                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('transactions')} href={""} ><small>Transactions</small></Link>
                 </div>
 
                 <div className="tab-content">
@@ -48,6 +51,7 @@ export default function UserTabs() {
                         {tabName === 'favourites' ? <FavouritesTab /> : ''}
                         {tabName === 'cart' ? <CartTab /> : ''}
                         {tabName === 'orders' ? <OrderTab /> : ''}
+                        {tabName === 'transactions' ? <TransactionTab /> : ''}
                     </div>
                 </div>
             </div>
@@ -59,61 +63,43 @@ function ProductsTab() {
 
     return (
 
-        <Container maxWidth={"md"}>
+        <Box>
             <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-                <Box component={'div'} textAlign={'left'} >
-                    <Typography
-                        color='success'
-                    >
-                        YOUR PRODUCT(S)
-                    </Typography>
-                </Box>
-                <Box component={'div'} textAlign={'right'} >
-                    <Button
-                        id='create'
-                        type='button'
-                        variant='contained'
-                        color='success'
-                        onClick={() => window.location.assign("/products/AddProduct")}
-                    >
-                        ADD NEW PRODUCT
-                    </Button>
-                </Box>
+                Your products <Link href={"/products/add"}><Button startIcon={<Add />}>Add product</Button></Link>
             </Box>
-
             <UserProducts />
-        </Container>
+        </Box>
     )
 }
 
 function ProfileTab() {
 
     return (
-        <Container maxWidth={"md"}>
+        <Box>
             <Box component={'div'} textAlign={'left'} >
                 <Typography
                     color='success'
                 >
-                    YOUR PROFILE
+                    Your profile
                 </Typography>
             </Box>
             <UserProfile />
-        </Container>
+        </Box>
     )
 }
 
 function MessagesTab() {
     return (
-        <Container maxWidth={"md"}>
+        <Box>
             <Box component={'div'} textAlign={'left'} >
                 <Typography
                     color='success'
                 >
-                    YOUR MESSAGE(S)
+                    Your message(s)
                 </Typography>
             </Box>
             <UserMessages />
-        </Container>
+        </Box>
 
     )
 }
@@ -121,18 +107,16 @@ function MessagesTab() {
 function FavouritesTab() {
 
     return (
-        <Container maxWidth={"md"} >
+        <Box>
             <Box component={'div'} textAlign={'left'} >
                 <Typography
                     color='success'
                 >
-                    YOUR FAVOURITES
+                    Your favourite(s)
                 </Typography>
             </Box>
-            <Container maxWidth={"md"}>
-                <UserFavourites />
-            </Container>
-        </Container>
+            <UserFavourites />
+        </Box>
     )
 }
 
@@ -140,33 +124,51 @@ function FavouritesTab() {
 function CartTab() {
 
     return (
-        <Container maxWidth={"md"} >
+        <Box>
             <Box component={'div'} textAlign={'left'} >
                 <Typography
                     color='success'
                 >
-                    YOUR CART
+                    Your cart
                 </Typography>
             </Box>
-            <Container maxWidth={"md"}>
-                <UserCart />
-            </Container>
-        </Container>
+
+            <UserCart />
+        </Box>
     )
 }
 
 function OrderTab() {
 
     return (
-        <Container maxWidth={"md"}>
+        <Box>
+
             <Box component={'div'} textAlign={'left'} >
                 <Typography
                     color='success'
                 >
-                    YOUR ORDER(S)
+                    Your order(s)
                 </Typography>
             </Box>
             <UserOrders />
-        </Container>
+        </Box>
+    )
+}
+
+
+function TransactionTab() {
+
+    return (
+        <Box>
+
+            <Box component={'div'} textAlign={'left'} >
+                <Typography
+                    color='success'
+                >
+                    Your transaction(s)
+                </Typography>
+            </Box>
+            <UserHistory />
+        </Box>
     )
 }

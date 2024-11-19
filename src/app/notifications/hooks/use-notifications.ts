@@ -15,15 +15,15 @@ export const useNotifications = (dispatch:any,pageNumber?:any) => {
     const getNotificationData = async () => {
 
       try {
-        let { data } = await axios.get(`${BASE_URL}/notifications?page=${pageNumber}`, {
+        let { data:{data:{notifications}} } = await axios.get(`${BASE_URL}/notifications?page=${pageNumber}`, {
           headers: {
             'Accept':'application/json',
             'Content-Type': 'application/json',
             'Authorization': 'Bearer '+getToken("jwtoken"),
           }
         });
-        dispatch(getNotifications(data));
-        setResult(data);
+        dispatch(getNotifications(notifications));
+        setResult(notifications);
 
       } catch (error) {
         console.warn(error);
