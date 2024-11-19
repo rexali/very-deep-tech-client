@@ -10,23 +10,6 @@ import ReactPagination from '@/components/react-pagination';
 import Box from '@mui/material/Box';
 import { getUsersProfilesAPI } from './api/getUsersProfilesAPI';
 
-// function createData(
-//   name: string,
-//   calories: number,
-//   fat: number,
-//   carbs: number,
-//   protein: number,
-// ) {
-//   return { name, calories, fat, carbs, protein };
-// }
-
-// const rows = [
-//   createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-//   createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-//   createData('Eclair', 262, 16.0, 24, 6.0),
-//   createData('Cupcake', 305, 3.7, 67, 4.3),
-//   createData('Gingerbread', 356, 16.0, 49, 3.9),
-// ];
 
 export default function UsersProfiles() {
   const [data, setData] = React.useState([]);
@@ -46,21 +29,21 @@ export default function UsersProfiles() {
         <TableHead>
           <TableRow>
             <TableCell>Full Name</TableCell>
-            <TableCell align="right">Email Address</TableCell>
-            <TableCell align="right">State&nbsp;</TableCell>
+            <TableCell align="right"> Email Address</TableCell>
+            <TableCell align="right"> State&nbsp;</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {data.map((profile: any) => (
             <TableRow
-              key={profile.name}
+              key={profile?._id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="profile">
-                {profile.firtstName + ' ' + profile.lastName}
+                {profile?.firtstName + ' ' + profile?.lastName}
               </TableCell>
-              <TableCell align="right"><link href={`mailto:${profile.user.email}`}>{profile.user.email}</link></TableCell>
-              <TableCell align="right">{profile.State}</TableCell>
+              <TableCell align="right"><link href={`mailto:${profile?.user?.email}`}>{profile?.user?.email}</link></TableCell>
+              <TableCell align="right">{profile?.State}</TableCell>
             </TableRow>
           ))}
         </TableBody>
