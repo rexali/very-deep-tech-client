@@ -1,3 +1,4 @@
+'use client'
 
 import { getToken } from "@/utils/getToken";
 import { Box, Button, TextField } from "@mui/material";
@@ -7,7 +8,7 @@ import * as React from "react";
 import { getUserProfileAPI } from "./api/getUserProfileAPI";
 import { handleProfileUpdate } from "./utils/handleProfileUpdate";
 
-export default async function UserProfile() {
+export default function UserProfile() {
   const [userProfile, setUserProfile] = React.useState<any>({});
   const [error, setError] = React.useState('');
   const [success, setSuccess] = React.useState('');
@@ -70,7 +71,7 @@ export default async function UserProfile() {
           margin={"normal"}
           id="email_address"
           label="Email Address"
-          defaultValue={userProfile?.user.email}
+          defaultValue={userProfile?.user?.email}
           autoFocus
         />
 

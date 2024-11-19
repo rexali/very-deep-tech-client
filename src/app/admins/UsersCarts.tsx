@@ -1,14 +1,8 @@
 'use client'
 
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Add from "@material-ui/icons/Add";
-
 import Container from "@mui/material/Container";
-import Link from "next/link";
 import * as React from "react";
 import ProductList from "../products/ProductList";
-import { getToken } from "@/utils/getToken";
 import Fallback from "@/components/common/fallback";
 import { getUsersCartsAPI } from "./api/getUserCarts";
 
@@ -16,7 +10,6 @@ export default function UsersProducts() {
   const [data, setData] = React.useState([]);
   const [activePage, setActivePage] = React.useState(1);
 
-  const userId = getToken('_id') as string;
   React.useEffect(() => {
     async function getData() {
       const products = await getUsersCartsAPI(activePage);
@@ -25,7 +18,7 @@ export default function UsersProducts() {
 
     getData();
 
-  }, [userId]);
+  }, [activePage]);
 
   return (
     <Container maxWidth="md" component={'main'} sx={{ mt: 10 }}>

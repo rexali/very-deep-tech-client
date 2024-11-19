@@ -1,4 +1,4 @@
-import { BASE_URL } from "@/constants/url";
+import { BASE_URL, SERVER_URL } from "@/constants/url";
 import { getToken } from "@/utils/getToken";
 import { savePathLink } from "@/utils/savePathLink";
 import axios from "axios";
@@ -26,7 +26,7 @@ const handleUpdateNotificationAPI = async (
                 body: body.value,
                 notificationId:notificationId.value,
             }
-            let { data } = await axios.patch(`${BASE_URL}/notifications`, updateData, {
+            let { data } = await axios.patch(`${SERVER_URL}/notifications`, updateData, {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',

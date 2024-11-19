@@ -1,8 +1,8 @@
-import { BASE_URL } from "@/constants/url";
+import { BASE_URL, SERVER_URL } from "@/constants/url";
 
 const deleteMessageAPI = async (data: { messageId: any }) => {
     try {
-        let result = await fetch(`${BASE_URL}/messages`, {
+        let result = await fetch(`${SERVER_URL}/messages`, {
             method: "delete",
             mode: 'cors',
             headers: {

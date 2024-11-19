@@ -12,6 +12,7 @@ export default function UserHistory() {
   const [activePage, setActivePage] = React.useState(1);
 
   const userId = getToken('_id') as string;
+ 
   React.useEffect(() => {
     async function getData() {
       const transactions = await getUserHistoryAPI(userId,activePage);
@@ -20,7 +21,7 @@ export default function UserHistory() {
 
     getData();
  
-  }, [userId]);
+  }, [userId, activePage]);
 
   return (
     <Container maxWidth="md" component={'main'} sx={{ mt: 10 }}>

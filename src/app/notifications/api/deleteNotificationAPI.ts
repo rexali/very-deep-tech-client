@@ -1,10 +1,10 @@
-import { BASE_URL } from "@/constants/url";
+import { BASE_URL, SERVER_URL } from "@/constants/url";
 import { getToken } from "@/utils/getToken";
 
 const deleteNotificationAPI = async (data: { notificationId: any }) => {
     try {
         let jwtoken = getToken('jwtoken') as string;
-        let result = await fetch(`${BASE_URL}/notifications`, {
+        let result = await fetch(`${SERVER_URL}/notifications`, {
             method: "delete",
             mode: 'cors',
             headers: {

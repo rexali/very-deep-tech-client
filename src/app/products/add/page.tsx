@@ -1,3 +1,5 @@
+'use client'
+
 import Send from "@material-ui/icons/Send";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -6,7 +8,7 @@ import React from "react";
 import { handleProductSubmit } from "../utils/handleProductSubmit";
 import { getToken } from "@/utils/getToken";
 
-export function AddProduct() {
+export default function AddProduct() {
 
     const [error, setError] = React.useState('');
     const [success, setSuccess] = React.useState('');
@@ -15,12 +17,7 @@ export function AddProduct() {
     return (
         <Box
             component="form"
-            onSubmit={(evt) => handleProductSubmit(
-                evt,
-                setSuccess,
-                setError,
-                userId
-            )}
+            onSubmit={(evt) => handleProductSubmit(evt,setSuccess,setError,userId)}
             noValidate
             sx={{ mt: 1 }}
         >

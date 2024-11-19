@@ -2,7 +2,7 @@
 
 import { Container } from "@mui/material";
 import { getCarts } from "@/store/actions/app-actions";
-import { useState, useRef, useContext, useEffect } from "react";
+import { useState, useRef, useContext, useEffect, useCallback } from "react";
 import Fallback from "@/components/common/fallback";
 import { getUserCartsAPI } from "./api/getUserCartsAPI";
 import { CartListComponent } from "./CartListComponent";
@@ -15,11 +15,12 @@ export default function CartPage() {
   const { dispatch,state } = useContext(AuthContext);
   const userId = state.user?._id ?? "6712c927857f3a3b3492459f";
 
-  async function getData() {
-    let userCarts = await getUserCartsAPI(userId);
-    setData(userCarts);
-    dispatch(getCarts(userCarts)) 
-  }
+  const getData = useCallback(async ()=>{
+      let userCarts = await getUserCartsAPI(userId);
+      setData(userCarts);
+      dispatch(getCarts(userCarts)) 
+  },[dispatch,userId])
+  
 
   useEffect(() => {
     if (mountRef.current) {
@@ -29,7 +30,7 @@ export default function CartPage() {
         mountRef.current = false;
       }
     }
-  },[userId, getData]);
+  },[getData, userId]);
 
   if (!data?.length) {
     return <Fallback />

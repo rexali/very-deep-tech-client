@@ -1,5 +1,5 @@
 import { fetchData } from "@/app/messages/api/fetchDataAPI";
-import { BASE_URL } from "@/constants/url";
+import { BASE_URL, SERVER_URL } from "@/constants/url";
 import { getToken } from "@/utils/getToken";
 import { savePathLink } from "@/utils/savePathLink";
 
@@ -28,7 +28,7 @@ const handleCreateMessage = async (
                 email: to.value
             }
             let result = await fetchData(
-                `${BASE_URL}/messages`,
+                `${SERVER_URL}/messages`,
                 {
                     body: JSON.stringify(updateData),
                     method: "post"

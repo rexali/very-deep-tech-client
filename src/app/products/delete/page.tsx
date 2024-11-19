@@ -1,3 +1,5 @@
+'use client'
+
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -6,11 +8,15 @@ import Remove from '@mui/icons-material/Remove';
 
 import Link from "next/link";
 import { deleteProductAPI } from "../api/deleteProductAPI";
+import { useSearchParams } from "next/navigation";
 
 
-export default function DeleteProduct({ params }: { params: { productId: string, path: string } }) {
-    const handle = () => { }
+export default function DeleteProduct() {
+
+    const params = useSearchParams();
+
     return (
+
         <Container
             maxWidth="md"
             component={'main'}
@@ -22,13 +28,13 @@ export default function DeleteProduct({ params }: { params: { productId: string,
                 <Button
                     color="warning"
                     onClick={async () => {
-                        await deleteProductAPI(params.productId)
+                        await deleteProductAPI(params.get('productId') as string)
                     }}
                     startIcon={<Remove />} >
                     Delete
                 </Button>
 
-                <Link href={`/${params.path ?? 'admins'}`} >
+                <Link href={`/${params.get('path') ?? 'admins'}`} >
                     <Button onClick={() => {
                     }} startIcon={<Close />} >
                         Close

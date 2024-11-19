@@ -17,6 +17,7 @@ export default function UserProducts() {
   const [activePage, setActivePage] = React.useState(1);
 
   const userId = getToken('_id') as string;
+  
   React.useEffect(() => {
     async function getData() {
       const products = await getUserProductsAPI(userId, activePage);
@@ -25,7 +26,7 @@ export default function UserProducts() {
 
     getData();
 
-  }, [userId]);
+  }, [userId, activePage]);
 
   return (
     <Container maxWidth="md" component={'main'} sx={{ mt: 10 }}>

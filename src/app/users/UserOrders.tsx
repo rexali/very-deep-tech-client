@@ -20,7 +20,7 @@ export default function UserOrders() {
 
     getData();
  
-  }, [userId]);
+  }, [userId, activePage]);
 
   return (
     <Container maxWidth="md" component={'main'} sx={{ mt: 10 }}>

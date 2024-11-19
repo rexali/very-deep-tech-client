@@ -32,7 +32,7 @@ export const useUserMessages = (userId:string, dispatch: any, pageNumber?: numbe
 
     getMessageData();
 
-  }, [dispatch, pageNumber]);
+  }, [dispatch,userId, pageNumber]);
 
   return { messages };
 };

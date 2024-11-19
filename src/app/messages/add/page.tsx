@@ -16,11 +16,10 @@ import { handleCreateMessageAPI } from '../api/handleCreateMessageAPI';
 
 const defaultTheme = createTheme();
 
-export default function EditMessage({ message, callback }: { message: any, callback: any }) {
+export default function AddMessage() {
     const [success, setSuccess] = React.useState('');
     const [error, setError] = React.useState('');
     const { state: { user } } = React.useContext(AuthContext);
-    const { dispatch } = React.useContext(AppContext);
     
 
     return (
@@ -32,7 +31,6 @@ export default function EditMessage({ message, callback }: { message: any, callb
                         noValidate sx={{ mt: 1 }}
                         onSubmit={async (evt) => {
                             await handleCreateMessageAPI(evt, setSuccess, setError, user?.userId);
-                            callback(false);
                         }}
                     >      
                         <TextField

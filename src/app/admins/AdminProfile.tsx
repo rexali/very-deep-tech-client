@@ -1,3 +1,4 @@
+'use client'
 
 import { getToken } from "@/utils/getToken";
 import { Box, Button, TextField } from "@mui/material";
@@ -7,7 +8,7 @@ import * as React from "react";
 import { getUserProfileAPI } from "../users/api/getUserProfileAPI";
 import { handleProfileUpdate } from "../users/utils/handleProfileUpdate";
 
-export default async function AdminProfile() {
+export default function AdminProfile() {
   const [adminProfile, setUserProfile] = React.useState<any>({});
   const [error, setError] = React.useState('');
   const [success, setSuccess] = React.useState('');

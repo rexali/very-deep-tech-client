@@ -1,17 +1,18 @@
+'use client'
 import Send from "@material-ui/icons/Send";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import * as React from "react";
+import React, {useState, useEffect} from "react";
 import { handleProductEditSubmit } from "../utils/handleProductEdit.Submit";
 import { getProductAPI } from "../api/getProductAPI";
 
-export function EditProduct({ params }: { params:{productId:string} }) {
-    const [data, setData] = React.useState<any>({});
-    const [error, setError] = React.useState('');
-    const [success, setSuccess] = React.useState('');
+export default function EditProduct({ params }: { params:{productId:string} }) {
+    const [data, setData] = useState<any>({});
+    const [error, setError] =useState('');
+    const [success, setSuccess] = useState('');
     
-    React.useEffect(()=>{
+    useEffect(()=>{
             async function getData() {
               const data = await getProductAPI(params.productId);
               setData(data);
