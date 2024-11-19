@@ -47,7 +47,7 @@ export default function SignIn() {
             Sign in
           </Typography>
           <Box component="form"
-            onSubmit={(evt) => handleLoginSubmit(evt,setLoading,setSuccess, setError, "/users")}
+            onSubmit={(evt) => handleLoginSubmit(evt, setLoading, setSuccess, setError, "/users")}
             noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
@@ -88,6 +88,7 @@ export default function SignIn() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
               color='success'
+              disabled={!loading ? false : true}
             >
               Sign In
             </Button>

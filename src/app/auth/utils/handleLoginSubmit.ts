@@ -15,8 +15,10 @@ export const handleLoginSubmit = (
     setLoginError: Function,
     url: string
 ) => {
-    event.preventDefault();
+    // give user feedback
     setLoading("Loading...");
+    // prevent defaut behaviour
+    event.preventDefault();
     // get current form data
     const data = new FormData(event.currentTarget);
     // get email
@@ -26,21 +28,24 @@ export const handleLoginSubmit = (
     // handle login
     logInAPI(email, password)
         .then((result: any) => {
-            console.log(result);
             if (result.status === "success") {
                 setLoading("");
                 setLoginSuccess(result.status);
                 // check if window is defined
                 if (typeof window !== "undefined") {
                     // check if token is defined
-                    if (result.data.token) {
+                    if (result.data.token && result.data.role==='user') {
                         // redirect user to a given url
                         window.location.assign('/users');
-                    } else {
-                        window.location.assign(url);
+                    } else if (result.data.token && result.data.role==='admin'){
+                        
+                        window.location.assign('/admins');
+                    }else{
+                        window.location.assign('/');
                     }
+                    
                 } else {
-                    setLoginError("window.location is not defined");
+                    setLoginError("Error! Let the developer knows");
                 }
             } else {
                 setLoginError(result.status);

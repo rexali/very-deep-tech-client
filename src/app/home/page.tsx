@@ -22,7 +22,7 @@ export default function HomePage() {
       {/* <CssBaseline /> */}
       <SearchInput />
       <MarketingMessage /> <br /><br />
-      <FeaturedProducts />
+      <FeaturedProducts title={'Featured'} />
       <FAQHowItWorks />
       <Testimonials />
       <Portfolios />

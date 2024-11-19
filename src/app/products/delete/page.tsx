@@ -28,7 +28,7 @@ export default function DeleteProduct({ params }: { params: { productId: string,
                     Delete
                 </Button>
 
-                <Link href={`/${params.path}`} >
+                <Link href={`/${params.path ?? 'admins'}`} >
                     <Button onClick={() => {
                     }} startIcon={<Close />} >
                         Close

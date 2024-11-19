@@ -6,14 +6,14 @@ import Fallback from "@/components/common/fallback";
 import Link from "next/link";
 import ProductList from "../products/ProductList";
 
-export default function FeaturedProducts() {
+export default function FeaturedProducts(props:any) {
 
   const [activePage, setActivePage] = useState<number>(1);
 
   return (
     <Container maxWidth="md" component={'main'} sx={{ mt: 5 }}>
       <h2 style={{ display: 'flex', justifyContent: "space-between" }}>
-        Featured Products
+        {props.title ?? 'Featured'}
         <Link style={{ textDecoration: "none", color: 'blue' }} href={"/products"}><Button>See all</Button></Link>
       </h2>
       <Suspense fallback={<Fallback />}>

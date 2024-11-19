@@ -3,7 +3,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import { GetQouteForm } from './GetQouteForm';
+import { AddQoute } from '@/app/qoutes/AddQoute';
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -35,7 +35,7 @@ export default function GetQouteModal({ closeCallback, productId }: { closeCallb
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    <GetQouteForm productId={productId} />
+                    <AddQoute productId={productId} />
                 </Box>
             </Modal>
         </div>

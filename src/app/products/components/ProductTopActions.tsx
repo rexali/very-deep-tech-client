@@ -11,7 +11,6 @@ import { useState } from "react";
 import StatusModal from "@/components/common/status-modal";
 import { shareLink } from "@/utils/shareLink";
 import { createFavouriteAPI } from "@/app/favourites/api/createFavouriteAPI";
-import { deleteProductAPI } from "../api/deleteProductAPI";
 import { useRouter } from "next/navigation";
 
 export default function ProductTopActions({ product, role }: { product: any, role?: string }) {
@@ -23,12 +22,13 @@ export default function ProductTopActions({ product, role }: { product: any, rol
     }
     return (
         <Box sx={{ display: 'flex', justifyContent: "space-between", width: "100%" }}>
+           
             {
                 role === 'admin' &&
                 <Button
                     size="small"
                     onClick={() => {
-                        router.replace(`/products/delete?productId=${product._id}&role=admins`, {});
+                        router.replace(`/products/delete?productId=${product._id}&role=admin`, {});
                     }
                     }
                     startIcon={<Remove />}>

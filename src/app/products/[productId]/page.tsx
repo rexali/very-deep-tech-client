@@ -2,21 +2,22 @@ import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { getProductAPI } from '../api/getProductAPI';
 import Fallback from '@/components/common/fallback';
-import { createCartAPI } from '@/app/carts/api/createCartAPI';
 import { SERVER_URL } from '@/constants/url';
 import Box from '@mui/material/Box';
-import ProductDetailCardActions from '../components/ProductDetailCardActions';
 import Grid from '@mui/material/Grid';
 import ReviewPage from '@/app/reviews/page';
 import RatingReviewForm from '@/app/reviews/RatingReviewForm';
 import ProductTopActions from '../components/ProductTopActions';
 import FeaturedProducts from '@/app/home/FeaturedProducts';
 import Image from 'next/image';
+import ProductBottomActions from '../components/ProductBottomActions';
+import Link from 'next/link';
+import Rating from '@mui/material/Rating';
+
 
 export const revalidate = 3600;
 
@@ -31,9 +32,14 @@ export async function generateStaticParams() {
 
 export default async function ProductDetailPage({ params }: { params: { productId: string } }) {
   const product = await getProductAPI(params.productId) ?? {};
+  const photos = [
+    'https://placehold.co/600x400/orange/white',
+    'https://placehold.co/600x400/green/white',
+    'https://placehold.co/600x400/red/white'
+  ]
 
   if (!Object?.keys(product).length) {
-    return <Fallback />
+    return <Fallback item={'No item found yet'} />
   }
 
   return (
@@ -49,93 +55,116 @@ export default async function ProductDetailPage({ params }: { params: { productI
           <Grid item xs={12} md={6}>
             <Box>
               {/* Add multiple and scrollable images here using carousel or scrollmenu */}
-              <CardMedia
-                component="img"
-                alt={product.product_name}
-                height={400}
-                width={100}
-                image={product.product_picture ?? "https://placehold.co/600x400/orange/white"}
-              />
+              <Image
+                src={product.product_picture ?? "https://placehold.co/600x400/orange/white"}
+                alt={product.product_name ?? 'photo'}
+                style={{
+                  display: 'block',
+                  marginRight: 'auto',
+                  marginLeft: 'auto',
+                  width: "100%",
+                  // height: 'auto' 
+                  height: 400,
+                }}
+                width={0}
+                height={0} />
             </Box>
           </Grid>
           <Grid item xs={12} md={6}>
-            <ProductTopActions product={product} />
-            <CardContent style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+            <CardContent style={{ height: 400, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+              <CardActions>
+                <ProductTopActions product={product} />
+              </CardActions>
               <Typography gutterBottom variant="h5" component="div">
-                Name: {product.product_name ?? "Lizard"}
+                <span>Name: {product.product_name ?? "Lizard"}</span>
               </Typography>
-              <Typography gutterBottom variant="h5" component="div">
-                Price: N {product.product_price ?? "Lizard"}
-              </Typography>
-            </CardContent>
+              <Rating name="read-only" value={3} readOnly />
+              <Typography gutterBottom variant="h5" component="div" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+                <span>Price: N {product.product_price ?? "Lizard"}</span><Link href={'tel:07016807004'} style={{fontSize:12,textDecoration:'none'}}>Tel: 07016807004</Link>
+            </Typography>
             <CardActions>
-              <ProductDetailCardActions product={product} createCartAPI={createCartAPI} />
+              <ProductBottomActions product={product} />
             </CardActions>
-            <Box>
-              <Typography gutterBottom variant="h5" component="div">
-                Description:
-              </Typography>
-              <Typography variant="body2" component={"div"} sx={{ color: 'text.secondary', ml: 1 }}>
-                {product.product_description ?? "Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica"}
-              </Typography>
-            </Box>
-          </Grid>
-          <Grid item xs={12} md={12}>
-            <Typography gutterBottom variant="h5" component="div">
-              Shipping Info:
-            </Typography>
-            <Typography variant="body2" component={"div"} sx={{ color: 'text.secondary', ml: 1 }}>
-              {"We will take care of the shipping of the item and its return in case  of any damages (to the item and you wish to return) during transit"}
-            </Typography>
-          </Grid>
-          <Grid item xs={12} md={12}>
-            <Typography gutterBottom variant="h5" component="div">
-              Payment Method(s):
-            </Typography>
-            <Typography variant="body2" component={"div"} sx={{ color: 'text.secondary', ml: 1 }}>
-              <ul>
-                <li>Paystack</li>
-                <li>Flutterwave</li>
-                <li>Remita</li>
-                <li>Bank Transfer</li>
-                <li>Pay on Delivery</li>
-              </ul>
-            </Typography>
-          </Grid>
-
-          <Grid item xs={12} md={12}>
-            <Typography gutterBottom variant="h5" component="div">
-              Product Demo:
-            </Typography>
-            <Typography variant="body2" component={"div"} sx={{ color: 'text.secondary', ml: 1 }}>
-              {'video link here'}
-              <iframe
-                width={420}
-                height={315}
-                src={`https://www.youtube.com/embed/tgbNymZ7vqY`}
-              >
-                Loading ....
-              </iframe>
-            </Typography>
-          </Grid>
-          {/* Add multiple and scrollable images here using carousel or scrollmenu */}
-          <Grid item xs={12} md={12}>
-            <Typography gutterBottom variant="h5" component="div">
-              Product Photo(s):
-            </Typography>
-            <Typography variant="body2" component={"div"} sx={{ color: 'text.secondary', ml: 1 }}>
-              {/* links to more photos of the product*/}
-              {'No more photos now'}
-              <Image src={'https://placehold.co/600x400/orange/white'} alt={'photo'} height={1000} width={150} />
-            </Typography>
-          </Grid>
+          </CardContent>
         </Grid>
-      </Card>
-      <ReviewPage /><br /><br /><br />
-      <RatingReviewForm productId={product._id} />
+        <Grid item xs={12} md={12}>
+          <Typography gutterBottom variant="h5" component="div">
+            Description:
+          </Typography>
+          <Typography variant="body2" component={"div"} sx={{ color: 'text.secondary', ml: 1 }}>
+            {product.product_description ?? "Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica"}
+          </Typography>
+        </Grid>
+        <Grid item xs={12} md={12}>
+          <Typography gutterBottom variant="h5" component="div">
+            Shipping Info:
+          </Typography>
+          <Typography variant="body2" component={"div"} sx={{ color: 'text.secondary', ml: 1 }}>
+            {"We will take care of the shipping of the item and its return in case  of any damages (to the item and you wish to return) during transit"}
+          </Typography>
+        </Grid>
+        <Grid item xs={12} md={12}>
+          <Typography gutterBottom variant="h5" component="div">
+            Payment Method(s):
+          </Typography>
+          <Typography variant="body2" component={"div"} sx={{ color: 'text.secondary', }}>
+            <ul>
+              <li>Paystack</li>
+              <li>Flutterwave</li>
+              <li>Remita</li>
+              <li>Bank Transfer</li>
+              <li>Pay on Delivery</li>
+            </ul>
+          </Typography>
+        </Grid>
+
+        <Grid item xs={12} md={12}>
+          <Typography gutterBottom variant="h5" component="div">
+            Product Demo:
+          </Typography>
+          <Typography variant="body2" component={"div"} sx={{ color: 'text.secondary' }}>
+            <iframe
+              width={420}
+              height={315}
+              src={`https://www.youtube.com/embed/tgbNymZ7vqY`}
+            >
+              Loading ....
+            </iframe>
+          </Typography>
+        </Grid>
+        {/* Add multiple and scrollable images here using carousel or scrollmenu */}
+        <Grid item xs={12} md={12}>
+          <Typography gutterBottom variant="h5" component="div">
+            Product Photo(s):
+          </Typography>
+          <div
+            style={{
+              backgroundColor: 'white',
+              overflow: 'auto',
+              whiteSpace: 'nowrap',
+              marginLeft: 'auto',
+              marginRight: 'auto',
+              textAlign: 'center',
+              maxWidth: 'fit-content',
+              borderRadius: 15
+            }}
+          >
+            {photos.map((photo, i) => <div key={i} style={{ display: 'inline-block', margin: 10 }}>
+              <Image
+                src={photo ?? 'https://placehold.co/600x400/blue/white'}
+                alt={'photo'}
+                height={315}
+                width={420} />
+            </div>
+            )}
+          </div>
+        </Grid>
+      </Grid>
+    </Card>
+    <ReviewPage /><br /><br />
+    <RatingReviewForm productId={product._id} />
       {/* cross-sell/upsells: Additional products: e.g People who viewed this item also bought */}
-      <h4>People who viewed this item also bought:</h4>
-      <FeaturedProducts />
+      <FeaturedProducts title='People who viewed this item also bought:' />
     </Container>
   );
 }

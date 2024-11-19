@@ -11,33 +11,41 @@ import StatusModal from "@/components/common/status-modal";
 import { AuthContext } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 import { createCartAPI } from "@/app/carts/api/createCartAPI";
+import GetQouteModal from "@/components/GetQuoteModal";
 
-export default function ProductBottomActions({ product,role }: { product: any, role?: string }) {
+export default function ProductBottomActions({ product, role }: { product: any, role?: string }) {
     const [open, setOpen] = useState(false);
-    const [quantity, setQuantity] = useState<number>(product?.cartQuantity ?? 0);
+    const [openQoute, setOpenQoute] = useState(false);
+
+    const [quantity, setQuantity] = useState<number>(product?.cartQuantity ?? 1);
     const { state } = useContext(AuthContext);
     const userId = state.user?._id ?? "6712c927857f3a3b3492459f";
     const router = useRouter();
-
 
     var range = (start: number, end: number) => [...Array(end - start + 1)].map((_, i) => start + i);
 
     const handleOpen = () => {
         setOpen(true)
     }
+
+    const handleOpenQuote = () => {
+        setOpenQoute(true)
+    }
+
     return (
         <Box sx={{ display: 'flex', justifyContent: "space-between", width: "100%" }}>
-            <span>N {product.product_price}</span>
-            {/* add quantity option here using select element */}
+            <Button size="small" onClick={() => setOpenQoute(true)}>Get Qoutes</Button>
+            {openQoute && <GetQouteModal closeCallback={handleOpenQuote} productId={product._id} />}
             <label>
-                Select Qty: <span style={{ marginRight: 2 }}>{quantity} </span>
+                <span>Select qty: </span>
+                <span style={{ marginRight: 5 }}>{quantity}</span>&nbsp;&nbsp;&nbsp;
                 <select onChange={
                     async (evt: any) => {
                         const { value } = evt.target;
                         setQuantity(value);
                     }
                 }>
-                    {range(0, Number(product?.product_quantity ?? 1)).map((v) => <option key={v} value={v}>{v}</option>)}
+                    {range(1, Number(product?.product_quantity ?? 1)).map((v) => <option key={v} value={v}>{v}</option>)}
                 </select>
             </label>
             {

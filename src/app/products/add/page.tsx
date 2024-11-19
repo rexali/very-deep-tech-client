@@ -4,19 +4,22 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import React from "react";
 import { handleProductSubmit } from "../utils/handleProductSubmit";
+import { getToken } from "@/utils/getToken";
 
 export function AddProduct() {
- 
+
     const [error, setError] = React.useState('');
     const [success, setSuccess] = React.useState('');
+    const userId = getToken('_id') as string;
 
     return (
         <Box
             component="form"
             onSubmit={(evt) => handleProductSubmit(
-                evt, 
-                setSuccess, 
+                evt,
+                setSuccess,
                 setError,
+                userId
             )}
             noValidate
             sx={{ mt: 1 }}
@@ -41,7 +44,36 @@ export function AddProduct() {
                 id="product_picture"
                 label="Product Photo(s)"
                 type="file"
-                autoFocus
+            />
+
+            <TextField
+                autoComplete="given-name"
+                name="photos"
+                required
+                fullWidth
+                margin={"normal"}
+                id="photos"
+                label="Product Photo(s)"
+                inputProps={{
+                    endAdornment: (
+                        <input
+                            type='file'
+                            accept="/images/*"
+                            // formEncType=""
+                            tabIndex={-1}
+                            // onChange={() => {}}
+                            multiple
+                            style={{
+                                position: 'absolute',
+                                top: 0,
+                                bottom: 0,
+                                left: 0,
+                                right: 0,
+                                opacity: 0
+                            }}
+                        />
+                    )
+                }}
             />
 
             <TextField
@@ -119,6 +151,28 @@ export function AddProduct() {
                 margin={"normal"}
                 id="product_code"
                 label="product_code"
+                autoFocus
+            />
+
+            <TextField
+                autoComplete="given-name"
+                name="product_demo_link"
+                required
+                fullWidth
+                margin={"normal"}
+                id="product_demos_links"
+                label="Product Demo Link(s)"
+                autoFocus
+            />
+
+            <TextField
+                autoComplete="given-name"
+                name="product_photos_links"
+                required
+                fullWidth
+                margin={"normal"}
+                id="product_photos_links"
+                label="Product Photo Links"
                 autoFocus
             />
 
