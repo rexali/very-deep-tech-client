@@ -25,7 +25,7 @@ export default function UserProfile() {
 
   }, [userId]);
 
-  if (!Object.keys(userProfile).length) {
+  if (!Object.keys(userProfile)?.length) {
 
     return (
       <Container sx={{ mt: 8 }} component={"main"} maxWidth="md">
