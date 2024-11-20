@@ -15,6 +15,7 @@ import UsersCarts from "../admins/UsersCarts";
 import "../products/styles/styles.css"
 import Add from "@material-ui/icons/Add";
 import UsersNotifications from "./UsersNotifications";
+import AdminProfile from "./AdminProfile";
 
 export default function UserTabs() {
 
@@ -35,7 +36,8 @@ export default function UserTabs() {
             <div className="container" style={styles.minheight}>
 
                 <div className="scrollmenu" style={styles.marginTop}>
-                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('profile')} href={""} ><small>Profile</small></Link>
+                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('profile')} href={""} ><small>Users&apos;Profiles</small></Link>
+                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('adminprofile')} href={""} ><small>Your Profile</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('products')} href={""} ><small>Products</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('messages')} href={""} ><small>Messages</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('transactions')} href={""} ><small>Transactions</small></Link>
@@ -47,6 +49,7 @@ export default function UserTabs() {
                 <div className="tab-content">
                     <div className="tab-pane container active" id="profile">
                         {tabName === 'profile' ? <ProfileTab /> : ''}
+                        {tabName === 'adminprofile' ? <AdminProfileTab /> : ''}
                         {tabName === 'products' ? <ProductsTab /> : ''}
                         {tabName === 'messages' ? <MessagesTab /> : ''}
                         {tabName === 'notifications' ? <NotificationTab /> : ''}
@@ -95,6 +98,22 @@ function ProfileTab() {
                 </Typography>
             </Box>
             <UsersProfiles />
+        </Container>
+    )
+}
+
+function AdminProfileTab() {
+
+    return (
+        <Container maxWidth={"md"}>
+            <Box component={'div'} textAlign={'left'} >
+                <Typography
+                    color='success'
+                >
+                    Your  profile
+                </Typography>
+            </Box>
+            <AdminProfile />
         </Container>
     )
 }

@@ -17,7 +17,7 @@ export default function AdminProfile() {
 
   React.useEffect(() => {
     async function getUserProfileData() {
-      const adminProfile = await getUserProfileAPI(userId);
+      const adminProfile = await getUserProfileAPI(userId ?? "6712c927857f3a3b3492459f");
       setUserProfile(adminProfile);
     }
 

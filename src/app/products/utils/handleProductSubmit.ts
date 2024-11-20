@@ -22,6 +22,7 @@ const handleProductSubmit = async (event: any, setPostSuccess: any, setPostError
     formData.append('product_name',product_name.value);
     formData.append('product_pictures[]',product_pictures.value);
     formData.append('product_category',product_category.value);
+    formData.append('product_sub_category',product_sub_category.value);
     formData.append('product_description', product_description.value,);
     formData.append('product_price' ,product_price.value);
     formData.append('product_quantity',product_quantity.value);
