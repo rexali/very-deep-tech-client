@@ -30,6 +30,10 @@ export default function SearchPage() {
     }
   })
 
+  if (!data.length) {
+    return <Fallback  item={'No product matches your search term'}/>
+  }
+
   return (
     <Container maxWidth="md" component={'main'} sx={{ mt: 10 }}>
       <h2>Products</h2>

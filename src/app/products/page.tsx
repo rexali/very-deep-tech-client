@@ -11,7 +11,7 @@ export default function ProductsPage() {
   const [activePage, setActivePage] = useState<number>(1);
 
   return (
-    <Container maxWidth="md" component={'main'} sx={{ mt: 5 }}>
+    <Container maxWidth="md" component={'main'} sx={{ mt: 10 }}>
       <h2 style={{ display: 'flex', justifyContent: "space-between" }}>
         Products
         <Link style={{ textDecoration: "none", color: 'blue' }} href={"/products"}><Button>See all</Button></Link>

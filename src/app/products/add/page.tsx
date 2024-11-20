@@ -23,7 +23,7 @@ export default function AddProduct() {
                 onSubmit={(evt) => handleProductSubmit(evt, setSuccess, setError, userId)}
                 noValidate
                 sx={{ mt: 10 }}
-                >
+            >
                 <TextField
                     autoComplete="given-name"
                     name="product_name"
@@ -34,47 +34,26 @@ export default function AddProduct() {
                     label="Product Name"
                     autoFocus
                 />
-
-                <TextField
-                    autoComplete="given-name"
-                    name="product_picture"
-                    required
-                    fullWidth
-                    margin={"normal"}
-                    id="product_picture"
-                    label="Product Photo(s)"
-                    type="file"
-                />
-
-                <TextField
-                    autoComplete="given-name"
-                    name="photos"
-                    required
-                    fullWidth
-                    margin={"normal"}
-                    id="photos"
-                    label="Product Photo(s)"
-                    inputProps={{
-                        endAdornment: (
-                            <input
-                                type='file'
-                                accept="/images/*"
-                                // formEncType=""
-                                tabIndex={-1}
-                                // onChange={() => {}}
-                                multiple
-                                style={{
-                                    position: 'absolute',
-                                    top: 0,
-                                    bottom: 0,
-                                    left: 0,
-                                    right: 0,
-                                    opacity: 0
-                                }}
-                            />
-                        )
-                    }}
-                />
+                <label>
+                    Product Photo(s)
+                    <input
+                        type='file'
+                        accept="image/*"
+                        tabIndex={-1}
+                        name="product_pictures"
+                        multiple
+                        formEncType="multipart/form-data"
+                        style={{
+                            position: 'absolute',
+                            top: 0,
+                            bottom: 0,
+                            left: 0,
+                            right: 0,
+                            opacity: 0,
+                            maxWidth:'100%'
+                        }}
+                    />
+                </label>
 
                 <TextField
                     autoComplete="given-name"
@@ -161,7 +140,8 @@ export default function AddProduct() {
                     fullWidth
                     margin={"normal"}
                     id="product_demos_links"
-                    label="Product Demo Link(s)"
+                    label="Product Video Demo Link(s)"
+                    placeholder="seperated it with comma"
                     autoFocus
                 />
 
@@ -172,8 +152,8 @@ export default function AddProduct() {
                     fullWidth
                     margin={"normal"}
                     id="product_photos_links"
-                    label="Product Photo Links"
-                    autoFocus
+                    label="Product Photos Links"
+                    placeholder="seperated it with comma"
                 />
 
                 {success && <Box textAlign={"center"} sx={{ color: "green" }}>{success.toUpperCase()}</Box>}
@@ -188,7 +168,7 @@ export default function AddProduct() {
                     sx={{ mt: 3, mb: 2 }}
                     startIcon={<Send />}
                 >
-                    SUBMIT
+                    Add Product
                 </Button>
 
             </Box>

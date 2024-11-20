@@ -32,6 +32,7 @@ export default function UserHistory() {
       </Container>
     )
   }
+  
   return (
     <Container maxWidth="md" component={'main'} sx={{ mt: 10 }}>
       <React.Suspense fallback={<Fallback />} >

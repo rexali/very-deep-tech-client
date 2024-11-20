@@ -15,19 +15,19 @@ export default function ProductCard({ product, role }: { product: any, role?: st
       <ProductTopActions product={product} role={role} />
       <Link href={"/products/" + product._id}>
         <Image
-                src={product.product_picture ?? "https://placehold.co/600x400/orange/white"}
-                alt={product.product_name ?? 'photo'}
-                style={{
-                  display: 'block',
-                  marginRight: 'auto',
-                  marginLeft: 'auto',
-                  width: "100%",
-                  // height: 'auto' 
-                  height: 140,
-                }}
-                width={0}
-                height={0}
-              />
+          src={product.product_picture ?? "https://placehold.co/600x400/orange/white"}
+          alt={product.product_name ?? 'photo'}
+          style={{
+            display: 'block',
+            marginRight: 'auto',
+            marginLeft: 'auto',
+            width: "100%",
+            // height: 'auto' 
+            height: 140,
+          }}
+          width={0}
+          height={0}
+        />
       </Link>
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
@@ -36,7 +36,7 @@ export default function ProductCard({ product, role }: { product: any, role?: st
         <Typography gutterBottom variant="h5" component="div">
           N {product.product_price ?? 1000}
         </Typography>
-        <Rating name="read-only" value={3} readOnly />
+        <Rating name="read-only" value={product?.averageRating ?? 3} readOnly />
       </CardContent>
       <ProductBottomActions product={product} role={role} />
     </Card>

@@ -3,7 +3,7 @@
 import { BASE_URL, SERVER_URL } from "@/constants/url";
 import axios from "axios";
 
-const isAllReadyAddedToCartByUserAPI = async (userId: string, productId: number) => {
+const isAllReadyAddedToCartByUserAPI = async (userId: string, productId: string) => {
 
     try {
         let { data: { data: { carts } } } = await axios.get(`${SERVER_URL}/carts/` + userId, {

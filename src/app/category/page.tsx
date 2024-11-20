@@ -27,8 +27,8 @@ export default function CategoryPage() {
     }
   });
 
-  if (!data?.length) {
-    return <Fallback />
+  if (!data.length) {
+    return <Fallback  item={'No product matches your search term'}/>
   }
 
   return (
