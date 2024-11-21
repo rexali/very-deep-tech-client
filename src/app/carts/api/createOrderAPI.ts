@@ -17,9 +17,9 @@ const createOrderAPI = async (orderData: any) => {
          },
          body: JSON.stringify(orderData),
       });
-      const { status, data } = await response.json();
-      if (status === "success") {
-         return data.order._id;
+      const data= await response.json();
+      if (data.data?.status === "success") {
+         return data.data.order._id;
       }
    } catch (error) {
       console.warn(error);

@@ -12,7 +12,7 @@ const createCartAPI = async (cartData: any) => {
                 'Content-Type': 'application/json',
             },
         });
-        return data.data.cart;
+        return data.data?.cart;
     } catch (error) {
         console.warn(error);
     }

@@ -4,14 +4,14 @@ import axios from "axios";
 const getUserFavouritesAPI = async (userId: string, page?: number) => {
 
     try {
-        let { data: { data: { favourites } } } = await axios.get(`${SERVER_URL}/favourites/` + userId, {
+        let { data } = await axios.get(`${SERVER_URL}/favourites/` + userId, {
             withCredentials: false,
             headers: {
                 'Content-Type': 'application/json',
             },
         });
 
-        return favourites.map((favourite: any) => favourite.product);
+        return data.data?.favourites.map((favourite: any) => favourite?.product);
     } catch (error) {
         console.warn(error);
         

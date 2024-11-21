@@ -6,13 +6,13 @@ import axios from "axios";
 const getUserCartsAPI = async (userId: string) => {
  
     try {
-        let { data: { data: { carts } } } = await axios.get(`${SERVER_URL}/carts/` + userId, {
+        let { data } = await axios.get(`${SERVER_URL}/carts/` + userId, {
             withCredentials: false,
             headers: {
                 'Content-Type': 'application/json',
             },
         });
-        let newcarts = carts.map((cart: any) => {
+        let newcarts = data.data?.carts.map((cart: any) => {
             return {
                 ...cart,
                 product: {

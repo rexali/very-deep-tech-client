@@ -16,9 +16,9 @@ const createTransactionAPI = async (transactionData: any) => {
          },
          body: JSON.stringify(transactionData),
       });
-      const { status, data } = await response.json();
-      if (status === "success") {
-         return data.transaction._id
+      const data = await response.json();
+      if (data.data?.status === "success") {
+         return data.data.transaction._id
       }
    } catch (error) {
       console.warn(error);

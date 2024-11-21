@@ -10,7 +10,7 @@ const createFavouriteAPI = async (favouriteData: any) => {
                 'Content-Type': 'application/json',
             },
         });
-        return data.data.favourite;
+        return data.data?.favourite;
     } catch (error) {
         console.warn(error);
     }

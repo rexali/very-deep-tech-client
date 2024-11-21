@@ -4,7 +4,7 @@ import axios from "axios";
 const getProductAPI = async (id: string) => {
 
     try {
-        let { data: { data: { product } } } = await axios.get(`${SERVER_URL}/products/` + id, {
+        let { data } = await axios.get(`${SERVER_URL}/products/` + id, {
             withCredentials: false,
             headers: {
                 'Content-Type': 'application/json',
@@ -12,7 +12,7 @@ const getProductAPI = async (id: string) => {
 
         });
 
-        return product;
+        return data.data?.product;
     } catch (error) {
         console.warn(error);
     }

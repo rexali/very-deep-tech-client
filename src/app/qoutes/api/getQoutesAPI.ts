@@ -11,7 +11,7 @@ const getQoutesAPI = async (pageNumber:any=1) => {
         }
       });
 
-      return data.data.qoute;
+      return data.data?.qoute;
 
     } catch (error) {
       console.warn(error);

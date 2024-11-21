@@ -4,7 +4,7 @@ import axios from "axios";
 const deleteProductAPI = async (productId: string) => {
 
     try {
-        let { data: { data: { product } } } = await axios.get(`${SERVER_URL}/products/` + productId, {
+        let { data } = await axios.get(`${SERVER_URL}/products/` + productId, {
             withCredentials: false,
             headers: {
                 'Content-Type': 'application/json',
@@ -12,7 +12,7 @@ const deleteProductAPI = async (productId: string) => {
 
         });
 
-        return product;
+        return data.data?.product;
     } catch (error) {
         console.warn(error);
     }

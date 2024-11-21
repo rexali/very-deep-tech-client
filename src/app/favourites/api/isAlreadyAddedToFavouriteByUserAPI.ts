@@ -4,13 +4,13 @@ import axios from "axios";
 const isAlReadyAddedToFavouriteByUserAPI = async (userId: string, productId: string) => {
 
     try {
-        let { data: { data: { favourites } } } = await axios.get(`${SERVER_URL}/favourites/` + userId, {
+        let { data } = await axios.get(`${SERVER_URL}/favourites/` + userId, {
             withCredentials: false,
             headers: {
                 'Content-Type': 'application/json',
             },
         });
-        if (favourites.map((favourite: any) => favourite.product._id).includes(productId)) {
+        if (data.data?.favourites.map((favourite: any) => favourite.product._id).includes(productId)) {
             return true
         }
 

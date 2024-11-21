@@ -1,13 +1,11 @@
 'use client'
 
-import { Box, Button, Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import Container from "@mui/material/Container";
 import * as React from "react";
 import ReactPagination from "@/components/react-pagination";
 import NotificationList from "../notifications/notification-list";
 import { getUsersNotificationsAPI } from "./api/getUsersNotifications";
-import Link from "next/link";
-import Add from "@material-ui/icons/Add";
 
 export default function UsersNotifications() {
     const [data, setData] = React.useState([]);

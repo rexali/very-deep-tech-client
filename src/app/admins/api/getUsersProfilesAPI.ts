@@ -4,14 +4,14 @@ import axios from "axios";
 const getUsersProfilesAPI = async (page:number) => {
 
     try {
-        let { data: { data: { profiles } } } = await axios.get(`${SERVER_URL}/profiles?page=`+page, {
+        let { data} = await axios.get(`${SERVER_URL}/profiles?page=`+page, {
             withCredentials: false,
             headers: {
                 'Content-Type': 'application/json',
             },
         });
         
-        return profiles;
+        return data.data?.profiles;
     } catch (error) {
         console.warn(error);
     }

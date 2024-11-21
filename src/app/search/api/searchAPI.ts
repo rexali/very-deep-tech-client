@@ -13,7 +13,7 @@ const searchAPI = async (term: any, pageNumber: any = 1) => {
       });
 
       let data = await response.json();
-      return data.data.products;
+      return data.data?.products;
    } catch (error) {
       console.log(error);
    }

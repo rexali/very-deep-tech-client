@@ -5,7 +5,7 @@ const getUserNotificationsAPI = async (userId: string, page: number = 1) => {
     try {
         let data = await fetch(`${SERVER_URL}/notifications?page=` + page + '&userId=' + userId).then(res => res.json());
 
-        return data.data.messages;
+        return data.data?.messages;
     } catch (error) {
         console.warn(error);
     }

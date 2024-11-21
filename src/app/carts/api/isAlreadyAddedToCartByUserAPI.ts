@@ -6,13 +6,13 @@ import axios from "axios";
 const isAllReadyAddedToCartByUserAPI = async (userId: string, productId: string) => {
 
     try {
-        let { data: { data: { carts } } } = await axios.get(`${SERVER_URL}/carts/` + userId, {
+        let { data } = await axios.get(`${SERVER_URL}/carts/` + userId, {
             withCredentials: false,
             headers: {
                 'Content-Type': 'application/json',
             },
         });
-        if (carts.map((cart: any) => cart.product._id).includes(productId)) {
+        if (data.data?.carts.map((cart: any) => cart.product._id).includes(productId)) {
             return true
         }
 

@@ -4,7 +4,7 @@ const getUsersCartsAPI = async (page: number = 1) => {
 
     try {
         let data = await fetch(`${SERVER_URL}/carts?page=` + page).then(res => res.json());
-        let carts = data.data.carts;
+        let carts = data.data?.carts;
         let newcarts = carts.map((cart: any) => {
             return {
                 ...cart,

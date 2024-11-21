@@ -12,7 +12,7 @@ const clearUserCartsAPI = async (id: string) => {
                 'Content-Type': 'application/json',
             },
         });
-        return data.data.cart;
+        return data.data?.cart;
     } catch (error) {
         console.warn(error);
     }
