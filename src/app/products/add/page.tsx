@@ -41,6 +41,7 @@ export default function AddProduct() {
                         accept="image/*"
                         tabIndex={-1}
                         name="product_pictures"
+                        id="product_pictures"
                         multiple
                         formEncType="multipart/form-data"
                         style={{
