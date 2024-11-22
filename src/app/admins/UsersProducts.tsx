@@ -8,7 +8,7 @@ import { getUsersProductsAPI } from "./api/getUsersProductsAPI";
 import Box from "@mui/material/Box";
 
 export default function UsersProducts() {
-  const [data, setData] = React.useState([]);
+  const [data, setData] = React.useState<any>([]);
   const [activePage, setActivePage] = React.useState(1);
 
   React.useEffect(() => {
@@ -24,14 +24,15 @@ export default function UsersProducts() {
   if (!data.length) {
 
     return (
-        <Container sx={{ mt: 8 }} component={"main"} maxWidth="md">
-            <Box textAlign={'center'}>No product(s) found</Box>
-        </Container>
+      <Container sx={{ mt: 8 }} component={"main"} maxWidth="md">
+        <Box textAlign={'center'}>No product(s) found</Box>
+      </Container>
     )
-}
+  }
 
   return (
     <Container maxWidth="md" component={'main'} sx={{ mt: 10 }}>
+      <Box>Total Products: {data[0]?.totalProducts}</Box>
       <React.Suspense fallback={<Fallback />} >
         <ProductList products={data} activePage={activePage} setActivePage={setActivePage} />
       </React.Suspense>

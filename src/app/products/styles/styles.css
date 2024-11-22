@@ -9,7 +9,7 @@ div.scrollmenu {
     border-radius: 15px;
   }
   
-  div.scrollmenu a {
+  div.scrollmenu Link {
     display: inline-block;
     color: white;
     text-align: center;

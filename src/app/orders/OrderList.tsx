@@ -24,7 +24,7 @@ export default function OrderList(props: any) {
                 <ReactPagination
                     activePage={props?.activePage}
                     itemsCountPerPage={10}
-                    totalItemsCount={props?.orders?.length}
+                    totalItemsCount={props?.orders[0]?.totalOrders}
                     pageRangeDisplayed={5}
                     onchangeCallback={(v: any) => props.setActivePage(v)} />
             </Box>

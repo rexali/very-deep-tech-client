@@ -120,7 +120,7 @@ function AdminProfileTab() {
 
 function MessagesTab() {
     return (
-        <Container maxWidth={"md"}>
+        <Container>
             <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                 Messages<Link href={"/messages/add"}><Button startIcon={<Add />}></Button></Link>
             </Box>

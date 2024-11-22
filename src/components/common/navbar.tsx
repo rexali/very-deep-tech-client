@@ -29,7 +29,6 @@ const pages = [
   "Services",
   'Contact',
   'Products',
-  'Carts'
 ];
 
 const menus = [
@@ -82,7 +81,7 @@ function NavBar() {
     <Container maxWidth={"xl"}>
       <Toolbar disableGutters>
         {!isMobile && <AWFLogo />}
-        <Link prefetch href={'/'} style={{ display: isMobile ? "none" : '', fontSize: 18, textDecoration: 'none', color: 'white', marginRight: 5, letterSpacing: '.1rem', fontWeight: 700, }} >
+        <Link href={'/'} style={{ display: isMobile ? "none" : '', fontSize: 18, textDecoration: 'none', color: 'white', marginRight: 5, letterSpacing: '.1rem', fontWeight: 700, }} >
           Cshop
         </Link>
         <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -121,7 +120,7 @@ function NavBar() {
             ))}
           </Menu>
         </Box>
-        <Link prefetch href={'/'} style={{
+        <Link href={'/'} style={{
           textDecoration: "none",
           marginRight: 2,
           display: isMobile ? 'flex' : 'none',    ///{ xs: 'flex', md: 'none' },

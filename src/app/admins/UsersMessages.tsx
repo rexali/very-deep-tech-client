@@ -1,6 +1,6 @@
 'use client'
 
-import { Box,Grid} from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import Container from "@mui/material/Container";
 import MessageList from "../messages/message-list";
 import * as React from "react";
@@ -8,19 +8,19 @@ import ReactPagination from "@/components/react-pagination";
 import { getUsersMessagesAPI } from "./api/getUsersMessages";
 
 export default function UserMessages() {
-  const [data, setData] = React.useState([]);
+  const [data, setData] = React.useState<any>([]);
   const [activePage, setActivePage] = React.useState(1);
   const handlePageChange = (pageNumber: any) => {
     setActivePage(pageNumber)
   }
 
-  React.useEffect(()=>{
-       async function getData(){
-        setData(await getUsersMessagesAPI(activePage));
-       }
-       getData();
+  React.useEffect(() => {
+    async function getData() {
+      setData(await getUsersMessagesAPI(activePage));
+    }
+    getData();
 
-  },[activePage])
+  }, [activePage])
 
   if (!data.length) {
 
@@ -34,15 +34,16 @@ export default function UserMessages() {
 
   return (
     <Container maxWidth="md" component={'main'} sx={{ mt: 10 }}>
+      <Box>Total Messages: {data[0]?.totalMessages}</Box>
       <Grid container columnSpacing={1}>
         <MessageList messages={data} role={'admin'} />
       </Grid>
       <Box marginTop={4} display={"flex"} justifyContent={'center'}>
         <ReactPagination
           activePage={activePage}
-          itemsCountPerPage={4}
-          totalItemsCount={data.length}
-          pageRangeDisplayed={4}
+          itemsCountPerPage={10}
+          totalItemsCount={data[0]?.messageTotal ?? 4}
+          pageRangeDisplayed={5}
           onchangeCallback={handlePageChange} />
       </Box>
     </Container>

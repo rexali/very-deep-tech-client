@@ -8,7 +8,7 @@ import NotificationList from "../notifications/notification-list";
 import { getUsersNotificationsAPI } from "./api/getUsersNotifications";
 
 export default function UsersNotifications() {
-    const [data, setData] = React.useState([]);
+    const [data, setData] = React.useState<any>([]);
     const [activePage, setActivePage] = React.useState(1);
     const handlePageChange = (pageNumber: any) => {
         setActivePage(pageNumber)
@@ -34,6 +34,8 @@ export default function UsersNotifications() {
 
     return (
         <Container maxWidth="md" component={'main'} sx={{ mt: 10 }}>
+      <Box>Total Notifications: {data[0]?.totalNotifications}</Box>
+
             <Grid container columnSpacing={1}>
                 <NotificationList notifications={data} role={'admin'} />
             </Grid>

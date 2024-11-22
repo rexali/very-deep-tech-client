@@ -14,7 +14,7 @@ import Link from 'next/link';
 
 
 export default function UsersOrders() {
-  const [data, setData] = React.useState([]);
+  const [data, setData] = React.useState<any>([]);
   const [activePage, setActivePage] = React.useState(1);
 
   React.useEffect(() => {
@@ -37,6 +37,8 @@ export default function UsersOrders() {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <Box>Total Carts: {data[0]?.totalCarts}</Box>
+
         <TableHead>
           <TableRow>
             <TableCell>User</TableCell>

@@ -34,8 +34,8 @@ export default function FavouritePage() {
     }
   });
 
-  if (!data?.length) {
-    return <Fallback />
+  if (!data.length) {
+    return <Fallback item={'No item in your wish list'} />
   }
 
   return (
@@ -46,7 +46,7 @@ export default function FavouritePage() {
         <ReactPagination
           activePage={activePage}
           itemsCountPerPage={10}
-          totalItemsCount={1000}
+          totalItemsCount={data[0].totalFavourites}
           pageRangeDisplayed={5}
           onchangeCallback={(v: any) => setActivePage(v)} />
       </Box>

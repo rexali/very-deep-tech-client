@@ -14,7 +14,7 @@ import Link from 'next/link';
 
 
 export default function UsersTransactions() {
-  const [data, setData] = React.useState([]);
+  const [data, setData] = React.useState<any>([]);
   const [activePage, setActivePage] = React.useState(1);
 
   React.useEffect(() => {
@@ -28,20 +28,23 @@ export default function UsersTransactions() {
   if (!data.length) {
 
     return (
-        <Container sx={{ mt: 8 }} component={"main"} maxWidth="md">
-            <Box textAlign={'center'}>No transaction(s) found</Box>
-        </Container>
+      <Container sx={{ mt: 8 }} component={"main"} maxWidth="md">
+        <Box textAlign={'center'}>No transaction(s) found</Box>
+      </Container>
     )
-}
+  }
 
   return (
     <TableContainer component={Paper}>
+        <Box>Total Transactions: {data[0]?.totalTransactions}</Box>
+        <Box>Total Amount: {data[0]?.totalAmount}</Box>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell align="right">Time&nbsp;</TableCell>
-            <TableCell align="right">Amount&nbsp;</TableCell>
-            <TableCell align="right">User&nbsp;</TableCell>
+            <TableCell align="right">Time &nbsp;</TableCell>
+            <TableCell align="right">Amount &nbsp;</TableCell>
+            <TableCell align="right">User &nbsp;</TableCell>
+            <TableCell align="right">Total amount &nbsp;</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -54,12 +57,12 @@ export default function UsersTransactions() {
               <TableCell align="right">{transaction.amount}</TableCell>
               <TableCell align="right">
                 <Link href={`mailto:${transaction?.user?.email}`}>{transaction?.user?.email}</Link>
-                </TableCell>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table><br />
-      <Box sx={{ mr: "auto", ml: "auto", maxWidth: 100 }} >
+      <Box sx={{ mr: "auto", ml: "auto", mt: 5, maxWidth: '100%' }} >
         <ReactPagination
           activePage={activePage}
           itemsCountPerPage={10}

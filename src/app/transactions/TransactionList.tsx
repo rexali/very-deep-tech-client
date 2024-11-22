@@ -24,7 +24,7 @@ export default function TransactionList(props: any) {
                 <ReactPagination
                     activePage={props?.activePage}
                     itemsCountPerPage={10}
-                    totalItemsCount={props?.transactions?.length}
+                    totalItemsCount={props?.transactions[0]?.totalTransactions}
                     pageRangeDisplayed={5}
                     onchangeCallback={(v: any) => props.setActivePage(v)} />
             </Box>

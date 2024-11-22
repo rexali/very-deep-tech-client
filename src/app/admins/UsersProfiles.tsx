@@ -14,7 +14,7 @@ import Link from 'next/link';
 
 
 export default function UsersProfiles() {
-  const [data, setData] = React.useState([]);
+  const [data, setData] = React.useState<any>([]);
   const [activePage, setActivePage] = React.useState(1);
 
   React.useEffect(() => {
@@ -36,6 +36,7 @@ export default function UsersProfiles() {
 
   return (
     <TableContainer component={Paper}>
+        <Box>Total Profiles: {data[0]?.totalProfiles}</Box>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>

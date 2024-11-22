@@ -18,11 +18,10 @@ export default async function ProductList(props: any) {
         products = products?.slice(0, 2) ?? []
     }
 
-
     return (
         <div>
             <ProductCategories categories={categories} />
-            <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+            <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }} sx={{ mt: 5 }}>
                 {products.map((product: any) => {
                     return <Grid key={product._id} item xs={12} md={6}><ProductCard product={product} role={props?.role} /></Grid>
                 })}
@@ -31,7 +30,7 @@ export default async function ProductList(props: any) {
                 <ReactPagination
                     activePage={props?.activePage}
                     itemsCountPerPage={10}
-                    totalItemsCount={products.length}
+                    totalItemsCount={products[0]?.totalProducts ?? 10}
                     pageRangeDisplayed={5}
                     onchangeCallback={(v: any) => props.setActivePage(v)} />
             </Box>

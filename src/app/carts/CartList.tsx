@@ -17,15 +17,17 @@ export default function CartList(props: any) {
     const [error, setError] = React.useState('');
     const [success, setSuccess] = React.useState('');
     const [cartTotals, setCartTotal] = React.useState<number>();
-    const { dispatch,state } = React.useContext(AuthContext);
+    const { dispatch, state } = React.useContext(AuthContext);
+    
     const userId = state.user?._id ?? "6712c927857f3a3b3492459f";
+
     let cartTotal = props.products
-            .map((product: any) => Number(product.product_price) * Number(product.cartQuantity))
-            .reduce((prev: any, cur: any) => {
-                return prev + cur;
-            }, 0);
-           
- 
+        .map((product: any) => Number(product.product_price) * Number(product.cartQuantity))
+        .reduce((prev: any, cur: any) => {
+            return prev + cur;
+        }, 0);
+
+
     // read profile with user data for the form
     let userProfile: any;
     (async () => {
@@ -69,7 +71,7 @@ export default function CartList(props: any) {
 
     React.useEffect(() => {
         setCartTotal(cartTotal)
-    },[cartTotal])
+    }, [cartTotal])
 
     return (
         <Container>
@@ -171,19 +173,6 @@ export default function CartList(props: any) {
 
                         <TextField
                             autoComplete="given-name"
-                            name="total_amount"
-                            required
-                            fullWidth
-                            margin={"normal"}
-                            id="total_amount"
-                            label="Total Amount"
-                            autoFocus
-                            defaultValue={cartTotals}
-                            disabled
-                        />
-
-                        <TextField
-                            autoComplete="given-name"
                             name="shipping_method"
                             required
                             fullWidth
@@ -191,7 +180,7 @@ export default function CartList(props: any) {
                             id="shipping_method"
                             label="Shipping Method"
                             defaultValue={"GENERAL"}
-                            autoFocus
+                            disabled
                         />
 
                         <TextField
@@ -203,7 +192,7 @@ export default function CartList(props: any) {
                             id="shipping_cost"
                             label="Shipping Cost"
                             defaultValue={0}
-                            autoFocus
+                            disabled
                         />
 
                         <TextField
@@ -215,7 +204,20 @@ export default function CartList(props: any) {
                             id="tax"
                             label="Tax"
                             defaultValue={0}
+                            disabled
+                        />
+
+                        <TextField
+                            autoComplete="given-name"
+                            name="total_amount"
+                            required
+                            fullWidth
+                            margin={"normal"}
+                            id="total_amount"
+                            label="Total Amount"
                             autoFocus
+                            defaultValue={cartTotals}
+                            disabled
                         />
                         {success && <Box textAlign={"center"} sx={{ color: "green" }}>{success.toUpperCase()}</Box>}
                         {error && <Box textAlign={"center"} sx={{ color: "red" }}>{error.toUpperCase()}</Box>}

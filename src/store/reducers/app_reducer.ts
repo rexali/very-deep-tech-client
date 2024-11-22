@@ -29,18 +29,18 @@ const reducer = (state: any, action: any) => {
         result: action.payload
       };
 
-    
-      case ActionTypes.GET_FAVOURITES:
-        return {
-          ...state,
-          favourites: action.payload
-        };
-  
-      case ActionTypes.POST_FAVOURITE:
-        return {
-          ...state,
-          result: action.payload
-        };
+
+    case ActionTypes.GET_FAVOURITES:
+      return {
+        ...state,
+        favourites: action.payload
+      };
+
+    case ActionTypes.POST_FAVOURITE:
+      return {
+        ...state,
+        result: action.payload
+      };
 
     case ActionTypes.GET_NOTIFICATIONS:
       return {

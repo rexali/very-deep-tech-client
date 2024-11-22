@@ -110,9 +110,10 @@ export default async function ProductDetailPage({ params }: { params: { productI
           <Typography variant="body2" component={"div"} sx={{ color: 'text.secondary', }}>
             <ul>
               <li>Paystack</li>
-              <li>Flutterwave</li>
-              <li>Remita</li>
               <li>Bank Transfer</li>
+              <li>Opay</li>
+              <li>USSD</li>
+              <li>Card</li>
               <li>Pay on Delivery</li>
             </ul>
           </Typography>
