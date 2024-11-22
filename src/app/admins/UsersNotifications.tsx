@@ -26,7 +26,7 @@ export default function UsersNotifications() {
 
         return (
             <Container sx={{ mt: 8 }} component={"main"} maxWidth="md">
-                <Box textAlign={'center'}>No message(s) found</Box>
+                <Box textAlign={'center'}>No notification(s) found</Box>
             </Container>
         )
     }

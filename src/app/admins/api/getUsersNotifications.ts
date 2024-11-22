@@ -7,7 +7,7 @@ const getUsersNotificationsAPI = async (page: number = 1) => {
         if (data.data === null) {
             return [];
         }
-        return data.data?.messages;
+        return data.data?.notifications;
     } catch (error) {
         console.warn(error);
     }

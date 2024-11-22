@@ -10,28 +10,29 @@ import ReactPagination from '@/components/react-pagination';
 import Box from '@mui/material/Box';
 import { getUsersProfilesAPI } from './api/getUsersProfilesAPI';
 import Container from '@mui/material/Container';
+import Link from 'next/link';
 
 
 export default function UsersProfiles() {
   const [data, setData] = React.useState([]);
   const [activePage, setActivePage] = React.useState(1);
 
-  React.useEffect(()=>{
-       async function getData(){
-        setData(await getUsersProfilesAPI(activePage));
-       }
-       getData();
+  React.useEffect(() => {
+    async function getData() {
+      setData(await getUsersProfilesAPI(activePage));
+    }
+    getData();
 
-  },[activePage])
-  
+  }, [activePage])
+
   if (!data.length) {
 
     return (
-        <Container sx={{ mt: 8 }} component={"main"} maxWidth="md">
-            <Box textAlign={'center'}>No profile(s) found</Box>
-        </Container>
+      <Container sx={{ mt: 8 }} component={"main"} maxWidth="md">
+        <Box textAlign={'center'}>No profile(s) found</Box>
+      </Container>
     )
-}
+  }
 
   return (
     <TableContainer component={Paper}>
@@ -50,10 +51,12 @@ export default function UsersProfiles() {
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="profile">
-                {profile?.firtstName + ' ' + profile?.lastName}
+                {profile?.firstName + ' ' + profile?.lastName}
               </TableCell>
-              <TableCell align="right"><link href={`mailto:${profile?.user?.email}`}>{profile?.user?.email}</link></TableCell>
-              <TableCell align="right">{profile?.State}</TableCell>
+              <TableCell align="right">
+                <Link href={`mailto:${profile?.user?.email}`}>{profile?.user?.email}</Link>
+              </TableCell>
+              <TableCell align="right">{profile?.state}</TableCell>
             </TableRow>
           ))}
         </TableBody>

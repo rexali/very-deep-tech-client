@@ -10,28 +10,29 @@ import ReactPagination from '@/components/react-pagination';
 import Box from '@mui/material/Box';
 import { getUsersOrdersAPI } from './api/getUsersOrders';
 import Container from '@mui/material/Container';
+import Link from 'next/link';
 
 
 export default function UsersOrders() {
   const [data, setData] = React.useState([]);
   const [activePage, setActivePage] = React.useState(1);
 
-  React.useEffect(()=>{
-       async function getData(){
-        setData(await getUsersOrdersAPI(activePage));
-       }
-       getData();
+  React.useEffect(() => {
+    async function getData() {
+      setData(await getUsersOrdersAPI(activePage));
+    }
+    getData();
 
-  },[activePage])
+  }, [activePage])
 
   if (!data.length) {
 
     return (
-        <Container sx={{ mt: 8 }} component={"main"} maxWidth="md">
-            <Box textAlign={'center'}>No order(s) found</Box>
-        </Container>
+      <Container sx={{ mt: 8 }} component={"main"} maxWidth="md">
+        <Box textAlign={'center'}>No order(s) found</Box>
+      </Container>
     )
-}
+  }
 
   return (
     <TableContainer component={Paper}>
@@ -40,9 +41,9 @@ export default function UsersOrders() {
           <TableRow>
             <TableCell>User</TableCell>
             <TableCell align="right">Order Status</TableCell>
-            <TableCell align="right">Time&nbsp;</TableCell>
-            <TableCell align="right">Total&nbsp;</TableCell>
-            <TableCell align="right">Payment Status&nbsp;</TableCell>
+            <TableCell align="right">Time &nbsp;</TableCell>
+            <TableCell align="right">Total &nbsp;</TableCell>
+            <TableCell align="right">Payment Status &nbsp;</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -52,11 +53,12 @@ export default function UsersOrders() {
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="order">
-                <link href={`mailto:${order.user.email}`}>{order.user.email}</link>
+                <Link href={`mailto:${order?.user?.email}`}>{order?.user?.email}</Link>
               </TableCell>
-              <TableCell align="right">{order?.createdAt??'12-12-24'}</TableCell>
-              <TableCell align="right">{order.total}</TableCell>
-              <TableCell align="right">{order.paymentStatus}</TableCell>
+              <TableCell align="right">{order?.orderStatus ?? 'pending'}</TableCell>
+              <TableCell align="right">{order?.createdAt ?? '12-12-24'}</TableCell>
+              <TableCell align="right">{order?.total}</TableCell>
+              <TableCell align="right">{order?.paymentStatus}</TableCell>
             </TableRow>
           ))}
         </TableBody>

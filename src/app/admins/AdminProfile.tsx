@@ -29,7 +29,7 @@ export default function AdminProfile() {
 
     return (
       <Container sx={{ mt: 8 }} component={"main"} maxWidth="md">
-        <Box textAlign={'center'}>No profiles found</Box>
+        <Box textAlign={'center'}>No profile found</Box>
       </Container>
     )
   }
