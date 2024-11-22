@@ -12,7 +12,7 @@ export default function UserFavourites() {
   const [data, setData] = React.useState([]);
   const [activePage, setActivePage] = React.useState(1);
 
-  const userId = getToken('_id') as string;
+  const userId = getToken('_id') as string ?? "6712c927857f3a3b3492459f";
   React.useEffect(() => {
     async function getData() {
       const products = await getUserFavouritesAPI(userId);
@@ -20,7 +20,7 @@ export default function UserFavourites() {
     }
 
     getData();
- 
+
   }, [userId]);
 
   if (!data.length) {

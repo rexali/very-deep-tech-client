@@ -5,6 +5,7 @@ import * as React from "react";
 import ProductList from "../products/ProductList";
 import Fallback from "@/components/common/fallback";
 import { getUsersProductsAPI } from "./api/getUsersProductsAPI";
+import Box from "@mui/material/Box";
 
 export default function UsersProducts() {
   const [data, setData] = React.useState([]);
@@ -19,6 +20,15 @@ export default function UsersProducts() {
     getData();
 
   }, [activePage]);
+
+  if (!data.length) {
+
+    return (
+        <Container sx={{ mt: 8 }} component={"main"} maxWidth="md">
+            <Box textAlign={'center'}>No product(s) found</Box>
+        </Container>
+    )
+}
 
   return (
     <Container maxWidth="md" component={'main'} sx={{ mt: 10 }}>

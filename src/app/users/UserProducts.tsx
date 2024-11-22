@@ -17,10 +17,10 @@ export default function UserProducts() {
   const [activePage, setActivePage] = React.useState(1);
 
   const userId = getToken('_id') as string;
-  
+
   React.useEffect(() => {
     async function getData() {
-      const products = await getUserProductsAPI(userId, activePage);
+      const products = await getUserProductsAPI(userId ?? "6712c927857f3a3b3492459f", activePage);
       setData(products);
     }
 
@@ -38,9 +38,9 @@ export default function UserProducts() {
   }
   return (
     <Container maxWidth="md" component={'main'} sx={{ mt: 10 }}>
-      
+
       <React.Suspense fallback={<Fallback />} >
-        <ProductList products={data} activePage={activePage} setActivePage={setActivePage} role={'admin'}/>
+        <ProductList products={data} activePage={activePage} setActivePage={setActivePage} role={'admin'} />
       </React.Suspense>
     </Container>
   )

@@ -13,17 +13,26 @@ export default function AdminProfile() {
   const [error, setError] = React.useState('');
   const [success, setSuccess] = React.useState('');
 
-  const userId = getToken('_id') as string;
+  const userId = getToken('_id') as string ?? "6712c927857f3a3b3492459f";
 
   React.useEffect(() => {
     async function getUserProfileData() {
-      const adminProfile = await getUserProfileAPI(userId ?? "6712c927857f3a3b3492459f");
+      const adminProfile = await getUserProfileAPI(userId);
       setUserProfile(adminProfile);
     }
 
     getUserProfileData();
 
   }, [userId]);
+
+  if (!Object.keys(adminProfile).length) {
+
+    return (
+      <Container sx={{ mt: 8 }} component={"main"} maxWidth="md">
+        <Box textAlign={'center'}>No profiles found</Box>
+      </Container>
+    )
+  }
 
   return (
     <Container maxWidth="md" component={'main'} sx={{ mt: 10 }}>

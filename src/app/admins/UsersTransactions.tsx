@@ -9,6 +9,7 @@ import Paper from '@mui/material/Paper';
 import ReactPagination from '@/components/react-pagination';
 import Box from '@mui/material/Box';
 import { getUsersHistoryAPI } from './api/getUsersHistory';
+import Container from '@mui/material/Container';
 
 
 export default function UsersTransactions() {
@@ -21,7 +22,16 @@ export default function UsersTransactions() {
     }
     getData();
 
-  }, [activePage])
+  }, [activePage]);
+
+  if (!data.length) {
+
+    return (
+        <Container sx={{ mt: 8 }} component={"main"} maxWidth="md">
+            <Box textAlign={'center'}>No transaction(s) found</Box>
+        </Container>
+    )
+}
 
   return (
     <TableContainer component={Paper}>

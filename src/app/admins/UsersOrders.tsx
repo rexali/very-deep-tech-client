@@ -9,6 +9,7 @@ import Paper from '@mui/material/Paper';
 import ReactPagination from '@/components/react-pagination';
 import Box from '@mui/material/Box';
 import { getUsersOrdersAPI } from './api/getUsersOrders';
+import Container from '@mui/material/Container';
 
 
 export default function UsersOrders() {
@@ -22,6 +23,15 @@ export default function UsersOrders() {
        getData();
 
   },[activePage])
+
+  if (!data.length) {
+
+    return (
+        <Container sx={{ mt: 8 }} component={"main"} maxWidth="md">
+            <Box textAlign={'center'}>No order(s) found</Box>
+        </Container>
+    )
+}
 
   return (
     <TableContainer component={Paper}>

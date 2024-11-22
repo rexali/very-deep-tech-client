@@ -13,15 +13,15 @@ export default function UserOrders() {
   const [activePage, setActivePage] = React.useState(1);
 
   const userId = getToken('_id') as string;
-  
+
   React.useEffect(() => {
     async function getData() {
-      const orders = await getUserOrdersAPI(userId,activePage);
+      const orders = await getUserOrdersAPI(userId ?? "6712c927857f3a3b3492459f", activePage);
       setData(orders);
     }
 
     getData();
- 
+
   }, [userId, activePage]);
 
   if (!data.length) {
@@ -36,7 +36,7 @@ export default function UserOrders() {
   return (
     <Container maxWidth="md" component={'main'} sx={{ mt: 10 }}>
       <React.Suspense fallback={<Fallback />} >
-        <OrderList  orders={data} activePage={activePage} setActivePage={setActivePage} />
+        <OrderList orders={data} activePage={activePage} setActivePage={setActivePage} />
       </React.Suspense>
     </Container>
   )

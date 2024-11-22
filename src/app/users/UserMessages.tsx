@@ -10,12 +10,12 @@ import ReactPagination from "@/components/react-pagination";
 export default function UserMessages() {
   const [activePage, setActivePage] = React.useState(1);
   const { state, dispatch } = React.useContext(AuthContext)
-  const messages = useUserMessages(state.user?._id, dispatch, activePage) as any;
-
 
   const handlePageChange = (pageNumber: any) => {
     setActivePage(pageNumber)
   }
+  
+  const messages = useUserMessages(state.user?._id ?? "6712c927857f3a3b3492459f", dispatch, activePage) as any;
 
   if (!messages.length) {
 

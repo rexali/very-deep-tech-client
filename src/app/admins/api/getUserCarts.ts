@@ -4,6 +4,9 @@ const getUsersCartsAPI = async (page: number = 1) => {
 
     try {
         let data = await fetch(`${SERVER_URL}/carts?page=` + page).then(res => res.json());
+        if (data.data === null) {
+            return [];
+        }
         let carts = data.data?.carts;
         let newcarts = carts.map((cart: any) => {
             return {
