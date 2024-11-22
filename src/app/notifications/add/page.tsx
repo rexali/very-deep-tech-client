@@ -14,7 +14,7 @@ import { handleCreateNotification } from '../utils/handleCreateNotification';
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
-export default function AddNotification({params}:{params:{userId:string}}) {
+export default function AddNotification({ params }: { params: { userId: string } }) {
   const [error, setError] = React.useState('');
   const [success, setSuccess] = React.useState('');
 
@@ -24,7 +24,7 @@ export default function AddNotification({params}:{params:{userId:string}}) {
         {/* <CssBaseline /> */}
         <Box
           sx={{
-            marginTop: 8,
+            mt: 15,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -58,7 +58,7 @@ export default function AddNotification({params}:{params:{userId:string}}) {
               autoComplete="given_body"
               multiline
             />
-           
+
             {success && <Box textAlign={"center"} sx={{ color: "green" }}>{success.toUpperCase()}</Box>}
             {error && <Box textAlign={"center"} sx={{ color: "red" }}>{error.toUpperCase()}</Box>}
             <Button

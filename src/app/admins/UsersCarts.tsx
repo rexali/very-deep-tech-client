@@ -22,7 +22,7 @@ export default function UsersProducts() {
 
   return (
     <Container maxWidth="md" component={'main'} sx={{ mt: 10 }}>
-      <React.Suspense fallback={<Fallback />} >
+      <React.Suspense fallback={<Fallback item={'No items found'}/>} >
         <ProductList products={data} activePage={activePage} setActivePage={setActivePage} />
       </React.Suspense>
     </Container>

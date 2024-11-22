@@ -51,12 +51,12 @@ export default function UsersProfiles() {
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="profile">
-                {profile?.firstName + ' ' + profile?.lastName}
+                {profile?.firstName ?? 'Aliyu' + ' ' + profile?.lastName ?? 'Bello'}
               </TableCell>
               <TableCell align="right">
                 <Link href={`mailto:${profile?.user?.email}`}>{profile?.user?.email}</Link>
               </TableCell>
-              <TableCell align="right">{profile?.state}</TableCell>
+              <TableCell align="right">{profile?.state ?? 'Kano'}</TableCell>
             </TableRow>
           ))}
         </TableBody>

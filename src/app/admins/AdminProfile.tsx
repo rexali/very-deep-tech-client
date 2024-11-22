@@ -35,8 +35,7 @@ export default function AdminProfile() {
   }
 
   return (
-    <Container maxWidth="md" component={'main'} sx={{ mt: 10 }}>
-      <h2>Profile</h2>
+    <Container maxWidth="md" component={'main'} sx={{ mt: 5}}>
       <Box
         component="form"
         onSubmit={(evt) => handleProfileUpdate(

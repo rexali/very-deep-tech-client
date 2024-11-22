@@ -36,8 +36,8 @@ export default function UserTabs() {
             <div className="container" style={styles.minheight}>
 
                 <div className="scrollmenu" style={styles.marginTop}>
-                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('profile')} href={""} ><small>Users&apos;Profiles</small></Link>
-                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('adminprofile')} href={""} ><small>Your Profile</small></Link>
+                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('profiles')} href={""} ><small>All profiles</small></Link>
+                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('adminprofile')} href={""} ><small>Your profile</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('products')} href={""} ><small>Products</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('messages')} href={""} ><small>Messages</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('transactions')} href={""} ><small>Transactions</small></Link>
@@ -48,7 +48,7 @@ export default function UserTabs() {
 
                 <div className="tab-content">
                     <div className="tab-pane container active" id="profile">
-                        {tabName === 'profile' ? <ProfileTab /> : ''}
+                        {tabName === 'profiles' ? <ProfileTab /> : ''}
                         {tabName === 'adminprofile' ? <AdminProfileTab /> : ''}
                         {tabName === 'products' ? <ProductsTab /> : ''}
                         {tabName === 'messages' ? <MessagesTab /> : ''}
@@ -67,7 +67,7 @@ function ProductsTab() {
 
     return (
 
-        <Container maxWidth={"md"}>
+        <Container>
             <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                 <Box component={'div'} textAlign={'left'} >
                     <Typography
@@ -89,12 +89,12 @@ function ProductsTab() {
 function ProfileTab() {
 
     return (
-        <Container maxWidth={"md"}>
+        <Container>
             <Box component={'div'} textAlign={'left'} >
                 <Typography
                     color='success'
                 >
-                    Profiles
+                    All profiles
                 </Typography>
             </Box>
             <UsersProfiles />
@@ -105,7 +105,7 @@ function ProfileTab() {
 function AdminProfileTab() {
 
     return (
-        <Container maxWidth={"md"}>
+        <Container >
             <Box component={'div'} textAlign={'left'} >
                 <Typography
                     color='success'
@@ -133,7 +133,7 @@ function MessagesTab() {
 
 function NotificationTab() {
     return (
-        <Container maxWidth={"md"}>
+        <Container >
             <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                 Notifications <Link href={"/notifications/add"}><Button startIcon={<Add />}></Button></Link>
             </Box>
@@ -146,7 +146,7 @@ function NotificationTab() {
 function TransactionTab() {
 
     return (
-        <Container maxWidth={"md"} >
+        <Container >
             <Box component={'div'} textAlign={'left'} >
                 <Typography
                     color='success'
@@ -154,9 +154,8 @@ function TransactionTab() {
                     Transactions
                 </Typography>
             </Box>
-            <Container maxWidth={"md"}>
+        
                 <UsersTransactions />
-            </Container>
         </Container>
     )
 }
@@ -165,7 +164,7 @@ function TransactionTab() {
 function CartTab() {
 
     return (
-        <Container maxWidth={"md"} >
+        <Container>
             <Box component={'div'} textAlign={'left'} >
                 <Typography
                     color='success'
@@ -173,9 +172,7 @@ function CartTab() {
                     Carts
                 </Typography>
             </Box>
-            <Container maxWidth={"md"}>
-                <UsersCarts />
-            </Container>
+            <UsersCarts />
         </Container>
     )
 }
@@ -183,7 +180,7 @@ function CartTab() {
 function OrderTab() {
 
     return (
-        <Container maxWidth={"md"}>
+        <Container >
             <Box component={'div'} textAlign={'left'} >
                 <Typography
                     color='success'
