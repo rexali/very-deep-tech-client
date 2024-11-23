@@ -5,7 +5,7 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
 
-function Team() {
+export default function Team() {
 
    
     const images = [
@@ -39,5 +39,3 @@ function Team() {
         </Container>
     );
 }
-
-export default Team;

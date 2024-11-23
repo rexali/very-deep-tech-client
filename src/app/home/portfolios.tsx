@@ -5,7 +5,7 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
 
-function Portfolios() {
+export default function Portfolios() {
 
       
 const images = [
@@ -39,5 +39,3 @@ const images = [
         </Container>
     );
 }
-
-export default Portfolios;

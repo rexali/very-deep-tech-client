@@ -5,7 +5,7 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
 
-function Testimonials() {
+export default function Testimonials() {
 
 
     const images = [
@@ -39,5 +39,3 @@ function Testimonials() {
         </Container>
     );
 }
-
-export default Testimonials;
