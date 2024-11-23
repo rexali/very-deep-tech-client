@@ -93,6 +93,7 @@ function ProfileTab() {
             <Box component={'div'} textAlign={'left'} >
                 <Typography
                     color='success'
+                    sx={{m:2}}
                 >
                     All profiles
                 </Typography>

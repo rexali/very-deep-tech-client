@@ -17,14 +17,12 @@ export default function MarketingMessage() {
       }}>
         <Paper>
           <Typography sx={{padding:2, textAlign:"center", fontWeight:'bold'}}>
-            Want to get good value and price for any item you order? Let Cshop help you today.
+            Want to get good value and price for any item you order?
           </Typography>
         </Paper>
         <br />
         <Typography>
-          We help individuals or businesses who want to provide goods and items they need for their daily operation, so they can focus
-          on other aspects of their lives or business operations that bring in lucrative incomes and revenues, 
-          and stop worrying about how to eliminate or alleviate the social problem.
+          Let Cshop help you today. We provide individuals, organisations and companies with all the products they need.
         </Typography>
       </Box>
     </Container>
