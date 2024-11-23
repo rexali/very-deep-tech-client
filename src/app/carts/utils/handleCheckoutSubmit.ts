@@ -1,5 +1,6 @@
 'use client'
 
+import { sendOrderAndTransaction } from "@/app/payment/sendOrderAndTransaction";
 import { payWithPaystack } from "@/services/payWithPaystack";
 
 const handleCheckoutSubmit = async (
@@ -41,18 +42,50 @@ const handleCheckoutSubmit = async (
         method: payment_method.value
     }
 
-    if(contactData.method==='paystack'){
-        
+
+    switch (contactData.method) {
+        case 'paystack':
+        case 'ussd':
+        case 'opay':
+        case 'bank-transfer':
+        case 'card':
+            payWithPaystack(
+                contactData.email ?? "alybaba2009@gmail.com",
+                contactData.amount ?? 10000,
+                orderData,
+                transactionData,
+                setPostSuccess,
+                setPostError,
+            );
+            break;
+
+        case 'pay-on-delivery':
+            await sendOrderAndTransaction(
+                orderData,
+                { ...transactionData, paymentMethod: 'Pay on Delivery' },
+                setPostSuccess,
+                setPostError
+            );
+            break;
+
+        case 'direct-bank-transfer':
+            await sendOrderAndTransaction(
+                orderData,
+                { ...transactionData, paymentMethod: 'Direct Bank Transfer' },
+                setPostSuccess,
+                setPostError
+            );
+            alert(
+                'Use the detail below'
+            );
+            break;
+
+        default:
+            console.log('I am the default');
+            break;
     }
 
-    payWithPaystack(
-        contactData.email ?? "alybaba2009@gmail.com",
-        contactData.amount ?? 10000,
-        orderData,
-        transactionData,
-        setPostSuccess,
-        setPostError,
-    );
+
 };
 
 export {

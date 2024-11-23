@@ -20,6 +20,8 @@ export default function CartList(props: any) {
     const [cartTotals, setCartTotal] = React.useState<number>();
     const { dispatch, state } = React.useContext(AuthContext);
     const [method, setMethod] = React.useState('paystack');
+    const [directPayment, setDirectPayment] = React.useState(false);
+
 
     const userId = state.user?._id ?? "6712c927857f3a3b3492459f";
 
@@ -64,7 +66,7 @@ export default function CartList(props: any) {
         userId: userId,
         orderId: "",
         amount: orderData.total,
-        type: "payment",
+        type: "payment", // tranfer, withdraw
         reference: "",
         currency: "NG",
         paymentMethod: "Paystack"
@@ -231,19 +233,31 @@ export default function CartList(props: any) {
                                 onChange={(evt) => {
                                     const { name, value } = evt.target;
                                     setMethod(value);
+                                    if (method === 'direct-bank-transfer') {
+                                        setDirectPayment(true);
+                                    }
                                 }}
                             >
                                 <FormControlLabel value={'paystack'} control={<Radio />} label='Paystack'></FormControlLabel>
-                                <FormControlLabel value={'ussd'} control={<Radio />} label='USSD'></FormControlLabel>
-                                <FormControlLabel value={'opay'} control={<Radio />} label='Paystack'></FormControlLabel>
-                                <FormControlLabel value={'card'} control={<Radio />} label='Paystack'></FormControlLabel>
-                                <FormControlLabel value={'pay-on-delivery'} control={<Radio />} label='Pay on delivery'></FormControlLabel>
-                                <FormControlLabel value={'bank-transfer'} control={<Radio />} label='Bank tranasfer'></FormControlLabel>
+                                <FormControlLabel value={'ussd'} control={<Radio />} label='Paystack USSD'></FormControlLabel>
+                                <FormControlLabel value={'opay'} control={<Radio />} label='Paystack Opay'></FormControlLabel>
+                                <FormControlLabel value={'card'} control={<Radio />} label='Paystack Card'></FormControlLabel>
+                                <FormControlLabel value={'bank-transfer'} control={<Radio />} label='Paystack Bank transfer'></FormControlLabel>
+                                <FormControlLabel value={'pay-on-delivery'} control={<Radio />} label='Pay on Delivery'></FormControlLabel>
+                                <FormControlLabel value={'direct-bank-transfer'} control={<Radio />} label='Direct Bank Transfer'></FormControlLabel>
                             </RadioGroup>
                         </FormControl>
-
+                        {
+                            directPayment &&
+                            (<Box textAlign={"center"} sx={{ backgroundColor: 'brown', color: "white" }}>
+                                <p>Bank: Jaiz Bank</p>
+                                <p>Acct. Number: 0016938829</p>
+                                <p>Name: Siniotech Information and Communication...</p>
+                            </Box>)
+                        }
                         {success && <Box textAlign={"center"} sx={{ color: "green" }}>{success.toUpperCase()}</Box>}
                         {error && <Box textAlign={"center"} sx={{ color: "red" }}>{error.toUpperCase()}</Box>}
+
 
                         <Button
                             type="submit"
