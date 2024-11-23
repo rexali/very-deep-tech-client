@@ -38,7 +38,6 @@ export default function UserTabs() {
             <div className="container" style={styles.minheight}>
 
                 <div className="scrollmenu" style={styles.marginTop}>
-                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('qoutes')} href={""} ><small>Qoutes</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('profiles')} href={""} ><small>Profiles</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('adminprofile')} href={""} ><small>Your profile</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('products')} href={""} ><small>Products</small></Link>
@@ -48,6 +47,7 @@ export default function UserTabs() {
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('notifications')} href={""} ><small>Notifications</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('orders')} href={""} ><small>Orders</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('subscriptions')} href={""} ><small>Subscriptions</small></Link>
+                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('qoutes')} href={""} ><small>Qoutes</small></Link>
                 </div>
 
                 <div className="tab-content">

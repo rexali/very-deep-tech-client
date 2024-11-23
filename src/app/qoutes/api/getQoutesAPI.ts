@@ -13,7 +13,7 @@ const getQoutesAPI = async (pageNumber: any = 1) => {
     if (data.data === null) {
       return [];
     }
-    return data.data.qoutes;
+    return data.data?.qoutes;
 
   } catch (error) {
     console.warn(error);
