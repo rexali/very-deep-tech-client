@@ -33,7 +33,7 @@ export default function UserMessages() {
 
 
   return (
-    <Container maxWidth="md" component={'main'} sx={{ mt: 10 }}>
+    <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }}>
       <Box>Total Messages: {data[0]?.totalMessages}</Box>
       <Grid container columnSpacing={1}>
         <MessageList messages={data} role={'admin'} />

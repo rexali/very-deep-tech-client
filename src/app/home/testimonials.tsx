@@ -30,9 +30,9 @@ function Testimonials() {
                 'https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60',
         },
     ];
-    
+
     return (
-        <Container component="main" maxWidth="md">
+        <Container component="main" maxWidth="md" sx={{ mt: 10 }}>
             <h2>Testimonials</h2>
             <Typography>What people say</Typography>
             <CarouselView images={images} />

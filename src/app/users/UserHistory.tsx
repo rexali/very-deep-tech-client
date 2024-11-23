@@ -34,7 +34,7 @@ export default function UserHistory() {
   }
 
   return (
-    <Container maxWidth="md" component={'main'} sx={{ mt: 10 }}>
+    <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }}>
       <React.Suspense fallback={<Fallback />} >
         <TransactionList transactions={data} activePage={activePage} setActivePage={setActivePage} />
       </React.Suspense>

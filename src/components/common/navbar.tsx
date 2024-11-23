@@ -17,7 +17,7 @@ import Cart from '@mui/icons-material/ShoppingCart';
 import { handleSignOut } from '@/app/auth/utils/handleSignOut';
 import Link from 'next/link';
 import { useAuth } from '@/hooks/use-auth';
-import { BASE_URL } from '@/constants/url';
+import { BASE_URL, SERVER_URL } from '@/constants/url';
 import { Avatar, Button } from '@mui/material';
 import { AppContext } from '@/context/AppContext';
 import Notifications from '@mui/icons-material/Notifications';
@@ -160,7 +160,7 @@ function NavBar() {
           <Tooltip title="Open menu">
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
               {user.photo ? <Image
-                src={`${BASE_URL}/uploads/${user.photo}`}
+                src={`${SERVER_URL}/uploads/${user.photo}`}
                 width={30}
                 height={30}
                 alt="Account"

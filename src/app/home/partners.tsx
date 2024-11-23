@@ -33,7 +33,7 @@ const images = [
 
 
     return (
-        <Container component="main" maxWidth="md">
+        <Container component="main" maxWidth="md" sx={{mt:10}}>
             <h2>Partners</h2>
             <Typography>Our associates</Typography>
             <CarouselView images={images}/>

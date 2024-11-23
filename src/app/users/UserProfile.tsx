@@ -1,23 +1,29 @@
 'use client'
 
 import { getToken } from "@/utils/getToken";
-import { Box, Button, TextField } from "@mui/material";
+import { Avatar, Box, Button, TextField } from "@mui/material";
 import Container from "@mui/material/Container";
 import Update from "@material-ui/icons/Update";
 import * as React from "react";
 import { getUserProfileAPI } from "./api/getUserProfileAPI";
 import { handleProfileUpdate } from "./utils/handleProfileUpdate";
+import Image from "next/image";
+import { useAuth } from "@/hooks/use-auth";
+import { SERVER_URL } from "@/constants/url";
+
 
 export default function UserProfile() {
   const [userProfile, setUserProfile] = React.useState<any>({});
   const [error, setError] = React.useState('');
   const [success, setSuccess] = React.useState('');
+  const { user } = useAuth();
+
 
   const userId = getToken('_id') as string;
 
   React.useEffect(() => {
     async function getUserProfileData() {
-      const userProfile = await getUserProfileAPI(userId??"6712c927857f3a3b3492459f");
+      const userProfile = await getUserProfileAPI(userId ?? "6712c927857f3a3b3492459f");
       setUserProfile(userProfile);
     }
 
@@ -36,7 +42,17 @@ export default function UserProfile() {
 
 
   return (
-    <Container maxWidth="md" component={'main'} sx={{ mt: 10 }}>
+    <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }}>
+      <Box>
+        {user.photo ? <Image
+          src={`${SERVER_URL}/uploads/${user.photo}`}
+          width={30}
+          height={30}
+          alt="Account"
+          style={{ borderRadius: 20 }}
+        /> : <Avatar />
+        }
+      </Box>
       <Box
         component="form"
         onSubmit={(evt) => handleProfileUpdate(

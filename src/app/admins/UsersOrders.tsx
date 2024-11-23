@@ -37,7 +37,7 @@ export default function UsersOrders() {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <Box>Total Carts: {data[0]?.totalCarts}</Box>
+        <Box>Total Carts: {data[0]?.totalOrders}</Box>
 
         <TableHead>
           <TableRow>

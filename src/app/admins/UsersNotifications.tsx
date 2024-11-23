@@ -33,8 +33,8 @@ export default function UsersNotifications() {
 
 
     return (
-        <Container maxWidth="md" component={'main'} sx={{ mt: 10 }}>
-      <Box>Total Notifications: {data[0]?.totalNotifications}</Box>
+        <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }}>
+            <Box>Total Notifications: {data[0]?.totalNotifications}</Box>
 
             <Grid container columnSpacing={1}>
                 <NotificationList notifications={data} role={'admin'} />

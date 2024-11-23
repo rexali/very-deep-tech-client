@@ -32,7 +32,7 @@ function Team() {
     ];
     
     return (
-        <Container component="main" maxWidth="md">
+        <Container component="main" maxWidth="md" sx={{mt:10}}>
             <h2>Team</h2>
             <Typography>Our experts</Typography>
             <CarouselView images={images} />

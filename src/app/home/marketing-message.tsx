@@ -16,12 +16,12 @@ export default function MarketingMessage() {
         mt: 2
       }}>
         <Paper>
-          <Typography sx={{padding:2, textAlign:"center", fontWeight:'bold'}}>
+          <Typography sx={{ padding: 2, textAlign: "center", fontWeight: 'bold' }}>
             Want to get good value and price for any item you order?
           </Typography>
         </Paper>
         <br />
-        <Typography>
+        <Typography sx={{ textAlign: "center", }}>
           Let Cshop help you today. We provide individuals, organisations and companies with all the products they need.
         </Typography>
       </Box>

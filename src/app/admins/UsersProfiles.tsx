@@ -36,7 +36,7 @@ export default function UsersProfiles() {
 
   return (
     <TableContainer component={Paper}>
-        <Box>Total Profiles: {data[0]?.totalProfiles}</Box>
+        <Box sx={{ mt: 8 }}>Total Profiles: {data[0]?.totalProfiles}</Box>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
