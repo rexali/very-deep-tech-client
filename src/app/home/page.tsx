@@ -9,10 +9,10 @@ import SearchInput from "../search/SearchInput";
 import FeaturedProducts from "./FeaturedProducts";
 import CreateSubscription from "../subscriptions/CreateSubscription";
 import { useMediaQuery } from "react-responsive";
-import Testimonials from './Testimonials';
-import Portfolios from './Portfolios';
-import Team from './Team';
-import Partners from './Partners';
+import Testimonials from './testimonials';
+import Portfolios from './portfolios';
+import Team from './team';
+import Partners from './partners';
 
 export default function HomePage() {
   // const isMobile = useMediaQuery({ maxDeviceWidth: 1023 });
