@@ -7,14 +7,15 @@ import { getQoutesAPI } from "./api/getQoutesAPI";
 
 export default function QoutesPage() {
   const [data, setData] = useState([]);
+  const [activePage, setActivePage] = React.useState(1);
 
   (async () => {
-    setData(await getQoutesAPI());
+    setData(await getQoutesAPI(activePage));
   })()
 
   return (
     <Container component={'main'} sx={{ mt: 10 }}>
-      <QouteList qoutes={data} />
+      <QouteList qoutes={data} activePage={activePage} setActivePage={setActivePage} />
     </Container>
   )
 }
