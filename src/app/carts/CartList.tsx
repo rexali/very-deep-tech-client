@@ -12,13 +12,15 @@ import { handleCheckoutSubmit } from './utils/handleCheckoutSubmit';
 import { getUserProfileAPI } from '../users/api/getUserProfileAPI';
 import ClearCartButton from './components/ClearCartButton';
 import { AuthContext } from '@/context/AuthContext';
+import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material';
 
 export default function CartList(props: any) {
     const [error, setError] = React.useState('');
     const [success, setSuccess] = React.useState('');
     const [cartTotals, setCartTotal] = React.useState<number>();
     const { dispatch, state } = React.useContext(AuthContext);
-    
+    const [method, setMethod] = React.useState('paystack');
+
     const userId = state.user?._id ?? "6712c927857f3a3b3492459f";
 
     let cartTotal = props.products
@@ -219,6 +221,27 @@ export default function CartList(props: any) {
                             defaultValue={cartTotals}
                             disabled
                         />
+
+                        <FormControl>
+                            <FormLabel id='payment_method'>Payment Method</FormLabel>
+                            <RadioGroup
+                                aria-labelledby='demo-controlled-radio-button-group'
+                                name='payment_method'
+                                value={method}
+                                onChange={(evt) => {
+                                    const { name, value } = evt.target;
+                                    setMethod(value);
+                                }}
+                            >
+                                <FormControlLabel value={'paystack'} control={<Radio />} label='Paystack'></FormControlLabel>
+                                <FormControlLabel value={'ussd'} control={<Radio />} label='USSD'></FormControlLabel>
+                                <FormControlLabel value={'opay'} control={<Radio />} label='Paystack'></FormControlLabel>
+                                <FormControlLabel value={'card'} control={<Radio />} label='Paystack'></FormControlLabel>
+                                <FormControlLabel value={'pay-on-delivery'} control={<Radio />} label='Pay on delivery'></FormControlLabel>
+                                <FormControlLabel value={'bank-transfer'} control={<Radio />} label='Bank tranasfer'></FormControlLabel>
+                            </RadioGroup>
+                        </FormControl>
+
                         {success && <Box textAlign={"center"} sx={{ color: "green" }}>{success.toUpperCase()}</Box>}
                         {error && <Box textAlign={"center"} sx={{ color: "red" }}>{error.toUpperCase()}</Box>}
 

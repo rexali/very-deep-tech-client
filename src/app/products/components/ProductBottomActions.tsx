@@ -38,7 +38,7 @@ export default function ProductBottomActions({ product, role }: { product: any, 
             <Button size="small" onClick={() => setOpenQoute(true)}>Get Qoutes</Button>
             {openQoute && <GetQouteModal closeCallback={handleOpenQuote} productId={product._id} />}
             <label>
-                <span>Select qty: </span>
+                <span>qty: </span>
                 <span style={{ marginRight: 5 }}>{quantity}</span>&nbsp;&nbsp;&nbsp;
                 <select onChange={
                     async (evt: any) => {

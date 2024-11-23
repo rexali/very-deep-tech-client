@@ -22,7 +22,9 @@ const handleCheckoutSubmit = async (
         total_amount,
         shipping_cost,
         shipping_method,
-        tax
+        tax,
+        payment_method
+
     } = event.target.elements;
 
     const contactData = {
@@ -35,7 +37,12 @@ const handleCheckoutSubmit = async (
         amount: total_amount.value,
         shippingCost: shipping_cost.value,
         shippingMethod: shipping_method.value,
-        tax: tax.value
+        tax: tax.value,
+        method: payment_method.value
+    }
+
+    if(contactData.method==='paystack'){
+        
     }
 
     payWithPaystack(
