@@ -5,18 +5,17 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 
 import ReactPagination from "@/components/react-pagination";
-import QouteCard from "./QouteCard";
+import SubscriptionCard from "./SubscriptionCard";
 
-export default function QouteList(props: any) {
+export default function SubscriptionList(props: any) {
 
     return (
         <div>
             {
-                props.qoutes?.map((qoute: any, index: any) =>
-                    <Grid item xs={12} md={6} key={qoute._id + index}>
-                        <QouteCard qoute={qoute} />
+                props.subscriptions?.map((subscription: any, index: any) =>
+                    <Grid item xs={12} md={6} key={subscription._id + index}>
+                        <SubscriptionCard subscription={subscription} />
                     </Grid>
-
                 )
             }
 
@@ -24,7 +23,7 @@ export default function QouteList(props: any) {
                 <ReactPagination
                     activePage={props?.activePage}
                     itemsCountPerPage={10}
-                    totalItemsCount={props?.qoutes[0]?.totalQoutes}
+                    totalItemsCount={props?.subscriptions[0]?.totalSubscriptions}
                     pageRangeDisplayed={5}
                     onchangeCallback={(v: any) => props.setActivePage(v)} />
             </Box>

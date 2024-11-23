@@ -9,7 +9,7 @@ import { useState } from "react"
 import { handleSubscribeSubmit } from "./utils/handleSubscribeSubmit"
 
 
-export default function SubscribeNewsletter() {
+export default function CreateSubscription() {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
     const isMobile = useMediaQuery({ maxDeviceWidth: 1023 });

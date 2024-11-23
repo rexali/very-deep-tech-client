@@ -1,6 +1,6 @@
 import { RatingReviewList } from "./RatingReviewList";
 
-export default function ReviewPage() {
-    
-    return <RatingReviewList reviews={[{ratingScore:1, review:"It is good"}]} />
+export default function ReviewPage(props: any) {
+
+    return <RatingReviewList ratings={props?.ratings ?? [{ ratingScore: 1, review: "It is good" },{ ratingScore: 2, review: "It is not that good" }]} />
 }

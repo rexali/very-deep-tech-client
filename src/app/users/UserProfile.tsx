@@ -46,10 +46,10 @@ export default function UserProfile() {
       <Box>
         {user.photo ? <Image
           src={`${SERVER_URL}/uploads/${user.photo}`}
-          width={30}
-          height={30}
+          width={150}
+          height={150}
           alt="Account"
-          style={{ borderRadius: 20 }}
+          style={{ borderRadius: 30 }}
         /> : <Avatar />
         }
       </Box>
@@ -64,6 +64,17 @@ export default function UserProfile() {
         noValidate
         sx={{ mt: 1 }}
       >
+        <TextField
+          autoComplete="given-name"
+          name="photo"
+          required
+          fullWidth
+          margin={"normal"}
+          type='file'
+          id="photo"
+          label="Upload photo"
+        />
+
         <TextField
           autoComplete="given-name"
           name="first_name"

@@ -30,7 +30,7 @@ export default function ProductTopActions({ product, role }: { product: any, rol
                 <Button
                     size="small"
                     onClick={() => {
-                        router.replace(`/products/delete?productId=${product._id}&role=admin`, {});
+                        router.push(`/products/delete?productId=${product._id}&role=admin`, {});
                     }
                     }
                     startIcon={<Remove />}>
@@ -43,16 +43,22 @@ export default function ProductTopActions({ product, role }: { product: any, rol
             <Button
                 size="small"
                 onClick={async () => {
-                    if (await isAlReadyAddedToFavouriteByUserAPI(userId, product._id)) {
+                    if (userId) {
+                        if (!await isAlReadyAddedToFavouriteByUserAPI(userId, product._id)) {
+                            const favorite = await createFavouriteAPI({
+                                product_id: product._id,
+                                user_id: getToken("_id") ?? "6712c927857f3a3b3492459f"
+                            })
+                            if (favorite._id) {
+                                handleOpen();
+                            }
+                        } else {
+                            alert('Already added');
+                        }
+                    } else {
+                        router.push('/auth/signin')
+                    }
 
-                    }
-                    const favorite = await createFavouriteAPI({
-                        product_id: product._id,
-                        user_id: getToken("_id") ?? "6712c927857f3a3b3492459f"
-                    })
-                    if (favorite._id) {
-                        handleOpen();
-                    }
                 }}
                 startIcon={<Favourite />}></Button>
             {open && <StatusModal message={{

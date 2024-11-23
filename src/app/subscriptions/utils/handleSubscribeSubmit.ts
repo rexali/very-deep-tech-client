@@ -1,4 +1,4 @@
-import { subscribeToNewsLetter } from "../api/subscribeToNewsLetter";
+import { createSubscription } from "../api/createSubscription";
 
 const handleSubscribeSubmit = async (event: any, setPostSuccess: any, setPostError: any) => {
     event.preventDefault();
@@ -6,7 +6,7 @@ const handleSubscribeSubmit = async (event: any, setPostSuccess: any, setPostErr
         email
     } = event.target.elements;
 
-    await subscribeToNewsLetter(email, setPostSuccess, setPostError);
+    await createSubscription(email, setPostSuccess, setPostError);
 
 };
 

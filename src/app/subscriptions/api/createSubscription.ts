@@ -1,7 +1,7 @@
 import { fetchData } from "@/app/messages/api/fetchDataAPI";
 import { SERVER_URL } from "@/constants/url"
 
-async function subscribeToNewsLetter(email: any, setSuccess: any, setError: any) {
+async function createSubscription(email: any, setSuccess: any, setError: any) {
     try {
         const result = await fetchData(`${SERVER_URL}/subscriptions`, { body: JSON.stringify({ email: email }), method: "post" });
         if (result.data.subscription._id) {
@@ -16,5 +16,5 @@ async function subscribeToNewsLetter(email: any, setSuccess: any, setError: any)
 }
 
 export {
-    subscribeToNewsLetter
+    createSubscription
 }

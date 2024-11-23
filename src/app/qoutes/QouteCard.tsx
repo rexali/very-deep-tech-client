@@ -16,7 +16,7 @@ export default function QouteCard({ qoute }: { qoute: any }) {
                 </Box>
                 <Box>
                     <Typography gutterBottom variant="h5" component="div">
-                        <Link href={'/products/' + qoute?.user}>View Product</Link>
+                        <Link href={'/products/' + qoute?.product._id}>View Product</Link>
                     </Typography>
                     <Typography gutterBottom variant="h5" component="div">
                         {qoute?.message}

@@ -1,7 +1,7 @@
 import RatingReviewCard from "./RatingReviewCard";
 
-export function RatingReviewList({ reviews = [] }: { reviews: any }) {
+export function RatingReviewList({ ratings = [] }: { ratings: any }) {
 
-    return reviews?.map((review: any) => <RatingReviewCard key={review._id} review={review.review} ratingScore={review.ratingScore} />)
+    return ratings?.map((rating: any) => <RatingReviewCard key={rating._id} review={rating.review} ratingScore={rating.ratingScore} />)
 
 }

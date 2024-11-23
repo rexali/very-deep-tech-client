@@ -16,10 +16,12 @@ import "../products/styles/styles.css"
 import Add from "@material-ui/icons/Add";
 import UsersNotifications from "./UsersNotifications";
 import AdminProfile from "./AdminProfile";
+import UsersQoutes from "./UsersQoutes";
+import UsersSubscriptions from "./UsersSubscriptions";
 
 export default function UserTabs() {
 
-    let [tabName, setTabName] = useState('profile');
+    let [tabName, setTabName] = useState('adminprofile');
 
     const openTab = (tabname: any) => {
         setTabName(tabname);
@@ -36,7 +38,8 @@ export default function UserTabs() {
             <div className="container" style={styles.minheight}>
 
                 <div className="scrollmenu" style={styles.marginTop}>
-                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('profiles')} href={""} ><small>All profiles</small></Link>
+                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('qoutes')} href={""} ><small>Qoutes</small></Link>
+                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('profiles')} href={""} ><small>Profiles</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('adminprofile')} href={""} ><small>Your profile</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('products')} href={""} ><small>Products</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('messages')} href={""} ><small>Messages</small></Link>
@@ -44,18 +47,21 @@ export default function UserTabs() {
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('carts')} href={""} ><small>Carts</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('notifications')} href={""} ><small>Notifications</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('orders')} href={""} ><small>Orders</small></Link>
+                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('subscriptions')} href={""} ><small>Subscriptions</small></Link>
                 </div>
 
                 <div className="tab-content">
                     <div className="tab-pane container active" id="profile">
-                        {tabName === 'profiles' ? <ProfileTab /> : ''}
                         {tabName === 'adminprofile' ? <AdminProfileTab /> : ''}
+                        {tabName === 'profiles' ? <ProfileTab /> : ''}
+                        {tabName === 'qoutes' ? <QoutesTab /> : ''}
                         {tabName === 'products' ? <ProductsTab /> : ''}
                         {tabName === 'messages' ? <MessagesTab /> : ''}
                         {tabName === 'notifications' ? <NotificationTab /> : ''}
                         {tabName === 'transactions' ? <TransactionTab /> : ''}
                         {tabName === 'carts' ? <CartTab /> : ''}
                         {tabName === 'orders' ? <OrderTab /> : ''}
+                        {tabName === 'subscriptions' ? <SubscriptionsTab /> : ''}
                     </div>
                 </div>
             </div>
@@ -93,12 +99,44 @@ function ProfileTab() {
             <Box component={'div'} textAlign={'left'} >
                 <Typography
                     color='success'
-                    sx={{m:2}}
                 >
-                    All profiles
+                    Users profiles
                 </Typography>
             </Box>
             <UsersProfiles />
+        </Container>
+    )
+}
+
+function QoutesTab() {
+
+    return (
+        <Container>
+            <Box component={'div'} textAlign={'left'} >
+                <Typography
+                    color='success'
+                >
+                    Qoutes
+                </Typography>
+            </Box>
+            <UsersQoutes />
+        </Container>
+    )
+}
+
+
+function SubscriptionsTab() {
+
+    return (
+        <Container>
+            <Box component={'div'} textAlign={'left'} >
+                <Typography
+                    color='success'
+                >
+                    Subscriptions
+                </Typography>
+            </Box>
+            <UsersSubscriptions />
         </Container>
     )
 }
@@ -111,7 +149,7 @@ function AdminProfileTab() {
                 <Typography
                     color='success'
                 >
-                    Your  profile
+                    Your profile
                 </Typography>
             </Box>
             <AdminProfile />
@@ -155,8 +193,8 @@ function TransactionTab() {
                     Transactions
                 </Typography>
             </Box>
-        
-                <UsersTransactions />
+
+            <UsersTransactions />
         </Container>
     )
 }

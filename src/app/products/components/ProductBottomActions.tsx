@@ -58,18 +58,23 @@ export default function ProductBottomActions({ product, role }: { product: any, 
             <Button
                 size="small"
                 onClick={async () => {
-                    if (!await isAllReadyAddedToCartByUserAPI(userId, product._id)) {
-                        const cart = await createCartAPI({
-                            product_id: product._id,
-                            user_id: (userId || getToken("_id")) ?? "6712c927857f3a3b3492459f",
-                            quantity: quantity,
-                            price: product.product_price
-                        })
-                        if (cart._id) {
-                            handleOpen();
+                    if(userId){
+                        if (!await isAllReadyAddedToCartByUserAPI(userId, product._id)) {
+                            const cart = await createCartAPI({
+                                product_id: product._id,
+                                user_id: (userId || getToken("_id")) ?? "6712c927857f3a3b3492459f",
+                                quantity: quantity,
+                                price: product.product_price
+                            })
+                            if (cart._id) {
+                                handleOpen();
+                            }
+                        } else {
+                            alert('Already added')
                         }
-                    } else {
-                        alert('Already added')
+    
+                    }else{
+                        router.push('/auth/signin') 
                     }
 
                 }}

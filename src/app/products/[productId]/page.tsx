@@ -53,21 +53,38 @@ export default async function ProductDetailPage({ params }: { params: { productI
       }}>
         <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           <Grid item xs={12} md={6}>
-            <Box>
-              {/* Add multiple and scrollable images here using carousel or scrollmenu */}
-              <Image
-                src={product.product_picture ?? "https://placehold.co/600x400/orange/white"}
-                alt={product.product_name ?? 'photo'}
-                style={{
-                  display: 'block',
-                  marginRight: 'auto',
-                  marginLeft: 'auto',
-                  width: "100%",
-                  // height: 'auto' 
-                  height: 400,
-                }}
-                width={0}
-                height={0} />
+            {/* Add multiple and scrollable images here using carousel or scrollmenu */}
+            <Box
+              style={{
+                backgroundColor: 'white',
+                overflow: 'auto',
+                whiteSpace: 'nowrap',
+                marginLeft: 'auto',
+                marginRight: 'auto',
+                textAlign: 'center',
+                maxWidth: 'fit-content',
+                borderRadius: 15
+              }}
+            >
+
+              {photos.map((photo, i) =>
+                <div key={i} style={{ display: 'inline-block', margin: 10 }}>
+                  <Image
+                    src={photo ?? "https://placehold.co/600x400/orange/white"}
+                    alt={product.product_name ?? 'photo'}
+                    style={{
+                      display: 'block',
+                      marginRight: 'auto',
+                      marginLeft: 'auto',
+                      width: "100%",
+                      // height: 'auto' 
+                      height: 400,
+                    }}
+                    width={0}
+                    height={0}
+                  />
+                </div>
+              )}
             </Box>
           </Grid>
           <Grid item xs={12} md={6}>
@@ -78,92 +95,92 @@ export default async function ProductDetailPage({ params }: { params: { productI
               <Typography gutterBottom variant="h5" component="div">
                 <span>Name: {product.product_name ?? "Lizard"}</span>
               </Typography>
-              <Rating name="read-only" value={3} readOnly />
+              <Rating name="read-only" value={product?.averageRating ?? 3} readOnly />
               <Typography gutterBottom variant="h5" component="div" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-                <span>Price: N {product.product_price ?? "Lizard"}</span><Link href={'tel:07016807004'} style={{fontSize:12,textDecoration:'none'}}>Tel: 07016807004</Link>
+                <span>Price: N {product.product_price ?? "Lizard"}</span><Link href={'tel:07016807004'} style={{ fontSize: 12, textDecoration: 'none' }}>Tel: 07016807004</Link>
+              </Typography>
+              <CardActions>
+                <ProductBottomActions product={product} />
+              </CardActions>
+            </CardContent>
+          </Grid>
+          <Grid item xs={12} md={12}>
+            <Typography gutterBottom variant="h5" component="div">
+              Description:
             </Typography>
-            <CardActions>
-              <ProductBottomActions product={product} />
-            </CardActions>
-          </CardContent>
-        </Grid>
-        <Grid item xs={12} md={12}>
-          <Typography gutterBottom variant="h5" component="div">
-            Description:
-          </Typography>
-          <Typography variant="body2" component={"div"} sx={{ color: 'text.secondary', ml: 1 }}>
-            {product.product_description ?? "Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica"}
-          </Typography>
-        </Grid>
-        <Grid item xs={12} md={12}>
-          <Typography gutterBottom variant="h5" component="div">
-            Shipping Info:
-          </Typography>
-          <Typography variant="body2" component={"div"} sx={{ color: 'text.secondary', ml: 1 }}>
-            {"We will take care of the shipping of the item and its return in case  of any damages (to the item and you wish to return) during transit"}
-          </Typography>
-        </Grid>
-        <Grid item xs={12} md={12}>
-          <Typography gutterBottom variant="h5" component="div">
-            Payment Method(s):
-          </Typography>
-          <Typography variant="body2" component={"div"} sx={{ color: 'text.secondary', }}>
-            <ul>
-              <li>Paystack</li>
-              <li>Bank Transfer</li>
-              <li>Opay</li>
-              <li>USSD</li>
-              <li>Card</li>
-              <li>Pay on Delivery</li>
-            </ul>
-          </Typography>
-        </Grid>
+            <Typography variant="body2" component={"div"} sx={{ color: 'text.secondary', ml: 1 }}>
+              {product.product_description ?? "Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica"}
+            </Typography>
+          </Grid>
+          <Grid item xs={12} md={12}>
+            <Typography gutterBottom variant="h5" component="div">
+              Shipping Info:
+            </Typography>
+            <Typography variant="body2" component={"div"} sx={{ color: 'text.secondary', ml: 1 }}>
+              {"We will take care of the shipping of the item and its return in case  of any damages (to the item and you wish to return) during transit"}
+            </Typography>
+          </Grid>
+          <Grid item xs={12} md={12}>
+            <Typography gutterBottom variant="h5" component="div">
+              Payment Method(s):
+            </Typography>
+            <Typography variant="body2" component={"div"} sx={{ color: 'text.secondary', }}>
+              <ul>
+                <li>Paystack</li>
+                <li>Bank Transfer</li>
+                <li>Opay</li>
+                <li>USSD</li>
+                <li>Card</li>
+                <li>Pay on Delivery</li>
+              </ul>
+            </Typography>
+          </Grid>
 
-        <Grid item xs={12} md={12}>
-          <Typography gutterBottom variant="h5" component="div">
-            Product Demo:
-          </Typography>
-          <Typography variant="body2" component={"div"} sx={{ color: 'text.secondary' }}>
-            <iframe
-              width={420}
-              height={315}
-              src={`https://www.youtube.com/embed/tgbNymZ7vqY`}
-            >
-              Loading ....
-            </iframe>
-          </Typography>
-        </Grid>
-        {/* Add multiple and scrollable images here using carousel or scrollmenu */}
-        <Grid item xs={12} md={12}>
-          <Typography gutterBottom variant="h5" component="div">
-            Product Photo(s):
-          </Typography>
-          <div
-            style={{
-              backgroundColor: 'white',
-              overflow: 'auto',
-              whiteSpace: 'nowrap',
-              marginLeft: 'auto',
-              marginRight: 'auto',
-              textAlign: 'center',
-              maxWidth: 'fit-content',
-              borderRadius: 15
-            }}
-          >
-            {photos.map((photo, i) => <div key={i} style={{ display: 'inline-block', margin: 10 }}>
-              <Image
-                src={photo ?? 'https://placehold.co/600x400/blue/white'}
-                alt={'photo'}
+          <Grid item xs={12} md={12}>
+            <Typography gutterBottom variant="h5" component="div">
+              Product Demo:
+            </Typography>
+            <Typography variant="body2" component={"div"} sx={{ color: 'text.secondary' }}>
+              <iframe
+                width={420}
                 height={315}
-                width={420} />
+                src={`https://www.youtube.com/embed/tgbNymZ7vqY`}
+              >
+                Loading ....
+              </iframe>
+            </Typography>
+          </Grid>
+          {/* Add multiple and scrollable images here using carousel or scrollmenu */}
+          <Grid item xs={12} md={12}>
+            <Typography gutterBottom variant="h5" component="div">
+              Other Photo(s):
+            </Typography>
+            <div
+              style={{
+                backgroundColor: 'white',
+                overflow: 'auto',
+                whiteSpace: 'nowrap',
+                marginLeft: 'auto',
+                marginRight: 'auto',
+                textAlign: 'center',
+                maxWidth: 'fit-content',
+                borderRadius: 15
+              }}
+            >
+              {photos.map((photo, i) => <div key={i} style={{ display: 'inline-block', margin: 10 }}>
+                <Image
+                  src={photo ?? 'https://placehold.co/600x400/blue/white'}
+                  alt={'photo'}
+                  height={315}
+                  width={420} />
+              </div>
+              )}
             </div>
-            )}
-          </div>
+          </Grid>
         </Grid>
-      </Grid>
-    </Card>
-    <ReviewPage /><br /><br />
-    <RatingReviewForm productId={product._id} />
+      </Card>
+      <ReviewPage ratings={product.ratings} /><br /><br />
+      <RatingReviewForm productId={product._id} />
       {/* cross-sell/upsells: Additional products: e.g People who viewed this item also bought */}
       <FeaturedProducts title='People who viewed this item also bought:' />
     </Container>

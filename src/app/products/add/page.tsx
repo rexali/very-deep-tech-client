@@ -47,6 +47,7 @@ export default function AddProduct() {
                         label="Product Name"
                         autoFocus
                     />
+                    
                     <label>
                         Product Photo(s)
                         <input
@@ -58,7 +59,8 @@ export default function AddProduct() {
                             formEncType="multipart/form-data"
                             style={{
                                 maxWidth: '100%',
-                                borderRadius:5
+                                borderRadius:5,
+                                borderColor:'black',
                             }}
                         />
                     </label>

@@ -4,14 +4,14 @@ import axios from "axios";
 const getQoutesAPI = async (pageNumber:any=1) => {
 
     try {
-      let { data } = await axios.get(`${SERVER_URL}/messages?page=${pageNumber}`, {
+      let { data } = await axios.get(`${SERVER_URL}/qoutes?page=${pageNumber}`, {
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
         }
       });
 
-      return data.data?.qoute;
+      return data.data?.qoutes;
 
     } catch (error) {
       console.warn(error);
