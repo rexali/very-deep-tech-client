@@ -9,6 +9,8 @@ export async function sendOrderAndTransaction(
     transactionData: any,
     setPostSuccess: any,
     setPostError: any,
+    setLoading:any
+
 ) {
     const userId = getToken("_id") as string;
     const reference=uuidV4();
@@ -17,6 +19,7 @@ export async function sendOrderAndTransaction(
         const orderId = await createOrderAPI(orderData); // callback to handle add order and transaction data
         if (orderId) {
             setPostSuccess("Order success")
+            setLoading('')
             console.log("Order success")
             const transactionId = await createTransactionAPI({
                 ...transactionData,
@@ -26,16 +29,18 @@ export async function sendOrderAndTransaction(
 
             if (transactionId) {
                 setPostSuccess("Order success");
+                setLoading('')
                 await clearUserCartsAPI(userId);
             } else {
                 console.log("Transaction failed");
                 setPostError("Transaction failed");
+                setLoading('')
             }
 
         } else {
             console.log("Order failed");
             setPostError("Transaction failed");
-
+            setLoading('')
         }
 
     } catch (error:any) {

@@ -14,6 +14,7 @@ import UserCart from "./UserCart";
 import "../products/styles/styles.css"
 import Add from "@material-ui/icons/Add";
 import UserHistory from "./UserHistory";
+import UserSettings from "./UserSettings";
 
 export default function UserTabs() {
 
@@ -41,6 +42,7 @@ export default function UserTabs() {
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('cart')} href={""} ><small>Cart</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('orders')} href={""} ><small>Orders</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('transactions')} href={""} ><small>Transactions</small></Link>
+                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('settings')} href={""} ><small>Settings</small></Link>
                 </div>
 
                 <div className="tab-content">
@@ -52,6 +54,7 @@ export default function UserTabs() {
                         {tabName === 'cart' ? <CartTab /> : ''}
                         {tabName === 'orders' ? <OrderTab /> : ''}
                         {tabName === 'transactions' ? <TransactionTab /> : ''}
+                        {tabName === 'settings' ? <SettingsTab /> : ''}
                     </div>
                 </div>
             </div>
@@ -68,6 +71,19 @@ function ProductsTab() {
                 Your products <Link href={"/products/add"}><Button startIcon={<Add />}>Add product</Button></Link>
             </Box>
             <UserProducts />
+        </Box>
+    )
+}
+
+function SettingsTab() {
+
+    return (
+
+        <Box>
+            <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+                Settings
+            </Box>
+            <UserSettings />
         </Box>
     )
 }

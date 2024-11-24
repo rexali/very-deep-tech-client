@@ -12,8 +12,20 @@ const getCartsAPI = async () => {
                 'Content-Type': 'application/json',
             },
         });
-        
-        return data.data?.carts.map((cart: any) => cart.product);
+        let newcarts = data.data?.carts.map((cart: any) => {
+            return {
+                ...cart,
+                product: {
+                    ...cart.product,
+                    cartId: cart._id,
+                    cartQuantity: cart.quantity,
+                    totalCarts: cart.totalCarts
+                }
+            }
+        });
+
+
+        return newcarts.map((cart: any) => cart.product);
     } catch (error) {
         console.warn(error);
     }

@@ -1,19 +1,22 @@
 'use client'
 
-import { Container } from "@mui/material";
+import { Container, Box } from "@mui/material";
 import { getCarts } from "@/store/actions/app-actions";
 import { useState, useRef, useContext, useEffect, useCallback } from "react";
 import Fallback from "@/components/common/fallback";
 import { getUserCartsAPI } from "./api/getUserCartsAPI";
 import { CartListComponent } from "./CartListComponent";
 import { AuthContext } from "@/context/AuthContext";
+import { AppContext } from "@/context/AppContext";
 
 export default function CartPage() {
 
   const [data, setData] = useState<any>([]);
   const mountRef = useRef(true);
-  const { dispatch, state } = useContext(AuthContext);
-  const userId = state.user?._id ?? "6712c927857f3a3b3492459f";
+  const { dispatch } = useContext(AppContext);
+  const authContext = useContext(AuthContext);
+
+  const userId = authContext.state.user._id !== null ? authContext.state.user._id : "6712c927857f3a3b3492459f";
 
   const getData = useCallback(async () => {
     let userCarts = await getUserCartsAPI(userId);
@@ -39,6 +42,7 @@ export default function CartPage() {
 
   return (
     <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }} >
+      <Box>Carts</Box>
       <CartListComponent products={data} refreshCart={getData} />
     </Container>
   )

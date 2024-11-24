@@ -7,6 +7,7 @@ const handleCheckoutSubmit = async (
     event: any,
     setPostSuccess: any,
     setPostError: any,
+    setLoading:any,
     orderData: any,
     transactionData?: any
 ) => {
@@ -56,6 +57,7 @@ const handleCheckoutSubmit = async (
                 transactionData,
                 setPostSuccess,
                 setPostError,
+                setLoading
             );
             break;
 
@@ -64,7 +66,8 @@ const handleCheckoutSubmit = async (
                 orderData,
                 { ...transactionData, paymentMethod: 'Pay on Delivery' },
                 setPostSuccess,
-                setPostError
+                setPostError,
+                setLoading
             );
             break;
 
@@ -73,7 +76,8 @@ const handleCheckoutSubmit = async (
                 orderData,
                 { ...transactionData, paymentMethod: 'Direct Bank Transfer' },
                 setPostSuccess,
-                setPostError
+                setPostError,
+                setLoading
             );
             alert(
                 'Use the detail below'

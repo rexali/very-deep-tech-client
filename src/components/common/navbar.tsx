@@ -42,7 +42,7 @@ const menus = [
 function NavBar() {
 
   const { user } = useAuth();
-  
+
   const { state } = React.useContext(AppContext)
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -67,7 +67,7 @@ function NavBar() {
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = () => {
+  const handleCloseUserMenu: any = () => {
     setAnchorElUser(null);
   };
 
@@ -153,9 +153,9 @@ function NavBar() {
         </Link>}
         {/* end */}
         {/* Messages component */}
-        {!isMobile && <Link prefetch href={'/messages'} style={{ marginRight: 16 }} ><Message sx={{ color: "white" }} /></Link>}
+        {!isMobile && <Link prefetch href={'/messages'} style={{ marginRight: 16, display: user._id !== null ? '' : 'none' }} ><Message sx={{ color: "white" }} /></Link>}
         {/* Notification component */}
-        {!isMobile && <Link prefetch href='/notifications' style={{ marginRight: 16 }} ><Notifications sx={{ color: "white" }} /></Link>}
+        {!isMobile && <Link prefetch href='/notifications' style={{ marginRight: 16, display: user._id !== null ? '' : 'none' }} ><Notifications sx={{ color: "white" }} /></Link>}
         <Box sx={{ flexGrow: 0 }}>
           <Tooltip title="Open menu">
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -195,7 +195,8 @@ function NavBar() {
             {/* Other Menu components */}
             {menus.map((menu, index) => (
               <MenuItem key={menu} onClick={handleCloseUserMenu}>
-                {(menu === "Logout") ? <Link prefetch onClick={handleSignOut} style={{ textDecoration: "none" }} key={index + "s"} href={'#'} >{menu}</Link> : menu === "Users" ? <Link prefetch style={{ textDecoration: "none" }} key={index + "s"} href={`/${menu.toLowerCase()}`}>{"Account"}</Link> : <Link prefetch style={{ textDecoration: "none" }} key={index + "s"} href={`/${menu.toLowerCase()}`}>{menu}</Link>}
+                {
+                  (menu === "Logout") ? <Link prefetch onClick={handleSignOut} style={{ textDecoration: "none", display: user._id !== null ? '' : 'none' }} key={index + "s"} href={'#'} >{menu}</Link> : menu === "Users" ? <Link prefetch style={{ textDecoration: "none",display: user._id !== null ? '' : 'none' }} key={index + "s"} href={`/${menu.toLowerCase()}`}>{"Account"}</Link> : <Link prefetch style={{ textDecoration: "none" }} key={index + "s"} href={`/${menu.toLowerCase()}`}>{menu}</Link>}
               </MenuItem>
             ))}
           </Menu>

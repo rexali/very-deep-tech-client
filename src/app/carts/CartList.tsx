@@ -17,13 +17,14 @@ import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mu
 export default function CartList(props: any) {
     const [error, setError] = React.useState('');
     const [success, setSuccess] = React.useState('');
+    const [loading, setLoading] = React.useState('');
     const [cartTotals, setCartTotal] = React.useState<number>();
-    const { dispatch, state } = React.useContext(AuthContext);
+    const { state } = React.useContext(AuthContext);
     const [method, setMethod] = React.useState('paystack');
     const [directPayment, setDirectPayment] = React.useState(false);
 
 
-    const userId = state.user?._id ?? "6712c927857f3a3b3492459f";
+    const userId = state.user._id ?? "6712c927857f3a3b3492459f";
 
     let cartTotal = props.products
         .map((product: any) => Number(product.product_price) * Number(product.cartQuantity))
@@ -93,16 +94,22 @@ export default function CartList(props: any) {
                 <Grid item xs={12} md={4} sx={{ marginTop: 1 }}>
                     <Box
                         component="form"
-                        onSubmit={(evt) => handleCheckoutSubmit(
+                        onSubmit={(evt) => {handleCheckoutSubmit(
                             evt,
                             setSuccess,
                             setError,
+                            setLoading,
                             orderData,
                             transactionData
-                        )}
+                        );
+                         setLoading('Sending data..')
+                       }}
                         noValidate
                         sx={{ mt: 1 }}
                     >
+                        <Box>
+                            Billing/Contact Address Details:
+                        </Box>
                         <TextField
                             autoComplete="given-name"
                             name="first_name"
@@ -134,6 +141,7 @@ export default function CartList(props: any) {
                             fullWidth
                             margin={"normal"}
                             id="email_address"
+                            type='email'
                             label="Email Address"
                             defaultValue={userProfile?.user.email}
                             autoFocus
@@ -233,8 +241,10 @@ export default function CartList(props: any) {
                                 onChange={(evt) => {
                                     const { name, value } = evt.target;
                                     setMethod(value);
-                                    if (method === 'direct-bank-transfer') {
+                                    if (value === 'direct-bank-transfer') {
                                         setDirectPayment(true);
+                                    } else {
+                                        setDirectPayment(false);
                                     }
                                 }}
                             >
@@ -249,14 +259,15 @@ export default function CartList(props: any) {
                         </FormControl>
                         {
                             directPayment &&
-                            (<Box textAlign={"center"} sx={{ backgroundColor: 'brown', color: "white" }}>
+                            (<Box sx={{ backgroundColor: 'green', color: "white" }}>
                                 <p>Bank: Jaiz Bank</p>
                                 <p>Acct. Number: 0016938829</p>
                                 <p>Name: Siniotech Information and Communication...</p>
                             </Box>)
                         }
-                        {success && <Box textAlign={"center"} sx={{ color: "green" }}>{success.toUpperCase()}</Box>}
-                        {error && <Box textAlign={"center"} sx={{ color: "red" }}>{error.toUpperCase()}</Box>}
+                        {success && <Box textAlign={"center"} sx={{ backgroundColor: 'green', color: "white" }}>{success.toUpperCase()}</Box>}
+                        {error && <Box textAlign={"center"} sx={{ backgroundColor: 'red', color: 'white' }}>{error.toUpperCase()}</Box>}
+                        {loading && <Box textAlign={"center"} sx={{ backgroundColor: 'green', color: 'white' }}>{loading.toUpperCase()}</Box>}
 
 
                         <Button

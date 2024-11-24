@@ -13,25 +13,24 @@ import { SERVER_URL } from "@/constants/url";
 
 
 export default function UserProfile() {
-  const [userProfile, setUserProfile] = React.useState<any>({});
+  const [profile, setUserProfile] = React.useState<any>({});
   const [error, setError] = React.useState('');
   const [success, setSuccess] = React.useState('');
   const { user } = useAuth();
-
 
   const userId = getToken('_id') as string;
 
   React.useEffect(() => {
     async function getUserProfileData() {
-      const userProfile = await getUserProfileAPI(userId ?? "6712c927857f3a3b3492459f");
-      setUserProfile(userProfile);
+      const profile = await getUserProfileAPI(userId ?? "6712c927857f3a3b3492459f");
+      setUserProfile(profile);
     }
 
     getUserProfileData();
 
   }, [userId]);
 
-  if (!Object.keys(userProfile)?.length) {
+  if (!Object.keys(profile)?.length) {
 
     return (
       <Container sx={{ mt: 8 }} component={"main"} maxWidth="md">
@@ -83,7 +82,7 @@ export default function UserProfile() {
           margin={"normal"}
           id="first_name"
           label="First Name"
-          defaultValue={userProfile?.firstName}
+          defaultValue={profile?.firstName}
           autoFocus
         />
 
@@ -95,7 +94,7 @@ export default function UserProfile() {
           margin={"normal"}
           id="last_name"
           label="Last Name"
-          defaultValue={userProfile?.lastName}
+          defaultValue={profile?.lastName}
           autoFocus
         />
 
@@ -107,7 +106,7 @@ export default function UserProfile() {
           margin={"normal"}
           id="email_address"
           label="Email Address"
-          defaultValue={userProfile?.user?.email}
+          defaultValue={profile?.user?.email}
           autoFocus
         />
 
@@ -119,7 +118,7 @@ export default function UserProfile() {
           margin={"normal"}
           id="street_address"
           label="Address"
-          defaultValue={userProfile?.streetAddress}
+          defaultValue={profile?.streetAddress}
           autoFocus
         />
 
@@ -131,7 +130,7 @@ export default function UserProfile() {
           margin={"normal"}
           id="local_govt"
           label="Local Govt"
-          defaultValue={userProfile?.localGovt}
+          defaultValue={profile?.localGovt}
           autoFocus
         />
 
@@ -143,7 +142,7 @@ export default function UserProfile() {
           margin={"normal"}
           id="state"
           label="State"
-          defaultValue={userProfile?.state}
+          defaultValue={profile?.state}
           autoFocus
         />
 

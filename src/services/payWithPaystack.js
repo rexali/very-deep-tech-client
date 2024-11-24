@@ -12,7 +12,9 @@ export function payWithPaystack(
     orderData,
     transactionData,
     setPostSuccess,
-    setPostError
+    setPostError,
+    setLoading
+
 ) {
 
     const paystack = new PaystackPop();
@@ -27,7 +29,9 @@ export function payWithPaystack(
                 // payment complete
                 const orderId = await createOrderAPI(orderData); // callback to handle add order and transaction data
                 if (orderId) {
-                    setPostSuccess("Order success")
+                    setPostSuccess("Order success");
+                    setLoading('')
+
                     console.log("Order success")
                     const transactionId = await createTransactionAPI({
                         ...transactionData,
@@ -37,21 +41,29 @@ export function payWithPaystack(
 
                     if (transactionId) {
                         setPostSuccess("Order success")
+                        setLoading('')
+
                         await clearUserCartsAPI(getToken("_id"));
                     } else {
                         console.log("Transaction failed");
                         setPostError("Transaction failed");
+                        setLoading('')
+
                     }
 
                 } else {
                     console.log("Order failed");
                     setPostError("Transaction failed");
+                    setLoading('')
+
 
                 }
 
             } catch (error) {
                 console.warn(error)
-                setPostError("Error! "+error.message);
+                setPostError("Error! " + error.message);
+                setLoading('')
+
 
             } finally {
                 console.log(transaction.reference);
