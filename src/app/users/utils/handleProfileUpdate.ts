@@ -26,7 +26,7 @@ const handleProfileUpdate = async (event: any, setPostSuccess: any, setPostError
     }
     formData.append('lastName', last_name.value);
     formData.append('firstName', first_name.value);
-    formData.append('address', street_address.value,);
+    formData.append('streetAddress', street_address.value,);
     formData.append('localGovt', local_govt.value);
     formData.append('state', state.value);
 
