@@ -51,12 +51,10 @@ export default function AdminProfile() {
       </Box>
       <Box
         component="form"
-        onSubmit={(evt) => handleProfileUpdate(
+        onSubmit={async (evt) => await handleProfileUpdate(
           evt,
           setSuccess,
-          setError,
-
-        )}
+          setError)}
         noValidate
         sx={{ mt: 1 }}
       >

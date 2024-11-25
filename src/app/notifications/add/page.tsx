@@ -34,7 +34,7 @@ export default function AddNotification({ params }: { params: { userId: string }
             Post Notice
           </Typography>
 
-          <Box component="form" onSubmit={(evt) => handleCreateNotification(evt, setSuccess, setError, params.userId)} noValidate sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={async (evt) => await handleCreateNotification(evt, setSuccess, setError, params.userId)} noValidate sx={{ mt: 1 }}>
 
             <TextField
               margin="normal"

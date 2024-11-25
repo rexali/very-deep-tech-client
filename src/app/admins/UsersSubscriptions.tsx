@@ -21,7 +21,7 @@ export default function UsersSubscriptions() {
 
   }, [activePage]);
 
-  if (!data.length) {
+  if (!data?.length) {
 
     return (
       <Container sx={{ mt: 8 }} component={"main"} maxWidth="md">
@@ -30,12 +30,11 @@ export default function UsersSubscriptions() {
     )
   }
 
-  return (
-    <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }}>
+  return (<Container maxWidth="lg" component={'main'} sx={{ mt: 10 }}>
       <Box>Total Subscriptions: {data[0]?.totalSubscriptions}</Box>
       <React.Suspense fallback={<Fallback />} >
         <SubscriptionList subscriptions={data} activePage={activePage} setActivePage={setActivePage} />
       </React.Suspense>
-    </Container>
-  )
+    </Container>)
+
 }

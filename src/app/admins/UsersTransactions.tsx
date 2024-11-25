@@ -35,33 +35,34 @@ export default function UsersTransactions() {
   }
 
   return (
-    <TableContainer component={Paper}>
-        <Box>Total Transactions: {data[0]?.totalTransactions}</Box>
-        <Box>Total Amount: {data[0]?.totalAmount}</Box>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell align="right">Time &nbsp;</TableCell>
-            <TableCell align="right">Amount &nbsp;</TableCell>
-            <TableCell align="right">User &nbsp;</TableCell>
-            <TableCell align="right">Total amount &nbsp;</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {data.map((transaction: any) => (
-            <TableRow
-              key={transaction._id}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell align="right">{transaction?.createdAt ?? '12-12-24'}</TableCell>
-              <TableCell align="right">{transaction.amount}</TableCell>
-              <TableCell align="right">
-                <Link href={`mailto:${transaction?.user?.email}`}>{transaction?.user?.email}</Link>
-              </TableCell>
+    <Box>
+      <Box>Total Transactions: {data[0]?.totalTransactions}</Box>
+      <Box>Total Amount: {data[0]?.totalAmount}</Box>
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell align="right">Time &nbsp;</TableCell>
+              <TableCell align="right">Amount &nbsp;</TableCell>
+              <TableCell align="right">User &nbsp;</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table><br />
+          </TableHead>
+          <TableBody>
+            {data.map((transaction: any) => (
+              <TableRow
+                key={transaction._id}
+                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              >
+                <TableCell align="right">{transaction?.createdAt ?? '12-12-24'}</TableCell>
+                <TableCell align="right">{transaction.amount}</TableCell>
+                <TableCell align="right">
+                  <Link href={`mailto:${transaction?.user?.email}`}>{transaction?.user?.email}</Link>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
       <Box sx={{ mr: "auto", ml: "auto", mt: 5, maxWidth: '100%' }} >
         <ReactPagination
           activePage={activePage}
@@ -70,6 +71,6 @@ export default function UsersTransactions() {
           pageRangeDisplayed={5}
           onchangeCallback={(v: any) => setActivePage(v)} />
       </Box>
-    </TableContainer>
+    </Box>
   );
 }

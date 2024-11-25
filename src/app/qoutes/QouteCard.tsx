@@ -5,24 +5,22 @@ export default function QouteCard({ qoute }: { qoute: any }) {
 
     return (
         <Card sx={{ maxWidth: 345, margin: 1 }}>
-            <CardContent sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-                <Box>
-                    <Typography gutterBottom variant="h5" component="div">
-                        <Link href={'mailto:' + qoute?.email}>{qoute?.email}</Link>
-                    </Typography>
-                    <Typography gutterBottom variant="h5" component="div">
-                        <Link href={'tell:' + qoute?.phone}>{qoute?.phone}</Link>
-                    </Typography>
-                </Box>
-                <Box>
-                    <Typography gutterBottom variant="h5" component="div">
-                        <Link href={'/products/' + qoute?.product._id}>View Product</Link>
-                    </Typography>
-                    <Typography gutterBottom variant="h5" component="div">
-                        {qoute?.message}
-                    </Typography>
+            <CardContent>
+                <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+                    <Box>
+                        <Typography gutterBottom component="div">
+                            <Link href={'mailto:' + qoute?.email}>{qoute?.email}</Link>
+                        </Typography>
+                        <Typography gutterBottom component="div">
+                            <Link href={'tel:' + qoute?.phone}>{qoute?.phone}</Link>
+                        </Typography>
+                    </Box>
+                    <Link style={{ textDecoration: 'none' }} href={'/products/' + qoute?.product._id}>View</Link>
                 </Box>
 
+                <Typography gutterBottom component="div">
+                    {qoute?.message}
+                </Typography>
             </CardContent>
         </Card>
     )

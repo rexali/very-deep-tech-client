@@ -25,7 +25,7 @@ export default function UsersOrders() {
 
   }, [activePage])
 
-  if (!data.length) {
+  if (!data?.length) {
 
     return (
       <Container sx={{ mt: 8 }} component={"main"} maxWidth="md">
@@ -37,7 +37,7 @@ export default function UsersOrders() {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <Box>Total Carts: {data[0]?.totalOrders}</Box>
+        <Box>Total Orders: {data[0]?.totalOrders}</Box>
 
         <TableHead>
           <TableRow>

@@ -33,7 +33,7 @@ export default function AddProduct() {
 
                 <Box
                     component="form"
-                    onSubmit={(evt) => handleProductSubmit(evt, setSuccess, setError, userId)}
+                    onSubmit={async (evt) => await handleProductSubmit(evt, setSuccess, setError, userId)}
                     noValidate
                     sx={{ mt: 10 }}
                 >

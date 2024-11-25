@@ -94,8 +94,8 @@ export default function CartList(props: any) {
                 <Grid item xs={12} md={4} sx={{ marginTop: 1 }}>
                     <Box
                         component="form"
-                        onSubmit={(evt) => {
-                            handleCheckoutSubmit(
+                        onSubmit={async (evt) => {
+                            await handleCheckoutSubmit(
                                 evt,
                                 setSuccess,
                                 setError,

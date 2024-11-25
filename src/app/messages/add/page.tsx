@@ -23,48 +23,57 @@ export default function AddMessage() {
     return (
         <ThemeProvider theme={defaultTheme} >
             <Container component="main" maxWidth="xs">
-                <CssBaseline />
-                <Typography component="h1" variant="h5">
-                    Send Message
-                </Typography>
+                {/* <CssBaseline /> */}
                 <Box
-                    component="form"
-                    noValidate
-                    onSubmit={async (evt) => {
-                        await handleCreateMessageAPI(evt, setSuccess, setError, user?.userId);
+                    sx={{
+                        mt: 15,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
                     }}
-                    sx={{ mt: 15 }}
                 >
-                    <TextField
-                        margin="normal"
-                        required
-                        fullWidth
-                        id="title"
-                        label="Subject"
-                        name="title"
-                        autoFocus
-                    />
-                    <TextField
-                        margin="normal"
-                        required
-                        multiline
-                        fullWidth
-                        name="comment"
-                        label="Message"
-                        type="text"
-                        id="comment"
-                    />
-                    {success && <Box textAlign={'center'} sx={{ color: "green" }}>{success.toUpperCase()}</Box>}
-                    {error && <Box textAlign={'center'} sx={{ color: "red" }}>{error.toUpperCase()}</Box>}
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        sx={{ mt: 3, mb: 2 }}
-                        color='success'
+                    <Typography component="h1" variant="h5">
+                        Post Message
+                    </Typography>
+                    <Box
+                        component="form"
+                        noValidate
+                        onSubmit={async (evt) => {
+                            await handleCreateMessageAPI(evt, setSuccess, setError, user?.userId);
+                        }}
+                        sx={{ mt: 15 }}
                     >
-                        Send
-                    </Button>
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="title"
+                            label="Subject"
+                            name="title"
+                            autoFocus
+                        />
+                        <TextField
+                            margin="normal"
+                            required
+                            multiline
+                            fullWidth
+                            name="comment"
+                            label="Message"
+                            type="text"
+                            id="comment"
+                        />
+                        {success && <Box textAlign={'center'} sx={{ color: "green" }}>{success.toUpperCase()}</Box>}
+                        {error && <Box textAlign={'center'} sx={{ color: "red" }}>{error.toUpperCase()}</Box>}
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            sx={{ mt: 3, mb: 2 }}
+                            color='success'
+                        >
+                            Send
+                        </Button>
+                    </Box>
                 </Box>
             </Container>
         </ThemeProvider>

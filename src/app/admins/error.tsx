@@ -10,8 +10,8 @@ export default function Error({ error, reset }: { error: Error & { digest?: stri
 
     return (
         <div style={{ minHeight: 420, display: "flex", justifyContent: 'center', alignItems: 'center' }}>
-            <h2>Something went wrong</h2><br />
-            <p>
+            <h2 style={{maxWidth:'100%'}}>Something went wrong</h2><br />
+            <p style={{maxWidth:'100%'}}>
                 <button
                     onClick={() => reset()}
                 >

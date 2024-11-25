@@ -29,7 +29,7 @@ export async function sendOrderAndTransaction(
             if (transactionId) {
                 setPostSuccess("Order success");
                 setLoading('')
-                await clearUserCartsAPI(userId);
+                await clearUserCartsAPI(orderData.userId ?? userId);
             } else {
                 setPostError("Transaction failed");
                 setLoading('')
@@ -45,5 +45,9 @@ export async function sendOrderAndTransaction(
         setPostError("Error! " + error.message);
     } finally {
         console.log(reference);
+        setTimeout(() => {
+            setPostSuccess(" ");
+            setPostError(" ");
+        }, 30000);
     }
 }

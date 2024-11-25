@@ -25,8 +25,6 @@ export default function CreateSubscription() {
 
                     <Grid item xs={12} md={6} sx={{ textAlign: isMobile ? "" : 'right' }} >
                         <TextField id="email" type="email" name="email" size="small" label="Subscribe to newsletter" placeholder="email" required />
-                        {success && <Box textAlign={"center"} sx={{ color: "green" }}>{success.toUpperCase()}</Box>}
-                        {error && <Box textAlign={"center"} sx={{ color: "red" }}>{error.toUpperCase()}</Box>}
                     </Grid>
 
                     <Grid item xs={12} md={6} sx={{ textAlign: isMobile ? "" : 'left' }}>
@@ -34,6 +32,8 @@ export default function CreateSubscription() {
                     </Grid>
 
                 </Grid>
+                {success && <Box textAlign={"center"} sx={{ color: "green" }}>{success.toUpperCase()}</Box>}
+                {error && <Box textAlign={"center"} sx={{ color: "red" }}>{error.toUpperCase()}</Box>}
             </Box>
         </center>
     )

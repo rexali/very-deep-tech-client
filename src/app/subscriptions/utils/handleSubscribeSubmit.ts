@@ -6,7 +6,7 @@ const handleSubscribeSubmit = async (event: any, setPostSuccess: any, setPostErr
         email
     } = event.target.elements;
 
-    await createSubscription(email, setPostSuccess, setPostError);
+    await createSubscription(email.value, setPostSuccess, setPostError);
 
 };
 
