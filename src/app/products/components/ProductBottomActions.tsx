@@ -13,6 +13,9 @@ import { useRouter } from "next/navigation";
 import { createCartAPI } from "@/app/carts/api/createCartAPI";
 import GetQouteModal from "@/components/GetQuoteModal";
 import { isAllReadyAddedToCartByUserAPI } from "@/app/carts/api/isAlreadyAddedToCartByUserAPI";
+import { getUserCartsAPI } from "@/app/carts/api/getUserCartsAPI";
+import { AppContext } from "@/context/AppContext";
+import { getCarts } from "@/store/actions/app-actions";
 
 export default function ProductBottomActions({ product, role }: { product: any, role?: string }) {
     const [open, setOpen] = useState(false);
@@ -20,6 +23,8 @@ export default function ProductBottomActions({ product, role }: { product: any, 
 
     const [quantity, setQuantity] = useState<number>(product?.cartQuantity ?? 1);
     const { state } = useContext(AuthContext);
+    const { dispatch } = useContext(AppContext);
+
     const userId = state.user?._id ?? "6712c927857f3a3b3492459f";
     const router = useRouter();
 
@@ -58,7 +63,7 @@ export default function ProductBottomActions({ product, role }: { product: any, 
             <Button
                 size="small"
                 onClick={async () => {
-                    if(userId){
+                    if (userId) {
                         if (!await isAllReadyAddedToCartByUserAPI(userId, product._id)) {
                             const cart = await createCartAPI({
                                 product_id: product._id,
@@ -69,12 +74,16 @@ export default function ProductBottomActions({ product, role }: { product: any, 
                             if (cart._id) {
                                 handleOpen();
                             }
+
+                            let userCarts = await getUserCartsAPI(userId);
+                            dispatch(getCarts(userCarts));
+
                         } else {
                             alert('Already added')
                         }
-    
-                    }else{
-                        router.push('/auth/signin') 
+
+                    } else {
+                        router.push('/auth/signin')
                     }
 
                 }}

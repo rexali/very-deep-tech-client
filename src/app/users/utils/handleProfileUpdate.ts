@@ -10,7 +10,8 @@ const handleProfileUpdate = async (event: any, setPostSuccess: any, setPostError
         last_name,
         street_address,
         local_govt,
-        state
+        state,
+        photo
     } = event.target.elements;
 
     const profileData = {
@@ -19,8 +20,16 @@ const handleProfileUpdate = async (event: any, setPostSuccess: any, setPostError
         firstName: first_name.value,
         streetAddress: street_address.value,
         localGovt: local_govt.value,
-        state:state
+        state: state.value,
+        photo: photo.value
     }
+    console.log(profileData.photo);
+    const filesObj = document.querySelector('#photo') as any;
+    console.log(filesObj.files);
+    console.log(filesObj.files[0]);
+
+
+
     await updateUserProfileAPI(profileData, setPostSuccess, setPostError);
 
 };

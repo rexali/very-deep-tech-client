@@ -6,17 +6,19 @@ import { useState, useRef, useContext, useEffect, useCallback } from "react";
 import Fallback from "@/components/common/fallback";
 import { getUserCartsAPI } from "./api/getUserCartsAPI";
 import { CartListComponent } from "./CartListComponent";
-import { AuthContext } from "@/context/AuthContext";
 import { AppContext } from "@/context/AppContext";
+import { useAuth } from '@/hooks/use-auth';
+
 
 export default function CartPage() {
 
   const [data, setData] = useState<any>([]);
   const mountRef = useRef(true);
   const { dispatch } = useContext(AppContext);
-  const authContext = useContext(AuthContext);
+  const {user} = useAuth();
 
-  const userId = authContext.state.user._id !== null ? authContext.state.user._id : "6712c927857f3a3b3492459f";
+  // const userId = authContext.state.user._id !== null ? authContext.state.user._id : "6712c927857f3a3b3492459f";
+  const userId = user._id !== null ? user._id : "6712c927857f3a3b3492459f";
 
   const getData = useCallback(async () => {
     let userCarts = await getUserCartsAPI(userId);
@@ -36,7 +38,7 @@ export default function CartPage() {
   }, [getData, userId]);
 
 
-  if (!data.length) {
+  if (!data?.length) {
     return <Fallback item={"No product in your cart yet"} />
   }
 

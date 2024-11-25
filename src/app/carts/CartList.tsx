@@ -11,20 +11,20 @@ import Money from "@material-ui/icons/Money";
 import { handleCheckoutSubmit } from './utils/handleCheckoutSubmit';
 import { getUserProfileAPI } from '../users/api/getUserProfileAPI';
 import ClearCartButton from './components/ClearCartButton';
-import { AuthContext } from '@/context/AuthContext';
 import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material';
+import { useAuth } from '@/hooks/use-auth';
 
 export default function CartList(props: any) {
     const [error, setError] = React.useState('');
     const [success, setSuccess] = React.useState('');
     const [loading, setLoading] = React.useState('');
     const [cartTotals, setCartTotal] = React.useState<number>();
-    const { state } = React.useContext(AuthContext);
     const [method, setMethod] = React.useState('paystack');
     const [directPayment, setDirectPayment] = React.useState(false);
+    const {user} = useAuth();
 
+    const userId = user._id !== null ? user._id : "6712c927857f3a3b3492459f";
 
-    const userId = state.user._id ?? "6712c927857f3a3b3492459f";
 
     let cartTotal = props.products
         .map((product: any) => Number(product.product_price) * Number(product.cartQuantity))
@@ -94,16 +94,17 @@ export default function CartList(props: any) {
                 <Grid item xs={12} md={4} sx={{ marginTop: 1 }}>
                     <Box
                         component="form"
-                        onSubmit={(evt) => {handleCheckoutSubmit(
-                            evt,
-                            setSuccess,
-                            setError,
-                            setLoading,
-                            orderData,
-                            transactionData
-                        );
-                         setLoading('Sending data..')
-                       }}
+                        onSubmit={(evt) => {
+                            handleCheckoutSubmit(
+                                evt,
+                                setSuccess,
+                                setError,
+                                setLoading,
+                                orderData,
+                                transactionData
+                            );
+                            setLoading('Sending data..')
+                        }}
                         noValidate
                         sx={{ mt: 1 }}
                     >
@@ -239,7 +240,7 @@ export default function CartList(props: any) {
                                 name='payment_method'
                                 value={method}
                                 onChange={(evt) => {
-                                    const { name, value } = evt.target;
+                                    const { value } = evt.target;
                                     setMethod(value);
                                     if (value === 'direct-bank-transfer') {
                                         setDirectPayment(true);
@@ -259,7 +260,7 @@ export default function CartList(props: any) {
                         </FormControl>
                         {
                             directPayment &&
-                            (<Box sx={{ backgroundColor: 'green', color: "white" }}>
+                            (<Box sx={{ backgroundColor: 'brown', color: "white" }}>
                                 <p>Bank: Jaiz Bank</p>
                                 <p>Acct. Number: 0016938829</p>
                                 <p>Name: Siniotech Information and Communication...</p>
