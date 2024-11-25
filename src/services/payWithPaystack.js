@@ -27,7 +27,7 @@ export function payWithPaystack(
         onSuccess: async (transaction) => {
             try {
                 // payment complete
-                const orderId = await createOrderAPI(orderData); // callback to handle add order and transaction data
+                const orderId = await createOrderAPI({ ...orderData, paymentStatus: 'paid' }); // callback to handle add order and transaction data
                 if (orderId) {
                     setPostSuccess("Order success");
                     setLoading('')
@@ -53,7 +53,7 @@ export function payWithPaystack(
 
                 } else {
                     console.log("Order failed");
-                    setPostError("Transaction failed");
+                    setPostError("Order failed");
                     setLoading('')
 
 
