@@ -1,7 +1,7 @@
 'use client'
 
 import { getToken } from "@/utils/getToken";
-import { Avatar, Box, Button, FormLabel, TextField, FormControl} from "@mui/material";
+import { Avatar, Box, Button, FormLabel, TextField, FormControl } from "@mui/material";
 import Container from "@mui/material/Container";
 import Update from "@material-ui/icons/Update";
 import * as React from "react";
@@ -61,10 +61,9 @@ export default function AdminProfile() {
         sx={{ mt: 1 }}
       >
         <FormControl>
-        <FormLabel>
-          Your photo
-        </FormLabel>
-
+          <FormLabel>
+            Your photo
+          </FormLabel>
           <TextField
             autoComplete="given-name"
             name="photo"

@@ -1,4 +1,4 @@
-// import { postMessage } from "../api/postMessage";
+import Form from 'form-data'
 
 import { updateUserProfileAPI } from "../api/updateUserProfile";
 
@@ -14,24 +14,23 @@ const handleProfileUpdate = async (event: any, setPostSuccess: any, setPostError
         photo
     } = event.target.elements;
 
-    const profileData = {
-        email: email_address.value,
-        lastName: last_name.value,
-        firstName: first_name.value,
-        streetAddress: street_address.value,
-        localGovt: local_govt.value,
-        state: state.value,
-        photo: photo.value
+    const formData = new Form();
+     
+    formData.append('email', email_address.value);
+    let filesObj:any; 
+    try {
+        filesObj = document.querySelector('#photo') as any;  
+        formData.append('photo', filesObj.files[0]);
+    } catch (error) {
+        console.log(error)
     }
-    console.log(profileData.photo);
-    const filesObj = document.querySelector('#photo') as any;
-    console.log(filesObj.files);
-    console.log(filesObj.files[0]);
+    formData.append('lastName', last_name.value);
+    formData.append('firstName', first_name.value);
+    formData.append('address', street_address.value,);
+    formData.append('localGovt', local_govt.value);
+    formData.append('state', state.value);
 
-
-
-    await updateUserProfileAPI(profileData, setPostSuccess, setPostError);
-
+    await updateUserProfileAPI(formData, setPostSuccess, setPostError);
 };
 
 export {

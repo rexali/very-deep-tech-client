@@ -18,12 +18,15 @@ const handleProductSubmit = async (event: any, setPostSuccess: any, setPostError
         product_photos_links,
     } = event.target.elements;
 
-    const filesObject = document.querySelector('#product_pictures') as any;
-
     const formData = new Form();
     formData.append('product_name', product_name.value);
-    // formData.append('product_pictures[]',product_pictures.value);
-    formData.append('product_pictures[]', filesObject.files);
+    let filesObject: any;
+    try {
+        filesObject = document.querySelector('#product_pictures') as any;
+        formData.append('product_pictures[]', filesObject.files);
+    } catch (error) {
+       console.log(error)
+    }
     formData.append('product_category', product_category.value);
     formData.append('product_sub_category', product_sub_category.value);
     formData.append('product_description', product_description.value,);
@@ -35,9 +38,6 @@ const handleProductSubmit = async (event: any, setPostSuccess: any, setPostError
     formData.append('product_demos_links', product_demos_links.value);
     formData.append('product_photos_links', product_photos_links.value);
     formData.append('user', userId);
-
-    console.log(Object.fromEntries(formData as any));
-
 
     await createProductAPI(formData, setPostSuccess, setPostError);
 

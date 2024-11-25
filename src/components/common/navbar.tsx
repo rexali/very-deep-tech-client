@@ -33,7 +33,6 @@ const pages = [
 
 const menus = [
   'Users',
-  'Settings',
   'Logout',
   'Messages',
   'Notifications'
@@ -196,7 +195,13 @@ function NavBar() {
             {menus.map((menu, index) => (
               <MenuItem key={menu} onClick={handleCloseUserMenu}>
                 {
-                  (menu === "Logout") ? <Link prefetch onClick={handleSignOut} style={{ textDecoration: "none", display: user._id !== null ? '' : 'none' }} key={index + "s"} href={'#'} >{menu}</Link> : menu === "Users" ? <Link prefetch style={{ textDecoration: "none",display: user._id !== null ? '' : 'none' }} key={index + "s"} href={`/${menu.toLowerCase()}`}>{"Account"}</Link> : <Link prefetch style={{ textDecoration: "none" }} key={index + "s"} href={`/${menu.toLowerCase()}`}>{menu}</Link>}
+                  (menu === "Logout" && user._id !== null) ?
+                    <Link prefetch onClick={handleSignOut} style={{ textDecoration: "none" }} key={index + "s"} href={'#'} >{menu}</Link> :
+                    (menu === "Users" && user._id !== null) ?
+                      <Link prefetch style={{ textDecoration: "none" }} key={index + "s"} href={`/${menu.toLowerCase()}`}>{"Account"}</Link> :
+                      (user._id !== null) &&
+                      <Link prefetch style={{ textDecoration: "none" }} key={index + "s"} href={`/${menu.toLowerCase()}`}>{menu}</Link>
+                }
               </MenuItem>
             ))}
           </Menu>

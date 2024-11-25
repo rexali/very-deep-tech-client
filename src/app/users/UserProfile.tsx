@@ -63,10 +63,10 @@ export default function UserProfile() {
         noValidate
         sx={{ mt: 1 }}
       >
-       <FormControl>
-        <FormLabel>
-          Your photo
-        </FormLabel>
+        <FormControl>
+          <FormLabel>
+            Your photo
+          </FormLabel>
           <TextField
             autoComplete="given-name"
             name="photo"
@@ -75,7 +75,6 @@ export default function UserProfile() {
             margin={"normal"}
             type='file'
             id="photo"
-            label="Upload photo"
           />
         </FormControl>
 
