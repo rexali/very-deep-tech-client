@@ -7,7 +7,7 @@ const updateUserProfileAPI = async (profileData: any, setPostSuccess: any, setPo
         let { data } = await axios.patch(`${SERVER_URL}/profiles`, profileData, {
             withCredentials: false,
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'multipart/form-data',
             },
         });
 
