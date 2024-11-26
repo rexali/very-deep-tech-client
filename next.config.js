@@ -4,12 +4,20 @@ const nextConfig = {
         serverActions: true
     },
     images: {
-        remotePatterns: [
+        localPatterns:[
             {
                 protocol: 'http',
                 hostname: 'localhost:3001',
                 port: '',
-                pathname: '/uploads/*'
+                pathname: '/assets/images/**'
+            }
+        ],
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'very-deep-tech-server.onrender.com',
+                port: '',
+                pathname: '/uploads/**'
             }
         ],
         dangerouslyAllowSVG: true,
