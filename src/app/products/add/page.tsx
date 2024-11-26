@@ -67,6 +67,17 @@ export default function AddProduct() {
 
                     <TextField
                         autoComplete="given-name"
+                        name="product_category"
+                        required
+                        fullWidth
+                        margin={"normal"}
+                        id="product_category"
+                        label="Product Category"
+                        autoFocus
+                    />
+
+                    <TextField
+                        autoComplete="given-name"
                         name="product_sub_category"
                         required
                         fullWidth

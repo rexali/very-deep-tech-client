@@ -12,7 +12,7 @@ import { useAuth } from "@/hooks/use-auth";
 import { SERVER_URL } from "@/constants/url";
 
 
-export default function UserProfile() {
+export default function UserProfile() { 
   const [profile, setUserProfile] = React.useState<any>({});
   const [error, setError] = React.useState('');
   const [success, setSuccess] = React.useState('');
@@ -43,8 +43,8 @@ export default function UserProfile() {
   return (
     <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }}>
       <Box>
-        {profile.photo ? <Image
-          src={`${SERVER_URL}/uploads/${profile.photo}`}
+        {profile?.photo ? <Image
+          src={`${SERVER_URL}/uploads/${profile?.photo}`}
           width={150}
           height={150}
           alt="Account"

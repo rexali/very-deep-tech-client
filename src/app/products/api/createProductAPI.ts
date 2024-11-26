@@ -4,7 +4,7 @@ import axios from "axios";
 const createProductAPI = async (productData: any, setPostSuccess: any, setPostError: any) => {
 
     try {
-        let { data } = await axios.post(`${SERVER_URL}/products/`, productData, {
+        let { data } = await axios.post(`${SERVER_URL}/products`, productData, {
             withCredentials: false,
             headers: {
                 'Content-Type': 'multipart/form-data',
@@ -25,7 +25,7 @@ const createProductAPI = async (productData: any, setPostSuccess: any, setPostEr
         setTimeout(() => {
             setPostSuccess(' ')
             setPostError(" ")
-        }, 10000);
+        }, 30000);
     }
 };
 

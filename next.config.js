@@ -13,7 +13,7 @@ const nextConfig = {
             }
         ],
         dangerouslyAllowSVG: true,
-        domains: ['images.unsplash.com', 'placehold.co', 'localhost'],
+        domains: ['images.unsplash.com', 'placehold.co', very-deep-tech-server.onrender.com, 'localhost'],
     },
 }
 

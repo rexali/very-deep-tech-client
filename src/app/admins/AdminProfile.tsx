@@ -43,8 +43,8 @@ export default function AdminProfile() {
 
       <Container maxWidth="lg" component={'main'} sx={{ mt: 5 }}>
         <Box>
-          {adminProfile.photo ? <Image
-            src={`${SERVER_URL}/uploads/${adminProfile.photo}`}
+          {adminProfile?.photo ? <Image
+            src={`${SERVER_URL}/uploads/${adminProfile?.photo}`}
             width={150}
             height={150}
             alt="Account"

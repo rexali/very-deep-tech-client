@@ -56,17 +56,10 @@ export default function CartCard({ product, refreshCart }: { product: any, refre
               height={0}
             />
           }
-          {/* <Image
-            src={product.product_picture ?? "https://placehold.co/100x100/orange/white"}
-            alt={product.product_name ?? "pic"}
-            height={100}
-            width={100}
-            style={{ borderRadius: 10, alignSelf: "center" }}
-          /> */}
         </Link>
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            {product.product_name ?? "Lizard"};
+            {product.product_name ?? "Lizard"}
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }}>
             x  N {product.product_price ?? 1000}

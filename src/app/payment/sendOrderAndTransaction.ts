@@ -48,6 +48,7 @@ export async function sendOrderAndTransaction(
         setTimeout(() => {
             setPostSuccess(" ");
             setPostError(" ");
+            setLoading('')
         }, 30000);
     }
 }
