@@ -23,9 +23,11 @@ const handleProductSubmit = async (event: any, setPostSuccess: any, setPostError
     let filesObject: any;
     try {
         filesObject = document.querySelector('#product_pictures') as any;
-        formData.append('product_pictures[]', filesObject.files);
+        filesObject.files.forEach((file: any) => {
+            formData.append('product_pictures[]', file);
+        });
     } catch (error) {
-       console.log(error)
+        console.log(error)
     }
     formData.append('product_category', product_category.value);
     formData.append('product_sub_category', product_sub_category.value);

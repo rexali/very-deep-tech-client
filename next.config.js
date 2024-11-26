@@ -10,8 +10,7 @@ const nextConfig = {
                 protocol: 'https',
                 hostname: 'very-deep-tech-server.onrender.com',
                 port: '',
-                pathname: '/uploads/**',
-                search:''
+                pathname: '/uploads/**'
             }
         ],
         dangerouslyAllowSVG: true,

@@ -44,7 +44,8 @@ export default function UserProfile() {
     <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }}>
       <Box>
         {profile?.photo ? <Image
-          src={`${SERVER_URL}/uploads/${profile?.photo}`}
+          // src={`${SERVER_URL}/uploads/${profile?.photo}`}
+          src={`https://very-deep-tech-server.onrender.com/uploads/ali.jpg`}
           // width={150}
           // height={150}
           alt="Account"
