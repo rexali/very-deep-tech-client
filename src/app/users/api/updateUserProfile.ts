@@ -8,7 +8,7 @@ const updateUserProfileAPI = async (profileData: any, setPostSuccess: any, setPo
             withCredentials: false,
             headers: {
                 'Content-Type': 'multipart/form-data',
-            },
+            }, 
         });
 
         if (data.data.profile.modifiedCount) {
