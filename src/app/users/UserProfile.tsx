@@ -45,10 +45,21 @@ export default function UserProfile() {
       <Box>
         {profile?.photo ? <Image
           src={`${SERVER_URL}/uploads/${profile?.photo}`}
-          width={150}
-          height={150}
+          // width={150}
+          // height={150}
           alt="Account"
-          style={{ borderRadius: 30 }}
+          layout="responsive"
+          style={{
+            display: 'block',
+            marginRight: 'auto',
+            marginLeft: 'auto',
+            width: "100%",
+            // height: 'auto' 
+            height: 140,
+            borderRadius: 30
+          }}
+          width={0}
+          height={0}
         /> : <Avatar />
         }
       </Box>

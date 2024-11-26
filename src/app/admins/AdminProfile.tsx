@@ -49,6 +49,7 @@ export default function AdminProfile() {
             height={150}
             alt="Account"
             style={{ borderRadius: 30 }}
+            layout="responsive"
           /> : <Avatar />
           }
         </Box>
