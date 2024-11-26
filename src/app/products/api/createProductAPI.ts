@@ -12,13 +12,20 @@ const createProductAPI = async (productData: any, setPostSuccess: any, setPostEr
 
         });
         if (data.data.status === "success") {
-            setPostSuccess(data.data.status)
+            setPostSuccess('success')
         } else {
             setPostError("Failed")
         }
 
-    } catch (error) {
+    } catch (error:any) {
         console.warn(error);
+        setPostError("Error! " + error.message)
+
+    } finally {
+        setTimeout(() => {
+            setPostSuccess(' ')
+            setPostError(" ")
+        }, 10000);
     }
 };
 

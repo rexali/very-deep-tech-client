@@ -62,11 +62,13 @@ export function payWithPaystack(
             } catch (error) {
                 console.warn(error)
                 setPostError("Error! " + error.message);
-                setLoading('')
-
-
+                setLoading('');
             } finally {
                 console.log(transaction.reference);
+                setTimeout(() => {
+                    setPostSuccess(' ')
+                    setPostError(" ")
+                }, 10000);
             }
 
         },

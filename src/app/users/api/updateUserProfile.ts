@@ -20,8 +20,13 @@ const updateUserProfileAPI = async (profileData: any, setPostSuccess: any, setPo
     } catch (error: any) {
         console.warn(error);
         setPostError('Error! ' + error.message)
-
+    }finally{
+        setTimeout(() => {
+            setPostSuccess(' ')
+            setPostError(" ")
+        }, 10000);
     }
+
 };
 
 export {
