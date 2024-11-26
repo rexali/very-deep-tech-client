@@ -20,5 +20,5 @@ export default function ProductsPage() {
         <ProductList setActivePage={setActivePage} activePage={activePage} />
       </Suspense>
     </Container>
-  )
+  ) 
 }

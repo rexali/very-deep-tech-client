@@ -21,7 +21,7 @@ export default function HomePage() {
       {/* <CssBaseline /> */}
       <SearchInput />
       <MarketingMessage /> <br /><br />
-      <FeaturedProducts title={'Featured'} />
+      <FeaturedProducts />
       <FAQHowItWorks />
       <Testimonials />
       <Portfolios />

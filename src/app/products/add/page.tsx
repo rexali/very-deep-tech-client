@@ -15,7 +15,7 @@ export default function AddProduct() {
 
     const [error, setError] = React.useState('');
     const [success, setSuccess] = React.useState('');
-    const userId = getToken('_id') as string;
+    const userId = getToken('_id') as string ?? "6712c927857f3a3b3492459f";
 
     return (
         <Container maxWidth="md" component={'main'}>
@@ -47,7 +47,7 @@ export default function AddProduct() {
                         label="Product Name"
                         autoFocus
                     />
-                    
+
                     <label>
                         Product Photo(s)
                         <input
@@ -59,8 +59,8 @@ export default function AddProduct() {
                             formEncType="multipart/form-data"
                             style={{
                                 maxWidth: '100%',
-                                borderRadius:5,
-                                borderColor:'black',
+                                borderRadius: 5,
+                                borderColor: 'black',
                             }}
                         />
                     </label>

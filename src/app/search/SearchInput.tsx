@@ -36,7 +36,7 @@ export default function SearchInput() {
       </IconButton>
       <Paper>
         {
-          data?.map((name, i) => <Link key={i} style={{ textDecoration: "none", color: 'black', margin: 2, display: "block", padding: 2 }} href={"/search?term=" + name}>{name}</Link>)
+          data?.map((name, i) => <Link key={i} style={{ textDecoration: "none", color: 'black', textAlign:'center', margin: 4, display: "block", padding: 4 }} href={"/search?term=" + name}>{name}</Link>)
         }
       </Paper>
     </Paper>
