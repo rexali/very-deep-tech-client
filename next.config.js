@@ -4,14 +4,7 @@ const nextConfig = {
         serverActions: true
     },
     images: {
-        localPatterns:[
-            {
-                protocol: 'http',
-                hostname: 'localhost:3001',
-                port: '',
-                pathname: '/assets/images/**'
-            }
-        ],
+       
         remotePatterns: [
             {
                 protocol: 'https',
