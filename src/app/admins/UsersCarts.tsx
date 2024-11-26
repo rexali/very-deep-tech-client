@@ -13,8 +13,8 @@ export default function UsersProducts() {
 
   React.useEffect(() => {
     async function getData() {
-      const products = await getUsersCartsAPI(activePage);
-      setData(products);
+      const productsInCart = await getUsersCartsAPI(activePage);
+      setData(productsInCart);
     }
 
     getData();
@@ -34,7 +34,7 @@ export default function UsersProducts() {
     <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }}>
       <Box>Total Carts: {data[0]?.totalCarts}</Box>
       <React.Suspense fallback={<Fallback />} >
-        <ProductList products={data} activePage={activePage} setActivePage={setActivePage} />
+        <ProductList productsInCart={data} activePage={activePage} setActivePage={setActivePage} />
       </React.Suspense>
     </Container>
   )

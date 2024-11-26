@@ -5,8 +5,9 @@ import Container from "@mui/material/Container";
 import * as React from "react";
 import ReactPagination from "@/components/react-pagination";
 import NotificationList from "../notifications/notification-list";
-import { getUsersNotificationsAPI } from "./api/getUsersNotifications";
+// import { getUsersNotificationsAPI } from "./api/getUsersNotifications";
 import Fallback from "@/components/common/fallback";
+import { getUsersNotificationsAPI } from "../admins/api/getUsersNotifications";
 
 export default function UsersNotifications() {
     const [data, setData] = React.useState<any>([]);

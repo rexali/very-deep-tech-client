@@ -11,6 +11,7 @@ import Box from '@mui/material/Box';
 import { getUsersOrdersAPI } from './api/getUsersOrders';
 import Container from '@mui/material/Container';
 import Link from 'next/link';
+import Fallback from '@/components/common/fallback';
 
 
 export default function UsersOrders() {
@@ -35,6 +36,8 @@ export default function UsersOrders() {
   }
 
   return (
+    <React.Suspense fallback={<Fallback />} >
+
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <Box>Total Orders: {data[0]?.totalOrders}</Box>
@@ -74,5 +77,6 @@ export default function UsersOrders() {
           onchangeCallback={(v: any) => setActivePage(v)} />
       </Box>
     </TableContainer>
+    </React.Suspense>
   );
 }

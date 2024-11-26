@@ -6,6 +6,7 @@ import MessageList from "../messages/message-list";
 import * as React from "react";
 import ReactPagination from "@/components/react-pagination";
 import { getUsersMessagesAPI } from "./api/getUsersMessages";
+import Fallback from "@/components/common/fallback";
 
 export default function UserMessages() {
   const [data, setData] = React.useState<any>([]);
@@ -33,6 +34,8 @@ export default function UserMessages() {
 
 
   return (
+    <React.Suspense fallback={<Fallback />} >
+
     <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }}>
       <Box>Total Messages: {data[0]?.totalMessages}</Box>
       <Grid container columnSpacing={1}>
@@ -47,5 +50,6 @@ export default function UserMessages() {
           onchangeCallback={handlePageChange} />
       </Box>
     </Container>
+    </React.Suspense>
   )
 }

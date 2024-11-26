@@ -15,6 +15,7 @@ import "../products/styles/styles.css"
 import Add from "@material-ui/icons/Add";
 import UserHistory from "./UserHistory";
 import UserSettings from "./UserSettings";
+import UsersNotifications from "./UserNotifications";
 
 export default function UserTabs() {
 
@@ -38,8 +39,9 @@ export default function UserTabs() {
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('profile')} href={""} ><small>Profile</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('products')} href={""} ><small>Products</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('messages')} href={""} ><small>Messages</small></Link>
+                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('notifications')} href={""} ><small>Notifications</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('favourites')} href={""} ><small>Favourites</small></Link>
-                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('cart')} href={""} ><small>Cart</small></Link>
+                    {/* <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('cart')} href={""} ><small>Cart</small></Link> */}
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('orders')} href={""} ><small>Orders</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('transactions')} href={""} ><small>Transactions</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('settings')} href={""} ><small>Settings</small></Link>
@@ -50,6 +52,7 @@ export default function UserTabs() {
                         {tabName === 'profile' ? <ProfileTab /> : ''}
                         {tabName === 'products' ? <ProductsTab /> : ''}
                         {tabName === 'messages' ? <MessagesTab /> : ''}
+                        {tabName === 'notifications' ? <NotificationsTab /> : ''}
                         {tabName === 'favourites' ? <FavouritesTab /> : ''}
                         {tabName === 'cart' ? <CartTab /> : ''}
                         {tabName === 'orders' ? <OrderTab /> : ''}
@@ -115,6 +118,22 @@ function MessagesTab() {
                 </Typography>
             </Box>
             <UserMessages />
+        </Box>
+
+    )
+}
+
+function NotificationsTab() {
+    return (
+        <Box>
+            <Box component={'div'} textAlign={'left'} >
+                <Typography
+                    color='success'
+                >
+                    Notification(s)
+                </Typography>
+            </Box>
+            <UsersNotifications />
         </Box>
 
     )

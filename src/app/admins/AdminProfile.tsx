@@ -10,6 +10,7 @@ import { handleProfileUpdate } from "../users/utils/handleProfileUpdate";
 import { BASE_URL, SERVER_URL } from "@/constants/url";
 import Image from "next/image";
 import { useAuth } from "@/hooks/use-auth";
+import Fallback from "@/components/common/fallback";
 
 export default function AdminProfile() {
   const [adminProfile, setUserProfile] = React.useState<any>({});
@@ -38,6 +39,8 @@ export default function AdminProfile() {
   }
 
   return (
+    <React.Suspense fallback={<Fallback />} >
+
     <Container maxWidth="lg" component={'main'} sx={{ mt: 5 }}>
       <Box>
         {user.photo ? <Image
@@ -162,5 +165,7 @@ export default function AdminProfile() {
 
       </Box>
     </Container>
+    </React.Suspense>
+
   )
 }
