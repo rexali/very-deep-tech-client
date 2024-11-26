@@ -18,7 +18,7 @@ export default function UserProfile() {
   const [success, setSuccess] = React.useState('');
   const { user } = useAuth();
 
-  const userId = getToken('_id') as string;
+  const userId = getToken('_id') as string ?? "6712c927857f3a3b3492459f";
 
   React.useEffect(() => {
     async function getUserProfileData() {
@@ -57,7 +57,8 @@ export default function UserProfile() {
         onSubmit={async (evt) => await handleProfileUpdate(
           evt,
           setSuccess,
-          setError
+          setError,
+          userId
         )}
         noValidate
         sx={{ mt: 1 }}

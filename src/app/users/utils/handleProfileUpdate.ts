@@ -2,7 +2,7 @@ import Form from 'form-data'
 
 import { updateUserProfileAPI } from "../api/updateUserProfile";
 
-const handleProfileUpdate = async (event: any, setPostSuccess: any, setPostError: any) => {
+const handleProfileUpdate = async (event: any, setPostSuccess: any, setPostError: any, userId:any) => {
     event.preventDefault();
     const {
         email_address,
@@ -11,7 +11,7 @@ const handleProfileUpdate = async (event: any, setPostSuccess: any, setPostError
         street_address,
         local_govt,
         state,
-        photo
+        photo 
     } = event.target.elements;
 
     const formData = new Form();
@@ -29,6 +29,7 @@ const handleProfileUpdate = async (event: any, setPostSuccess: any, setPostError
     formData.append('streetAddress', street_address.value,);
     formData.append('localGovt', local_govt.value);
     formData.append('state', state.value);
+    formData.append('user', userId);
 
     await updateUserProfileAPI(formData, setPostSuccess, setPostError);
 };
