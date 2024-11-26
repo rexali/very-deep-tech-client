@@ -12,6 +12,7 @@ import Link from 'next/link';
 import { updateCartAPI } from './api/updateCartAPI';
 import { deleteCartAPI } from './api/deleteCartAPI';
 import { AuthContext } from '@/context/AuthContext';
+import { SERVER_URL } from '@/constants/url';
 
 export default function CartCard({ product, refreshCart }: { product: any, refreshCart: any }) {
   const [quantity, setQuantity] = React.useState<number>(product?.cartQuantity ?? 0);
@@ -19,18 +20,49 @@ export default function CartCard({ product, refreshCart }: { product: any, refre
   const userId = state.user?._id ?? "6712c927857f3a3b3492459f";
 
   var range = (start: number, end: number) => [...Array(end - start + 1)].map((_, i) => start + i);
- 
+
   return (
     <Card sx={{ maxWidth: 345, margin: 1 }}>
       <Box sx={{ display: 'flex', flexDirection: "row", justifyContent: "space-between" }}>
         <Link href={"/products/" + product._id}>
-          <Image
+          {product.product_pictures?.length ?
+            <Image
+              src={`${SERVER_URL}/uploads/${product.product_pictures[0]}`}
+              alt={product.product_name}
+              style={{
+                display: 'block',
+                marginRight: 'auto',
+                marginLeft: 'auto',
+                width: "100%",
+                // height: 'auto' 
+                height: 140,
+              }}
+              width={0}
+              height={0}
+            />
+            :
+            <Image
+              src={"https://placehold.co/600x400/orange/white"}
+              alt={'photo'}
+              style={{
+                display: 'block',
+                marginRight: 'auto',
+                marginLeft: 'auto',
+                width: "100%",
+                // height: 'auto' 
+                height: 140,
+              }}
+              width={0}
+              height={0}
+            />
+          }
+          {/* <Image
             src={product.product_picture ?? "https://placehold.co/100x100/orange/white"}
             alt={product.product_name ?? "pic"}
             height={100}
             width={100}
             style={{ borderRadius: 10, alignSelf: "center" }}
-          />
+          /> */}
         </Link>
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
@@ -50,7 +82,7 @@ export default function CartCard({ product, refreshCart }: { product: any, refre
                 await refreshCart();
               }, 3000);
             } catch (error) {
-                  console.warn(error);    
+              console.warn(error);
             }
 
           }

@@ -43,8 +43,8 @@ export default function UserProfile() {
   return (
     <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }}>
       <Box>
-        {user.photo ? <Image
-          src={`${SERVER_URL}/uploads/${user.photo}`}
+        {profile.photo ? <Image
+          src={`${SERVER_URL}/uploads/${profile.photo}`}
           width={150}
           height={150}
           alt="Account"

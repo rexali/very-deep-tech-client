@@ -7,6 +7,7 @@ import Rating from '@mui/material/Rating';
 import ProductTopActions from './components/ProductTopActions';
 import ProductBottomActions from './components/ProductBottomActions';
 import Image from 'next/image';
+import { SERVER_URL } from '@/constants/url';
 
 export default function ProductCard({ product, role }: { product: any, role?: string }) {
 
@@ -14,20 +15,37 @@ export default function ProductCard({ product, role }: { product: any, role?: st
     <Card sx={{ maxWidth: 345, margin: 1 }}>
       <ProductTopActions product={product} role={role} />
       <Link href={"/products/" + product._id}>
-        <Image
-          src={product.product_picture ?? "https://placehold.co/600x400/orange/white"}
-          alt={product.product_name ?? 'photo'}
-          style={{
-            display: 'block',
-            marginRight: 'auto',
-            marginLeft: 'auto',
-            width: "100%",
-            // height: 'auto' 
-            height: 140,
-          }}
-          width={0}
-          height={0}
-        />
+        {product.product_pictures?.length ?
+          <Image
+            src={`${SERVER_URL}/uploads/${product.product_pictures[0]}`}
+            alt={product.product_name}
+            style={{
+              display: 'block',
+              marginRight: 'auto',
+              marginLeft: 'auto',
+              width: "100%",
+              // height: 'auto' 
+              height: 140,
+            }}
+            width={0}
+            height={0}
+          />
+          :
+          <Image
+            src={"https://placehold.co/600x400/orange/white"}
+            alt={'photo'}
+            style={{
+              display: 'block',
+              marginRight: 'auto',
+              marginLeft: 'auto',
+              width: "100%",
+              // height: 'auto' 
+              height: 140,
+            }}
+            width={0}
+            height={0}
+          />
+        }
       </Link>
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">

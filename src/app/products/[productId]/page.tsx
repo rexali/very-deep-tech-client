@@ -66,25 +66,44 @@ export default async function ProductDetailPage({ params }: { params: { productI
                 borderRadius: 15
               }}
             >
+              {product.product_pictures?.length ?
 
-              {photos.map((photo, i) =>
-                <div key={i} style={{ display: 'inline-block', margin: 10 }}>
-                  <Image
-                    src={photo ?? "https://placehold.co/600x400/orange/white"}
-                    alt={product.product_name ?? 'photo'}
-                    style={{
-                      display: 'block',
-                      marginRight: 'auto',
-                      marginLeft: 'auto',
-                      width: "100%",
-                      // height: 'auto' 
-                      height: 400,
-                    }}
-                    width={0}
-                    height={0}
-                  />
-                </div>
-              )}
+                product.product_pictures.map((link: any, i: any) =>
+                  <div key={i} style={{ display: 'inline-block', margin: 10 }}>
+                    <Image
+                      src={`${SERVER_URL}/uploads/${link}`}
+                      alt={product.product_name}
+                      style={{
+                        display: 'block',
+                        marginRight: 'auto',
+                        marginLeft: 'auto',
+                        width: "100%",
+                        // height: 'auto' 
+                        height: 140,
+                      }}
+                      width={0}
+                      height={0}
+                    />
+                  </div>) : photos.map((photo, i) =>
+                    <div key={i} style={{ display: 'inline-block', margin: 10 }}>
+                      <Image
+                        src={photo ?? 'https://placehold.co/600x400/blue/white'}
+                        alt={'photo'}
+                        // height={315}
+                        // width={420} 
+                        style={{
+                          display: 'block',
+                          marginRight: 'auto',
+                          marginLeft: 'auto',
+                          width: "100%",
+                          // height: 'auto' 
+                          height: 140,
+                        }}
+                        width={0}
+                        height={0}
+                      />
+                    </div>)
+              }
             </Box>
           </Grid>
           <Grid item xs={12} md={6}>
@@ -167,14 +186,45 @@ export default async function ProductDetailPage({ params }: { params: { productI
                 borderRadius: 15
               }}
             >
-              {photos.map((photo, i) => <div key={i} style={{ display: 'inline-block', margin: 10 }}>
-                <Image
-                  src={photo ?? 'https://placehold.co/600x400/blue/white'}
-                  alt={'photo'}
-                  height={315}
-                  width={420} />
-              </div>
-              )}
+
+              {product.product_pictures?.length ?
+
+                product.product_pictures.map((link: any, i: any) =>
+                  <div key={i} style={{ display: 'inline-block', margin: 10 }}>
+                    <Image
+                      src={`${SERVER_URL}/uploads/${link}`}
+                      alt={product.product_name}
+                      style={{
+                        display: 'block',
+                        marginRight: 'auto',
+                        marginLeft: 'auto',
+                        width: "100%",
+                        // height: 'auto' 
+                        height: 140,
+                      }}
+                      width={0}
+                      height={0}
+                    />
+                  </div>) : photos.map((photo, i) =>
+                    <div key={i} style={{ display: 'inline-block', margin: 10 }}>
+                      <Image
+                        src={photo ?? 'https://placehold.co/600x400/blue/white'}
+                        alt={'photo'}
+                        // height={315}
+                        // width={420} 
+                        style={{
+                          display: 'block',
+                          marginRight: 'auto',
+                          marginLeft: 'auto',
+                          width: "100%",
+                          // height: 'auto' 
+                          height: 140,
+                        }}
+                        width={0}
+                        height={0}
+                      />
+                    </div>)
+              }
             </div>
           </Grid>
         </Grid>
