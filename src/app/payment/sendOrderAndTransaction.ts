@@ -18,16 +18,17 @@ export async function sendOrderAndTransaction(
         // payment complete
         const orderId = await createOrderAPI(orderData); // callback to handle add order and transaction data
         if (orderId) {
-            setPostSuccess("Order success")
-            setLoading('')
-            const transactionId = await createTransactionAPI({
+            setPostSuccess("Order success");
+            setLoading('');
+            const tranxData = {
                 ...transactionData,
                 orderId,
                 reference: reference,
-            });
+            };
+            const transactionId = await createTransactionAPI(tranxData);
 
             if (transactionId) {
-                setPostSuccess("Order success");
+                setPostSuccess("Transaction success");
                 setLoading('')
                 await clearUserCartsAPI(orderData.userId ?? userId);
             } else {

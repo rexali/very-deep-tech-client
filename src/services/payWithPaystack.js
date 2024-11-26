@@ -14,7 +14,6 @@ export function payWithPaystack(
     setPostSuccess,
     setPostError,
     setLoading
-
 ) {
 
     const paystack = new PaystackPop();
@@ -40,7 +39,7 @@ export function payWithPaystack(
                     });
 
                     if (transactionId) {
-                        setPostSuccess("Order success")
+                        setPostSuccess("Transaction success")
                         setLoading('')
 
                         await clearUserCartsAPI(getToken("_id"));
