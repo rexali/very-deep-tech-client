@@ -1,7 +1,7 @@
 'use client'
 
 import axios from "axios";
-import { BASE_URL, SERVER_URL } from "@/constants/url";
+import { SERVER_URL } from "@/constants/url";
 
 
 const createOrderAPI = async (orderData: any) => {
@@ -12,6 +12,7 @@ const createOrderAPI = async (orderData: any) => {
          },
       });
       if (data.data?.status === "success") {
+         console.log(data.data);
          return data.data.order._id;
       }
    } catch (error) {

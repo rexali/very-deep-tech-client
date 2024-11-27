@@ -16,16 +16,16 @@ export async function sendOrderAndTransaction(
     const reference = uuidV4();
     try {
         // payment complete
-        const orderId = await createOrderAPI(orderData); // callback to handle add order and transaction data
-        if (orderId) {
+        let orderId = await createOrderAPI(orderData); // callback to handle add order and transaction data
+        // if (orderId) {
             setPostSuccess("Order success");
             setLoading('');
-            const tranxData = {
+            let tranxData = {
                 ...transactionData,
                 orderId,
                 reference: reference,
             };
-            const transactionId = await createTransactionAPI(tranxData);
+            let transactionId = await createTransactionAPI(tranxData);
 
             if (transactionId) {
                 setPostSuccess("Transaction success");
@@ -36,10 +36,10 @@ export async function sendOrderAndTransaction(
                 setLoading('')
             }
 
-        } else {
+        // } else {
             setPostError("Order failed");
             setLoading('')
-        }
+        // }
 
     } catch (error: any) {
         console.warn(error)

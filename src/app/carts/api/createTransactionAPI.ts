@@ -1,6 +1,6 @@
 'use client'
 
-import { BASE_URL, SERVER_URL } from "@/constants/url";
+import {SERVER_URL } from "@/constants/url";
 import axios from "axios";
 
 const createTransactionAPI = async (transactionData: any) => {
@@ -12,6 +12,7 @@ const createTransactionAPI = async (transactionData: any) => {
       });
 
       if (data.data?.status === "success") {
+         console.log(data.data);
          return data.data.transaction._id
       }
    } catch (error) {
