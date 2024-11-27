@@ -1,24 +1,22 @@
-import { SERVER_URL} from "@/constants/url";
+'use client'
 
-const postMessage = async (data: any, setPostSuccess: any, setPostError: any) => {
+import { SERVER_URL } from "@/constants/url";
+import axios from "axios";
+
+const postMessage = async (messageData: any, setPostSuccess: any, setPostError: any) => {
    try {
-      let response = await fetch(`${SERVER_URL}/messages`, {
-         method: "POST",
-         mode: 'cors',
+      let { data } = await axios.post(`${SERVER_URL}/messages`, messageData, {
          headers: {
-            'Accept': 'application/json',
             'Content-Type': 'application/json',
-         },
-         body: JSON.stringify(data),
+         }
       });
-      const result = await response.json();
-      if (result.data.status) {
-         setPostSuccess(result.data.status);
-      }else{
-         setPostError(result.data.status);
+      if (data.data.status) {
+         setPostSuccess(data.data.status);
+      } else {
+         setPostError(data.data.status);
       }
-   } catch (error:any) {
-      setPostError("Error! "+error.message);
+   } catch (error: any) {
+      setPostError("Error! " + error.message);
       console.warn(error);
    }
 }

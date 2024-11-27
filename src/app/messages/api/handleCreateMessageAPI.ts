@@ -1,3 +1,5 @@
+'use client'
+
 import { SERVER_URL } from "@/constants/url";
 import { savePathLink } from "@/utils/savePathLink";
 import axios from "axios";
@@ -22,16 +24,20 @@ const handleCreateMessageAPI = async (
                 userId: userId,
                 title: title.value,
                 comment: comment.value,
+                sender: '',
+                lastName: '',
+                firstName: '',
             }
             let { data } = await axios.post(`${SERVER_URL}/messages`, messageData, {
+                withCredentials: false,
                 headers: {
-                    "Content-Type": 'application/json'
-                }
+                    'Content-Type': 'application/json',
+                },
             });
-            if (data.data.status) {
-                setSuccess(data.data.status)
+            if (data.data?.status) {
+                setSuccess(data.data?.status)
             } else {
-                setError(data.data.status)
+                setError(data.data?.status)
             }
         } catch (error: any) {
             setError("Error! " + error.message)

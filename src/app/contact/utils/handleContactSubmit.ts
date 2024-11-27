@@ -1,3 +1,5 @@
+'use client'
+
 import { postMessage } from "../api/postMessage";
 
 const handleContactSubmit = async (event: any, setPostSuccess: any, setPostError: any) => {

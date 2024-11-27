@@ -1,3 +1,5 @@
+'use client'
+
 import { SERVER_URL } from "@/constants/url";
 import axios from "axios";
 

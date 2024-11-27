@@ -39,7 +39,7 @@ export default function MessageCard({
                     href={`/messages/${message._id}`}
                     sx={{ textDecoration: 'none' }}
                 >
-                    {message?.message}
+                    {message?.comment}
                 </Typography>
                 {role === 'admin' && <Typography sx={{ mt: 2, display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                     {!isMobile && message.sender && <Link href={{

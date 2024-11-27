@@ -1,3 +1,5 @@
+'use client'
+
 import { BASE_URL, SERVER_URL } from "@/constants/url";
 import { savePathLink } from "@/utils/savePathLink";
 import axios from "axios";

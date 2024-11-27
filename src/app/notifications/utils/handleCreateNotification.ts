@@ -1,3 +1,5 @@
+'use client'
+
 import { SERVER_URL } from "@/constants/url";
 import { savePathLink } from "@/utils/savePathLink";
 import axios from "axios";
@@ -24,9 +26,10 @@ const handleCreateNotification = async (
                 body: body.value,
             }
             let { data } = await axios.post(`${SERVER_URL}/messages`, noticeData, {
+                withCredentials: false,
                 headers: {
-                    "Content-Type": 'application/json'
-                }
+                    'Content-Type': 'application/json',
+                },
             });
             if (data.data.status) {
                 setUpdateSuccess(data.data.status)
