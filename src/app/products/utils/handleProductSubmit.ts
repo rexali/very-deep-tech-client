@@ -18,14 +18,14 @@ const handleProductSubmit = async (event: any, setPostSuccess: any, setPostError
         product_photos_links,
     } = event.target.elements;
 
-    const formData = new Form();
+    let formData = new Form();
     formData.append('product_name', product_name.value);
     let filesObject: any;
     try {
         filesObject = document.querySelector('#product_pictures') as any;
-        filesObject.files.forEach((file: any) => {
-            formData.append('product_pictures[]', file);
-        });
+        for (let file of filesObject.files) {
+            formData.append('product_pictures[]', file, file.filename);
+        }
     } catch (error) {
         console.log(error)
     }

@@ -22,7 +22,7 @@ export default function CartList(props: any) {
     const [cartTotals, setCartTotal] = React.useState<number>();
     const [method, setMethod] = React.useState('paystack');
     const [directPayment, setDirectPayment] = React.useState(false);
-    const {user} = useAuth();
+    const { user } = useAuth();
 
     const userId = getToken('_id') as string ?? "6712c927857f3a3b3492459f";
 
@@ -267,9 +267,9 @@ export default function CartList(props: any) {
                                 <p>Name: Siniotech Information and Communication...</p>
                             </Box>)
                         }
-                        {success && <Box textAlign={"center"} sx={{ backgroundColor: 'green', color: "white" }}>{success.toUpperCase()}</Box>}
-                        {error && <Box textAlign={"center"} sx={{ backgroundColor: 'red', color: 'white' }}>{error.toUpperCase()}</Box>}
-                        {loading && <Box textAlign={"center"} sx={{ backgroundColor: 'green', color: 'white' }}>{loading.toUpperCase()}</Box>}
+                        {success && <Box textAlign={"center"} sx={{ backgroundColor: 'green', color: "white", padding: 2, borderRadius: 2 }}>{success.toUpperCase()}</Box>}
+                        {error && <Box textAlign={"center"} sx={{ backgroundColor: 'red', color: 'white', padding: 2, borderRadius: 2 }}>{error.toUpperCase()}</Box>}
+                        {loading && <Box textAlign={"center"} sx={{ backgroundColor: 'green', color: 'white', padding: 2, borderRadius: 2 }}>{loading.toUpperCase()}</Box>}
 
 
                         <Button

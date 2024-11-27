@@ -12,34 +12,27 @@ export async function sendOrderAndTransaction(
     setLoading: any
 
 ) {
-    const userId = getToken("_id") as string;
+    let userId = getToken("_id") as string;
     const reference = uuidV4();
     try {
         // payment complete
-        let orderId = await createOrderAPI(orderData); // callback to handle add order and transaction data
-        // if (orderId) {
-            setPostSuccess("Order success");
-            setLoading('');
-            let tranxData = {
-                ...transactionData,
-                orderId,
-                reference: reference,
-            };
-            let transactionId = await createTransactionAPI(tranxData);
-
-            if (transactionId) {
-                setPostSuccess("Transaction success");
-                setLoading('')
-                await clearUserCartsAPI(orderData.userId ?? userId);
-            } else {
-                setPostError("Transaction failed");
-                setLoading('')
-            }
-
-        // } else {
-            setPostError("Order failed");
+        // callback to handle add order and transaction data
+        let order = await createOrderAPI(orderData);
+        setPostSuccess("Order Success");
+        let tranxData = {
+            ...transactionData,
+            orderId: order._id,
+            reference: reference,
+        };
+        setLoading('');
+        if (await createTransactionAPI(tranxData)) {
+            setPostSuccess("Transaction Success");
             setLoading('')
-        // }
+            await clearUserCartsAPI(orderData.userId ?? userId);
+        } else {
+            setPostError("Transaction failed");
+            setLoading('')
+        }
 
     } catch (error: any) {
         console.warn(error)

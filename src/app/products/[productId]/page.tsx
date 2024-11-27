@@ -36,6 +36,11 @@ export default async function ProductDetailPage({ params }: { params: { productI
     'https://placehold.co/600x400/orange/white',
     'https://placehold.co/600x400/green/white',
     'https://placehold.co/600x400/red/white'
+  ];
+  const links = [
+    'https://placehold.co/600x400/brown/white',
+    'https://placehold.co/600x400/green/white',
+    'https://placehold.co/600x400/yellow/white'
   ]
 
   if (!Object?.keys(product).length) {
@@ -87,7 +92,7 @@ export default async function ProductDetailPage({ params }: { params: { productI
                   </div>) : photos.map((photo, i) =>
                     <div key={i} style={{ display: 'inline-block', margin: 10 }}>
                       <Image
-                        src={photo ?? 'https://placehold.co/600x400/blue/white'}
+                        src={photo}
                         alt={'photo'}
                         // height={315}
                         // width={420} 
@@ -163,7 +168,7 @@ export default async function ProductDetailPage({ params }: { params: { productI
               <iframe
                 width={420}
                 height={315}
-                src={`https://www.youtube.com/embed/tgbNymZ7vqY`}
+                src={`${product.product_demos_links ?? 'https://www.youtube.com/embed/tgbNymZ7vqY'}`}
               >
                 Loading ....
               </iframe>
@@ -187,9 +192,9 @@ export default async function ProductDetailPage({ params }: { params: { productI
               }}
             >
 
-              {product.product_pictures?.length ?
+              {product.product_photos_links.split(',')?.length ?
 
-                product.product_pictures.map((link: any, i: any) =>
+                product.product_photos_links.split(',').map((link: any, i: any) =>
                   <div key={i} style={{ display: 'inline-block', margin: 10 }}>
                     <Image
                       src={`${SERVER_URL}/uploads/${link}`}
@@ -205,11 +210,11 @@ export default async function ProductDetailPage({ params }: { params: { productI
                       width={0}
                       height={0}
                     />
-                  </div>) : photos.map((photo, i) =>
+                  </div>) : links.map((link, i) =>
                     <div key={i} style={{ display: 'inline-block', margin: 10 }}>
                       <Image
-                        src={photo ?? 'https://placehold.co/600x400/blue/white'}
-                        alt={'photo'}
+                        src={link}
+                        alt={'link'}
                         // height={315}
                         // width={420} 
                         style={{

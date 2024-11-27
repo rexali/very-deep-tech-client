@@ -6,15 +6,14 @@ import { SERVER_URL } from "@/constants/url";
 
 const createOrderAPI = async (orderData: any) => {
    try {
-      let {data} = await axios.post(`${SERVER_URL}/orders`, orderData, {
+      let { data } = await axios.post(`${SERVER_URL}/orders`, orderData, {
          headers: {
             'Content-Type': 'application/json',
          },
       });
-      if (data.data?.status === "success") {
-         console.log(data.data);
-         return data.data.order._id;
-      }
+
+      return data.data?.order;
+
    } catch (error) {
       console.warn(error);
    }
