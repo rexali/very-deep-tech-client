@@ -22,7 +22,7 @@ const handleProductSubmit = async (event: any, setPostSuccess: any, setPostError
     try {
         let filesObject = document.querySelector('#product_pictures') as any;
         for (let file of filesObject.files) {
-            formData.append('product_pictures[]', file);
+            formData.append('product_pictures', file);
         }
     } catch (error) {
         console.log(error)
