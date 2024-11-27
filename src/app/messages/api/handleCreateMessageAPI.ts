@@ -1,6 +1,6 @@
-import { fetchData } from "@/app/messages/api/fetchDataAPI";
 import { SERVER_URL } from "@/constants/url";
 import { savePathLink } from "@/utils/savePathLink";
+import axios from "axios";
 
 const handleCreateMessageAPI = async (
     event: any,
@@ -23,14 +23,18 @@ const handleCreateMessageAPI = async (
                 title: title.value,
                 comment: comment.value,
             }
-            let result = await fetchData(`${SERVER_URL}/messages`, { body: JSON.stringify(messageData), method: "post" });
-            if (result.data.message._id) {
-                setSuccess("Success")
+            let { data } = await axios.post(`${SERVER_URL}/messages`, messageData, {
+                headers: {
+                    "Content-Type": 'application/json'
+                }
+            });
+            if (data.data.status) {
+                setSuccess(data.data.status)
             } else {
-                setError("Error!")
+                setError(data.data.status)
             }
-        } catch (error) {
-            setError("Error!")
+        } catch (error: any) {
+            setError("Error! " + error.message)
             console.warn(error);
         };
 

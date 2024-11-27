@@ -1,6 +1,6 @@
-import { fetchData } from "@/app/messages/api/fetchDataAPI";
 import { SERVER_URL } from "@/constants/url";
 import { savePathLink } from "@/utils/savePathLink";
+import axios from "axios";
 
 const handleCreateNotification = async (
     event: any,
@@ -23,17 +23,20 @@ const handleCreateNotification = async (
                 title: title.value,
                 body: body.value,
             }
-            let result = await fetchData(`${SERVER_URL}/notifications`, { body: JSON.stringify(noticeData), method: "post" });
-            if (result.data.notification._id) {
-                setUpdateSuccess("Success")
+            let { data } = await axios.post(`${SERVER_URL}/messages`, noticeData, {
+                headers: {
+                    "Content-Type": 'application/json'
+                }
+            });
+            if (data.data.status) {
+                setUpdateSuccess(data.data.status)
             } else {
-                setUpdateError("Error!")
+                setUpdateError(data.data.status)
             }
-        } catch (error) {
-            setUpdateError("Error!")
+        } catch (error: any) {
+            setUpdateError("Error! " + error.message)
             console.warn(error);
         };
-
     } else {
         savePathLink()
     }
