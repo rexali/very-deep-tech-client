@@ -8,7 +8,7 @@ const handleCreateMessageAPI = async (
     event: any,
     setSuccess: any,
     setError: any,
-    userId: any
+    userId?: any
 ) => {
     // prevent default
     event.preventDefault();
@@ -21,16 +21,17 @@ const handleCreateMessageAPI = async (
             } = event.target.elements;
 
             const messageData = {
-                userId: userId,
+                userId: userId ?? '',
                 title: title.value,
                 comment: comment.value,
-                sender: '',
-                lastName: '',
-                firstName: '',
+                sender: event.target.elements.value ?? '',
+                lastName: event.target.elements.value ?? '',
+                firstName: event.target.elements.value ?? '',
             }
             let { data } = await axios.post(`${SERVER_URL}/messages`, messageData, {
                 withCredentials: false,
                 headers: {
+                    'Accept': 'application/json',
                     'Content-Type': 'application/json',
                 },
             });

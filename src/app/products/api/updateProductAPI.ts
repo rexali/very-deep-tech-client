@@ -9,6 +9,7 @@ const updateProductAPI = async (productData: any, setPostSuccess: any, setPostEr
         let { data} = await axios.patch(`${SERVER_URL}/products`, productData, {
             withCredentials: false,
             headers: {
+                'Accept':'application/json',
                 'Content-Type': 'application/json',
             },
 

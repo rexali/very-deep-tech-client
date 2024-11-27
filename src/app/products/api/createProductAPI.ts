@@ -9,6 +9,7 @@ const createProductAPI = async (productData: any, setPostSuccess: any, setPostEr
         let { data } = await axios.post(`${SERVER_URL}/products`, productData, {
             withCredentials: false,
             headers: {
+                'Accept':'application/json',
                 'Content-Type': 'multipart/form-data',
             },
 

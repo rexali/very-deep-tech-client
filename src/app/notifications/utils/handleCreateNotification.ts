@@ -25,9 +25,10 @@ const handleCreateNotification = async (
                 title: title.value,
                 body: body.value,
             }
-            let { data } = await axios.post(`${SERVER_URL}/messages`, noticeData, {
+            let { data } = await axios.post(`${SERVER_URL}/notifications`, noticeData, {
                 withCredentials: false,
                 headers: {
+                    'Accept':'application/json',
                     'Content-Type': 'application/json',
                 },
             });
