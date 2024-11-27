@@ -43,6 +43,7 @@ export default async function ProductDetailPage({ params }: { params: { productI
     'https://placehold.co/600x400/yellow/white'
   ]
 
+
   if (!Object?.keys(product).length) {
     return <Fallback item={'No item found yet'} />
   }
@@ -71,7 +72,7 @@ export default async function ProductDetailPage({ params }: { params: { productI
                 borderRadius: 15
               }}
             >
-              {product.product_pictures?.length ?
+              {product?.product_pictures?.length ?
 
                 product.product_pictures.map((link: any, i: any) =>
                   <div key={i} style={{ display: 'inline-block', margin: 10 }}>
@@ -168,7 +169,7 @@ export default async function ProductDetailPage({ params }: { params: { productI
               <iframe
                 width={420}
                 height={315}
-                src={`${product.product_demos_links ?? 'https://www.youtube.com/embed/tgbNymZ7vqY'}`}
+                src={`${product?.product_demos_links.trim() ?? 'https://www.youtube.com/embed/tgbNymZ7vqY'}`}
               >
                 Loading ....
               </iframe>
@@ -192,12 +193,12 @@ export default async function ProductDetailPage({ params }: { params: { productI
               }}
             >
 
-              {product.product_photos_links.split(',')?.length ?
+              {product?.product_photos_links?.split(',')?.length ?
 
-                product.product_photos_links.split(',').map((link: any, i: any) =>
+                product?.product_photos_links?.split(',').map((link: any, i: any) =>
                   <div key={i} style={{ display: 'inline-block', margin: 10 }}>
                     <Image
-                      src={`${SERVER_URL}/uploads/${link}`}
+                      src={`${SERVER_URL}/uploads/${link.trim()}`}
                       alt={product.product_name}
                       style={{
                         display: 'block',
