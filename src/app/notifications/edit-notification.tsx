@@ -73,7 +73,7 @@ export default function EditNotification({ notification, callback }: { callback:
                             defaultValue={body}
                             label="Message"
                             type="text"
-                            id="notification_body"
+                            id="body"
                         />
                         {success && <Box textAlign={'center'} sx={{ color: "green" }}>{success.toUpperCase()}</Box>}
                         {error && <Box textAlign={'center'} sx={{ color: "red" }}>{error.toUpperCase()}</Box>}

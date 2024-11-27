@@ -1,5 +1,4 @@
 import { BASE_URL, SERVER_URL } from "@/constants/url";
-import { getToken } from "@/utils/getToken";
 import { savePathLink } from "@/utils/savePathLink";
 import axios from "axios";
 
@@ -8,35 +7,34 @@ const handleUpdateNotificationAPI = async (
     setUpdateSuccess: any,
     setUpdateError: any,
     userId: any,
-    ) => {
+) => {
     // prevent default
     event.preventDefault();
     // check userId is defined
     if (userId) {
         try {
             const {
-                subject,
+                title,
                 body,
                 notificationId
             } = event.target.elements;
 
             const updateData = {
-                userId: getToken('_id') || userId,
-                subject: subject.value,
+                userId:'',
+                title: title.value,
                 body: body.value,
-                notificationId:notificationId.value,
+                notificationId: notificationId.value,
             }
             let { data } = await axios.patch(`${SERVER_URL}/notifications`, updateData, {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + getToken('jwtoken'),
                 },
             });
-            if (data.affectedRows === 1) {
-                setUpdateSuccess("Success")
+            if (data.data.success) {
+                setUpdateSuccess(data.data.success)
             } else {
-                setUpdateError("Error!")
+                setUpdateError(data.data.success)
             }
         } catch (error) {
             setUpdateError("Error!")

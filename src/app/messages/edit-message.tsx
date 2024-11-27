@@ -21,9 +21,9 @@ const defaultTheme = createTheme();
 export default function EditMessage({ message, callback }: { message: any, callback: any }) {
     const [success, setSuccess] = React.useState('');
     const [error, setError] = React.useState('');
-    const [firstName,] = React.useState(message.firstName);
-    const [lastName,] = React.useState(message.lastName);
-    const [sender,] = React.useState(message.sender);
+    const [firstName,] = React.useState(message.firstName ?? '');
+    const [lastName,] = React.useState(message.lastName ?? '');
+    const [sender,] = React.useState(message.sender ?? '');
     const [messageId,] = React.useState(message._id);
     const [title,] = React.useState(message.title);
     const [comment,] = React.useState(message.comment);
@@ -88,7 +88,7 @@ export default function EditMessage({ message, callback }: { message: any, callb
                             multiline
                             fullWidth
                             name="comment"
-                            defaultValue={comment} 
+                            defaultValue={comment}
                             label="Message"
                             type="text"
                             id="comment"

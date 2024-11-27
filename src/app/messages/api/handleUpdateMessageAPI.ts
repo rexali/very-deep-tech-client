@@ -37,10 +37,10 @@ const handleUpdateMessageAPI = async (
                     'Content-Type': 'application/json',
                 },
             });
-            if (data.data.message.modifiedCount) {
-                setUpdateSuccess("Success")
+            if (data.data.status) {
+                setUpdateSuccess(data.data.status)
             } else {
-                setUpdateError("Error!")
+                setUpdateError(data.data.status)
             }
         } catch (error) {
             setUpdateError("Error!")

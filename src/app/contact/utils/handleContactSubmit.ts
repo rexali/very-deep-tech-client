@@ -1,23 +1,24 @@
 import { postMessage } from "../api/postMessage";
 
-const handleContactSubmit = async (event: any,setPostSuccess:any,setPostError:any) => {
+const handleContactSubmit = async (event: any, setPostSuccess: any, setPostError: any) => {
     event.preventDefault();
     const {
         email,
-        firstname,
-        lastname,
-        subject,
-        message
+        firstName,
+        lastName,
+        title,
+        comment
     } = event.target.elements;
 
     const contactData = {
-        email: email.value,
-        lastname: lastname.value,
-        firstname: firstname.value,
-        subject: subject.value,
-        message: message.value,
+        sender: email.value,
+        lastName: lastName.value,
+        firstName: firstName.value,
+        title: title.value,
+        comment: comment.value,
+        userId: ''
     }
-    await postMessage(contactData,setPostSuccess,setPostError);
+    await postMessage(contactData, setPostSuccess, setPostError);
 
 };
 

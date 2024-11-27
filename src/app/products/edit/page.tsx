@@ -30,6 +30,7 @@ export default function EditProduct({ params }: { params:{productId:string} }) {
                 evt,
                 setSuccess,
                 setError,
+                params.productId
             )}
             noValidate
             sx={{ mt: 1 }}
