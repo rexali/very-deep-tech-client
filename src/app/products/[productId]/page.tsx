@@ -168,7 +168,7 @@ export default async function ProductDetailPage({ params }: { params: { productI
               <iframe
                 width={420}
                 height={315}
-                src={`${product.product_demos_links ?? 'https://www.youtube.com/embed/tgbNymZ7vqY'}`}
+                src={product.product_demos_links ?? 'https://www.youtube.com/embed/tgbNymZ7vqY'}
               >
                 Loading ....
               </iframe>
@@ -197,7 +197,7 @@ export default async function ProductDetailPage({ params }: { params: { productI
                 product.product_photos_links?.split(',').map((product_photo: any, i: any) =>
                   <div key={i} style={{ display: 'inline-block', margin: 10 }}>
                     <Image
-                      src={`${SERVER_URL}/uploads/${product_photo}`}
+                      src={product_photo}
                       alt={product.product_name}
                       style={{
                         display: 'block',
