@@ -11,20 +11,19 @@ const createProductAPI = async (productData: any, setPostSuccess: any, setPostEr
             },
 
         });
-        if (data.data.status === "success") {
-            setPostSuccess('success')
+        if (data.data.status) {
+            setPostSuccess(data.data.status)
         } else {
-            setPostError("Failed")
+            setPostError(data.data.status)
         }
 
-    } catch (error:any) {
+    } catch (error: any) {
         console.warn(error);
         setPostError("Error! " + error.message)
-
     } finally {
         setTimeout(() => {
-            setPostSuccess(' ')
-            setPostError(" ")
+            setPostSuccess('')
+            setPostError('')
         }, 30000);
     }
 };

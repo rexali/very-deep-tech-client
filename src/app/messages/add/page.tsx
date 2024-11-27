@@ -9,16 +9,15 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import ThemeProvider from '@mui/material/styles/ThemeProvider';
 import createTheme from '@mui/material/styles/createTheme';
-import { AuthContext } from '@/context/AuthContext';
 import { handleCreateMessageAPI } from '../api/handleCreateMessageAPI';
+import { getToken } from '@/utils/getToken';
 
 const defaultTheme = createTheme();
 
 export default function AddMessage() {
     const [success, setSuccess] = React.useState('');
     const [error, setError] = React.useState('');
-    const { state: { user } } = React.useContext(AuthContext);
-
+    const userId = getToken('_id') as string ?? "6712c927857f3a3b3492459f";
 
     return (
         <ThemeProvider theme={defaultTheme} >
@@ -39,7 +38,7 @@ export default function AddMessage() {
                         component="form"
                         noValidate
                         onSubmit={async (evt) => {
-                            await handleCreateMessageAPI(evt, setSuccess, setError, user?.userId);
+                            await handleCreateMessageAPI(evt, setSuccess, setError, userId);
                         }}
                         sx={{ mt: 15 }}
                     >

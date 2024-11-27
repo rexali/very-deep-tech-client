@@ -15,6 +15,7 @@ import { handleUpdateNotificationAPI } from './api/handleUpdateNotificationAPI';
 import { AppContext } from '@/context/AppContext';
 import { getNotifications } from '@/store/actions/app-actions';
 import { getNotificationAPI } from './api/getNotificationsAPI';
+import { getToken } from '@/utils/getToken';
 
 const defaultTheme = createTheme();
 
@@ -24,8 +25,8 @@ export default function EditNotification({ notification, callback }: { callback:
     const [title,] = React.useState(notification.subject);
     const [body,] = React.useState(notification.body);
     const [notificationId,] = React.useState(notification.notificationId);
-    const { state: { user } } = React.useContext(AuthContext);
     const { dispatch } = React.useContext(AppContext);
+    const userId = getToken('_id') as string ?? "6712c927857f3a3b3492459f";
 
 
     return (
@@ -41,7 +42,7 @@ export default function EditNotification({ notification, callback }: { callback:
                         component="form"
                         noValidate sx={{ mt: 1 }}
                         onSubmit={async (evt) => {
-                            await handleUpdateNotificationAPI(evt, setSuccess, setError, user?.userId);
+                            await handleUpdateNotificationAPI(evt, setSuccess, setError, userId);
                             callback(false);
                             dispatch(getNotifications(await getNotificationAPI()));
                         }}

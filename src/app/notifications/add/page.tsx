@@ -10,6 +10,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Copyright from '@/components/common/copyright';
 import { handleCreateNotification } from '../utils/handleCreateNotification';
+import { getToken } from '@/utils/getToken';
 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
@@ -17,6 +18,7 @@ const defaultTheme = createTheme();
 export default function AddNotification({ params }: { params: { userId: string } }) {
   const [error, setError] = React.useState('');
   const [success, setSuccess] = React.useState('');
+  const userId = getToken('_id') as string ?? "6712c927857f3a3b3492459f";
 
   return (
     <ThemeProvider theme={defaultTheme} >
@@ -34,7 +36,7 @@ export default function AddNotification({ params }: { params: { userId: string }
             Post Notice
           </Typography>
 
-          <Box component="form" onSubmit={async (evt) => await handleCreateNotification(evt, setSuccess, setError, params.userId)} noValidate sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={async (evt) => await handleCreateNotification(evt, setSuccess, setError, userId)} noValidate sx={{ mt: 1 }}>
 
             <TextField
               margin="normal"
