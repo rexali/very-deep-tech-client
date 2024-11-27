@@ -192,9 +192,9 @@ export default async function ProductDetailPage({ params }: { params: { productI
               }}
             >
 
-              {product.product_photos_links.split(',')?.length ?
+              {product.product_photos_links?.split(',')?.length ?
 
-                product.product_photos_links.split(',').map((product_photo: any, i: any) =>
+                product.product_photos_links?.split(',').map((product_photo: any, i: any) =>
                   <div key={i} style={{ display: 'inline-block', margin: 10 }}>
                     <Image
                       src={`${SERVER_URL}/uploads/${product_photo}`}
