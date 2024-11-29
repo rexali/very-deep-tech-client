@@ -6,22 +6,28 @@ import axios from "axios";
 const updateProductAPI = async (productData: any, setPostSuccess: any, setPostError: any) => {
 
     try {
-        let { data} = await axios.patch(`${SERVER_URL}/products`, productData, {
+        let { data } = await axios.patch(`${SERVER_URL}/products`, productData, {
             withCredentials: false,
             headers: {
-                'Accept':'application/json',
+                'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
 
         });
-        if (data.data?.status === "success") {
-            setPostSuccess(data.data?.status)
+        if (data.status === "success") {
+            setPostSuccess(data.status)
         } else {
-            setPostError("Failed")
+            setPostError(data.status)
         }
 
-    } catch (error) {
+    } catch (error: any) {
         console.warn(error);
+        setPostError("Error! " + error.message)
+    } finally {
+        setTimeout(() => {
+            setPostSuccess('')
+            setPostError('')
+        }, 30000);
     }
 };
 

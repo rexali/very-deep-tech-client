@@ -25,7 +25,7 @@ const handleUpdateMessageAPI = async (
             } = event.target.elements;
 
             const updateData = {
-                userId:  userId,
+                userId: userId,
                 title: title.value,
                 comment: comment.value,
                 sender: sender.value,
@@ -39,16 +39,19 @@ const handleUpdateMessageAPI = async (
                     'Content-Type': 'application/json',
                 },
             });
-            if (data.data.status) {
-                setUpdateSuccess(data.data.status)
+            if (data.status) {
+                setUpdateSuccess(data.status)
             } else {
-                setUpdateError(data.data.status)
+                setUpdateError(data.status)
             }
-        } catch (error) {
-            setUpdateError("Error!")
-            console.warn(error);
-        };
-
+        } catch (error: any) {
+            setUpdateError('ERROR! ' + error.message);
+        } finally {
+            setTimeout(() => {
+                setUpdateSuccess('')
+                setUpdateSuccess("")
+            }, 10000);
+        }
     } else {
         savePathLink()
     }

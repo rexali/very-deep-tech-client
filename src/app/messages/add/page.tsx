@@ -9,8 +9,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import ThemeProvider from '@mui/material/styles/ThemeProvider';
 import createTheme from '@mui/material/styles/createTheme';
-import { handleCreateMessageAPI } from '../api/handleCreateMessageAPI';
 import { getToken } from '@/utils/getToken';
+import { handleMessageSubmit } from '../utils/handleMessageSubmit';
 
 const defaultTheme = createTheme();
 
@@ -38,7 +38,7 @@ export default function AddMessage() {
                         component="form"
                         noValidate
                         onSubmit={async (evt) => {
-                            await handleCreateMessageAPI(evt, setSuccess, setError, userId);
+                            await handleMessageSubmit(evt, setSuccess, setError, userId);
                         }}
                         sx={{ mt: 15 }}
                     >

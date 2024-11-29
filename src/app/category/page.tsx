@@ -10,7 +10,7 @@ import CategoryList from "./CategoryList";
 
 export default function CategoryPage() {
   const searchParams = useSearchParams();
-   const term = searchParams.get('term') as string;
+  const term = searchParams.get('term') as string;
   const [data, setData] = useState<any>([]);
   const [activePage, setActivePage] = useState<number>(1);
   const mountRef = useRef(true);
@@ -30,23 +30,23 @@ export default function CategoryPage() {
   });
 
   if (!data?.length) {
-    return <Fallback  item={'No product matches your search term'}/>
+    return <Fallback item={'No product matches your search term'} />
   }
 
   return (
-    <Container maxWidth="md" component={'main'} sx={{mt:10}}>
+    <Container maxWidth="md" component={'main'} sx={{ mt: 10 }}>
       <h2>Product(s): {term}</h2>
       <Suspense fallback={<Fallback />}>
         <CategoryList term={term} activePage={activePage} />
+        <Box sx={{ mr: "auto", ml: "auto", maxWidth: 100 }} >
+          <ReactPagination
+            activePage={activePage}
+            itemsCountPerPage={10}
+            totalItemsCount={data?.length}
+            pageRangeDisplayed={5}
+            onchangeCallback={(v: any) => setActivePage(v)} />
+        </Box>
       </Suspense>
-      <Box sx={{ mr: "auto", ml: "auto", maxWidth: 100 }} >
-        <ReactPagination
-          activePage={activePage}
-          itemsCountPerPage={10}
-          totalItemsCount={data?.length}
-          pageRangeDisplayed={5}
-          onchangeCallback={(v: any) => setActivePage(v)} />
-      </Box>
     </Container>
   )
 }

@@ -33,10 +33,10 @@ const handleUpdateNotificationAPI = async (
                     'Content-Type': 'application/json',
                 },
             });
-            if (data.data.success) {
-                setUpdateSuccess(data.data.success)
+            if (data.status) {
+                setUpdateSuccess(data.status)
             } else {
-                setUpdateError(data.data.success)
+                setUpdateError(data.status)
             }
         } catch (error) {
             setUpdateError("Error!")

@@ -9,13 +9,13 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Copyright from '@/components/common/copyright';
-import { handleCreateNotification } from '../utils/handleCreateNotification';
+import {handleNotificationSubmit} from '../utils/handleNotificationSubmit';
 import { getToken } from '@/utils/getToken';
 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
-export default function AddNotification({ params }: { params: { userId: string } }) {
+export default function AddNotification() {
   const [error, setError] = React.useState('');
   const [success, setSuccess] = React.useState('');
   const userId = getToken('_id') as string ?? "6712c927857f3a3b3492459f";
@@ -26,7 +26,7 @@ export default function AddNotification({ params }: { params: { userId: string }
         {/* <CssBaseline /> */}
         <Box
           sx={{
-            mt: 15,
+            mt: 10,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -36,7 +36,7 @@ export default function AddNotification({ params }: { params: { userId: string }
             Post Notice
           </Typography>
 
-          <Box component="form" onSubmit={async (evt) => await handleCreateNotification(evt, setSuccess, setError, userId)} noValidate sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={async (evt) => await handleNotificationSubmit(evt, setSuccess, setError, userId)} noValidate sx={{ mt: 1 }}>
 
             <TextField
               margin="normal"

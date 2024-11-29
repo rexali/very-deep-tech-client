@@ -12,11 +12,13 @@ export const dynamicParams = false;
 
 export default async function ProductList(props: any) {
     let products;
-    products = await getProductsAPI(props?.activePage);
+    products = await getProductsAPI(props?.activePage ?? 1);
     const categories = getProductCategories(products);
+
     if (props.featured) {
         products = products?.slice(0, 2) ?? []
     }
+
 
     return (
         <div>
