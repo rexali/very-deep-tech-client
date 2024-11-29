@@ -8,13 +8,15 @@ export const dynamicParams = false;
 
 export default async function PopularProductList() {
     let products = await getProductsAPI();
-    let newProducts = products.slice(0,2);
+    let newProducts = products.slice(0, 2);
 
     return (
+        <div>
             <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }} sx={{ mt: 5 }}>
                 {newProducts.map((product: any) => {
                     return <Grid key={product._id} item xs={12} md={6}><ProductCard product={product} /></Grid>
                 })}
             </Grid>
+        </div>
     )
 }

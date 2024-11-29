@@ -1,4 +1,4 @@
-import { Suspense, useState } from "react";
+import { Suspense } from "react";
 import { Button, Container } from "@mui/material";
 import Fallback from "@/components/common/fallback";
 import Link from "next/link";
