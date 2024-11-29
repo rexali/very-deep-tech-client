@@ -9,10 +9,9 @@ export const revalidate = 3600;
 export const dynamicParams = false;
 
 export default async function RecommendedProductList(props: any) {
-    let products;
-    products = await getProductsAPI(props?.activePage ?? 1);
-    products?.slice(0, 2) ?? [];
 
+    let products = await getProductsAPI(props?.activePage ?? 1);
+    products = products?.slice(0, 2) ?? [];
 
     return (
         <div>

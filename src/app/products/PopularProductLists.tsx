@@ -9,9 +9,8 @@ export const revalidate = 3600;
 export const dynamicParams = false;
 
 export default async function PopularProductList(props: any) {
-    let products;
-    products = await getProductsAPI(props?.activePage ?? 1);
-    products?.slice(0, 2) ?? [];
+    let products = await getProductsAPI(props?.activePage ?? 1);
+    products = products?.slice(0, 2) ?? [];
     return (
         <div>
             <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }} sx={{ mt: 5 }}>
