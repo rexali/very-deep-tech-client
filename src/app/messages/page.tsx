@@ -12,11 +12,11 @@ import { AppContext } from '@/context/AppContext';
 import { useAuth } from '@/hooks/use-auth';
 
 export default function MessagesPage() {
+    const { user } = useAuth()
     const [activePage, setActivePage] = React.useState(1);
     const { state, dispatch } = React.useContext(AppContext)
     const { messages } = useMessages(dispatch, activePage);
-    const {user} = useAuth()
-   
+
     const handlePageChange = (pageNumber: any) => {
         setActivePage(pageNumber)
     }
@@ -36,15 +36,15 @@ export default function MessagesPage() {
                 <Grid container columnSpacing={1}>
                     <MessageList messages={messages} role={user.role} />
                 </Grid>
-                <Box marginTop={4} display={"flex"} justifyContent={'center'}>
-                    <ReactPagination
-                        activePage={activePage}
-                        itemsCountPerPage={4}
-                        totalItemsCount={messages[0]?.totalMessages}
-                        pageRangeDisplayed={5}
-                        onchangeCallback={handlePageChange} />
-                </Box>
             </Container>
+            <Box marginTop={4} display={"flex"} justifyContent={'center'}>
+                <ReactPagination
+                    activePage={activePage}
+                    itemsCountPerPage={4}
+                    totalItemsCount={messages[0]?.totalMessages}
+                    pageRangeDisplayed={5}
+                    onchangeCallback={(v: any)=>handlePageChange(v)} />
+            </Box>
         </ProtectedRoute>
     );
 }

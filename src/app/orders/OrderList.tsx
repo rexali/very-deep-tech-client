@@ -20,7 +20,7 @@ export default function OrderList(props: any) {
                 )
             }
 
-            <Box sx={{ mr: "auto", ml: "auto", maxWidth: 100 }} >
+            <Box marginTop={4} display={"flex"} justifyContent={'center'} >
                 <ReactPagination
                     activePage={props?.activePage}
                     itemsCountPerPage={10}

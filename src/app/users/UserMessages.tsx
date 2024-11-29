@@ -6,16 +6,17 @@ import { useUserMessages } from "./hooks/useUserMessages";
 import { AuthContext } from "@/context/AuthContext";
 import * as React from "react";
 import ReactPagination from "@/components/react-pagination";
+import { getToken } from "@/utils/getToken";
 
 export default function UserMessages() {
   const [activePage, setActivePage] = React.useState(1);
   const { state, dispatch } = React.useContext(AuthContext)
-
+  const userId = getToken('_id') as string ?? "6712c927857f3a3b3492459f"
   const handlePageChange = (pageNumber: any) => {
     setActivePage(pageNumber)
   }
-  
-  const messages = useUserMessages(state.user?._id ?? "6712c927857f3a3b3492459f", dispatch, activePage) as any;
+
+  const messages = useUserMessages(userId, dispatch, activePage) as any;
 
   if (!messages.length) {
 
@@ -36,8 +37,8 @@ export default function UserMessages() {
         <ReactPagination
           activePage={activePage}
           itemsCountPerPage={4}
-          totalItemsCount={messages.messagesLength}
-          pageRangeDisplayed={4}
+          totalItemsCount={messages[0].totalMessages}
+          pageRangeDisplayed={5}
           onchangeCallback={handlePageChange} />
       </Box>
     </Container>

@@ -18,7 +18,6 @@ export default function UsersProducts() {
     }
 
     getData();
-
   }, [activePage]);
 
   if (!data.length) {

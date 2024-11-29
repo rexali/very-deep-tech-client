@@ -24,7 +24,7 @@ export default function UsersNotifications() {
 
     }, [activePage])
 
-    if (!data?.length) {
+    if (!data.length) {
 
         return (
             <Container sx={{ mt: 8 }} component={"main"} maxWidth="md">
@@ -45,9 +45,9 @@ export default function UsersNotifications() {
                 <ReactPagination
                     activePage={activePage}
                     itemsCountPerPage={4}
-                    totalItemsCount={data.length}
-                    pageRangeDisplayed={4}
-                    onchangeCallback={handlePageChange} />
+                    totalItemsCount={data[0]?.totalNotifications}
+                    pageRangeDisplayed={5}
+                    onchangeCallback={(v:any)=>handlePageChange(v)} />
             </Box>
         </Container>
     </React.Suspense>

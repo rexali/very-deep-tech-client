@@ -44,7 +44,7 @@ export default function UsersNotifications() {
                 <ReactPagination
                     activePage={activePage}
                     itemsCountPerPage={4}
-                    totalItemsCount={data.length}
+                    totalItemsCount={data[0]?.totalNotifications}
                     pageRangeDisplayed={5}
                     onchangeCallback={handlePageChange} />
             </Box>

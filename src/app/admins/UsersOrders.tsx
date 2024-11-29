@@ -67,8 +67,9 @@ export default function UsersOrders() {
             </TableRow>
           ))}
         </TableBody>
-      </Table><br />
-      <Box sx={{ mr: "auto", ml: "auto", maxWidth: 100 }} >
+      </Table>
+      </TableContainer>
+      <Box  marginTop={4} display={"flex"} justifyContent={'center'} >
         <ReactPagination
           activePage={activePage}
           itemsCountPerPage={4}
@@ -76,7 +77,6 @@ export default function UsersOrders() {
           pageRangeDisplayed={5}
           onchangeCallback={(v: any) => setActivePage(v)} />
       </Box>
-    </TableContainer>
     </React.Suspense>
   );
 }

@@ -11,23 +11,22 @@ export const dynamicParams = false;
 export default async function RecommendedProductList(props: any) {
 
     let products = await getProductsAPI(props?.activePage ?? 1);
-    products = products?.slice(0, 2) ?? [];
 
     return (
         <div>
             <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }} sx={{ mt: 5 }}>
-                {products.map((product: any) => {
+                {products.slice(0, 2).map((product: any) => {
                     return <Grid key={product._id} item xs={12} md={6}><ProductCard product={product} role={props?.role} /></Grid>
                 })}
             </Grid>
-            <Box marginTop={4} display={"flex"} justifyContent={'center'} >
+            {/* <Box marginTop={4} display={"flex"} justifyContent={'center'} >
                 <ReactPagination
                     activePage={props?.activePage}
                     itemsCountPerPage={4}
                     totalItemsCount={products[0]?.totalProducts}
                     pageRangeDisplayed={5}
                     onchangeCallback={(v: any) => props.setActivePage(v)} />
-            </Box>
+            </Box> */}
         </div>
     )
 }

@@ -65,7 +65,7 @@ export default function UsersTransactions() {
             </TableBody>
           </Table>
         </TableContainer>
-        <Box sx={{ mr: "auto", ml: "auto", mt: 5, maxWidth: '100%' }} >
+        <Box  marginTop={4} display={"flex"} justifyContent={'center'} >
           <ReactPagination
             activePage={activePage}
             itemsCountPerPage={4}

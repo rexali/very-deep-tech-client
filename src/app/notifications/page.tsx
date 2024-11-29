@@ -12,16 +12,16 @@ import { AppContext } from '@/context/AppContext';
 import { useAuth } from '@/hooks/use-auth';
 
 export default function Notifications() {
+    const { user } = useAuth();
     const [activePage, setActivePage] = React.useState(1);
     const { dispatch, state } = React.useContext(AppContext);
     const notifications = useNotifications(dispatch, activePage);
-    const { user } = useAuth();
 
 
     const handlePageChange = (pageNumber: any) => {
         setActivePage(pageNumber)
     }
- 
+
     if (!notifications.length) {
 
         return (
@@ -35,7 +35,7 @@ export default function Notifications() {
         <ProtectedRoute>
             <Container sx={{ mt: 8 }} component={"main"} maxWidth="md">
                 <Grid container columnSpacing={1}>
-                    <NotificationList notifications={state.notifications || notifications} role={user.role} />
+                    <NotificationList notifications={notifications || state.notifications} role={user.role} />
                 </Grid>
             </Container>
             <Box marginTop={4} display={"flex"} justifyContent={'center'}>
@@ -44,7 +44,7 @@ export default function Notifications() {
                     itemsCountPerPage={4}
                     totalItemsCount={notifications[0].totalNotifications}
                     pageRangeDisplayed={5}
-                    onchangeCallback={handlePageChange} />
+                    onchangeCallback={(v: any) => handlePageChange(v)} />
             </Box>
         </ProtectedRoute>
     );

@@ -15,7 +15,7 @@ const handleProductSubmit = async (event: any, setPostSuccess: any, setPostError
         product_code,
         product_demos_links,
         product_photos_links,
-        featured
+        // featured
     } = event.target.elements;
 
     let formData = new Form();
@@ -40,7 +40,7 @@ const handleProductSubmit = async (event: any, setPostSuccess: any, setPostError
     formData.append('product_demos_links', product_demos_links.value);
     formData.append('product_photos_links', product_photos_links.value);
     formData.append('user', userId);
-    formData.append('featured', featured.value ?? false);
+    // formData.append('featured', featured.value ?? false);
 
 
     await createProductAPI(formData, setPostSuccess, setPostError);
