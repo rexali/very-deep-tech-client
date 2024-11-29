@@ -43,7 +43,7 @@ export default function NotificationCard({
                     <Link href={''} style={{ textDecoration: 'none' }} onClick={() => setOpen(true)}><DeleteForever /> Delete</Link>
                 </Typography>}
             </CardContent>
-            {open && <DeleleModal cb={() => deleteNotificationAPI({ notificationId: notification._id })} closeCallback={setOpen} />}
+            {open && <DeleleModal cb={async () => await deleteNotificationAPI({ notificationId: notification._id })} closeCallback={setOpen} />}
 
         </Card>
     );

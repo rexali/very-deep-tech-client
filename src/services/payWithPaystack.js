@@ -65,8 +65,8 @@ export function payWithPaystack(
             } finally {
                 console.log(transaction.reference);
                 setTimeout(() => {
-                    setPostSuccess(' ')
-                    setPostError(" ")
+                    setPostSuccess('')
+                    setPostError("")
                 }, 10000);
             }
 

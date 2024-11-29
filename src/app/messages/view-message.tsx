@@ -13,10 +13,10 @@ export default function ViewMessage({
         <Card sx={{ maxWidth: 345, marginTop: 2 }}>
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                    {message?.subject}
+                    {message?.title}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    {message?.message}
+                    {message?.comment}
                 </Typography>
             </CardContent>
         </Card>

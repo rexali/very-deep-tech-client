@@ -51,7 +51,7 @@ export default function MessageCard({
                     <Link href={'#'} style={{ textDecoration: 'none' }} onClick={() => setOpen(true)}><DeleteForever /> Delete</Link>
                 </Typography>}
             </CardContent>
-            {open && <DeleleModal cb={() => deleteMessageAPI({ messageId: message._id })} closeCallback={setOpen} />}
+            {open && <DeleleModal cb={async () => await deleteMessageAPI({ messageId: message._id })} closeCallback={setOpen} />}
         </Card>
     );
 }

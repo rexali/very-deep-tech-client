@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Copyright from '@/components/common/copyright';
-import { handleCreateMessageAPI } from '../messages/api/handleCreateMessageAPI';
+import { handleMessageSubmit } from '../messages/utils/handleMessageSubmit';
 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
@@ -34,7 +34,7 @@ export default function SignIn() {
             CONTACT US
           </Typography>
 
-          <Box component="form" onSubmit={async (evt) => await handleCreateMessageAPI(evt, setSuccess, setError)} noValidate sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={async (evt) => await handleMessageSubmit(evt, setSuccess, setError)} noValidate sx={{ mt: 1 }}>
 
             <TextField
               margin="normal"

@@ -40,8 +40,8 @@ export async function sendOrderAndTransaction(
     } finally {
         console.log(reference);
         setTimeout(() => {
-            setPostSuccess(" ");
-            setPostError(" ");
+            setPostSuccess("");
+            setPostError("");
             setLoading('')
         }, 30000);
     }

@@ -28,7 +28,7 @@ export default async function ProductList(props: any) {
                     return <Grid key={product._id} item xs={12} md={6}><ProductCard product={product} role={props?.role} /></Grid>
                 })}
             </Grid>
-            <Box sx={{ mr: "auto", ml: "auto", maxWidth: 100 }} >
+            <Box marginTop={4} display={"flex"} justifyContent={'center'} >
                 <ReactPagination
                     activePage={props?.activePage}
                     itemsCountPerPage={10}

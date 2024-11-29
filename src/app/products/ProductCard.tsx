@@ -19,6 +19,7 @@ export default function ProductCard({ product, role }: { product: any, role?: st
           <Image
             src={`${SERVER_URL}/uploads/${product.product_pictures[0]}`}
             alt={product.product_name}
+            layout="responsive"
             style={{
               display: 'block',
               marginRight: 'auto',

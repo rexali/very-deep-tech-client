@@ -12,11 +12,11 @@ import Grid from '@mui/material/Grid';
 import ReviewPage from '@/app/reviews/page';
 import RatingReviewForm from '@/app/reviews/RatingReviewForm';
 import ProductTopActions from '../components/ProductTopActions';
-import FeaturedProducts from '@/app/home/FeaturedProducts';
 import Image from 'next/image';
 import ProductBottomActions from '../components/ProductBottomActions';
 import Link from 'next/link';
 import Rating from '@mui/material/Rating';
+import FeaturedProducts from '../FeaturedProducts';
 
 
 export const revalidate = 3600;

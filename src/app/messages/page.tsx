@@ -39,7 +39,7 @@ export default function MessagesPage() {
                 <Box marginTop={4} display={"flex"} justifyContent={'center'}>
                     <ReactPagination
                         activePage={activePage}
-                        itemsCountPerPage={10}
+                        itemsCountPerPage={5}
                         totalItemsCount={messages[0]?.totalMessages}
                         pageRangeDisplayed={5}
                         onchangeCallback={handlePageChange} />
