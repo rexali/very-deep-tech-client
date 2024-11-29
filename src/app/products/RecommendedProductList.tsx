@@ -3,14 +3,13 @@ import Grid from '@mui/material/Grid';
 import ProductCard from "./ProductCard";
 import { getProductsAPI } from './api/getProductsAPI';
 
-export const revalidate = 3600;
-export const dynamicParams = false;
+// export const revalidate = 3600;
+// export const dynamicParams = false;
 
 export default async function RecommendedProductList() {
 
     let products = await getProductsAPI();
     let newProducts = products.slice(0,2);
-
 
     return (
         <div>
