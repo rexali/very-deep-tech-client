@@ -31,8 +31,8 @@ export default async function ProductList(props: any) {
             <Box marginTop={4} display={"flex"} justifyContent={'center'} >
                 <ReactPagination
                     activePage={props?.activePage}
-                    itemsCountPerPage={10}
-                    totalItemsCount={products[0]?.totalProducts ?? 10}
+                    itemsCountPerPage={4}
+                    totalItemsCount={products[0]?.totalProducts}
                     pageRangeDisplayed={5}
                     onchangeCallback={(v: any) => props.setActivePage(v)} />
             </Box>

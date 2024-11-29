@@ -38,7 +38,7 @@ export default function CategoryPage() {
       <h2>Product(s): {term}</h2>
       <Suspense fallback={<Fallback />}>
         <CategoryList term={term} activePage={activePage} />
-        <Box sx={{ mr: "auto", ml: "auto", maxWidth: 100 }} >
+        <Box marginTop={4} display={"flex"} justifyContent={'center'} >
           <ReactPagination
             activePage={activePage}
             itemsCountPerPage={10}

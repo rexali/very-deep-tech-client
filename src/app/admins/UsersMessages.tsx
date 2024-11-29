@@ -44,7 +44,7 @@ export default function UserMessages() {
       <Box marginTop={4} display={"flex"} justifyContent={'center'}>
         <ReactPagination
           activePage={activePage}
-          itemsCountPerPage={5}
+          itemsCountPerPage={4}
           totalItemsCount={data[0]?.totalMessages}
           pageRangeDisplayed={5}
           onchangeCallback={handlePageChange} />

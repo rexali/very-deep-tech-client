@@ -32,8 +32,6 @@ const pages = [
 ];
 
 const menus = [
-  'Users',
-  'Logout',
   'Messages',
   'Notifications'
 ];
@@ -184,23 +182,38 @@ function NavBar() {
             open={Boolean(anchorElUser)}
             onClose={handleCloseUserMenu}
           >
-            <MenuItem key={"signin"} onClick={handleCloseUserMenu}>
-              <Link style={{ textDecoration: "none" }} href={`/auth/signin`}>Sign In</Link>
-            </MenuItem>
+            {
+              user._id === null &&
+              <MenuItem key={"signin"} onClick={handleCloseUserMenu}>
+                <Link style={{ textDecoration: "none" }} href={`/auth/signin`}>Sign In</Link>
+              </MenuItem>
+
+            }
 
             <MenuItem key={"signup"} onClick={handleCloseUserMenu}>
               <Link style={{ textDecoration: "none" }} href={`/auth/signup`}>Sign Up</Link>
             </MenuItem>
+
+            {
+              user._id !== null && <MenuItem key={"signup"} onClick={handleCloseUserMenu}>
+                <Link style={{ textDecoration: "none" }} href={`/users`}>Account</Link>
+              </MenuItem>
+            }
+
+            {
+              user._id !== null && <MenuItem key={"signup"} onClick={handleCloseUserMenu}>
+                <Link onClick={handleSignOut} style={{ textDecoration: "none" }} href={`/users`}>Logout</Link>
+              </MenuItem>
+            }
             {/* Other Menu components */}
             {menus.map((menu, index) => (
               <MenuItem key={menu} onClick={handleCloseUserMenu}>
                 {
-                  (menu === "Logout" && user._id !== null) ?
-                    <Link prefetch onClick={handleSignOut} style={{ textDecoration: "none" }} key={index + "s"} href={'#'} >{menu}</Link> :
-                    (menu === "Users" && user._id !== null) ?
-                      <Link prefetch style={{ textDecoration: "none" }} key={index + "s"} href={`/${menu.toLowerCase()}`}>{"Account"}</Link> :
-                      (user._id !== null) &&
-                      <Link prefetch style={{ textDecoration: "none" }} key={index + "s"} href={`/${menu.toLowerCase()}`}>{menu}</Link>
+                  // (menu === "Logout" && user._id !== null) ?
+                  //   <Link prefetch onClick={handleSignOut} style={{ textDecoration: "none" }} key={index + "s"} href={'#'} >{menu}</Link> :
+                  //   (menu === "Users" && user._id !== null) ?
+                  //     <Link prefetch style={{ textDecoration: "none" }} key={index + "s"} href={`/${menu.toLowerCase()}`}>{"Account"}</Link> :
+                  (user._id !== null) && <Link prefetch style={{ textDecoration: "none" }} key={index + "s"} href={`/${menu.toLowerCase()}`}>{menu}</Link>
                 }
               </MenuItem>
             ))}

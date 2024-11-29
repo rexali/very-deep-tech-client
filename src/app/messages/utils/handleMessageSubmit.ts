@@ -14,16 +14,16 @@ const handleMessageSubmit = async (
 
     const {
         title,
-        comment,
+        comment
     } = event.target.elements;
 
     const messageData = {
         userId: userId ?? '',
         title: title.value,
         comment: comment.value,
-        sender: event.target.elements.value ?? '',
-        lastName: event.target.elements.value ?? '',
-        firstName: event.target.elements.value ?? '',
+        sender: event.target.elements.sender.value ?? '',
+        lastName: event.target.elements.lastName.value ?? '',
+        firstName: event.target.elements.firstName.value ?? '',
     }
 
     await handleCreateMessageAPI(messageData, setSuccess, setError)

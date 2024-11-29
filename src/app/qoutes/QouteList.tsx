@@ -19,11 +19,10 @@ export default function QouteList(props: any) {
 
                 )
             }
-
-            <Box sx={{ mr: "auto", ml: "auto", maxWidth: 100 }} >
+            <Box marginTop={4} display={"flex"} justifyContent={'center'} >
                 <ReactPagination
                     activePage={props?.activePage}
-                    itemsCountPerPage={10}
+                    itemsCountPerPage={4}
                     totalItemsCount={props?.qoutes[0]?.totalQoutes}
                     pageRangeDisplayed={5}
                     onchangeCallback={(v: any) => props.setActivePage(v)} />

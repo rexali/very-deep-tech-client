@@ -69,7 +69,7 @@ export default function UsersProfiles() {
             <ReactPagination
               activePage={activePage}
               itemsCountPerPage={10}
-              totalItemsCount={data?.length}
+              totalItemsCount={data[0]?.totalProfiles}
               pageRangeDisplayed={5}
               onchangeCallback={(v: any) => setActivePage(v)} />
           </Box>

@@ -17,7 +17,7 @@ export default function FavouritePage() {
   const [activePage, setActivePage] = useState<number>(1);
   const mountRef = useRef(true);
   const { dispatch } = useContext(AppContext);
-  const userId = getToken("_id") as string;
+  const userId = getToken("_id") as string ?? "6712c927857f3a3b3492459f";
   async function getData() {
     const result = await getUserFavouritesAPI(userId, activePage)
     setData(result);
@@ -42,10 +42,10 @@ export default function FavouritePage() {
     <Container maxWidth="md" component={'main'} sx={{ mt: 5 }}>
       <h2 style={{ display: 'flex', justifyContent: "space-between" }}>Favourites <Link style={{ textDecoration: "none", color: 'blue' }} href={"/products"}><Button>See all</Button></Link></h2>
       <FavouriteList products={data} />
-      <Box sx={{ mr: "auto", ml: "auto", maxWidth: 100 }} >
+      <Box marginTop={4} display={"flex"} justifyContent={'center'} >
         <ReactPagination
           activePage={activePage}
-          itemsCountPerPage={10}
+          itemsCountPerPage={4}
           totalItemsCount={data[0].totalFavourites}
           pageRangeDisplayed={5}
           onchangeCallback={(v: any) => setActivePage(v)} />

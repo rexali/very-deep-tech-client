@@ -45,7 +45,7 @@ export default function UsersNotifications() {
                     activePage={activePage}
                     itemsCountPerPage={4}
                     totalItemsCount={data.length}
-                    pageRangeDisplayed={4}
+                    pageRangeDisplayed={5}
                     onchangeCallback={handlePageChange} />
             </Box>
         </Container>

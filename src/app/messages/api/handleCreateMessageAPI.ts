@@ -16,10 +16,10 @@ const handleCreateMessageAPI = async (
                 'Content-Type': 'application/json',
             },
         });
-        if (data.data.message._id) {
-            setSuccess('SUCCESS');
+        if (data.status) {
+            setSuccess(data.status);
         } else {
-            setError('ERROR');
+            setError(data.status);
         }
     } catch (error: any) {
         console.warn(error);

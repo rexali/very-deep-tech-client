@@ -41,7 +41,7 @@ export default function Notifications() {
             <Box marginTop={4} display={"flex"} justifyContent={'center'}>
                 <ReactPagination
                     activePage={activePage}
-                    itemsCountPerPage={10}
+                    itemsCountPerPage={4}
                     totalItemsCount={notifications[0].totalNotifications}
                     pageRangeDisplayed={5}
                     onchangeCallback={handlePageChange} />

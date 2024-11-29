@@ -34,12 +34,12 @@ export default function MessagesPage() {
         <ProtectedRoute>
             <Container sx={{ mt: 8 }} component={"main"} maxWidth="md">
                 <Grid container columnSpacing={1}>
-                    <MessageList messages={state.messages || messages} role={user.role} />
+                    <MessageList messages={messages} role={user.role} />
                 </Grid>
                 <Box marginTop={4} display={"flex"} justifyContent={'center'}>
                     <ReactPagination
                         activePage={activePage}
-                        itemsCountPerPage={5}
+                        itemsCountPerPage={4}
                         totalItemsCount={messages[0]?.totalMessages}
                         pageRangeDisplayed={5}
                         onchangeCallback={handlePageChange} />

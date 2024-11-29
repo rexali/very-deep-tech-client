@@ -68,8 +68,8 @@ export default function UsersTransactions() {
         <Box sx={{ mr: "auto", ml: "auto", mt: 5, maxWidth: '100%' }} >
           <ReactPagination
             activePage={activePage}
-            itemsCountPerPage={10}
-            totalItemsCount={data?.length}
+            itemsCountPerPage={4}
+            totalItemsCount={data[0]?.totalTransactions}
             pageRangeDisplayed={5}
             onchangeCallback={(v: any) => setActivePage(v)} />
         </Box>
