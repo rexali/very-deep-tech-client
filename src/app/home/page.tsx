@@ -13,6 +13,7 @@ import Portfolios from './portfolios';
 import Team from './team';
 import Partners from './partners';
 import FeaturedProducts from '../products/FeaturedProducts';
+import PopularProducts from '../products/PopularProducts';
 
 export default function HomePage() {
   // const isMobile = useMediaQuery({ maxDeviceWidth: 1023 });
@@ -21,10 +22,11 @@ export default function HomePage() {
       {/* <CssBaseline /> */}
       <SearchInput />
       <MarketingMessage /> <br /><br />
-      <FeaturedProducts title={'Featured'} />
+      <FeaturedProducts />
       <FAQHowItWorks />
       <Testimonials />
       <Portfolios />
+      <PopularProducts />
       <Team />
       <Partners />
       <CreateSubscription />

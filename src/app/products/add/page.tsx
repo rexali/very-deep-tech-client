@@ -177,6 +177,17 @@ export default function AddProduct() {
                         placeholder="seperated it with comma"
                     />
 
+                    <TextField
+                        autoComplete="given-name"
+                        name="featured"
+                        required
+                        fullWidth
+                        type='checkbox'
+                        margin={"normal"}
+                        id="featured"
+                        label="Featured"
+                    />
+
                     {success && <Box textAlign={"center"} sx={{ color: "green" }}>{success.toUpperCase()}</Box>}
                     {error && <Box textAlign={"center"} sx={{ color: "red" }}>{error.toUpperCase()}</Box>}
 

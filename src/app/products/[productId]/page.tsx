@@ -17,6 +17,7 @@ import ProductBottomActions from '../components/ProductBottomActions';
 import Link from 'next/link';
 import Rating from '@mui/material/Rating';
 import FeaturedProducts from '../FeaturedProducts';
+import RecommendedProducts from '../RecommendedProducts';
 
 
 export const revalidate = 3600;
@@ -237,8 +238,7 @@ export default async function ProductDetailPage({ params }: { params: { productI
       <ReviewPage ratings={product.ratings} /><br /><br />
       <RatingReviewForm productId={product._id} />
       {/* cross-sell/upsells: Additional products: e.g People who viewed this item also bought */}
-      {/* <Box sx={{fontWeight:'bold'}}>People who viewed this item also bought:</Box> */}
-      <FeaturedProducts title='People who viewed this item also bought:' />
+      <RecommendedProducts />
     </Container>
   );
 }
