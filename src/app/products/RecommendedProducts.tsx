@@ -1,14 +1,10 @@
-'use client'
-
 import { Suspense, useState } from "react";
 import { Button, Container } from "@mui/material";
 import Fallback from "@/components/common/fallback";
 import Link from "next/link";
 import RecommendedProductList from "./RecommendedProductList";
 
-export default function RecommendedProducts(props: any) {
-
-  const [activePage, setActivePage] = useState<number>(1);
+export default function RecommendedProducts() {
 
   return (
     <Container maxWidth="md" component={'main'} sx={{ mt: 5 }}>
@@ -17,7 +13,7 @@ export default function RecommendedProducts(props: any) {
         <Link style={{ textDecoration: "none", color: 'blue' }} href={"/products"}><Button>See all</Button></Link>
       </h2>
       <Suspense fallback={<Fallback />}>
-        <RecommendedProductList setActivePage={setActivePage} activePage={activePage} featured={true} />
+        <RecommendedProductList />
       </Suspense>
     </Container>
   )
