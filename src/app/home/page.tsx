@@ -11,6 +11,7 @@ import Portfolios from './portfolios';
 import Team from './team';
 import Partners from './partners';
 import HomeProductCategories from '../products/HomeProductCategories';
+import FeaturedProducts from '../products/FeaturedProducts';
 
 export default function HomePage() {
   // const isMobile = useMediaQuery({ maxDeviceWidth: 1023 });
@@ -20,7 +21,7 @@ export default function HomePage() {
       <SearchInput />
       <MarketingMessage /> <br /><br />
       <HomeProductCategories />
-      <HomeProductCategories />
+      <FeaturedProducts />
       <Testimonials />
       <Portfolios />
       <Team />
