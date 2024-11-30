@@ -3,10 +3,12 @@ import { Button, Container } from "@mui/material";
 import Fallback from "@/components/common/fallback";
 import Link from "next/link";
 import RecommendedProductList from "./RecommendedProductList";
+import ErrorBoundary from "@/components/ErrorBoundary";
 
 export default function RecommendedProducts() {
 
   return (
+    <ErrorBoundary>
     <Container maxWidth="md" component={'main'} sx={{ mt: 5 }}>
       <h2 style={{ display: 'flex', flexDirection: 'row', justifyContent: "space-between" }}>
         <span style={{ fontSize: 12 }}>People who viewed this item also bought:</span>
@@ -16,5 +18,6 @@ export default function RecommendedProducts() {
         <RecommendedProductList />
       </Suspense>
     </Container>
+    </ErrorBoundary>
   )
 }

@@ -182,7 +182,7 @@ function NavBar() {
             onClose={handleCloseUserMenu}
           >
             {
-              user._id === null &&
+              (user._id !== null) &&
               <MenuItem key={"signin"} onClick={handleCloseUserMenu}>
                 <Link prefetch style={{ textDecoration: "none" }} href={`/auth/signin`}>Sign In</Link>
               </MenuItem>
@@ -194,13 +194,13 @@ function NavBar() {
             </MenuItem>
 
             {
-              user._id !== null && <MenuItem key={"signup"} onClick={handleCloseUserMenu}>
+              (user._id !== null) && <MenuItem key={"signup"} onClick={handleCloseUserMenu}>
                 <Link style={{ textDecoration: "none" }} href={`/users`}>Account</Link>
               </MenuItem>
             }
 
             {
-              user._id !== null && <MenuItem key={"signup"} onClick={handleCloseUserMenu}>
+              (user._id !== null) && <MenuItem key={"signup"} onClick={handleCloseUserMenu}>
                 <Link prefetch onClick={handleSignOut} style={{ textDecoration: "none" }} href={`/users`}>Logout</Link>
               </MenuItem>
             }

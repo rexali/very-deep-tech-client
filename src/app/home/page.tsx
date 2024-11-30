@@ -23,8 +23,8 @@ export default function HomePage() {
       {/* <CssBaseline /> */}
       <SearchInput />
       <MarketingMessage /> <br /><br />
-      {/* <HomeProductCategories /> */}
-      <FeaturedProducts />
+      <HomeProductCategories />
+      {/* <FeaturedProducts /> */}
       <PopularProducts />
       <FAQHowItWorks />
       <Testimonials />

@@ -3,9 +3,6 @@ import Grid from '@mui/material/Grid';
 import ProductCard from "./ProductCard";
 import { getProductsAPI } from './api/getProductsAPI';
 
-// export const revalidate = 3600;
-// export const dynamicParams = false;
-
 export default async function PopularProductList() {
     let products = await getProductsAPI();
 
