@@ -15,15 +15,16 @@ import Partners from './partners';
 import FeaturedProducts from '../products/FeaturedProducts';
 import PopularProducts from '../products/PopularProducts';
 import ProductCategories from '../products/ProductCategory';
+import HomeProductCategories from '../products/HomeProductCategories';
 
 export default function HomePage() {
   // const isMobile = useMediaQuery({ maxDeviceWidth: 1023 });
   return (
-    <main>
+    <main> 
       {/* <CssBaseline /> */}
       <SearchInput />
       <MarketingMessage /> <br /><br />
-      <ProductCategories home={'home'} />
+      <HomeProductCategories />
       <FeaturedProducts />
       <PopularProducts />
       <FAQHowItWorks />

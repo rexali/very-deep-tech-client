@@ -23,7 +23,6 @@ import { AppContext } from '@/context/AppContext';
 import Notifications from '@mui/icons-material/Notifications';
 import Message from '@mui/icons-material/Message';
 
-
 const pages = [
   'About',
   "Services",
@@ -117,7 +116,7 @@ function NavBar() {
             ))}
           </Menu>
         </Box>
-        <Link prefetch  href={'/'} style={{
+        <Link prefetch href={'/'} style={{
           textDecoration: "none",
           marginRight: 2,
           display: isMobile ? 'flex' : 'none',    ///{ xs: 'flex', md: 'none' },
@@ -146,7 +145,7 @@ function NavBar() {
           <Button sx={{ color: "white" }} startIcon={<Cart />}>Cart</Button><sup style={{ color: "red" }}>{state.carts?.length ?? 0}</sup>
         </Link>}
         {isMobile && <Link prefetch href={'/carts'} style={{ color: "white", textDecoration: "none" }} >
-          <Cart sx={{ fontSize: 18, }} /><sup style={{ color: "red", marginRight: 10 }}>{state.carts?.length ?? 0}</sup>
+          <Cart sx={{ fontSize: 18, }} /><sup style={{ color: "yellow", marginRight: 10 }}>{state.carts?.length ?? 0}</sup>
         </Link>}
         {/* end */}
         {/* Messages component */}
@@ -209,10 +208,6 @@ function NavBar() {
             {menus.map((menu, index) => (
               <MenuItem key={menu} onClick={handleCloseUserMenu}>
                 {
-                  // (menu === "Logout" && user._id !== null) ?
-                  //   <Link prefetch onClick={handleSignOut} style={{ textDecoration: "none" }} key={index + "s"} href={'#'} >{menu}</Link> :
-                  //   (menu === "Users" && user._id !== null) ?
-                  //     <Link prefetch style={{ textDecoration: "none" }} key={index + "s"} href={`/${menu.toLowerCase()}`}>{"Account"}</Link> :
                   (user._id !== null) && <Link prefetch style={{ textDecoration: "none" }} key={index + "s"} href={`/${menu.toLowerCase()}`}>{menu}</Link>
                 }
               </MenuItem>
@@ -224,3 +219,8 @@ function NavBar() {
   </AppBar>
 }
 export default NavBar;
+
+// (menu === "Logout" && user._id !== null) ?
+//   <Link prefetch onClick={handleSignOut} style={{ textDecoration: "none" }} key={index + "s"} href={'#'} >{menu}</Link> :
+//   (menu === "Users" && user._id !== null) ?
+//     <Link prefetch style={{ textDecoration: "none" }} key={index + "s"} href={`/${menu.toLowerCase()}`}>{"Account"}</Link> :

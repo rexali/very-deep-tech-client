@@ -30,7 +30,6 @@ export default function CreateSubscription() {
                     <Grid item xs={12} md={6} sx={{ textAlign: isMobile ? "" : 'left' }}>
                         <Button type="submit" variant="contained" size="large" color="success">Subscribe</Button>
                     </Grid>
-
                 </Grid>
                 {success && <Box textAlign={"center"} sx={{ color: "green" }}>{success.toUpperCase()}</Box>}
                 {error && <Box textAlign={"center"} sx={{ color: "red" }}>{error.toUpperCase()}</Box>}
