@@ -3,7 +3,7 @@
 import * as React from "react";
 
 
-type Props = {children:React.ReactNode};
+type Props = { children: React.ReactNode };
 type State = { hasError: boolean }
 
 export default class ErrorBoundary extends React.Component<Props, State> {
@@ -24,7 +24,7 @@ export default class ErrorBoundary extends React.Component<Props, State> {
 
     }
 
-    render():React.ReactNode {
+    render(): React.ReactNode {
 
         if (this.state.hasError) {
 

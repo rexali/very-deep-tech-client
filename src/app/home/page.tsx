@@ -24,8 +24,8 @@ export default function HomePage() {
       <SearchInput />
       <MarketingMessage /> <br /><br />
       <HomeProductCategories />
-      {/* <FeaturedProducts /> */}
-      <PopularProducts />
+      <FeaturedProducts />
+      {/* <PopularProducts /> */}
       <FAQHowItWorks />
       <Testimonials />
       <Portfolios />
