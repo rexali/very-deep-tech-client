@@ -10,9 +10,10 @@ import { SERVER_URL } from "@/constants/url";
 
 export default async function ProductCategories(props: any) {
 
-  let response = await fetch(`${SERVER_URL}/products/categories`);
+  let response = await fetch(`${SERVER_URL}/products`);
   let data = await response.json();
-  let categories = data.data.products?.categories;
+  let products = data.data.products;
+
 
   if (props.home === 'home') {
     return (
@@ -22,13 +23,13 @@ export default async function ProductCategories(props: any) {
           <Link style={{ textDecoration: "none", color: 'blue' }} href={"/products"}><Button>See all</Button></Link>
         </h2>
         <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }} sx={{ mt: 5 }}>
-          {categories.map((category: string, i: number) => {
+          {products.map((product: any, i: number) => {
             return (<Grid key={i} item xs={4} md={6}>
               <Card sx={{ backgroundColor: 'darkorange', color: 'white', width: 100, height: 100, textAlign: 'center', alignSelf: 'center', alignItems: 'center' }}>
                 <CardContent>
-                  <Link style={{ textDecoration: 'none' }} href={`/category/?term=${category}`}>
+                  <Link style={{ textDecoration: 'none' }} href={`/category/?term=${product.product_category}`}>
                     <Button>
-                      {category.toUpperCase()}
+                      {product.product_category.toUpperCase()}
                     </Button>
                   </Link>
                 </CardContent>
@@ -44,9 +45,9 @@ export default async function ProductCategories(props: any) {
     <div className="scrollmenu">
       <a href="#categories">Categories:</a>
       {
-        categories.map((category: string, i: number) =>
-          <a key={i} href={`/category/?term=${category}`}>
-            {category}
+        products.map((product: any, i: number) =>
+          <a key={i} href={`/category/?term=${product.product_category}`}>
+            {product.product_category}
           </a>)
       }
     </div>
