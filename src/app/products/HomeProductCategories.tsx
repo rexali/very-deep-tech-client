@@ -41,10 +41,10 @@ export default function HomeProductCategories(props: any) {
                         {products.map((product: any, i: number) => {
                             return (
                                 <Grid item key={i} xs={6} sm={6} md={6} lg={4}>
-                                    <Card sx={{ backgroundColor: 'darkorange', maxWidth: 70, MaxHeight: 50 }}>
-                                        <CardContent sx={{ textAlign: 'center', alignSelf: 'center' }}>
+                                    <Card sx={{ backgroundColor: 'darkorange', maxWidth: '100%', MaxHeight: '100%', textAlign: 'center', alignSelf: 'center' }}>
+                                        <CardContent>
                                             <Link prefetch style={{ textDecoration: 'none', }} href={`/category/?term=${product.product_category}`}>
-                                                <Button size='small' sx={{ fontSize: 11, color: 'white' }}>
+                                                <Button sx={{ fontSize: 11, color: 'white' }}>
                                                     {product.product_category.toUpperCase()}
                                                 </Button>
                                             </Link>
