@@ -8,14 +8,26 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import { SERVER_URL } from "@/constants/url";
 import ErrorBoundary from '@/components/ErrorBoundary';
-import React from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Fallback from "@/components/common/fallback";
 
-export default async function HomeProductCategories(props: any) {
+export default function HomeProductCategories(props: any) {
+    const [products, setProducts] = useState<any>();
+    const mountRef = useRef(true);
 
-    let response = await fetch(`${SERVER_URL}/products`);
-    let data = await response.json();
-    let products = data.data.products;
+    useEffect(() => {
+        async function getData() {
+            let response = await fetch(`${SERVER_URL}/products`);
+            let data = await response.json();
+            setProducts(data.data.products);
+        }
+        if (mountRef.current) {
+            getData();
+        }
+        return () => {
+            mountRef.current = false
+        }
+    }, [])
 
     return (
         <ErrorBoundary>
@@ -32,7 +44,7 @@ export default async function HomeProductCategories(props: any) {
                                     <Card sx={{ backgroundColor: 'darkorange', maxWidth: 70, MaxHeight: 50 }}>
                                         <CardContent sx={{ textAlign: 'center', alignSelf: 'center' }}>
                                             <Link prefetch style={{ textDecoration: 'none', }} href={`/category/?term=${product.product_category}`}>
-                                                <Button size='small' sx={{fontSize:11, color: 'white' }}>
+                                                <Button size='small' sx={{ fontSize: 11, color: 'white' }}>
                                                     {product.product_category.toUpperCase()}
                                                 </Button>
                                             </Link>

@@ -20,12 +20,12 @@ import ProductCategories from '../products/ProductCategory';
 export default function HomePage() {
   // const isMobile = useMediaQuery({ maxDeviceWidth: 1023 });
   return (
-    <main> 
+    <main>
       {/* <CssBaseline /> */}
       <SearchInput />
       <MarketingMessage /> <br /><br />
-      {/* <HomeProductCategories /> */}
-      <ProductCategories />
+      <HomeProductCategories />
+      {/* <ProductCategories /> */}
       {/* <FeaturedProducts /> */}
       {/* <PopularProducts /> */}
       <Testimonials />
