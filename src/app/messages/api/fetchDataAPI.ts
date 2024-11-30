@@ -1,3 +1,4 @@
+'use client'
 
 /**
  * Post or get data using fetch api
