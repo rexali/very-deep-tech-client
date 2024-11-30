@@ -12,9 +12,7 @@ export default function PopularProducts() {
         <span>Popular</span>
         <Link style={{ textDecoration: "none", color: 'blue' }} href={"/products"}><Button>See all</Button></Link>
       </h2>
-      <Suspense fallback={<Fallback />}>
         <PopularProductList />
-      </Suspense>
     </Container>
   )
 }

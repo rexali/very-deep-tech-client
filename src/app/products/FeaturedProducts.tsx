@@ -12,9 +12,7 @@ export default function FeaturedProducts() {
         <span>Featured</span>
         <Link style={{ textDecoration: "none", color: 'blue' }} href={"/products"}><Button>See all</Button></Link>
       </h2>
-      <Suspense fallback={<Fallback />}>
-        <FeaturedProductList />
-      </Suspense>
+      <FeaturedProductList />
     </Container>
   )
 }
