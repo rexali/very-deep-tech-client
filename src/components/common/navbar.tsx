@@ -78,7 +78,7 @@ function NavBar() {
     <Container maxWidth={"xl"}>
       <Toolbar disableGutters>
         {!isMobile && <AWFLogo />}
-        <Link href={'/'} style={{ display: isMobile ? "none" : '', fontSize: 18, textDecoration: 'none', color: 'white', marginRight: 5, letterSpacing: '.1rem', fontWeight: 700, }} >
+        <Link prefetch href={'/'} style={{ display: isMobile ? "none" : '', fontSize: 18, textDecoration: 'none', color: 'white', marginRight: 5, letterSpacing: '.1rem', fontWeight: 700, }} >
           Cshop
         </Link>
         <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -117,7 +117,7 @@ function NavBar() {
             ))}
           </Menu>
         </Box>
-        <Link href={'/'} style={{
+        <Link prefetch  href={'/'} style={{
           textDecoration: "none",
           marginRight: 2,
           display: isMobile ? 'flex' : 'none',    ///{ xs: 'flex', md: 'none' },
@@ -185,13 +185,13 @@ function NavBar() {
             {
               user._id === null &&
               <MenuItem key={"signin"} onClick={handleCloseUserMenu}>
-                <Link style={{ textDecoration: "none" }} href={`/auth/signin`}>Sign In</Link>
+                <Link prefetch style={{ textDecoration: "none" }} href={`/auth/signin`}>Sign In</Link>
               </MenuItem>
 
             }
 
             <MenuItem key={"signup"} onClick={handleCloseUserMenu}>
-              <Link style={{ textDecoration: "none" }} href={`/auth/signup`}>Sign Up</Link>
+              <Link prefetch style={{ textDecoration: "none" }} href={`/auth/signup`}>Sign Up</Link>
             </MenuItem>
 
             {
@@ -202,7 +202,7 @@ function NavBar() {
 
             {
               user._id !== null && <MenuItem key={"signup"} onClick={handleCloseUserMenu}>
-                <Link onClick={handleSignOut} style={{ textDecoration: "none" }} href={`/users`}>Logout</Link>
+                <Link prefetch onClick={handleSignOut} style={{ textDecoration: "none" }} href={`/users`}>Logout</Link>
               </MenuItem>
             }
             {/* Other Menu components */}
