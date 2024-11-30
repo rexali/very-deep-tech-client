@@ -10,8 +10,6 @@ import Testimonials from './testimonials';
 import Portfolios from './portfolios';
 import Team from './team';
 import Partners from './partners';
-import FeaturedProducts from '../products/FeaturedProducts';
-import PopularProducts from '../products/PopularProducts';
 import HomeProductCategories from '../products/HomeProductCategories';
 
 export default function HomePage() {
@@ -22,8 +20,7 @@ export default function HomePage() {
       <SearchInput />
       <MarketingMessage /> <br /><br />
       <HomeProductCategories />
-      <FeaturedProducts />
-      {/* <PopularProducts /> */}
+      <HomeProductCategories />
       <Testimonials />
       <Portfolios />
       <Team />

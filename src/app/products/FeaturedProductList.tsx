@@ -5,7 +5,7 @@ import { getProductsAPI } from './api/getProductsAPI';
 
 export default async function FeaturedProductList() {
 
-    let products = await getProductsAPI();
+    let products = await getProductsAPI() ?? [];
 
     return (
         <div>
