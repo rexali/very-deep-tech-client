@@ -1,3 +1,4 @@
+'use client'
 import { createSubscription } from "../api/createSubscription";
 
 const handleSubscribeSubmit = async (event: any, setPostSuccess: any, setPostError: any) => {

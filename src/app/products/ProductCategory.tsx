@@ -1,5 +1,3 @@
-
-
 import "./styles/styles.css";
 import { SERVER_URL } from "@/constants/url";
 import Fallback from "@/components/common/fallback";
