@@ -141,7 +141,7 @@ function NavBar() {
         </Box>
         {/* Carts components */}
         {!isMobile && <Link prefetch href={'/carts'} style={{ marginRight: 16, color: "white", textDecoration: "none" }} >
-          <Button sx={{ color: "white" }} startIcon={<Cart />}>Cart</Button><sup style={{ color: "red" }}>{state.carts?.length ?? 0}</sup>
+          <Button sx={{ color: "white" }} startIcon={<Cart />}>Cart</Button><sup style={{ color: "yellow" }}>{state.carts?.length ?? 0}</sup>
         </Link>}
         {isMobile && <Link prefetch href={'/carts'} style={{ color: "white", textDecoration: "none" }} >
           <Cart sx={{ fontSize: 18, }} /><sup style={{ color: "yellow", marginRight: 10 }}>{state.carts?.length ?? 0}</sup>

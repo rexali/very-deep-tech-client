@@ -1,3 +1,5 @@
+'use client'
+
 import { signIn } from '../store/actions/auth-actions';
 import { BASE_URL, SERVER_URL } from '@/constants/url';
 import { AuthContext } from '@/context/AuthContext';
