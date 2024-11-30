@@ -15,9 +15,9 @@ export default function PopularProducts() {
           <span>Popular</span>
           <Link style={{ textDecoration: "none", color: 'blue' }} href={"/products"}><Button>See all</Button></Link>
         </h2>
-        <React.Suspense fallback={<Fallback />}>
+        {/* <React.Suspense fallback={<Fallback />}> */}
           <PopularProductList />
-        </React.Suspense>
+        {/* </React.Suspense> */}
       </Container>
     </ErrorBoundary>
   )
