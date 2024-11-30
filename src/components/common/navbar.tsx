@@ -181,7 +181,7 @@ function NavBar() {
             onClose={handleCloseUserMenu}
           >
             {
-              (user._id !== null) &&
+              user._id !== null &&
               <MenuItem key={"signin"} onClick={handleCloseUserMenu}>
                 <Link prefetch style={{ textDecoration: "none" }} href={`/auth/signin`}>Sign In</Link>
               </MenuItem>
@@ -193,13 +193,13 @@ function NavBar() {
             </MenuItem>
 
             {
-              (user._id !== null) && <MenuItem key={"signup"} onClick={handleCloseUserMenu}>
+              user._id !== null && <MenuItem key={"signup"} onClick={handleCloseUserMenu}>
                 <Link style={{ textDecoration: "none" }} href={`/users`}>Account</Link>
               </MenuItem>
             }
 
             {
-              (user._id !== null) && <MenuItem key={"signup"} onClick={handleCloseUserMenu}>
+              user._id !== null && <MenuItem key={"signup"} onClick={handleCloseUserMenu}>
                 <Link prefetch onClick={handleSignOut} style={{ textDecoration: "none" }} href={`/users`}>Logout</Link>
               </MenuItem>
             }
@@ -207,7 +207,7 @@ function NavBar() {
             {menus.map((menu, index) => (
               <MenuItem key={menu} onClick={handleCloseUserMenu}>
                 {
-                  (user._id !== null) && <Link prefetch style={{ textDecoration: "none" }} key={index + "s"} href={`/${menu.toLowerCase()}`}>{menu}</Link>
+                  user._id !== null && <Link prefetch style={{ textDecoration: "none" }} key={index + "s"} href={`/${menu.toLowerCase()}`}>{menu}</Link>
                 }
               </MenuItem>
             ))}
@@ -215,12 +215,6 @@ function NavBar() {
         </Box>
       </Toolbar>
     </Container>
-    {/*     
-// (menu === "Logout" && user._id !== null) ?
-//   <Link prefetch onClick={handleSignOut} style={{ textDecoration: "none" }} key={index + "s"} href={'#'} >{menu}</Link> :
-//   (menu === "Users" && user._id !== null) ?
-//     <Link prefetch style={{ textDecoration: "none" }} key={index + "s"} href={`/${menu.toLowerCase()}`}>{"Account"}</Link> : 
-*/}
   </AppBar>
 }
 export default NavBar;

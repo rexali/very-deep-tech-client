@@ -7,8 +7,6 @@ import ProductCategories from './ProductCategory';
 import Box from '@mui/material/Box';
 import ReactPagination from '@/components/react-pagination';
 
-export const revalidate = 3600;
-export const dynamicParams = false;
 
 export default async function ProductList(props: any) {
    
