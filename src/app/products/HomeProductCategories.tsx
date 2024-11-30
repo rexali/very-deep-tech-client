@@ -28,9 +28,9 @@ export default async function HomeProductCategories(props: any) {
                     <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }} sx={{ mt: 5 }}>
                         {products.map((product: any, i: number) => {
                             return (
-                                <Grid key={i} item xs={4} md={6}>
-                                    <Card sx={{ backgroundColor: 'darkorange', width: 100, height: 100, textAlign: 'center', alignSelf: 'center' }}>
-                                        <CardContent>
+                                <Grid item key={i} xs={6} sm={6} md={6} lg={4}>
+                                    <Card sx={{ backgroundColor: 'darkorange', maxWidth: 100, MaxHeight: 100 }}>
+                                        <CardContent sx={{ textAlign: 'center', alignSelf: 'center' }}>
                                             <Link prefetch style={{ textDecoration: 'none', color: 'white' }} href={`/category/?term=${product.product_category}`}>
                                                 <Button>
                                                     {product.product_category.toUpperCase()}
