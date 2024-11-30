@@ -6,11 +6,13 @@ import "./styles/styles.css";
 import Link from 'next/link';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
-import { getProductsAPI } from './api/getProductsAPI';
+import { SERVER_URL } from "@/constants/url";
 
 export default async function ProductCategories(props: any) {
 
-  let products = await getProductsAPI();
+  let response = await fetch(`${SERVER_URL}/products/categories`);
+  let data = await response.json();
+  let categories = data.data.products?.categories;
 
   if (props.home === 'home') {
     return (
@@ -20,7 +22,7 @@ export default async function ProductCategories(props: any) {
           <Link style={{ textDecoration: "none", color: 'blue' }} href={"/products"}><Button>See all</Button></Link>
         </h2>
         <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }} sx={{ mt: 5 }}>
-          {products[0].product?.categories.map((category: string, i: number) => {
+          {categories.map((category: string, i: number) => {
             return (<Grid key={i} item xs={4} md={6}>
               <Card sx={{ backgroundColor: 'darkorange', color: 'white', width: 100, height: 100, textAlign: 'center', alignSelf: 'center', alignItems: 'center' }}>
                 <CardContent>
@@ -42,7 +44,7 @@ export default async function ProductCategories(props: any) {
     <div className="scrollmenu">
       <a href="#categories">Categories:</a>
       {
-        products[0].product?.categories.map((category: string, i: number) =>
+        categories.map((category: string, i: number) =>
           <a key={i} href={`/category/?term=${category}`}>
             {category}
           </a>)
