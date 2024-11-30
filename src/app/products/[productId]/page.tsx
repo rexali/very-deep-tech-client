@@ -16,7 +16,6 @@ import Image from 'next/image';
 import ProductBottomActions from '../components/ProductBottomActions';
 import Link from 'next/link';
 import Rating from '@mui/material/Rating';
-import FeaturedProducts from '../FeaturedProducts';
 import RecommendedProducts from '../RecommendedProducts';
 
 
