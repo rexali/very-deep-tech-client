@@ -30,6 +30,10 @@ export default function HomeProductCategories(props: any) {
         }
     }, [])
 
+    if (!products.length) {
+        return <Fallback />
+    }
+
     return (
         <ErrorBoundary>
             <Container maxWidth="md" component={'main'} sx={{ mt: 5 }}>

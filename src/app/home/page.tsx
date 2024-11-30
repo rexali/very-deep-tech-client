@@ -23,8 +23,7 @@ export default function HomePage() {
       <SearchInput />
       <MarketingMessage /> <br /><br />
       <HomeProductCategories />
-      {/* <ProductCategories /> */}
-      {/* <FeaturedProducts /> */}
+      <FeaturedProducts />
       {/* <PopularProducts /> */}
       <Testimonials />
       <Portfolios />

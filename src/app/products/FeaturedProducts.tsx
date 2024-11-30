@@ -1,5 +1,3 @@
-'use client'
-
 import { Button, Container } from "@mui/material";
 import Link from "next/link";
 import FeaturedProductList from "./FeaturedProductList";

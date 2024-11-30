@@ -10,7 +10,7 @@ export default async function FeaturedProductList() {
     return (
         <div>
             <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }} sx={{ mt: 5 }}>
-                {products.map((product: any) => {
+                {products.slice(0,2).map((product: any) => {
                     return <Grid key={product._id} item xs={12} md={6}><ProductCard product={product} /></Grid>
                 })}
             </Grid>
