@@ -24,7 +24,7 @@ export default function HomePage() {
       {/* <CssBaseline /> */}
       <SearchInput />
       <MarketingMessage /> <br /><br />
-      {/* <HomeProductCategories /> */}
+      <HomeProductCategories />
       {/* <ProductCategories /> */}
       {/* <FeaturedProducts /> */}
       {/* <PopularProducts /> */}
