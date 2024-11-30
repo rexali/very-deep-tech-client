@@ -25,11 +25,11 @@ export default function HomePage() {
       <MarketingMessage /> <br /><br />
       <HomeProductCategories />
       <FeaturedProducts />
-      {/* <PopularProducts /> */}
-      <FAQHowItWorks />
+      <PopularProducts />
       <Testimonials />
       <Portfolios />
       <Team />
+      <FAQHowItWorks />
       <Partners />
       <CreateSubscription />
       <Copyright sx={{ mt: 4, mb: 4 }} />
