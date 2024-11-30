@@ -24,17 +24,18 @@ export default async function HomeProductCategories(props: any) {
                 </h2>
                 <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }} sx={{ mt: 5 }}>
                     {products.map((product: any, i: number) => {
-                        return (<Grid key={i} item xs={4} md={6}>
-                            <Card sx={{ backgroundColor: 'darkorange', width: 100, height: 100, textAlign: 'center', alignSelf: 'center' }}>
-                                <CardContent>
-                                    <Link prefetch style={{ textDecoration: 'none', color: 'white' }} href={`/category/?term=${product.product_category}`}>
-                                        <Button>
-                                            {product.product_category.toUpperCase()}
-                                        </Button>
-                                    </Link>
-                                </CardContent>
-                            </Card>
-                        </Grid>
+                        return (
+                            <Grid key={i} item xs={4} md={6}>
+                                <Card sx={{ backgroundColor: 'darkorange', width: 100, height: 100, textAlign: 'center', alignSelf: 'center' }}>
+                                    <CardContent>
+                                        <Link prefetch style={{ textDecoration: 'none', color: 'white' }} href={`/category/?term=${product.product_category}`}>
+                                            <Button>
+                                                {product.product_category.toUpperCase()}
+                                            </Button>
+                                        </Link>
+                                    </CardContent>
+                                </Card>
+                            </Grid>
                         )
                     })}
                 </Grid>
