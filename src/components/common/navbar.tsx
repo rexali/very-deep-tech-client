@@ -128,7 +128,6 @@ function NavBar() {
         }}>
           Cshop
         </Link>
-        {/* </Typography> */}
         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
           {pages.map((page, index) => (<Link prefetch
             key={index + "p"}
@@ -149,9 +148,9 @@ function NavBar() {
         </Link>}
         {/* end */}
         {/* Messages component */}
-        {!isMobile && <Link prefetch href={'/messages'} style={{ marginRight: 16, display: user._id !== null ? '' : 'none' }} ><Message sx={{ color: "white" }} /></Link>}
+        {!isMobile && <Link prefetch href={'/messages'} style={{ marginRight: 16 }} ><Message sx={{ color: "white" }} /></Link>}
         {/* Notification component */}
-        {!isMobile && <Link prefetch href='/notifications' style={{ marginRight: 16, display: user._id !== null ? '' : 'none' }} ><Notifications sx={{ color: "white" }} /></Link>}
+        {!isMobile && <Link prefetch href='/notifications' style={{ marginRight: 16 }} ><Notifications sx={{ color: "white" }} /></Link>}
         <Box sx={{ flexGrow: 0 }}>
           <Tooltip title="Open menu">
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -216,11 +215,12 @@ function NavBar() {
         </Box>
       </Toolbar>
     </Container>
-  </AppBar>
-}
-export default NavBar;
-
+    {/*     
 // (menu === "Logout" && user._id !== null) ?
 //   <Link prefetch onClick={handleSignOut} style={{ textDecoration: "none" }} key={index + "s"} href={'#'} >{menu}</Link> :
 //   (menu === "Users" && user._id !== null) ?
-//     <Link prefetch style={{ textDecoration: "none" }} key={index + "s"} href={`/${menu.toLowerCase()}`}>{"Account"}</Link> :
+//     <Link prefetch style={{ textDecoration: "none" }} key={index + "s"} href={`/${menu.toLowerCase()}`}>{"Account"}</Link> : 
+*/}
+  </AppBar>
+}
+export default NavBar;
