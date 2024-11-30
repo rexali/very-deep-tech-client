@@ -12,7 +12,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import Fallback from "@/components/common/fallback";
 
 export default function HomeProductCategories(props: any) {
-    const [products, setProducts] = useState<any>();
+    const [products, setProducts] = useState<any>([]);
     const mountRef = useRef(true);
 
     useEffect(() => {
@@ -31,12 +31,12 @@ export default function HomeProductCategories(props: any) {
 
     return (
         <ErrorBoundary>
-            <React.Suspense fallback={<Fallback />}>
-                <Container maxWidth="md" component={'main'} sx={{ mt: 5 }}>
-                    <h2 style={{ display: 'flex', flexDirection: 'row', justifyContent: "space-between" }}>
-                        <span>Categories</span>
-                        <Link style={{ textDecoration: "none", color: 'blue' }} href={"/products"}><Button>See all</Button></Link>
-                    </h2>
+            <Container maxWidth="md" component={'main'} sx={{ mt: 5 }}>
+                <h2 style={{ display: 'flex', flexDirection: 'row', justifyContent: "space-between" }}>
+                    <span>Categories</span>
+                    <Link style={{ textDecoration: "none", color: 'blue' }} href={"/products"}><Button>See all</Button></Link>
+                </h2>
+                <React.Suspense fallback={<Fallback />}>
                     <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} marginTop={5} display={"flex"} justifyContent={'center'}>
                         {products.map((product: any, i: number) => {
                             return (
@@ -54,8 +54,8 @@ export default function HomeProductCategories(props: any) {
                             )
                         })}
                     </Grid>
-                </Container>
-            </React.Suspense>
+                </React.Suspense>
+            </Container>
         </ErrorBoundary>
     )
 }
