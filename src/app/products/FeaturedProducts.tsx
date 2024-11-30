@@ -2,6 +2,8 @@ import { Button, Container } from "@mui/material";
 import Link from "next/link";
 import FeaturedProductList from "./FeaturedProductList";
 import ErrorBoundary from "@/components/ErrorBoundary";
+import React from "react";
+import Fallback from "@/components/common/fallback";
 
 export default function FeaturedProducts() {
 
@@ -12,7 +14,9 @@ export default function FeaturedProducts() {
           <span>Featured</span>
           <Link style={{ textDecoration: "none", color: 'blue' }} href={"/products"}><Button>See all</Button></Link>
         </h2>
-        <FeaturedProductList />
+        <React.Suspense fallback={<Fallback />}>
+          <FeaturedProductList />
+        </React.Suspense>
       </Container>
     </ErrorBoundary>
   )

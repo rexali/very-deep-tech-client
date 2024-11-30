@@ -148,9 +148,9 @@ function NavBar() {
         </Link>}
         {/* end */}
         {/* Messages component */}
-        {!isMobile && <Link prefetch href={'/messages'} style={{ marginRight: 16 }} ><Message sx={{ color: "white" }} /></Link>}
+        {!isMobile && <Link prefetch href={'/messages'} style={{ marginRight: 16, display: (user._id !== null) ? '' : 'none' }} ><Message sx={{ color: "white" }} /></Link>}
         {/* Notification component */}
-        {!isMobile && <Link prefetch href='/notifications' style={{ marginRight: 16 }} ><Notifications sx={{ color: "white" }} /></Link>}
+        {!isMobile && <Link prefetch href='/notifications' style={{ marginRight: 16, display: (user._id !== null) ? '' : 'none' }} ><Notifications sx={{ color: "white" }} /></Link>}
         <Box sx={{ flexGrow: 0 }}>
           <Tooltip title="Open menu">
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
