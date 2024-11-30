@@ -23,7 +23,7 @@ export default function HomePage() {
       <MarketingMessage /> <br /><br />
       <HomeProductCategories />
       <FeaturedProducts />
-      <PopularProducts />
+      {/* <PopularProducts /> */}
       <Testimonials />
       <Portfolios />
       <Team />

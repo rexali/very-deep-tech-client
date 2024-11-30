@@ -11,29 +11,27 @@ import ErrorBoundary from '@/components/ErrorBoundary';
 import React, { useEffect, useState, useRef } from 'react';
 import Fallback from "@/components/common/fallback";
 
-export default async function HomeProductCategories(props: any) {
-    let response = await fetch(`${SERVER_URL}/products`);
-    let data = await response.json();
-    let products = data.data.products;
-    // const [products, setProducts] = useState<any>([]);
-    // const mountRef = useRef(true);
-    // useEffect(() => {
-    //     async function getData() {
-    //         let response = await fetch(`${SERVER_URL}/products`);
-    //         let data = await response.json();
-    //         setProducts(data.data.products);
-    //     }
-    //     if (mountRef.current) {
-    //         getData();
-    //     }
-    //     return () => {
-    //         mountRef.current = false
-    //     }
-    // }, [])
+export default function HomeProductCategories(props: any) {
 
-    // if (!products.length) {
-    //     return <Fallback />
-    // }
+    const [products, setProducts] = useState<any>([]);
+    const mountRef = useRef(true);
+    useEffect(() => {
+        async function getData() {
+            let response = await fetch(`${SERVER_URL}/products`);
+            let data = await response.json();
+            setProducts(data.data.products);
+        }
+        if (mountRef.current) {
+            getData();
+        }
+        return () => {
+            mountRef.current = false
+        }
+    }, [])
+
+    if (!products.length) {
+        return <Fallback />
+    }
 
     return (
         <ErrorBoundary>
