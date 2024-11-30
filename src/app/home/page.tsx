@@ -14,7 +14,6 @@ import Team from './team';
 import Partners from './partners';
 import FeaturedProducts from '../products/FeaturedProducts';
 import PopularProducts from '../products/PopularProducts';
-import ProductCategories from '../products/ProductCategory';
 import HomeProductCategories from '../products/HomeProductCategories';
 
 export default function HomePage() {
@@ -24,7 +23,7 @@ export default function HomePage() {
       {/* <CssBaseline /> */}
       <SearchInput />
       <MarketingMessage /> <br /><br />
-      <HomeProductCategories />
+      {/* <HomeProductCategories /> */}
       <FeaturedProducts />
       <PopularProducts />
       <FAQHowItWorks />
