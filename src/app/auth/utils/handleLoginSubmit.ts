@@ -14,7 +14,6 @@ export const handleLoginSubmit = (
     setLoading: Function,
     setLoginSuccess: Function,
     setLoginError: Function,
-    router: any,
     url: string,
 ) => {
     // give user feedback
@@ -38,14 +37,14 @@ export const handleLoginSubmit = (
                     // check if token is defined
                     if (result.data.token && result.data.role === 'user') {
                         // redirect user to a given url
-                        // window.location.assign('/users');
-                        router.push('/users');
+                        window.location.assign('/users');
+                        // router.push('/users');
                     } else if (result.data.token && result.data.role === 'admin') {
-                        // window.location.assign('/admins');
-                        router.push('/admins');
+                        window.location.assign('/admins');
+                        // router.push('/admins');
                     } else {
-                        // window.location.assign('/');
-                        router.push('/');
+                        window.location.assign('/');
+                        // router.push('/');
                     }
 
                 } else {

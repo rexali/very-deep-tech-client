@@ -9,10 +9,12 @@ import { getUserCartsAPI } from "../carts/api/getUserCartsAPI";
 import Box from "@mui/material/Box";
 import ReactPagination from "@/components/react-pagination";
 import { getCarts } from "@/store/actions/app-actions";
+import { AppContext } from "@/context/AppContext";
 
 export default function UserCarts() {
   const [data, setData] = React.useState<any>([]);
   const [activePage, setActivePage] = React.useState(1);
+  const {dispatch} = React.useContext(AppContext);
 
   const userId = getToken('_id') as string ?? "6712c927857f3a3b3492459f";
 
@@ -20,12 +22,12 @@ export default function UserCarts() {
     async function getData() {
       const products = await getUserCartsAPI(userId);
       setData(products);
-      getCarts(products);
+      dispatch(getCarts(products));
     }
 
     getData();
 
-  }, [userId]);
+  }, [userId,dispatch]);
 
   if (!data.length) {
 

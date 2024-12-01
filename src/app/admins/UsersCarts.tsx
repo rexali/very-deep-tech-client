@@ -7,17 +7,16 @@ import Fallback from "@/components/common/fallback";
 import { getUsersCartsAPI } from "./api/getUserCarts";
 import Box from "@mui/material/Box";
 import ReactPagination from "@/components/react-pagination";
-import { getCarts } from "@/store/actions/app-actions";
 
 export default function UsersProducts() {
   const [data, setData] = React.useState<any>([]);
   const [activePage, setActivePage] = React.useState(1);
 
+
   React.useEffect(() => {
     async function getData() {
       const productsInCart = await getUsersCartsAPI(activePage);
       setData(productsInCart);
-      getCarts(productsInCart);
     }
 
     getData();

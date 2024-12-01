@@ -28,7 +28,6 @@ export default function SignIn() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState('');
-  const router = useRouter();
 
   return (
     <ThemeProvider theme={defaultTheme} >
@@ -49,7 +48,7 @@ export default function SignIn() {
             Sign in
           </Typography>
           <Box component="form"
-            onSubmit={(evt) => handleLoginSubmit(evt, setLoading, setSuccess, setError, router, "/users")}
+            onSubmit={(evt) => handleLoginSubmit(evt, setLoading, setSuccess, setError, "/users")}
             noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
