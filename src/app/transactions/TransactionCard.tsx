@@ -1,4 +1,5 @@
 import { Card, CardContent, Typography, Box } from "@mui/material";
+import Link from "next/link";
 
 export default function TransactionCard({ transaction }: { transaction: any }) {
 
@@ -7,15 +8,15 @@ export default function TransactionCard({ transaction }: { transaction: any }) {
             <CardContent sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                 <Box>
                     <Typography gutterBottom variant="body2" component="div">
-                        {transaction?.user.email ?? "Lizard"}
+                        <Link href={'mailto:'+transaction?.user.email}>{transaction?.user.email ?? "Lizard"}</Link>
                     </Typography>
                     <Typography gutterBottom variant="body2" component="div">
                         N {transaction?.amount ?? 1000}
                     </Typography>
+                    <Typography gutterBottom variant="body2" component="div">
+                        {transaction?.createdAt ?? '12-12-2024'}
+                    </Typography>
                 </Box>
-                <Typography gutterBottom variant="body2" component="div">
-                    {transaction?.createdAt ?? '12-12-2024'}
-                </Typography>
             </CardContent>
         </Card>
     )

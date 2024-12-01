@@ -1,11 +1,13 @@
 'use client'
 
+import { getUserCartsAPI } from '@/app/carts/api/getUserCartsAPI';
 import { signIn } from '../store/actions/auth-actions';
 import { BASE_URL, SERVER_URL } from '@/constants/url';
 import { AuthContext } from '@/context/AuthContext';
 import { getToken } from '@/utils/getToken';
 import { saveToken } from '@/utils/saveToken';
 import React, { useState, useEffect, useContext } from 'react';
+import { getCarts } from '@/store/actions/app-actions';
 
 /**
  * Verify user authentication
@@ -59,7 +61,9 @@ export function useAuth() {
                     saveToken("_id", res.data._id);
                     saveToken("email", res.data.email);
                     // dispatch the sign-in action 
-                    dispatch(signIn({ ...res.data }))
+                    dispatch(signIn({ ...res.data }));
+                    // get cartData
+                    getCartData(res.data._id);
                 } else {
                     dispatch(signIn({}))
                 }
@@ -67,7 +71,9 @@ export function useAuth() {
             // catch the error and set the error state
             .catch((err) => setError(err))
             // finally set the loading state to false
-            .finally(() => setLoading(false));
+            .finally(() => {
+                setLoading(false);
+            });
 
     }, [dispatch, token]);
 
@@ -78,4 +84,10 @@ export function useAuth() {
         error,
         setLoggedIn
     };
+}
+
+
+async function getCartData(userId: string) {
+    const products = await getUserCartsAPI(userId);
+    getCarts(products);
 }

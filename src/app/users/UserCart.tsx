@@ -8,6 +8,7 @@ import Fallback from "@/components/common/fallback";
 import { getUserCartsAPI } from "../carts/api/getUserCartsAPI";
 import Box from "@mui/material/Box";
 import ReactPagination from "@/components/react-pagination";
+import { getCarts } from "@/store/actions/app-actions";
 
 export default function UserCarts() {
   const [data, setData] = React.useState<any>([]);
@@ -19,6 +20,7 @@ export default function UserCarts() {
     async function getData() {
       const products = await getUserCartsAPI(userId);
       setData(products);
+      getCarts(products);
     }
 
     getData();

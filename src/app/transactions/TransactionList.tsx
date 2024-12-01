@@ -2,10 +2,7 @@
 
 import * as React from "react";
 import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-
 import TransactionCard from "./TransactionCard";
-import ReactPagination from "@/components/react-pagination";
 
 export default function TransactionList(props: any) {
 
