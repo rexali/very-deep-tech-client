@@ -32,7 +32,7 @@ export default function UserTabs() {
         minheight: { minHeight: 420 },
         marginTop: { marginTop: 60 }
     }
-
+ 
     return (
         <ProtectedRoute>
             <div className="container" style={styles.minheight}>
