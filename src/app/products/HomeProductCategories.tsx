@@ -14,25 +14,25 @@ import Fallback from "@/components/common/fallback";
 
 export default function HomeProductCategories(props: any) {
 
-    const [products, setProducts] = useState<any>([]);
-    const mountRef = useRef(true);
-    useEffect(() => {
-        async function getData() {
-            let response = await fetch(`${SERVER_URL}/products`);
-            let data = await response.json();
-            setProducts(data.data.products);
-        }
-        if (mountRef.current) {
-            getData();
-        }
-        return () => {
-            mountRef.current = false
-        }
-    }, [])
+    // const [products, setProducts] = useState<any>([]);
+    // const mountRef = useRef(true);
+    // useEffect(() => {
+    //     async function getData() {
+    //         let response = await fetch(`${SERVER_URL}/products`);
+    //         let data = await response.json();
+    //         setProducts(data.data.products);
+    //     }
+    //     if (mountRef.current) {
+    //         getData();
+    //     }
+    //     return () => {
+    //         mountRef.current = false
+    //     }
+    // }, [])
 
-    if (!products.length) {
-        return <Fallback />
-    }
+    // if (!products.length) {
+    //     return <Fallback />
+    // }
 
     return (
         <ErrorBoundary>
@@ -43,7 +43,7 @@ export default function HomeProductCategories(props: any) {
                 </h2>
                 <React.Suspense fallback={<Fallback />}>
                     <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} marginTop={5} display={"flex"} justifyContent={'center'}>
-                        {products.map((product: any, i: number) => {
+                        {props.products.map((product: any, i: number) => {
                             return (
                                 <Grid item key={i} xs={6} sm={6} md={6} lg={4}>
                                     <Card sx={{ backgroundColor: 'green', maxWidth: '100%', MaxHeight: '100%', textAlign: 'center', alignSelf: 'center' }}>

@@ -5,7 +5,7 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 import React from "react";
 import Fallback from "@/components/common/fallback";
 
-export default function FeaturedProducts() {
+export default function FeaturedProducts({products}:{products:any}) {
 
   return (
     <ErrorBoundary>
@@ -15,7 +15,7 @@ export default function FeaturedProducts() {
           <Link style={{ textDecoration: "none", color: 'blue' }} href={"/products"}><Button>See all</Button></Link>
         </h2>
         <React.Suspense fallback={<Fallback />}>
-          <FeaturedProductList />
+          <FeaturedProductList products={products} />
         </React.Suspense>
       </Container>
     </ErrorBoundary>

@@ -6,7 +6,7 @@ import React from "react";
 import Fallback from "@/components/common/fallback";
 
 
-export default function PopularProducts() {
+export default function PopularProducts({products}:{products:any}) {
 
   return (
     <ErrorBoundary>
@@ -16,7 +16,7 @@ export default function PopularProducts() {
           <Link style={{ textDecoration: "none", color: 'blue' }} href={"/products"}><Button>See all</Button></Link>
         </h2>
         <React.Suspense fallback={<Fallback />}>
-          <PopularProductList />
+          <PopularProductList products={products} />
         </React.Suspense>
       </Container>
     </ErrorBoundary>

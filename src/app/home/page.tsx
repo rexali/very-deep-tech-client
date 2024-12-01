@@ -12,16 +12,21 @@ import Team from './team';
 import Partners from './partners';
 import HomeProductCategories from '../products/HomeProductCategories';
 import FeaturedProducts from '../products/FeaturedProducts';
+import { getProductsAPI } from '../products/api/getProductsAPI';
+import PopularProducts from '../products/PopularProducts';
 
-export default function HomePage() {
+export default async function HomePage() {
   // const isMobile = useMediaQuery({ maxDeviceWidth: 1023 });
+  let products = await getProductsAPI()
+
   return (
     <main>
       {/* <CssBaseline /> */}
       <SearchInput />
       <MarketingMessage /> <br /><br />
       <HomeProductCategories />
-      <FeaturedProducts />
+      <FeaturedProducts products={products} />
+      <PopularProducts products={products} />
       <Testimonials />
       <Portfolios />
       <Team />
