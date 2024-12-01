@@ -34,11 +34,13 @@ export default function UsersNotifications() {
 
 
     return (
-    <React.Suspense fallback={<Fallback />} >
+
         <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }}>
             <Box>Total Notifications: {data[0]?.totalNotifications}</Box>
             <Grid container columnSpacing={1}>
-                <NotificationList notifications={data} role={'admin'} />
+                <React.Suspense fallback={<Fallback />} >
+                    <NotificationList notifications={data} role={'admin'} />
+                </React.Suspense>
             </Grid>
             <Box marginTop={4} display={"flex"} justifyContent={'center'}>
                 <ReactPagination
@@ -49,7 +51,6 @@ export default function UsersNotifications() {
                     onchangeCallback={handlePageChange} />
             </Box>
         </Container>
-    </React.Suspense>
-    
+
     )
 }

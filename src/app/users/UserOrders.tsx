@@ -7,9 +7,10 @@ import Fallback from "@/components/common/fallback";
 import { getUserOrdersAPI } from "./api/getUserOrders";
 import OrderList from "../orders/OrderList";
 import Box from "@mui/material/Box";
+import ReactPagination from "@/components/react-pagination";
 
 export default function UserOrders() {
-  const [data, setData] = React.useState([]);
+  const [data, setData] = React.useState<any>([]);
   const [activePage, setActivePage] = React.useState(1);
 
   const userId = getToken('_id') as string ?? "6712c927857f3a3b3492459f";
@@ -36,8 +37,17 @@ export default function UserOrders() {
   return (
     <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }}>
       <React.Suspense fallback={<Fallback />} >
-        <OrderList orders={data} activePage={activePage} setActivePage={setActivePage} />
+        <OrderList orders={data} />
       </React.Suspense>
+
+      <Box marginTop={4} display={"flex"} justifyContent={'center'} >
+        <ReactPagination
+          activePage={activePage}
+          itemsCountPerPage={4}
+          totalItemsCount={data[0].totalOrders}
+          pageRangeDisplayed={5}
+          onchangeCallback={(v: any) => setActivePage(v)} />
+      </Box>
     </Container>
   )
 }

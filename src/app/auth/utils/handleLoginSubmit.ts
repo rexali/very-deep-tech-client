@@ -1,6 +1,5 @@
 'use client'
 
-import { NextRouter } from "next/router";
 import { logInAPI } from "../api/logInAPI";
 
 /**

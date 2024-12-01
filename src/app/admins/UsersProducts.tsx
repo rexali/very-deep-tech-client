@@ -6,6 +6,7 @@ import ProductList from "../products/ProductList";
 import Fallback from "@/components/common/fallback";
 import { getUsersProductsAPI } from "./api/getUsersProductsAPI";
 import Box from "@mui/material/Box";
+import ReactPagination from "@/components/react-pagination";
 
 export default function UsersProducts() {
   const [data, setData] = React.useState<any>([]);
@@ -34,8 +35,16 @@ export default function UsersProducts() {
     <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }}>
       <Box>Total Products: {data[0]?.totalProducts}</Box>
       <React.Suspense fallback={<Fallback />} >
-        <ProductList products={data} activePage={activePage} setActivePage={setActivePage} />
+        <ProductList products={data} />
       </React.Suspense>
+      <Box marginTop={4} display={"flex"} justifyContent={'center'} >
+        <ReactPagination
+          activePage={activePage}
+          itemsCountPerPage={4}
+          totalItemsCount={data[0]?.totalProducts}
+          pageRangeDisplayed={5}
+          onchangeCallback={(v: any) => setActivePage(v)} />
+      </Box>
     </Container>
   )
 }

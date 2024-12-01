@@ -34,13 +34,13 @@ export default function UserMessages() {
 
 
   return (
-    <React.Suspense fallback={<Fallback />} >
-      <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }}>
-        <Box>Total Messages: {data[0]?.totalMessages}</Box>
-        <Grid container columnSpacing={1}>
+    <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }}>
+      <Box>Total Messages: {data[0]?.totalMessages}</Box>
+      <Grid container columnSpacing={1}>
+        <React.Suspense fallback={<Fallback />} >
           <MessageList messages={data} role={'admin'} />
-        </Grid>
-      </Container>
+        </React.Suspense>
+      </Grid>
       <Box marginTop={4} display={"flex"} justifyContent={'center'}>
         <ReactPagination
           activePage={activePage}
@@ -49,6 +49,7 @@ export default function UserMessages() {
           pageRangeDisplayed={5}
           onchangeCallback={handlePageChange} />
       </Box>
-    </React.Suspense>
+    </Container>
+
   )
 }

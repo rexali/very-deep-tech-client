@@ -6,6 +6,7 @@ import Fallback from "@/components/common/fallback";
 import Box from "@mui/material/Box";
 import { getQoutesAPI } from "../qoutes/api/getQoutesAPI";
 import QouteList from "../qoutes/QouteList";
+import ReactPagination from "@/components/react-pagination";
 
 export default function UsersQoutes() {
   const [data, setData] = React.useState<any>([]);
@@ -34,8 +35,16 @@ export default function UsersQoutes() {
     <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }}>
       <Box>Total Qoutes: {data[0]?.totalQoutes}</Box>
       <React.Suspense fallback={<Fallback />} >
-        <QouteList qoutes={data} activePage={activePage} setActivePage={setActivePage} />
+        <QouteList qoutes={data} />
       </React.Suspense>
+      <Box marginTop={4} display={"flex"} justifyContent={'center'} >
+        <ReactPagination
+          activePage={activePage}
+          itemsCountPerPage={4}
+          totalItemsCount={data[0]?.totalQoutes}
+          pageRangeDisplayed={5}
+          onchangeCallback={(v: any) => setActivePage(v)} />
+      </Box>
     </Container>
   )
 }

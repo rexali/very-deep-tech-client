@@ -19,15 +19,6 @@ export default function TransactionList(props: any) {
 
                 )
             }
-
-            <Box marginTop={4} display={"flex"} justifyContent={'center'} >
-                <ReactPagination
-                    activePage={props?.activePage}
-                    itemsCountPerPage={10}
-                    totalItemsCount={props?.transactions[0]?.totalTransactions}
-                    pageRangeDisplayed={5}
-                    onchangeCallback={(v: any) => props.setActivePage(v)} />
-            </Box>
         </div>
     )
 

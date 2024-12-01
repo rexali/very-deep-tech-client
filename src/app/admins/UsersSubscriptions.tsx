@@ -6,6 +6,7 @@ import Fallback from "@/components/common/fallback";
 import Box from "@mui/material/Box";
 import { getSubscriptionsAPI } from "../subscriptions/api/getSubscriptionsAPI";
 import SubscriptionList from "../subscriptions/SubscriptionList";
+import ReactPagination from "@/components/react-pagination";
 
 export default function UsersSubscriptions() {
   const [data, setData] = React.useState<any>([]);
@@ -33,8 +34,16 @@ export default function UsersSubscriptions() {
   return (<Container maxWidth="lg" component={'main'} sx={{ mt: 10 }}>
       <Box>Total Subscriptions: {data[0]?.totalSubscriptions}</Box>
       <React.Suspense fallback={<Fallback />} >
-        <SubscriptionList subscriptions={data} activePage={activePage} setActivePage={setActivePage} />
+        <SubscriptionList subscriptions={data} />
       </React.Suspense>
+      <Box marginTop={4} display={"flex"} justifyContent={'center'} >
+        <ReactPagination
+          activePage={activePage}
+          itemsCountPerPage={4}
+          totalItemsCount={data[0]?.totalCarts}
+          pageRangeDisplayed={5}
+          onchangeCallback={(v: any) => setActivePage(v)} />
+      </Box>
     </Container>)
 
 }

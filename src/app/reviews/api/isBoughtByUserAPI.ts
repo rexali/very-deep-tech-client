@@ -12,7 +12,7 @@ const isBoughtByUserAPI = async (userId: string, productId: string) => {
                 'Content-Type': 'application/json',
             },
         });
-        if (data.data?.orders.map((order: any) => order.items.map((item: [{ product: any }])=>item[0].product)).includes(productId)) {
+        if (data.data?.orders.map((order: any) => order.items.map((item: { product: any })=>item.product))[0].includes(productId)) {
             return true
         }
 

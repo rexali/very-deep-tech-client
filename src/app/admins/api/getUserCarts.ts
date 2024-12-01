@@ -15,7 +15,7 @@ const getUsersCartsAPI = async (page: number = 1) => {
                     ...cart.product,
                     cartId: cart?._id,
                     cartQuantity: cart?.quantity,
-                    cartTotals: cart?.cartTotals
+                    totalCarts: cart?.totalCarts
                 }
             }
         });
