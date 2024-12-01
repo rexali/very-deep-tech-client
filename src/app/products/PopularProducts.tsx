@@ -1,6 +1,6 @@
 import { Button, Container } from "@mui/material";
 import Link from "next/link";
-import PopularProductList from "./PopularProductLists";
+import PopularProductList from "./PopularProductList";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import React from "react";
 import Fallback from "@/components/common/fallback";
