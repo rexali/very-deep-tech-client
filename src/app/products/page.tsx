@@ -9,6 +9,7 @@ import ReactPagination from "@/components/react-pagination";
 import { getProductsAPI } from "./api/getProductsAPI";
 import { getProductCategories } from "./utils/getProductCategories";
 import ProductCategories from "./ProductCategory";
+import GeneralFallback from "@/components/common/GeneralFallback";
 
 export default function ProductsPage() {
 
@@ -32,7 +33,7 @@ export default function ProductsPage() {
         <Link style={{ textDecoration: "none", color: 'blue' }} href={"/products"}><Button>See all</Button></Link>
       </h2>
       <ProductCategories categories={categories} />
-      <Suspense fallback={<Fallback />}>
+      <Suspense fallback={<GeneralFallback />}>
         <ProductList products={products} />
       </Suspense>
       <Box marginTop={4} display={"flex"} justifyContent={'center'} >
