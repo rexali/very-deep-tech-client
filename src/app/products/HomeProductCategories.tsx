@@ -31,7 +31,7 @@ export default function HomeProductCategories(props: any) {
     // if (!products.length) {
     //     return <Fallback />
     // }
-    let products = props.products??[];
+    let products = props.products ?? [];
     return (
         <ErrorBoundary>
             <Container maxWidth="md" component={'main'} sx={{ mt: 5 }}>

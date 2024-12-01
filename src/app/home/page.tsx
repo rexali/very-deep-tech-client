@@ -24,7 +24,7 @@ export default async function HomePage() {
       {/* <CssBaseline /> */}
       <SearchInput />
       <MarketingMessage /> <br /><br />
-      <HomeProductCategories />
+      <HomeProductCategories products={products} />
       <FeaturedProducts products={products} />
       <PopularProducts products={products} />
       <Testimonials />
