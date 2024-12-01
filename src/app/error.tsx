@@ -10,7 +10,7 @@ export default function Error({ error, reset }: { error: Error & { digest?: stri
     }, [error])
 
     return (
-        <Container style={{ marginTop: 50, minHeight: 420, display: "flex", flexDirection: 'column', alignItems: 'center' }}>
+        <Container maxWidth={'md'} component={'main'} sx={{ minHeight: 420, display: "flex", justifyContent: 'center', alignItems: 'center' }}>
             <h2 style={{ width: '100%' }}>Something went wrong</h2><br />
             <p>name: {error.name}</p>
             <p>message: {error.message}</p>

@@ -8,17 +8,16 @@ export default function QouteCard({ qoute }: { qoute: any }) {
             <CardContent>
                 <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                     <Box>
-                        <Typography gutterBottom component="div">
+                        <Typography gutterBottom variant="body2" component="div">
                             <Link href={'mailto:' + qoute?.email}>{qoute?.email}</Link>
                         </Typography>
-                        <Typography gutterBottom component="div">
+                        <Typography gutterBottom variant="body2" component="div">
                             <Link href={'tel:' + qoute?.phone}>{qoute?.phone}</Link>
                         </Typography>
                     </Box>
                     <Link style={{ textDecoration: 'none' }} href={'/products/' + qoute?.product._id}>View</Link>
                 </Box>
-
-                <Typography gutterBottom component="div">
+                <Typography gutterBottom variant="body2" component="div">
                     {qoute?.message}
                 </Typography>
             </CardContent>
