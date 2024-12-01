@@ -14,7 +14,7 @@ export default function RecommendedProducts() {
       <Container maxWidth="md" component={'main'} sx={{ mt: 5 }}>
         <h2 style={{ display: 'flex', flexDirection: 'row', justifyContent: "space-between" }}>
           <span style={{ fontSize: 12 }}>People who viewed this item also bought:</span>
-          <Link style={{ textDecoration: "none", color: 'blue' }} href={"/products"}><Button>See all</Button></Link>
+          <Link style={{ textDecoration: "none", color: 'green',fontSize: 12 }} href={"/products"}>SEE ALL</Link>
         </h2>
         <Suspense fallback={<Fallback />}>
           <RecommendedProductList />
