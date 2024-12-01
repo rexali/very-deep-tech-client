@@ -3,20 +3,36 @@
 import * as React from 'react';
 import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack';
+import Container from '@mui/material/Container';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 export default function HomeFallback() {
-  return (
-    <Stack spacing={1}  maxWidth={'md'} component={'main'} sx={{ minHeight: 580, display: "flex", justifyContent: 'center', alignItems: 'center' }}>
-      {/* For variant="text", adjust the height via font-size */}
-      <Skeleton variant="text" sx={{ fontSize: '1rem' }} />
 
-      {/* For other variants, adjust the size with `width` and `height` */}
-      <Skeleton variant="circular" width={40} height={40} />
-      <Skeleton variant="rectangular" width={210} height={60} />
-      <Skeleton variant="rounded" width={210} height={60} />
-      <Skeleton variant="text" sx={{ fontSize: '1rem' }} />
-      <Skeleton variant="text" sx={{ fontSize: '1rem' }} />
-    </Stack>
+  const [loading, setLoading] = React.useState(true);
+  setTimeout(() => {
+    setLoading(false);
+  }, 10000);
+
+  if (loading) {
+      return (
+        <Box sx={{minHeight: 680, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <CircularProgress color='success' />
+        </Box>
+      );
+  }
+
+  return (
+    <Container maxWidth={'lg'} component={'main'} sx={{ minHeight: 680, display: "flex", justifyContent: 'center', alignItems: 'center' }}>
+      <Stack spacing={1} sx={{ display: "flex", flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center' }}>
+        {/* For other variants, adjust the size with `width` and `height` */}
+        <Skeleton variant="circular" animation="wave" width={'100%'} height={'100%'} />
+        <Skeleton variant="rectangular" animation="wave" width={'100%'} height={'100%'} />
+        <Skeleton variant="rounded" animation="wave" width={'100%'} height={'100%'} />
+        <Skeleton variant="text" animation="wave" width={'100%'} sx={{ fontSize: '2rem' }} />
+        <Skeleton variant="text" animation="wave" width={'100%'} sx={{ fontSize: '2rem' }} />
+      </Stack>
+    </Container>
   );
 }
 
