@@ -17,7 +17,7 @@ export const handleLoginSubmit = (
     url: string,
 ) => {
     // give user feedback
-    setLoading("Loading...");
+    setLoading("Sending data...");
     // prevent defaut behaviour
     event.preventDefault();
     // get current form data
@@ -58,5 +58,10 @@ export const handleLoginSubmit = (
             setLoginError(err.message);
             // print error
             console.warn(err);
-        });
+        }).finally(() => {
+            setTimeout(() => {
+                setLoginError('');
+                setLoginSuccess('');
+            }, 30000);
+        })
 }

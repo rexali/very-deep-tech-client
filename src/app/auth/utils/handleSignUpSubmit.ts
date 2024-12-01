@@ -34,11 +34,17 @@ export const handleSignUpSubmit = (
                     setSignUpSuccess(result.status);
                 } else {
                     // send failure message
-                    setSignUpSuccess("fail");
+                    setSignUpSuccess("failed");
                 }
             })).catch((err) => {
                 // log error message
+                console.warn(err);
                 setSignUpError(err.message)
+            }).finally(() => {
+                setTimeout(() => {
+                    setSignUpError('');
+                    setSignUpSuccess('');
+                }, 30000);
             })
         }
 
