@@ -44,7 +44,7 @@ export default function UserOrders() {
         <ReactPagination
           activePage={activePage}
           itemsCountPerPage={4}
-          totalItemsCount={data[0].totalOrders}
+          totalItemsCount={data[0]?.totalOrders}
           pageRangeDisplayed={5}
           onchangeCallback={(v: any) => setActivePage(v)} />
       </Box>

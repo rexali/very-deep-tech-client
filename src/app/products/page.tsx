@@ -39,7 +39,7 @@ export default function ProductsPage() {
         <ReactPagination
           activePage={activePage}
           itemsCountPerPage={4}
-          totalItemsCount={products[0].totalProducts}
+          totalItemsCount={products[0]?.totalProducts}
           pageRangeDisplayed={5}
           onchangeCallback={(v: any) => setActivePage(v)} />
       </Box>

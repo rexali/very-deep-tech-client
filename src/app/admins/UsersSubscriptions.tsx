@@ -40,7 +40,7 @@ export default function UsersSubscriptions() {
         <ReactPagination
           activePage={activePage}
           itemsCountPerPage={4}
-          totalItemsCount={data[0]?.totalCarts}
+          totalItemsCount={data[0]?.totalSubscriptions}
           pageRangeDisplayed={5}
           onchangeCallback={(v: any) => setActivePage(v)} />
       </Box>

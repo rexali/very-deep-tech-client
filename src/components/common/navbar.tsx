@@ -180,17 +180,16 @@ function NavBar() {
             open={Boolean(anchorElUser)}
             onClose={handleCloseUserMenu}
           >
-            {
-              user._id !== null &&
-              <MenuItem key={"signin"} onClick={handleCloseUserMenu}>
-                <Link prefetch style={{ textDecoration: "none" }} href={`/auth/signin`}>Sign In</Link>
-              </MenuItem>
 
-            }
+            <MenuItem key={"signin"} onClick={handleCloseUserMenu}>
+              <Link prefetch style={{ textDecoration: "none", display: user._id !== null ? 'block' : 'none' }} href={`/auth/signin`}>Sign In</Link>
+            </MenuItem>
+
 
             <MenuItem key={"signup"} onClick={handleCloseUserMenu}>
               <Link prefetch style={{ textDecoration: "none" }} href={`/auth/signup`}>Sign Up</Link>
             </MenuItem>
+
 
             {
               user._id !== null && <MenuItem key={"signup"} onClick={handleCloseUserMenu}>

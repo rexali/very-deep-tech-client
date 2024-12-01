@@ -42,7 +42,7 @@ export default function UserFavourites() {
         <ReactPagination
           activePage={activePage}
           itemsCountPerPage={4}
-          totalItemsCount={data[0]?.totalTransactions}
+          totalItemsCount={data?.length}
           pageRangeDisplayed={5}
           onchangeCallback={(v: any) => setActivePage(v)} />
       </Box>
