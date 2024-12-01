@@ -8,7 +8,10 @@ const getUserFavouritesAPI = async (userId: string, page?: number) => {
         if (data.data === null) {
             return [];
         }
-        return data.data?.favourites.map((favourite: any) => favourite.product);
+        return data.data?.favourites.map((favourite: any) => ({
+            ...favourite.product,
+            totalFavourites: favourite.totalFavourites
+        }));
     } catch (error) {
         console.warn(error);
     }
