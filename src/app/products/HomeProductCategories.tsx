@@ -1,5 +1,3 @@
-'use client'
-
 import Card from '@mui/material/Card';
 import Grid from '@mui/material/Grid';
 import CardContent from '@mui/material/CardContent';
@@ -33,7 +31,7 @@ export default function HomeProductCategories(props: any) {
     // if (!products.length) {
     //     return <Fallback />
     // }
-
+    let products = props.products??[];
     return (
         <ErrorBoundary>
             <Container maxWidth="md" component={'main'} sx={{ mt: 5 }}>
@@ -43,7 +41,7 @@ export default function HomeProductCategories(props: any) {
                 </h2>
                 <React.Suspense fallback={<Fallback />}>
                     <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} marginTop={5} display={"flex"} justifyContent={'center'}>
-                        {props.products.map((product: any, i: number) => {
+                        {products.map((product: any, i: number) => {
                             return (
                                 <Grid item key={i} xs={6} sm={6} md={6} lg={4}>
                                     <Card sx={{ backgroundColor: 'green', maxWidth: '100%', MaxHeight: '100%', textAlign: 'center', alignSelf: 'center' }}>

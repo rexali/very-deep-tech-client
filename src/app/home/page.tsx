@@ -17,7 +17,7 @@ import PopularProducts from '../products/PopularProducts';
 
 export default async function HomePage() {
   // const isMobile = useMediaQuery({ maxDeviceWidth: 1023 });
-  let products = await getProductsAPI()
+  let products = await getProductsAPI() ?? [];
 
   return (
     <main>
