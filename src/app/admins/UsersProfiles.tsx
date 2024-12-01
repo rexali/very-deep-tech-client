@@ -55,7 +55,7 @@ export default function UsersProfiles() {
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
                   <TableCell component="th" scope="profile">
-                    {profile?.firstName ?? 'Aliyu' + ' ' + profile?.lastName ?? 'Bello'}
+                    {profile.firstName ?? 'Aliyu' + ' ' + profile.lastName ?? 'Bello'}
                   </TableCell>
                   <TableCell align="right">
                     <Link href={`mailto:${profile?.user?.email}`}>{profile?.user?.email}</Link>
@@ -69,7 +69,7 @@ export default function UsersProfiles() {
         <Box marginTop={4} display={"flex"} justifyContent={'center'} >
             <ReactPagination
               activePage={activePage}
-              itemsCountPerPage={10}
+              itemsCountPerPage={4}
               totalItemsCount={data[0]?.totalProfiles}
               pageRangeDisplayed={5}
               onchangeCallback={(v: any) => setActivePage(v)} />

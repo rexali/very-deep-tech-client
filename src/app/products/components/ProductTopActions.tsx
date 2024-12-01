@@ -13,11 +13,12 @@ import { shareLink } from "@/utils/shareLink";
 import { createFavouriteAPI } from "@/app/favourites/api/createFavouriteAPI";
 import { useRouter } from "next/navigation";
 import { isAlReadyAddedToFavouriteByUserAPI } from "@/app/favourites/api/isAlreadyAddedToFavouriteByUserAPI";
+import { savePathLink } from "@/utils/savePathLink";
 
 export default function ProductTopActions({ product, role }: { product: any, role?: string }) {
     const [open, setOpen] = useState(false);
     const router = useRouter();
-    const userId = getToken("_id") as string;
+    const userId = getToken("_id") as string ??'6712c927857f3a3b3492459f';
 
     const handleOpen = () => {
         setOpen(true)
@@ -47,7 +48,7 @@ export default function ProductTopActions({ product, role }: { product: any, rol
                         if (!await isAlReadyAddedToFavouriteByUserAPI(userId, product._id)) {
                             const favorite = await createFavouriteAPI({
                                 product_id: product._id,
-                                user_id: getToken("_id") ?? "6712c927857f3a3b3492459f"
+                                user_id: userId
                             })
                             if (favorite._id) {
                                 handleOpen();
@@ -56,6 +57,7 @@ export default function ProductTopActions({ product, role }: { product: any, rol
                             alert('Already added');
                         }
                     } else {
+                        savePathLink()
                         router.push('/auth/signin')
                     }
 

@@ -13,7 +13,7 @@ export default function SubscriptionList(props: any) {
             {
                 props.subscriptions?.map((subscription: any, index: any) =>
                     <Grid item xs={12} md={6} key={subscription._id + index}>
-                        <SubscriptionCard subscription={{ ...subscription, id: index }} />
+                        <SubscriptionCard subscription={{ ...subscription, id: index + 1 }} />
                     </Grid>
                 )
             }

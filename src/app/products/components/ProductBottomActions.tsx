@@ -16,6 +16,7 @@ import { isAllReadyAddedToCartByUserAPI } from "@/app/carts/api/isAlreadyAddedTo
 import { getUserCartsAPI } from "@/app/carts/api/getUserCartsAPI";
 import { AppContext } from "@/context/AppContext";
 import { getCarts } from "@/store/actions/app-actions";
+import { savePathLink } from "@/utils/savePathLink";
 
 export default function ProductBottomActions({ product, role }: { product: any, role?: string }) {
     const [open, setOpen] = useState(false);
@@ -67,7 +68,7 @@ export default function ProductBottomActions({ product, role }: { product: any, 
                         if (!await isAllReadyAddedToCartByUserAPI(userId, product._id)) {
                             const cart = await createCartAPI({
                                 product_id: product._id,
-                                user_id: (userId || getToken("_id")) ?? "6712c927857f3a3b3492459f",
+                                user_id: userId,
                                 quantity: quantity,
                                 price: product.product_price
                             })
@@ -79,11 +80,12 @@ export default function ProductBottomActions({ product, role }: { product: any, 
                             dispatch(getCarts(userCarts));
 
                         } else {
-                            alert('Already added')
+                            alert('Already added');
                         }
 
                     } else {
-                        router.push('/auth/signin')
+                        savePathLink();
+                        router.push('/auth/signin');
                     }
 
                 }}

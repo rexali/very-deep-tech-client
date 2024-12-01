@@ -1,3 +1,4 @@
+import { savePathLink } from "@/utils/savePathLink";
 import { createReviewAPI } from "../api/createReviewAPI";
 import { isBoughtByUserAPI } from "../api/isBoughtByUserAPI";
 
@@ -25,7 +26,8 @@ const handleReviewSubmit = async (event: any, setPostSuccess: any, setPostError:
             alert('Buy it first, then use, and post review thereafter')
         }
     } else {
-        alert('Please log in first');
+        savePathLink();
+        window.location.assign('/auth/signin');
     }
 
 };

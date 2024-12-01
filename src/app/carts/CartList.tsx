@@ -14,6 +14,8 @@ import ClearCartButton from './components/ClearCartButton';
 import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material';
 import { useAuth } from '@/hooks/use-auth';
 import { getToken } from '@/utils/getToken';
+import { savePathLink } from '@/utils/savePathLink';
+import { useRouter } from 'next/navigation';
 
 export default function CartList(props: any) {
     const [error, setError] = React.useState('');
@@ -22,6 +24,7 @@ export default function CartList(props: any) {
     const [cartTotals, setCartTotal] = React.useState<number>();
     const [method, setMethod] = React.useState('paystack');
     const [directPayment, setDirectPayment] = React.useState(false);
+    const router = useRouter()
     const { user } = useAuth();
 
     const userId = getToken('_id') as string ?? "6712c927857f3a3b3492459f";
@@ -96,15 +99,20 @@ export default function CartList(props: any) {
                     <Box
                         component="form"
                         onSubmit={async (evt) => {
-                            await handleCheckoutSubmit(
-                                evt,
-                                setSuccess,
-                                setError,
-                                setLoading,
-                                orderData,
-                                transactionData
-                            );
-                            setLoading('Sending data..')
+                            if (userId) {
+                                await handleCheckoutSubmit(
+                                    evt,
+                                    setSuccess,
+                                    setError,
+                                    setLoading,
+                                    orderData,
+                                    transactionData
+                                );
+                                setLoading('Sending data..');
+                            } else {
+                                savePathLink();
+                                router.push('/auth/signin');
+                            }
                         }}
                         noValidate
                         sx={{ mt: 1 }}

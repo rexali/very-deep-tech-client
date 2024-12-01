@@ -10,16 +10,17 @@ export default function OrderCard({ order }: { order: any }) {
                     <Typography gutterBottom fontSize={11} variant="body2" component="div">
                         {order.user?.email ?? "aly@yahoo.com"}
                     </Typography>
+
                     <Typography gutterBottom fontSize={11} variant="body2" component="div">
                         N {order?.total ?? 1000}
                     </Typography>
                 </Box>
                 <Box>
                     <Typography gutterBottom fontSize={11} variant="body2" component="div">
-                        {order.createdAt ?? '12-12-2024'}
+                        <Link href={'/orders/' + order._id}>{order.paymentStatus ?? 'pending'}</Link>
                     </Typography>
                     <Typography gutterBottom fontSize={11} variant="body2" component="div">
-                        <Link href={'/orders/' + order._id}>{order.paymentStatus ?? 'pending ..'}</Link>
+                        {order.createdAt ?? '12-12-2024'}
                     </Typography>
                 </Box>
 

@@ -1,5 +1,6 @@
 'use client'
 
+import { getPathLink } from "@/utils/getPathLink";
 import { logInAPI } from "../api/logInAPI";
 
 /**
@@ -62,6 +63,7 @@ export const handleLoginSubmit = (
             setTimeout(() => {
                 setLoginError('');
                 setLoginSuccess('');
+                getPathLink();
             }, 30000);
         })
 }
