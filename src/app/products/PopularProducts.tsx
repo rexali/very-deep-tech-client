@@ -5,7 +5,6 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 import React from "react";
 import Fallback from "@/components/common/fallback";
 
-
 export default function PopularProducts({products}:{products:any}) {
 
   return (

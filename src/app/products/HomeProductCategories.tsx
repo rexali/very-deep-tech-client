@@ -9,25 +9,6 @@ import HomeProductCategoryList from './HomeProductCategoryList';
 
 export default function HomeProductCategories({products}:{products:any}) {
 
-    // const [products, setProducts] = useState<any>([]);
-    // const mountRef = useRef(true);
-    // useEffect(() => {
-    //     async function getData() {
-    //         let response = await fetch(`${SERVER_URL}/products`);
-    //         let data = await response.json();
-    //         setProducts(data.data.products);
-    //     }
-    //     if (mountRef.current) {
-    //         getData();
-    //     }
-    //     return () => {
-    //         mountRef.current = false
-    //     }
-    // }, [])
-
-    // if (!products.length) {
-    //     return <Fallback />
-    // }
     return (
         <ErrorBoundary>
             <Container maxWidth="md" component={'main'} sx={{ mt: 5 }}>

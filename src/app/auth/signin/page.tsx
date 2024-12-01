@@ -19,6 +19,8 @@ import { handleLoginSubmit } from '../utils/handleLoginSubmit';
 import ThemeProvider from '@mui/material/styles/ThemeProvider';
 import createTheme from '@mui/material/styles/createTheme';
 import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { RouterContext } from 'next/dist/shared/lib/router-context.shared-runtime';
 
 const defaultTheme = createTheme();
 
@@ -27,6 +29,7 @@ export default function SignIn() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState('');
+  const router = useRouter();
 
   return (
     <ThemeProvider theme={defaultTheme} >
@@ -47,7 +50,7 @@ export default function SignIn() {
             Sign in
           </Typography>
           <Box component="form"
-            onSubmit={(evt) => handleLoginSubmit(evt, setLoading, setSuccess, setError, "/users")}
+            onSubmit={(evt) => handleLoginSubmit(evt, setLoading, setSuccess, setError, router, "/users")}
             noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"

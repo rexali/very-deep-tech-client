@@ -5,10 +5,8 @@ import CardContent from '@mui/material/CardContent';
 import "./styles/styles.css";
 import Link from 'next/link';
 import Button from '@mui/material/Button';
-// import { getProductsAPI } from './api/getProductsAPI';
 
 export default function HomeProductCategoryList(props: any) {
-    // let products = await getProductsAPI() ?? [];
     let products = props.products ?? [];
 
     return (

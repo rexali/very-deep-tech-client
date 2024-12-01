@@ -1,5 +1,6 @@
 'use client'
 
+import { NextRouter } from "next/router";
 import { logInAPI } from "../api/logInAPI";
 
 /**
@@ -13,7 +14,8 @@ export const handleLoginSubmit = (
     setLoading: Function,
     setLoginSuccess: Function,
     setLoginError: Function,
-    url: string
+    router: NextRouter,
+    url: string,
 ) => {
     // give user feedback
     setLoading("Loading...");
@@ -34,16 +36,18 @@ export const handleLoginSubmit = (
                 // check if window is defined
                 if (typeof window !== "undefined") {
                     // check if token is defined
-                    if (result.data.token && result.data.role==='user') {
+                    if (result.data.token && result.data.role === 'user') {
                         // redirect user to a given url
-                        window.location.assign('/users');
-                    } else if (result.data.token && result.data.role==='admin'){
-                        
-                        window.location.assign('/admins');
-                    }else{
-                        window.location.assign('/');
+                        // window.location.assign('/users');
+                        router.push('/users');
+                    } else if (result.data.token && result.data.role === 'admin') {
+                        // window.location.assign('/admins');
+                        router.push('/admins');
+                    } else {
+                        // window.location.assign('/');
+                        router.push('/');
                     }
-                    
+
                 } else {
                     setLoginError("Error! Let the developer knows");
                 }
