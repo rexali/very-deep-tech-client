@@ -13,8 +13,8 @@ export default function GeneralFallback() {
             <Stack spacing={1}>
                 {/* For other variants, adjust the size with `width` and `height` */}
                 <Skeleton variant="circular" animation="wave" width={40} height={40} />
-                <Skeleton variant="rectangular" animation="wave" width={240} height={40} />
-                <Skeleton variant="rounded" animation="wave" width={240} height={40} />
+                <Skeleton variant="rectangular" animation="wave" width={240} height={60} />
+                <Skeleton variant="rounded" animation="wave" width={240} height={60} />
                 <Skeleton variant="text" animation="wave" width={240} sx={{ fontSize: '2rem' }} />
                 <Skeleton variant="text" animation="wave" width={240} sx={{ fontSize: '2rem' }} />
             </Stack>
