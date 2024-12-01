@@ -3,7 +3,7 @@ import Grid from '@mui/material/Grid';
 import ProductCard from "./ProductCard";
 import { getProductsAPI } from './api/getProductsAPI';
 
-export default async function FeaturedProductList(props:any) {
+export default function FeaturedProductList(props:any) {
     // let products = await getProductsAPI() ?? [];
     let products = props.products??[];
 
