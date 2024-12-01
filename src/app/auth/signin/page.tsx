@@ -19,8 +19,7 @@ import { handleLoginSubmit } from '../utils/handleLoginSubmit';
 import ThemeProvider from '@mui/material/styles/ThemeProvider';
 import createTheme from '@mui/material/styles/createTheme';
 import { useState } from 'react';
-import { useRouter } from 'next/router';
-import { RouterContext } from 'next/dist/shared/lib/router-context.shared-runtime';
+import { useRouter } from 'next/navigation';
 
 const defaultTheme = createTheme();
 

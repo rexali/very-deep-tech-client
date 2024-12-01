@@ -14,7 +14,7 @@ export const handleLoginSubmit = (
     setLoading: Function,
     setLoginSuccess: Function,
     setLoginError: Function,
-    router: NextRouter,
+    router: any,
     url: string,
 ) => {
     // give user feedback
