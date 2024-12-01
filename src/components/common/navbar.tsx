@@ -182,7 +182,7 @@ function NavBar() {
           >
 
             <MenuItem key={"signin"} onClick={handleCloseUserMenu}>
-              <Link prefetch style={{ textDecoration: "none", display: user._id !== null ? 'block' : 'none' }} href={`/auth/signin`}>Sign In</Link>
+              <Link prefetch style={{ textDecoration: "none", display: user.token ? 'none' : '' }} href={`/auth/signin`}>Sign In</Link>
             </MenuItem>
 
 

@@ -38,38 +38,40 @@ export default function UsersOrders() {
   return (
     <React.Suspense fallback={<Fallback />} >
 
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <Box>Total Orders: {data[0]?.totalOrders}</Box>
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <Box>Total Orders: {data[0]?.totalOrders}</Box>
 
-        <TableHead>
-          <TableRow>
-            <TableCell>User</TableCell>
-            <TableCell align="right">Order Status</TableCell>
-            <TableCell align="right">Time &nbsp;</TableCell>
-            <TableCell align="right">Total &nbsp;</TableCell>
-            <TableCell align="right">Payment Status &nbsp;</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {data.map((order: any) => (
-            <TableRow
-              key={order._id}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="order">
-                <Link href={`mailto:${order?.user?.email}`}>{order?.user?.email}</Link>
-              </TableCell>
-              <TableCell align="right">{order?.orderStatus ?? 'pending'}</TableCell>
-              <TableCell align="right">{order?.createdAt ?? '12-12-24'}</TableCell>
-              <TableCell align="right">{order?.total}</TableCell>
-              <TableCell align="right">{order?.paymentStatus}</TableCell>
+          <TableHead>
+            <TableRow>
+              <TableCell>User</TableCell>
+              <TableCell align="right">Order Status</TableCell>
+              <TableCell align="right">Time &nbsp;</TableCell>
+              <TableCell align="right">Total &nbsp;</TableCell>
+              <TableCell align="right">Payment Status &nbsp;</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+          </TableHead>
+          <TableBody>
+            {data.map((order: any) => (
+              <TableRow
+                key={order._id}
+                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              >
+                <TableCell component="th" scope="order">
+                  <Link href={`mailto:${order?.user?.email}`}>{order?.user?.email}</Link>
+                </TableCell>
+                <TableCell align="right">{order?.orderStatus ?? 'pending'}</TableCell>
+                <TableCell align="right">{order?.createdAt ?? '12-12-24'}</TableCell>
+                <TableCell align="right">{order?.total}</TableCell>
+                <TableCell align="right">
+                  <Link href={'/orders/' + order._id}>{order.paymentStatus ?? 'pending ..'}</Link>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
       </TableContainer>
-      <Box  marginTop={4} display={"flex"} justifyContent={'center'} >
+      <Box marginTop={4} display={"flex"} justifyContent={'center'} >
         <ReactPagination
           activePage={activePage}
           itemsCountPerPage={4}

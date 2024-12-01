@@ -3,7 +3,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { Box, Button, Container } from "@mui/material";
 import FavouriteList from "./FavouriteList";
 import { AppContext } from "@/context/AppContext";
-import { getFavourites} from "@/store/actions/app-actions";
+import { getFavourites } from "@/store/actions/app-actions";
 import Fallback from "@/components/common/fallback";
 import ReactPagination from "@/components/react-pagination";
 import Link from "next/link";
@@ -15,24 +15,18 @@ export default function FavouritePage() {
 
   const [data, setData] = useState<any>([]);
   const [activePage, setActivePage] = useState<number>(1);
-  const mountRef = useRef(true);
   const { dispatch } = useContext(AppContext);
   const userId = getToken("_id") as string ?? "6712c927857f3a3b3492459f";
-  async function getData() {
-    const result = await getUserFavouritesAPI(userId, activePage)
-    setData(result);
-    dispatch(getFavourites(result))
-  }
 
   useEffect(() => {
-    if (mountRef.current) {
-      getData();
-
-      return () => {
-        mountRef.current = false;
-      }
+    async function getData() {
+      const result = await getUserFavouritesAPI(userId, activePage)
+      setData(result);
+      dispatch(getFavourites(data))
     }
-  });
+    getData();
+
+  }, [userId, activePage, data, dispatch]);
 
   if (!data.length) {
     return <Fallback item={'No item in your wish list'} />
@@ -46,7 +40,7 @@ export default function FavouritePage() {
         <ReactPagination
           activePage={activePage}
           itemsCountPerPage={4}
-          totalItemsCount={data[0].totalFavourites}
+          totalItemsCount={data[0]?.totaFavourites}
           pageRangeDisplayed={5}
           onchangeCallback={(v: any) => setActivePage(v)} />
       </Box>
