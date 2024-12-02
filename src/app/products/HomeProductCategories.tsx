@@ -1,10 +1,10 @@
+'use client'
+
 import Link from 'next/link';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
-import { SERVER_URL } from "@/constants/url";
 import ErrorBoundary from '@/components/ErrorBoundary';
 import React from 'react';
-import Fallback from "@/components/common/fallback";
 import HomeProductCategoryList from './HomeProductCategoryList';
 
 export default function HomeProductCategories({products}:{products:any}) {
@@ -16,9 +16,7 @@ export default function HomeProductCategories({products}:{products:any}) {
                     <span>Categories</span>
                     <Link style={{ textDecoration: "none", color: 'green' }} href={"/products"}><Button>see</Button></Link>
                 </h2>
-                <React.Suspense fallback={<Fallback />}>
                    <HomeProductCategoryList products={products} />
-                </React.Suspense>
             </Container>
         </ErrorBoundary>
     )

@@ -1,3 +1,5 @@
+'use client'
+
 import { Button, Container } from "@mui/material";
 import Link from "next/link";
 import PopularProductList from "./PopularProductList";
@@ -14,9 +16,7 @@ export default function PopularProducts({products}:{products:any}) {
           <span>Popular</span>
           <Link style={{ textDecoration: "none", color: 'green' }} href={"/products"}><Button>see</Button></Link>
         </h2>
-        <React.Suspense fallback={<Fallback />}>
           <PopularProductList products={products} />
-        </React.Suspense>
       </Container>
     </ErrorBoundary>
   )

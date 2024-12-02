@@ -1,3 +1,4 @@
+'use client'
 
 import React from "react"
 import Box from '@mui/material/Box';
@@ -10,11 +11,11 @@ export default function FAQHowItWorks() {
     return (
         <Container component="main" maxWidth="md" sx={{ mt: 5 }} >
             <Box>
+                <Typography component={"h2"} sx={{ fontWeight: "bold", mb: 2 }}>
+                    Frequently Asked Questions(F. A. Q.)
+                </Typography>
                 <Grid container rowSpacing={1} columnSpacing={4}>
                     <Grid item xs={12} md={6}>
-                        <Typography component={"h1"} sx={{ fontWeight: "bold", mb: 2 }}>
-                            Frequently Asked Questions(F. A. Q.)
-                        </Typography>
                         <Typography sx={{ fontWeight: "bold" }}>
                             What is Cshop?
                         </Typography> <br /><br />
@@ -22,8 +23,8 @@ export default function FAQHowItWorks() {
                             Cshop bring sellers and buyers together to exchange good and services
                         </Typography><br /><br />
                     </Grid>
-                    <Grid item xs={12} md={6}>
-                        <Typography component={"h1"} sx={{ fontWeight: "bold", mb: 2 }}>
+                    <Grid item xs={12} md={6} columnSpacing={4}>
+                        <Typography component={"h1"} sx={{ fontWeight: "bold"}}>
                             How Cshop Works
                         </Typography><br /><br />
                         <Typography component={"p"}>

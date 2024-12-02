@@ -1,3 +1,4 @@
+'use client'
 
 import CarouselView from '@/components/carousel-view';
 import Container from '@mui/material/Container';
