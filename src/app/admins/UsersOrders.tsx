@@ -44,11 +44,12 @@ export default function UsersOrders() {
 
           <TableHead>
             <TableRow>
-              <TableCell>User</TableCell>
-              <TableCell align="right">Order Status</TableCell>
-              <TableCell align="right">Time &nbsp;</TableCell>
+              <TableCell>User&apos;email</TableCell>
+              <TableCell align="right">Order status</TableCell>
+              <TableCell align="right">Date (n) Time &nbsp;</TableCell>
               <TableCell align="right">Total &nbsp;</TableCell>
-              <TableCell align="right">Payment Status &nbsp;</TableCell>
+              <TableCell align="right">Payment status &nbsp;</TableCell>
+              <TableCell align="right">View &nbsp;</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -63,8 +64,10 @@ export default function UsersOrders() {
                 <TableCell align="right">{order?.orderStatus ?? 'pending'}</TableCell>
                 <TableCell align="right">{order?.createdAt ?? '12-12-24'}</TableCell>
                 <TableCell align="right">{order?.total}</TableCell>
+                <TableCell align="right">{order?.paymentStatus}</TableCell>
+
                 <TableCell align="right">
-                  <Link href={'/orders/' + order._id}>{order.paymentStatus ?? 'pending ..'}</Link>
+                  <Link href={'/orders/' + order._id}>View</Link>
                 </TableCell>
               </TableRow>
             ))}

@@ -8,23 +8,26 @@ export default function OrderCard({ order }: { order: any }) {
             <CardContent sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                 <Box>
                     <Typography gutterBottom fontSize={11} variant="body2" component="div">
-                        {order.user?.email ?? "aly@yahoo.com"}
+                        {order.user?.email}
                     </Typography>
 
                     <Typography gutterBottom fontSize={11} variant="body2" component="div">
-                        N {order?.total ?? 1000}
+                        N {order?.total}
                     </Typography>
                 </Box>
                 <Box>
                     <Typography gutterBottom fontSize={11} variant="body2" component="div">
-                        <Link href={'/orders/' + order._id}>{order.paymentStatus ?? 'pending'}</Link>
+                        <Link href={'/orders/' + order._id}>View</Link>
                     </Typography>
+
                     <Typography gutterBottom fontSize={11} variant="body2" component="div">
-                        {order.createdAt ?? '12-12-2024'}
+                        {order?.paymentStatus}
                     </Typography>
                 </Box>
-
             </CardContent>
+            <Typography gutterBottom fontSize={11} variant="body2" component="div">
+                {order.createdAt ?? '12-12-2024'}
+            </Typography>
         </Card>
     )
 }

@@ -3,7 +3,6 @@
 import Container from "@mui/material/Container";
 import * as React from "react";
 import { getToken } from "@/utils/getToken";
-import Fallback from "@/components/common/fallback";
 import { getUserOrdersAPI } from "./api/getUserOrders";
 import OrderList from "../orders/OrderList";
 import Box from "@mui/material/Box";
@@ -36,10 +35,7 @@ export default function UserOrders() {
 
   return (
     <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }}>
-      <React.Suspense fallback={<Fallback />} >
-        <OrderList orders={data} />
-      </React.Suspense>
-
+      <OrderList orders={data} />
       <Box marginTop={4} display={"flex"} justifyContent={'center'} >
         <ReactPagination
           activePage={activePage}

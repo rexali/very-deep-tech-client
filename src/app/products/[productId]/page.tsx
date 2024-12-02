@@ -26,8 +26,8 @@ export const dynamicParams = true;
 export async function generateStaticParams() {
   const data = await fetch(SERVER_URL + "/products").then(res => res.json());
   return data.data.products.map((product: any) => ({
-    productId: product.product_id
-  }))
+    productId: product._id
+  })) 
 }
 
 export default async function ProductDetailPage({ params }: { params: { productId: string } }) {

@@ -6,6 +6,7 @@ import ProductList from "./ProductList";
 import ReactPagination from "@/components/react-pagination";
 import { getProductsAPI } from "./api/getProductsAPI";
 import ProductCategories from "./ProductCategory";
+import Fallback from "@/components/common/fallback";
 
 export default function ProductsPage() {
 
@@ -19,6 +20,12 @@ export default function ProductsPage() {
     getData();
 
   }, [activePage]);
+
+  
+  if (!products.length) {
+    return <Fallback item={'No product matches your search term'} />
+  }
+
 
   return (
     <Container maxWidth="md" component={'main'} sx={{ mt: 10 }}>
