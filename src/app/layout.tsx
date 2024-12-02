@@ -6,7 +6,7 @@ import BottomNavbar from '@/components/common/bottom-navbar';
 import AuthProvider from '@/context/AuthContext';
 import { Metadata } from "next";
 import { AppProvider } from '@/context/AppContext';
-import GeneralFallback from '@/components/common/GeneralFallback';
+import HomeFallback from '@/components/common/HomeFallback';
 
 const metadata: Metadata = {
   title: { absolute: "Cash Waqf", template: "%s | an Islamic endowment" },
@@ -30,7 +30,7 @@ export default function RootLayout({
         <AuthProvider>
           <AppProvider>
             <NavBar />
-            <React.Suspense fallback={<GeneralFallback />}>
+            <React.Suspense fallback={<HomeFallback />}>
               {children}
             </React.Suspense>
           </AppProvider>

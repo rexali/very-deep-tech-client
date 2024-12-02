@@ -1,7 +1,7 @@
 'use client'
 
-import { Suspense, useState } from "react";
-import { Button, Container } from "@mui/material";
+import { Suspense } from "react";
+import { Container } from "@mui/material";
 import Fallback from "@/components/common/fallback";
 import Link from "next/link";
 import RecommendedProductList from "./RecommendedProductList";
@@ -13,7 +13,8 @@ export default function RecommendedProducts() {
     <ErrorBoundary>
       <Container maxWidth="md" component={'main'} sx={{ mt: 5 }}>
         <h2 style={{ display: 'flex', flexDirection: 'row', justifyContent: "space-between" }}>
-          <span style={{ fontSize: 12 }}>People who viewed this item also bought:</span>
+          {/* People who viewed this item also bought: */}
+          <span style={{ fontSize: 12 }}>Recommended</span>
           <Link
             style={{ textDecoration: "none", color: 'green' }}
             type="button"

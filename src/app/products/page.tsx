@@ -1,15 +1,13 @@
 'use client'
 
-import { Suspense, useEffect, useState } from "react";
-import { Box, Button, Container } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Box, Container } from "@mui/material";
 import ProductList from "./ProductList";
-import Fallback from "@/components/common/fallback";
-import Link from "next/link";
 import ReactPagination from "@/components/react-pagination";
 import { getProductsAPI } from "./api/getProductsAPI";
 import { getProductCategories } from "./utils/getProductCategories";
 import ProductCategories from "./ProductCategory";
-import GeneralFallback from "@/components/common/GeneralFallback";
+import HomeFallback from "@/components/common/HomeFallback";
 
 export default function ProductsPage() {
 
@@ -24,18 +22,15 @@ export default function ProductsPage() {
 
   }, [activePage]);
 
-  const categories = getProductCategories(products);
-
   return (
     <Container maxWidth="md" component={'main'} sx={{ mt: 10 }}>
-      <h2 style={{ display: 'flex', flexDirection: 'row', justifyContent: "space-between" }}>
+      <h3 style={{ display: 'flex', flexDirection: 'row', justifyContent: "space-between" }}>
         Products
-        <Link style={{ textDecoration: "none", color: 'blue' }} href={"/products"}><Button>See all</Button></Link>
-      </h2>
-      <ProductCategories categories={categories} />
-      <Suspense fallback={<GeneralFallback />}>
-        <ProductList products={products} />
-      </Suspense>
+      </h3>
+      <React.Suspense fallback={<HomeFallback />}>
+        <ProductCategories />
+      </React.Suspense>
+      <ProductList products={products} />
       <Box marginTop={4} display={"flex"} justifyContent={'center'} >
         <ReactPagination
           activePage={activePage}
