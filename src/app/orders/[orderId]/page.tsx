@@ -45,7 +45,7 @@ export default async function OrderPage({ params }: { params: { orderId: string 
                                     <Typography gutterBottom fontSize={11} variant="body2" component="div">
                                         Qty: {item.quantity}
                                     </Typography>
-                                    <Link href={'/products/' + item._id}>View product</Link>
+                                    <Link href={'/products/' + item?.product}>View product</Link>
                                 </Box>
                                 <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                                     <Typography gutterBottom fontSize={11} variant="body2" component="div">

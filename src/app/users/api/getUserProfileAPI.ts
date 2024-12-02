@@ -11,7 +11,7 @@ const getUserProfileAPI = async (userId: string) => {
             },
         });
         if (data.data === null) {
-            return [];
+            return {};
         }
         return data.data?.profile;
     } catch (error) {
@@ -19,6 +19,20 @@ const getUserProfileAPI = async (userId: string) => {
     }
 };
 
+const fetchUserProfile = async (url: string) => {
+    try {
+        let data = await fetch(url).then(res => res.json());
+        if (data.data === null) {
+            return {};
+        }
+        return data.data?.profile;
+    } catch (error) {
+        console.warn(error);
+    }
+}
+
+
 export {
-    getUserProfileAPI
+    getUserProfileAPI,
+    fetchUserProfile
 }

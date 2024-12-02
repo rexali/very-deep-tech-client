@@ -9,12 +9,12 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Money from "@material-ui/icons/Money";
 import { handleCheckoutSubmit } from './utils/handleCheckoutSubmit';
-import { getUserProfileAPI } from '../users/api/getUserProfileAPI';
+// import { getUserProfileAPI } from '../users/api/getUserProfileAPI';
 import ClearCartButton from './components/ClearCartButton';
 import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material';
-import { useAuth } from '@/hooks/use-auth';
 import { getToken } from '@/utils/getToken';
 import { savePathLink } from '@/utils/savePathLink';
+import { useProfile } from '../users/hooks/useProfile';
 
 export default function CartList(props: any) {
     const [error, setError] = React.useState('');
@@ -23,8 +23,11 @@ export default function CartList(props: any) {
     const [cartTotals, setCartTotal] = React.useState<number>();
     const [method, setMethod] = React.useState('paystack');
     const [directPayment, setDirectPayment] = React.useState(false);
+    const [cashAndCarry, setCashAndCarry] = React.useState(false);
+
 
     const userId = getToken('_id') as string ?? "6712c927857f3a3b3492459f";
+    const { user } = useProfile();
 
 
     let cartTotal = props.products
@@ -35,13 +38,13 @@ export default function CartList(props: any) {
 
 
     // read profile with user data for the form
-    let userProfile: any;
-    (async () => {
-        userProfile = await getUserProfileAPI(userId);
-    })();
+    // let user: any;
+    // (async () => {
+    //     user = await getUserProfileAPI(userId);
+    // })();
 
     const orderItems = props.products.map((product: any) => ({
-        productId: product.product_id,
+        product: product._id,
         quantity: product.cartQuantity,
         price: product.product_price,
         total: parseInt(product.cartQuantity) * parseInt(product.product_price)
@@ -125,7 +128,7 @@ export default function CartList(props: any) {
                             margin={"normal"}
                             id="first_name"
                             label="First Name"
-                            defaultValue={userProfile?.firstName}
+                            defaultValue={user?.firstName}
                             autoFocus
                         />
 
@@ -137,7 +140,7 @@ export default function CartList(props: any) {
                             margin={"normal"}
                             id="last_name"
                             label="Last Name"
-                            defaultValue={userProfile?.lastName}
+                            defaultValue={user?.lastName}
                             autoFocus
                         />
 
@@ -150,7 +153,7 @@ export default function CartList(props: any) {
                             id="email_address"
                             type='email'
                             label="Email Address"
-                            defaultValue={userProfile?.user.email}
+                            defaultValue={user?.user.email}
                             autoFocus
                         />
 
@@ -162,7 +165,7 @@ export default function CartList(props: any) {
                             margin={"normal"}
                             id="street_address"
                             label="Address"
-                            defaultValue={userProfile?.streetAddress}
+                            defaultValue={user?.streetAddress}
                             autoFocus
                         />
 
@@ -174,7 +177,7 @@ export default function CartList(props: any) {
                             margin={"normal"}
                             id="local_govt"
                             label="Local Govt"
-                            defaultValue={userProfile?.localGovt}
+                            defaultValue={user?.localGovt}
                             autoFocus
                         />
 
@@ -186,7 +189,7 @@ export default function CartList(props: any) {
                             margin={"normal"}
                             id="state"
                             label="State"
-                            defaultValue={userProfile?.state}
+                            defaultValue={user?.state}
                             autoFocus
                         />
 
@@ -234,7 +237,6 @@ export default function CartList(props: any) {
                             margin={"normal"}
                             id="total_amount"
                             label="Total Amount"
-                            autoFocus
                             defaultValue={cartTotals}
                             disabled
                         />
@@ -248,28 +250,53 @@ export default function CartList(props: any) {
                                 onChange={(evt) => {
                                     const { value } = evt.target;
                                     setMethod(value);
+
                                     if (value === 'direct-bank-transfer') {
                                         setDirectPayment(true);
                                     } else {
                                         setDirectPayment(false);
                                     }
+
+                                    if (value === 'call-to-order') {
+                                        setCashAndCarry(true);
+                                    } else {
+                                        setCashAndCarry(false);
+                                    }
+
+                                    if (value === 'cash-and-carry') {
+                                        setCashAndCarry(true);
+                                    } else {
+                                        setCashAndCarry(false);
+                                    }
+
                                 }}
                             >
+                                <FormControlLabel value={'call-to-order'} control={<Radio />} label='Call to Order'></FormControlLabel>
+                                <FormControlLabel value={'cash-and-carry'} control={<Radio />} label='Cash and Carry'></FormControlLabel>
+                                <FormControlLabel value={'pay-on-delivery'} control={<Radio />} label='Pay on Delivery'></FormControlLabel>
+                                <FormControlLabel value={'direct-bank-transfer'} control={<Radio />} label='Direct Bank Transfer'></FormControlLabel>
                                 <FormControlLabel value={'paystack'} control={<Radio />} label='Paystack'></FormControlLabel>
                                 <FormControlLabel value={'ussd'} control={<Radio />} label='Paystack USSD'></FormControlLabel>
                                 <FormControlLabel value={'opay'} control={<Radio />} label='Paystack Opay'></FormControlLabel>
                                 <FormControlLabel value={'card'} control={<Radio />} label='Paystack Card'></FormControlLabel>
                                 <FormControlLabel value={'bank-transfer'} control={<Radio />} label='Paystack Bank transfer'></FormControlLabel>
-                                <FormControlLabel value={'pay-on-delivery'} control={<Radio />} label='Pay on Delivery'></FormControlLabel>
-                                <FormControlLabel value={'direct-bank-transfer'} control={<Radio />} label='Direct Bank Transfer'></FormControlLabel>
+
                             </RadioGroup>
                         </FormControl>
                         {
                             directPayment &&
-                            (<Box sx={{ backgroundColor: 'brown', color: "white" }}>
+                            (<Box sx={{ backgroundColor: 'green', color: "white" }}>
                                 <p>Bank: Jaiz Bank</p>
                                 <p>Acct. Number: 0016938829</p>
                                 <p>Name: Siniotech Information and Communication...</p>
+                            </Box>)
+                        }
+                        {
+                            cashAndCarry &&
+                            (<Box sx={{ backgroundColor: 'green', color: "white" }}>
+                                <p>Visit: Siniotech Ltd</p>
+                                <p>Address: 230 Naibawa Gasa A, Titi Dan Hassan, Kumbotso, Kano Sate</p>
+                                <p>Call: 07016807004</p>
                             </Box>)
                         }
                         {success && <Box textAlign={"center"} sx={{ backgroundColor: 'green', color: "white", padding: 2, borderRadius: 2 }}>{success.toUpperCase()}</Box>}

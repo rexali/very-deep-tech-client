@@ -1,9 +1,9 @@
 "use client"
 
-import React, { useState } from "react";
+import React, { useCallback, useContext, useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import ProtectedRoute from "@/components/protected-route";
-import { Box, Typography, Button, Container } from "@mui/material";
+import { Box, Typography, Button} from "@mui/material";
 import UserFavourites from "./UserFavourites";
 import UserMessages from "./UserMessages";
 import UserOrders from "./UserOrders";
@@ -16,10 +16,21 @@ import Add from "@material-ui/icons/Add";
 import UserHistory from "./UserHistory";
 import UserSettings from "./UserSettings";
 import UsersNotifications from "./UserNotifications";
+import { useProfile } from "./hooks/useProfile";
+import { useAuth } from "@/hooks/use-auth";
+import { getCarts } from "@/store/actions/app-actions";
+import { getUserCartsAPI } from "./api/getUserCarts";
+import { AppContext } from "@/context/AppContext";
 
 export default function UserTabs() {
 
     let [tabName, setTabName] = useState('profile');
+    const auth = useAuth();
+    const { dispatch } = useContext(AppContext);
+    const mountRef = useRef(true);
+
+    // const userId = authContext.state.user._id !== null ? authContext.state.user._id : "6712c927857f3a3b3492459f";
+    const userId = auth.user._id !== null ? auth.user._id : "6712c927857f3a3b3492459f";
 
     const openTab = (tabname: any) => {
         setTabName(tabname);
@@ -30,6 +41,24 @@ export default function UserTabs() {
         minheight: { minHeight: 420 },
         marginTop: { marginTop: 60, maginBottom: 30 }
     }
+
+    const { user, error, isLoading } = useProfile();
+
+    const getData = useCallback(async () => {
+        let userCarts = await getUserCartsAPI(userId);
+        dispatch(getCarts(userCarts));
+    }, [dispatch, userId])
+
+
+    useEffect(() => {
+        if (mountRef.current) {
+            getData();
+
+            return () => {
+                mountRef.current = false;
+            }
+        }
+    }, [getData, userId]);
 
     return (
         <ProtectedRoute>
@@ -49,7 +78,7 @@ export default function UserTabs() {
 
                 <div className="tab-content">
                     <div className="tab-pane container active" id="profile">
-                        {tabName === 'profile' ? <ProfileTab /> : ''}
+                        {tabName === 'profile' ? <ProfileTab user={user} /> : ''}
                         {tabName === 'products' ? <ProductsTab /> : ''}
                         {tabName === 'messages' ? <MessagesTab /> : ''}
                         {tabName === 'notifications' ? <NotificationsTab /> : ''}
@@ -91,7 +120,7 @@ function SettingsTab() {
     )
 }
 
-function ProfileTab() {
+function ProfileTab(props: any) {
 
     return (
         <Box>
@@ -102,7 +131,7 @@ function ProfileTab() {
                     Your profile
                 </Typography>
             </Box>
-            <UserProfile />
+            <UserProfile user={props?.user} />
         </Box>
     )
 }

@@ -8,15 +8,13 @@ import * as React from "react";
 import { getUserProfileAPI } from "./api/getUserProfileAPI";
 import { handleProfileUpdate } from "./utils/handleProfileUpdate";
 import Image from "next/image";
-import { useAuth } from "@/hooks/use-auth";
 import { SERVER_URL } from "@/constants/url";
 
 
-export default function UserProfile() { 
+export default function UserProfile(props: any) {
   const [profile, setUserProfile] = React.useState<any>({});
   const [error, setError] = React.useState('');
   const [success, setSuccess] = React.useState('');
-  const { user } = useAuth();
 
   const userId = getToken('_id') as string ?? "6712c927857f3a3b3492459f";
 
@@ -42,6 +40,7 @@ export default function UserProfile() {
 
   return (
     <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }}>
+      <p>photo: {props?.user?.photo}</p>
       <Box>
         {profile?.photo ? <Image
           src={`${SERVER_URL}/uploads/${profile?.photo}`}
