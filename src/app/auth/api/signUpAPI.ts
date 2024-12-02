@@ -41,11 +41,11 @@ export async function signUpAPI(
         const result = await resp.json();
 
         // check result value
-        if (result.status === "success") {
+        if (result.data.status === "success") {
             // return result
             return result;
         } else {
-            return null
+            return result;
         }
 
     } catch (error) {

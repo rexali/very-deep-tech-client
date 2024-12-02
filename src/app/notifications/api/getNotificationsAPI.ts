@@ -13,7 +13,7 @@ const getNotificationAPI = async (pageNumber: any = 1) => {
             }
         });
 
-        return data;
+        return data.data.notifications;
 
     } catch (error) {
         console.warn(error);

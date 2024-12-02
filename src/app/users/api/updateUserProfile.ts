@@ -11,10 +11,10 @@ const updateUserProfileAPI = async (profileData: any, setPostSuccess: any, setPo
             }, 
         });
 
-        if (data.data.profile.modifiedCount) {
-            setPostSuccess('Success');
+        if (data.data.status) {
+            setPostSuccess(data.data.status);
         } else {
-            setPostError('Error!')
+            setPostError(data.data.status)
         }
 
     } catch (error: any) {

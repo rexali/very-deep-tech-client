@@ -14,10 +14,10 @@ const updateProductAPI = async (productData: any, setPostSuccess: any, setPostEr
             },
 
         });
-        if (data.status === "success") {
-            setPostSuccess(data.status)
+        if (data.data.status === "success") {
+            setPostSuccess(data.data.status)
         } else {
-            setPostError(data.status)
+            setPostError(data.data.status)
         }
 
     } catch (error: any) {

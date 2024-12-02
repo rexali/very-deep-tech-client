@@ -14,7 +14,12 @@ const deleteNotificationAPI = async (data: { notificationId: any }) => {
             body: JSON.stringify(data)
         });
 
-        return await result.json();
+        const finalResult = await result.json();
+        if (finalResult.data.status) {
+            return true
+        }
+
+        return false
     } catch (error) {
         console.log(error);
     }

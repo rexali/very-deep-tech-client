@@ -29,14 +29,14 @@ export async function logInAPI(email: any, password: any) {
         const result = await resp.json();
         
         // check if login is success
-        if (result.status === "success" && result.data.token) {
+        if (result.data.status === "success" && result.data.token) {
             // save token
             saveToken("token", result.data.token);
 
             return result;
         } else {
 
-            return null;
+            return result;
         }
 
     } catch (error) {

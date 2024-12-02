@@ -22,7 +22,6 @@ export const useNotifications = (dispatch:any,pageNumber?:any) => {
         });
         dispatch(getNotifications(notifications));
         setResult(notifications);
-
       } catch (error) {
         console.warn(error);
       }

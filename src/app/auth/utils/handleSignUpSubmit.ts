@@ -29,12 +29,12 @@ export const handleSignUpSubmit = (
                 password.value,
                 remember_me.value
             ).then(((result) => {
-                if (result.status === "success") {
+                if (result.data.status === "success") {
                     // send success message
-                    setSignUpSuccess(result.status);
+                    setSignUpSuccess(result.data.status);
                 } else {
                     // send failure message
-                    setSignUpSuccess("failed");
+                    setSignUpSuccess(result.data.status);
                 }
             })).catch((err) => {
                 // log error message

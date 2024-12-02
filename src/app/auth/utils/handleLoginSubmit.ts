@@ -29,9 +29,9 @@ export const handleLoginSubmit = (
     // handle login
     logInAPI(email, password)
         .then((result: any) => {
-            if (result.status === "success") {
+            if (result.data.status === "success") {
                 setLoading("");
-                setLoginSuccess(result.status);
+                setLoginSuccess(result.data.status);
                 // check if window is defined
                 if (typeof window !== "undefined") {
                     // check if token is defined
@@ -51,7 +51,7 @@ export const handleLoginSubmit = (
                     setLoginError("Error! Let the developer knows");
                 }
             } else {
-                setLoginError(result.status);
+                setLoginError(result.data.status);
             }
         }).catch((err) => {
             // collect error thru error callback

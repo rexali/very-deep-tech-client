@@ -39,10 +39,10 @@ const handleUpdateMessageAPI = async (
                     'Content-Type': 'application/json',
                 },
             });
-            if (data.status) {
-                setUpdateSuccess(data.status)
+            if (data.data.status) {
+                setUpdateSuccess(data.data.status)
             } else {
-                setUpdateError(data.status)
+                setUpdateError(data.data.status)
             }
         } catch (error: any) {
             setUpdateError('ERROR! ' + error.message);

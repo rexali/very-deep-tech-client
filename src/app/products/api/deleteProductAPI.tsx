@@ -11,8 +11,11 @@ const deleteProductAPI = async (productId: string) => {
             },
 
         });
+        if (data.data.status==='success') {
+            return true
+        }
 
-        return data.data?.product;
+        return false
     } catch (error) {
         console.warn(error);
     }

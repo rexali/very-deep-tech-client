@@ -12,7 +12,10 @@ const deleteCartAPI = async (id: string) => {
                 'Content-Type': 'application/json',
             },
         });
-        return data.data?.cart;
+        if(data.data.status ==='success'){
+            return true
+        }
+        return false;
     } catch (error) {
         console.warn(error);
     }
