@@ -3,7 +3,7 @@
 import React, { useCallback, useContext, useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import ProtectedRoute from "@/components/protected-route";
-import { Box, Typography, Button} from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 import UserFavourites from "./UserFavourites";
 import UserMessages from "./UserMessages";
 import UserOrders from "./UserOrders";
@@ -21,6 +21,7 @@ import { useAuth } from "@/hooks/use-auth";
 import { getCarts } from "@/store/actions/app-actions";
 import { getUserCartsAPI } from "./api/getUserCarts";
 import { AppContext } from "@/context/AppContext";
+import { signIn } from "@/store/actions/auth-actions";
 
 export default function UserTabs() {
 
@@ -28,7 +29,6 @@ export default function UserTabs() {
     const auth = useAuth();
     const { dispatch } = useContext(AppContext);
     const mountRef = useRef(true);
-
     // const userId = authContext.state.user._id !== null ? authContext.state.user._id : "6712c927857f3a3b3492459f";
     const userId = auth.user._id !== null ? auth.user._id : "6712c927857f3a3b3492459f";
 
@@ -36,18 +36,13 @@ export default function UserTabs() {
         setTabName(tabname);
     }
 
-    const styles = {
-        navTabs: { fontSize: 'small' },
-        minheight: { minHeight: 420 },
-        marginTop: { marginTop: 60, maginBottom: 30 }
-    }
-
     const { user, error, isLoading } = useProfile();
 
     const getData = useCallback(async () => {
         let userCarts = await getUserCartsAPI(userId);
         dispatch(getCarts(userCarts));
-    }, [dispatch, userId])
+        dispatch(signIn({ photo: user?.photo }))
+    }, [dispatch, user?.photo, userId])
 
 
     useEffect(() => {
@@ -92,6 +87,12 @@ export default function UserTabs() {
             </div>
         </ProtectedRoute>
     );
+}
+
+const styles = {
+    navTabs: { fontSize: 'small' },
+    minheight: { minHeight: 420 },
+    marginTop: { marginTop: 60, maginBottom: 30 }
 }
 
 function ProductsTab() {

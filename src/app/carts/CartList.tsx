@@ -24,6 +24,8 @@ export default function CartList(props: any) {
     const [method, setMethod] = React.useState('paystack');
     const [directPayment, setDirectPayment] = React.useState(false);
     const [cashAndCarry, setCashAndCarry] = React.useState(false);
+    const [callToOrder, setCallToOrder] = React.useState(false);
+
 
 
     const userId = getToken('_id') as string ?? "6712c927857f3a3b3492459f";
@@ -141,7 +143,6 @@ export default function CartList(props: any) {
                             id="last_name"
                             label="Last Name"
                             defaultValue={user?.lastName}
-                            autoFocus
                         />
 
                         <TextField
@@ -154,7 +155,6 @@ export default function CartList(props: any) {
                             type='email'
                             label="Email Address"
                             defaultValue={user?.user.email}
-                            autoFocus
                         />
 
                         <TextField
@@ -166,7 +166,6 @@ export default function CartList(props: any) {
                             id="street_address"
                             label="Address"
                             defaultValue={user?.streetAddress}
-                            autoFocus
                         />
 
                         <TextField
@@ -178,7 +177,6 @@ export default function CartList(props: any) {
                             id="local_govt"
                             label="Local Govt"
                             defaultValue={user?.localGovt}
-                            autoFocus
                         />
 
                         <TextField
@@ -190,7 +188,6 @@ export default function CartList(props: any) {
                             id="state"
                             label="State"
                             defaultValue={user?.state}
-                            autoFocus
                         />
 
                         <TextField
@@ -258,9 +255,9 @@ export default function CartList(props: any) {
                                     }
 
                                     if (value === 'call-to-order') {
-                                        setCashAndCarry(true);
+                                        setCallToOrder(true);
                                     } else {
-                                        setCashAndCarry(false);
+                                        setCallToOrder(false);
                                     }
 
                                     if (value === 'cash-and-carry') {
@@ -280,7 +277,6 @@ export default function CartList(props: any) {
                                 <FormControlLabel value={'opay'} control={<Radio />} label='Paystack Opay'></FormControlLabel>
                                 <FormControlLabel value={'card'} control={<Radio />} label='Paystack Card'></FormControlLabel>
                                 <FormControlLabel value={'bank-transfer'} control={<Radio />} label='Paystack Bank transfer'></FormControlLabel>
-
                             </RadioGroup>
                         </FormControl>
                         {
@@ -297,6 +293,14 @@ export default function CartList(props: any) {
                                 <p>Visit: Siniotech Ltd</p>
                                 <p>Address: 230 Naibawa Gasa A, Titi Dan Hassan, Kumbotso, Kano Sate</p>
                                 <p>Call: 07016807004</p>
+                            </Box>)
+                        }
+                        {
+                            callToOrder &&
+                            (<Box sx={{ backgroundColor: 'green', color: "white" }}>
+                                <p>Call: 07016807004</p>
+                                <p>Visit: Siniotech Ltd</p>
+                                <p>Address: 230 Naibawa Gasa A, Titi Dan Hassan, Kumbotso, Kano Sate</p>
                             </Box>)
                         }
                         {success && <Box textAlign={"center"} sx={{ backgroundColor: 'green', color: "white", padding: 2, borderRadius: 2 }}>{success.toUpperCase()}</Box>}

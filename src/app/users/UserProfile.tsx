@@ -107,7 +107,6 @@ export default function UserProfile(props: any) {
           id="last_name"
           label="Last Name"
           defaultValue={profile?.lastName}
-          autoFocus
         />
 
         <TextField
@@ -119,7 +118,6 @@ export default function UserProfile(props: any) {
           id="email_address"
           label="Email Address"
           defaultValue={profile?.user?.email}
-          autoFocus
         />
 
         <TextField
@@ -131,7 +129,6 @@ export default function UserProfile(props: any) {
           id="street_address"
           label="Address"
           defaultValue={profile?.streetAddress}
-          autoFocus
         />
 
         <TextField
@@ -143,7 +140,6 @@ export default function UserProfile(props: any) {
           id="local_govt"
           label="Local Govt"
           defaultValue={profile?.localGovt}
-          autoFocus
         />
 
         <TextField
@@ -155,7 +151,6 @@ export default function UserProfile(props: any) {
           id="state"
           label="State"
           defaultValue={profile?.state}
-          autoFocus
         />
 
         {success && <Box textAlign={"center"} sx={{ color: "green" }}>{success.toUpperCase()}</Box>}
