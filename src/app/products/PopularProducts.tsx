@@ -11,17 +11,7 @@ export default function PopularProducts({ products }: { products: any }) {
   return (
     <ErrorBoundary>
       <Container maxWidth="md" component={'main'} sx={{ mt: 5 }}>
-        <h2 style={{ display: 'flex', flexDirection: 'row', justifyContent: "space-between" }}>
-          <span>Popular</span>
-          <Link
-            style={{ textDecoration: "none", color: 'green' }}
-            type="button"
-            color="success"
-            href={`/products`}
-          >
-            See all
-          </Link>
-        </h2>
+      <h2>Categories</h2>
         <PopularProductList products={products} />
       </Container>
     </ErrorBoundary>
