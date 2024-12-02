@@ -4,7 +4,7 @@ const getToken = (key: string) => {
     try {
         if (typeof window !== "undefined") {
             
-            return  window.sessionStorage.getItem(key)
+            return  window.localStorage.getItem(key)
         }
     } catch (error) {
         console.warn(error);
@@ -13,4 +13,4 @@ const getToken = (key: string) => {
 
 export {
     getToken,
-}
+} 

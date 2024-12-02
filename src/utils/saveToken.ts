@@ -4,7 +4,7 @@ const saveToken = (key: string, value: string) => {
     try {
         if (typeof window !== "undefined") {
             
-            window.sessionStorage.setItem(key, value)
+            window.localStorage.setItem(key, value)
         }
        
     } catch (error) {

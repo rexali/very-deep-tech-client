@@ -23,7 +23,6 @@ export default function CartList(props: any) {
     const [cartTotals, setCartTotal] = React.useState<number>();
     const [method, setMethod] = React.useState('paystack');
     const [directPayment, setDirectPayment] = React.useState(false);
-    const { user } = useAuth();
 
     const userId = getToken('_id') as string ?? "6712c927857f3a3b3492459f";
 
