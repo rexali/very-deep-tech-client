@@ -77,8 +77,20 @@ function NavBar() {
     <Container maxWidth={"xl"}>
       <Toolbar disableGutters>
         {!isMobile && <AWFLogo />}
-        <Link prefetch href={'/'} style={{ display: isMobile ? "none" : '', fontSize: 18, textDecoration: 'none', color: 'white', marginRight: 5, letterSpacing: '.1rem', fontWeight: 700, }} >
-          Cshop
+        <Link
+          type='button'
+          href={'/'}
+          style={{
+            display: isMobile ? "none" : '',
+            fontSize: 18,
+            textDecoration: 'none',
+            color: 'white',
+            marginRight: 5,
+            letterSpacing: '.1rem',
+            fontWeight: 700,
+          }}
+        >
+          cShop
         </Link>
         <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
           <IconButton
@@ -111,25 +123,28 @@ function NavBar() {
           >
             {pages.map((page, index) => (
               <MenuItem key={index + "me"} onClick={handleCloseNavMenu}>
-                {<Link prefetch key={index + "li"} style={{ marginLeft: "5px", textDecoration: "none" }} href={`/${page.toLowerCase()}`}>{page}</Link>}
+                {<Link key={index + "li"} style={{ marginLeft: "5px", textDecoration: "none" }} href={`/${page.toLowerCase()}`}>{page}</Link>}
               </MenuItem>
             ))}
           </Menu>
         </Box>
-        <Link prefetch href={'/'} style={{
-          textDecoration: "none",
-          marginRight: 2,
-          display: isMobile ? 'flex' : 'none',    ///{ xs: 'flex', md: 'none' },
-          flexGrow: 1,
-          fontFamily: 'monospace',
-          fontWeight: 400,
-          letterSpacing: '.1rem',
-          color: 'inherit',
-        }}>
-          Cshop
+        <Link
+          type='button'
+          href={'/'}
+          style={{
+            textDecoration: "none",
+            marginRight: 2,
+            display: isMobile ? 'flex' : 'none',    ///{ xs: 'flex', md: 'none' },
+            flexGrow: 1,
+            fontFamily: 'monospace',
+            fontWeight: 400,
+            letterSpacing: '.1rem',
+            color: 'inherit',
+          }}>
+          cShop
         </Link>
         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-          {pages.map((page, index) => (<Link prefetch
+          {pages.map((page, index) => (<Link
             key={index + "p"}
             onClick={() => { handleCloseNavMenu }}
             href={`/${page === "Waqf" ? "waqfs" : page.toLowerCase()}`}
@@ -140,17 +155,17 @@ function NavBar() {
           ))}
         </Box>
         {/* Carts components */}
-        {!isMobile && <Link prefetch href={'/carts'} style={{ marginRight: 16, color: "white", textDecoration: "none" }} >
+        {!isMobile && <Link href={'/carts'} style={{ marginRight: 16, color: "white", textDecoration: "none" }} >
           <Button sx={{ color: "white" }} startIcon={<Cart />}>Cart</Button><sup style={{ color: "yellow" }}>{state.carts?.length ?? 0}</sup>
         </Link>}
-        {isMobile && <Link prefetch href={'/carts'} style={{ color: "white", textDecoration: "none" }} >
+        {isMobile && <Link href={'/carts'} style={{ color: "white", textDecoration: "none" }} >
           <Cart sx={{ fontSize: 18, }} /><sup style={{ color: "yellow", marginRight: 10 }}>{state.carts?.length ?? 0}</sup>
         </Link>}
         {/* end */}
         {/* Messages component */}
-        {!isMobile && <Link prefetch href={'/messages'} style={{ marginRight: 16, display: (user._id !== null) ? '' : 'none' }} ><Message sx={{ color: "white" }} /></Link>}
+        {!isMobile && <Link href={'/messages'} style={{ marginRight: 16, display: (user._id !== null) ? '' : 'none' }} ><Message sx={{ color: "white" }} /></Link>}
         {/* Notification component */}
-        {!isMobile && <Link prefetch href='/notifications' style={{ marginRight: 16, display: (user._id !== null) ? '' : 'none' }} ><Notifications sx={{ color: "white" }} /></Link>}
+        {!isMobile && <Link href='/notifications' style={{ marginRight: 16, display: (user._id !== null) ? '' : 'none' }} ><Notifications sx={{ color: "white" }} /></Link>}
         <Box sx={{ flexGrow: 0 }}>
           <Tooltip title="Open menu">
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -182,12 +197,12 @@ function NavBar() {
           >
 
             <MenuItem key={"signin"} onClick={handleCloseUserMenu}>
-              <Link prefetch style={{ textDecoration: "none", display: user.token ? 'none' : '' }} href={`/auth/signin`}>Sign In</Link>
+              <Link style={{ textDecoration: "none", display: user.token ? 'none' : '' }} href={`/auth/signin`}>Sign In</Link>
             </MenuItem>
 
 
             <MenuItem key={"signup"} onClick={handleCloseUserMenu}>
-              <Link prefetch style={{ textDecoration: "none" }} href={`/auth/signup`}>Sign Up</Link>
+              <Link style={{ textDecoration: "none" }} href={`/auth/signup`}>Sign Up</Link>
             </MenuItem>
 
 
@@ -199,14 +214,14 @@ function NavBar() {
 
             {
               user._id !== null && <MenuItem key={"signup"} onClick={handleCloseUserMenu}>
-                <Link prefetch onClick={handleSignOut} style={{ textDecoration: "none" }} href={`/users`}>Logout</Link>
+                <Link onClick={handleSignOut} style={{ textDecoration: "none" }} href={`/users`}>Logout</Link>
               </MenuItem>
             }
             {/* Other Menu components */}
             {menus.map((menu, index) => (
               <MenuItem key={menu} onClick={handleCloseUserMenu}>
                 {
-                  user._id !== null && <Link prefetch style={{ textDecoration: "none" }} key={index + "s"} href={`/${menu.toLowerCase()}`}>{menu}</Link>
+                  user._id !== null && <Link style={{ textDecoration: "none" }} key={index + "s"} href={`/${menu.toLowerCase()}`}>{menu}</Link>
                 }
               </MenuItem>
             ))}
