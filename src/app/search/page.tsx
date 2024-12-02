@@ -17,11 +17,10 @@ export default function SearchPage() {
 
   const term = searchParams.get('term');
 
-
   useEffect(() => {
     if (mountRef.current) {
       (async () => {
-        setData(await searchProducts(term));
+        setData(await searchProducts(term, activePage));
       })();
     }
 
@@ -37,8 +36,7 @@ export default function SearchPage() {
   return (
     <Container maxWidth="md" component={'main'} sx={{ mt: 10 }}>
       <h2>Product(s): {term}</h2>
-      <Suspense fallback={<Fallback />}>
-        <SearchList term={term} activePage={activePage} />
+        <SearchList products={data}/>
         <Box marginTop={4} display={"flex"} justifyContent={'center'} >
           <ReactPagination
             activePage={activePage}
@@ -47,7 +45,6 @@ export default function SearchPage() {
             pageRangeDisplayed={5}
             onchangeCallback={(v: any) => setActivePage(v)} />
         </Box>
-      </Suspense>
     </Container>
   )
 }

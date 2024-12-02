@@ -16,37 +16,33 @@ export default function CategoryPage() {
   const mountRef = useRef(true);
 
   async function getData() {
-    setData(await searchProductsCategoryAPI(term));
+    setData(await searchProductsCategoryAPI(term, activePage));
   }
-
   useEffect(() => {
     if (mountRef.current) {
       getData();
-
       return () => {
         mountRef.current = false;
       }
     }
   });
 
-  if (!data?.length) {
-    return <Fallback item={'No product matches your search term'} />
+  if (!data.length) {
+    return <Fallback item={'No product matches your category yet'} />
   }
 
   return (
     <Container maxWidth="md" component={'main'} sx={{ mt: 10 }}>
       <h2>Product(s): {term}</h2>
-      <Suspense fallback={<Fallback />}>
-        <CategoryList term={term} activePage={activePage} />
-        <Box marginTop={4} display={"flex"} justifyContent={'center'} >
-          <ReactPagination
-            activePage={activePage}
-            itemsCountPerPage={10}
-            totalItemsCount={data?.length}
-            pageRangeDisplayed={5}
-            onchangeCallback={(v: any) => setActivePage(v)} />
-        </Box>
-      </Suspense>
+      <CategoryList products={data} />
+      <Box marginTop={4} display={"flex"} justifyContent={'center'} >
+        <ReactPagination
+          activePage={activePage}
+          itemsCountPerPage={10}
+          totalItemsCount={data?.length}
+          pageRangeDisplayed={5}
+          onchangeCallback={(v: any) => setActivePage(v)} />
+      </Box>
     </Container>
   )
 }

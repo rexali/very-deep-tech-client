@@ -9,7 +9,7 @@ export default function ProductCategories(props: any) {
 
   return (
     <div className="scrollmenu">
-      <a href="#categories">Categories:</a>
+      <a href="#categories">CATEGORIES:</a>
       {
         categories.map((category: any, i: number) =>
           <a key={i} href={`/category/?term=${category}`}>
