@@ -63,6 +63,6 @@ export const handleLoginSubmit = (
                 setLoginError('');
                 setLoginSuccess('');
                 getPathLink();
-            }, 30000);
+            }, 20000);
         })
 }

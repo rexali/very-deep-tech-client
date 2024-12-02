@@ -63,7 +63,7 @@ export function useAuth() {
                     // dispatch the sign-in action 
                     dispatch(signIn({ ...res.data }));
                     // get cartData
-                    getCartData(res.data._id);
+                    getCartData(dispatch, res.data._id);
                 } else {
                     dispatch(signIn({}))
                 }
@@ -87,7 +87,7 @@ export function useAuth() {
 }
 
 
-async function getCartData(userId: string) {
-    const products = await getUserCartsAPI(userId);
-    getCarts(products);
+async function getCartData(dispatch: any, userId: string) {
+    const carts = await getUserCartsAPI(userId);
+    dispatch(getCarts(carts));
 }

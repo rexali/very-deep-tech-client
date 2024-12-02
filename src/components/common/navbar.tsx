@@ -16,12 +16,12 @@ import { useMediaQuery } from 'react-responsive';
 import Cart from '@mui/icons-material/ShoppingCart';
 import { handleSignOut } from '@/app/auth/utils/handleSignOut';
 import Link from 'next/link';
-import { useAuth } from '@/hooks/use-auth';
 import { BASE_URL, SERVER_URL } from '@/constants/url';
 import { Avatar, Button } from '@mui/material';
 import { AppContext } from '@/context/AppContext';
 import Notifications from '@mui/icons-material/Notifications';
 import Message from '@mui/icons-material/Message';
+import { AuthContext } from '@/context/AuthContext';
 
 const pages = [
   'About',
@@ -37,9 +37,10 @@ const menus = [
 
 function NavBar() {
 
-  const { user } = useAuth();
+  const { state } = React.useContext(AppContext);
+  const authContext = React.useContext(AuthContext);
+  const { user } = authContext;
 
-  const { state } = React.useContext(AppContext)
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
 
@@ -156,10 +157,10 @@ function NavBar() {
         </Box>
         {/* Carts components */}
         {!isMobile && <Link href={'/carts'} style={{ marginRight: 16, color: "white", textDecoration: "none" }} >
-          <Button sx={{ color: "white" }} startIcon={<Cart />}>Cart</Button><sup style={{ color: "yellow" }}>{state.carts?.length ?? 0}</sup>
+          <Button sx={{ color: "white" }} startIcon={<Cart />}>Cart</Button><sup style={{ color: "yellow" }}>{state.carts?.length !== 0 ? state.carts?.length : ''}</sup>
         </Link>}
         {isMobile && <Link href={'/carts'} style={{ color: "white", textDecoration: "none" }} >
-          <Cart sx={{ fontSize: 18, }} /><sup style={{ color: "yellow", marginRight: 10 }}>{state.carts?.length ?? 0}</sup>
+          <Cart sx={{ fontSize: 18, }} /><sup style={{ color: "yellow", marginRight: 10 }}>{state.carts?.length !== 0 ? state.carts?.length : ''}</sup>
         </Link>}
         {/* end */}
         {/* Messages component */}

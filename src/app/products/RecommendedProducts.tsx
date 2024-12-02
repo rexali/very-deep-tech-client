@@ -1,7 +1,7 @@
 'use client'
 
 import { Suspense } from "react";
-import { Container } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import Fallback from "@/components/common/fallback";
 import Link from "next/link";
 import RecommendedProductList from "./RecommendedProductList";
@@ -12,21 +12,21 @@ export default function RecommendedProducts() {
   return (
     <ErrorBoundary>
       <Container maxWidth="md" component={'main'} sx={{ mt: 5 }}>
-        <h2 style={{ display: 'flex', flexDirection: 'row', justifyContent: "space-between" }}>
-          {/* People who viewed this item also bought: */}
-          <span style={{ fontSize: 12 }}>Recommended</span>
+        {/* People who viewed this item also bought: */}
+        <h3><span>Recommended</span></h3>
+        <Suspense fallback={<Fallback />}>
+          <RecommendedProductList />
+        </Suspense>
+        <Box marginTop={2} padding={2} display={"flex"} justifyContent={'center'}>
           <Link
             style={{ textDecoration: "none", color: 'green' }}
             type="button"
             color="success"
             href={`/products`}
           >
-            See all
+            View all
           </Link>
-        </h2>
-        <Suspense fallback={<Fallback />}>
-          <RecommendedProductList />
-        </Suspense>
+        </Box>
       </Container>
     </ErrorBoundary>
   )
