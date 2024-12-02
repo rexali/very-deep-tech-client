@@ -5,9 +5,7 @@ import { Box, Container } from "@mui/material";
 import ProductList from "./ProductList";
 import ReactPagination from "@/components/react-pagination";
 import { getProductsAPI } from "./api/getProductsAPI";
-import { getProductCategories } from "./utils/getProductCategories";
 import ProductCategories from "./ProductCategory";
-import HomeFallback from "@/components/common/HomeFallback";
 
 export default function ProductsPage() {
 
@@ -27,9 +25,7 @@ export default function ProductsPage() {
       <h3 style={{ display: 'flex', flexDirection: 'row', justifyContent: "space-between" }}>
         Products
       </h3>
-      <React.Suspense fallback={<HomeFallback />}>
-        <ProductCategories />
-      </React.Suspense>
+      <ProductCategories products={products} />
       <ProductList products={products} />
       <Box marginTop={4} display={"flex"} justifyContent={'center'} >
         <ReactPagination
