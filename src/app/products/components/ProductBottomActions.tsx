@@ -5,8 +5,6 @@ import AddToCart from '@mui/icons-material/AddShoppingCart'
 import Edit from '@mui/icons-material/Edit';
 import Minus from '@mui/icons-material/RemoveCircle';
 import Plus from '@mui/icons-material/AddCircle';
-
-
 import Box from "@mui/material/Box";
 import { useState, useContext } from "react";
 import StatusModal from "@/components/common/status-modal";
@@ -31,8 +29,8 @@ export default function ProductBottomActions({ product, role, cart }: { product:
     const userId = state.user?._id || getToken('_id');
     const router = useRouter();
 
-    let minusElement = document.querySelector('#minus') as any;
-    let plusElement = document.querySelector('#plus') as any;
+    let minusElement = window.document.querySelector('#minus') as any;
+    let plusElement = window.document.querySelector('#plus') as any;
 
     minusElement.addEventListener('click', () => {
         if (Number(minusElement.nextSibling.value) === 1) {
@@ -75,7 +73,7 @@ export default function ProductBottomActions({ product, role, cart }: { product:
                 </select>
             </label> */}
            
-                <span><Button id="minus" startIcon={<Minus />} /><input style={{ width: 5 }} id="value" value={quantity} /><Button id="plus" startIcon={<Plus />} /></span>
+            <span><Button id="minus" startIcon={<Minus />} /><input style={{ width: 5 }} id="value" value={quantity} /><Button id="plus" startIcon={<Plus />} /></span>
             {
                 (role === 'admin') && <Button
                     size="small"
