@@ -22,7 +22,6 @@ import { getToken } from "@/utils/getToken";
 export default function ProductBottomActions({ product, role, cart }: { product: any, role?: string, cart?: any }) {
     const [open, setOpen] = useState(false);
     const [openQoute, setOpenQoute] = useState(false);
-    const mountRef = useRef(true);
     const [quantity, setQuantity] = useState<number>(1);
     // const [quantity, setQuantity] = useState<number>(product?.cartQuantity ?? 1);
     const { state } = useContext(AuthContext);
@@ -41,41 +40,18 @@ export default function ProductBottomActions({ product, role, cart }: { product:
     }
 
     const plusToCartCount = (evt:any) => {
-        let minusElement = window.document.querySelector('#minus') as any;
-        let plusElement = window.document.querySelector('#plus') as any;
-
-        minusElement.addEventListener('click', () => {
-            if (Number(minusElement.nextSibling.value) === 1) {
-                minusElement.nextSibling.value = 1;
-                setQuantity(minusElement.nextSibling.value)
+            if (Number(evt.currentTarget.previous.value) === 1) {
+                evt.currentTarget.previousSibling.value = 1;
+                setQuantity(evt.currentTarget.previousSibling.value)
             } else {
-                minusElement.nextSibling.value = Number(minusElement.nextSibling.value) - 1;
-                setQuantity(minusElement.nextSibling.value)
+                evt.currentTarget.previousSibling.value = Number(evt.currentTarget.previousSibling.value) - 1;
+                setQuantity(evt.currentTarget.previousSibling.value)
             }
-        })
-        plusElement.addEventListener('click', () => {
-            plusElement.previousSibling.value = Number(plusElement.previousSibling.value) + 1;
-            setQuantity(plusElement.previousSibling.value)
-        })
     }
 
     const minusToCartCount = (evt:any) => {
-        let minusElement = window.document.querySelector('#minus') as any;
-        let plusElement = window.document.querySelector('#plus') as any;
-
-        minusElement.addEventListener('click', () => {
-            if (Number(minusElement.nextSibling.value) === 1) {
-                minusElement.nextSibling.value = 1;
-                setQuantity(minusElement.nextSibling.value)
-            } else {
-                minusElement.nextSibling.value = Number(minusElement.nextSibling.value) - 1;
-                setQuantity(minusElement.nextSibling.value)
-            }
-        })
-        plusElement.addEventListener('click', () => {
-            plusElement.previousSibling.value = Number(plusElement.previousSibling.value) + 1;
-            setQuantity(plusElement.previousSibling.value)
-        })
+            evt.currentTarget.nextSibling.value = Number(evt.currentTarget.nextSibling.value) + 1;
+            setQuantity(evt.currentTarget.nextSibling.value)
     }
 
 
@@ -96,7 +72,7 @@ export default function ProductBottomActions({ product, role, cart }: { product:
                 </select>
             </label> */}
 
-            <span><Button onClick={(evt)=>minusToCartCount(evt)} id="minus"  style={{ textAlign: 'center' }} startIcon={<Minus />}/><input disabled={true} style={{ width: 8, textAlign: 'center' }} id="value" value={quantity} /><Button id="plus" onClick={()=>addToCartCount()} startIcon={<Plus />} /></span>
+            <span><Button onClick={(evt)=>minusToCartCount(evt)} id="minus" style={{ textAlign: 'center' }} startIcon={<Minus/>}/><input disabled={true} style={{ width: 8, textAlign: 'center' }} id="value" value={quantity}/><Button id="plus" onClick={(evt)=>plusToCartCount(evt)} startIcon={<Plus />}/></span>
             {
                 (role === 'admin') && <Button
                     size="small"
