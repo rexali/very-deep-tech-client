@@ -34,9 +34,7 @@ export default function UsersProducts() {
   return (
     <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }}>
       <Box>Total Products: {data[0]?.totalProducts}</Box>
-      <React.Suspense fallback={<Fallback />} >
         <ProductList products={data} />
-      </React.Suspense>
       <Box marginTop={4} display={"flex"} justifyContent={'center'} >
         <ReactPagination
           activePage={activePage}

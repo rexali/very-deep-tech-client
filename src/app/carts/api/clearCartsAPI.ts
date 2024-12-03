@@ -1,6 +1,6 @@
 'use client'
 
-import { BASE_URL, SERVER_URL } from "@/constants/url";
+import { SERVER_URL } from "@/constants/url";
 import axios from "axios";
 
 const clearUserCartsAPI = async (id: string) => {
@@ -12,7 +12,13 @@ const clearUserCartsAPI = async (id: string) => {
                 'Content-Type': 'application/json',
             },
         });
-        return data.data?.cart;
+        
+        if (data.status === 'success') {
+
+            return true
+        }
+
+        return false;
     } catch (error) {
         console.warn(error);
     }

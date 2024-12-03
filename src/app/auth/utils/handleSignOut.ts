@@ -8,7 +8,7 @@ export function handleSignOut() {
         // checked if the window exists
         if (typeof window !=="undefined") {
             // set the token null
-            window.sessionStorage.setItem("token", "");
+            window.localStorage.setItem("token", "");
             // navigate to log in page
             window.location.assign("/auth/signin");
         }

@@ -7,22 +7,21 @@ export const useProducts = () => {
 
     const fetchData = async () => {
         try {
-            const { data } = await axios.post(`${SERVER_URL}/products`, {
+            const { data } = await axios.get(`${SERVER_URL}/products`, {
                 // header
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 }
             });
+            setData(data);
         } catch (error) {
             console.warn(error);
         } 
     };
 
     React.useEffect(() => {
-
             fetchData();
-
     }, [data]);
 
     return {data};

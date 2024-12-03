@@ -1,7 +1,6 @@
 'use client'
 
-import { BASE_URL } from "@/constants/url";
-import { getToken } from "@/utils/getToken";
+import { SERVER_URL } from "@/constants/url";
 import axios from "axios";
 
 const changePasswordAPI = async (passwordData: {
@@ -12,11 +11,10 @@ const changePasswordAPI = async (passwordData: {
 }) => {
 
     try {
-        let { data } = await axios.post(`${BASE_URL}/change`, passwordData, {
+        let { data } = await axios.post(`${SERVER_URL}/change`, passwordData, {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + getToken('jwtoken'),
             },
         });
 

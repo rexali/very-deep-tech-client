@@ -23,7 +23,7 @@ const handleReviewSubmit = async (event: any, setPostSuccess: any, setPostError:
             await createReviewAPI(reviewData, setPostSuccess, setPostError);
             // console.log(reviewData);
         } else {
-            alert('Buy it first, then use, and post review thereafter')
+            alert('Buy first, then use it, and post review thereafter')
         }
     } else {
         savePathLink();

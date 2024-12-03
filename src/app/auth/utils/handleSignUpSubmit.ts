@@ -48,9 +48,10 @@ export const handleSignUpSubmit = (
             })
         }
 
-    } catch (error) {
+    } catch (error:any) {
         // log error
         console.warn(error);
+        setSignUpError(error.message)
     }
 
 }

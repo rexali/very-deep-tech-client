@@ -36,7 +36,6 @@ export default function UsersProfiles() {
   }
 
   return (
-    <React.Suspense fallback={<Fallback />} >
       <Box sx={{ mt: 8 }}>
         Total Profiles: {data[0]?.totalProfiles} <br /><br />
         <TableContainer component={Paper}>
@@ -67,14 +66,13 @@ export default function UsersProfiles() {
           </Table>
         </TableContainer>
         <Box marginTop={4} display={"flex"} justifyContent={'center'} >
-            <ReactPagination
-              activePage={activePage}
-              itemsCountPerPage={4}
-              totalItemsCount={data[0]?.totalProfiles}
-              pageRangeDisplayed={5}
-              onchangeCallback={(v: any) => setActivePage(v)} />
-          </Box>
+          <ReactPagination
+            activePage={activePage}
+            itemsCountPerPage={4}
+            totalItemsCount={data[0]?.totalProfiles}
+            pageRangeDisplayed={5}
+            onchangeCallback={(v: any) => setActivePage(v)} />
+        </Box>
       </Box>
-    </React.Suspense>
   );
 }

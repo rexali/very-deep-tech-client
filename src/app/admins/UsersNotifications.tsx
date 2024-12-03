@@ -38,9 +38,7 @@ export default function UsersNotifications() {
         <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }}>
             <Box>Total Notifications: {data[0]?.totalNotifications}</Box>
             <Grid container columnSpacing={1}>
-                <React.Suspense fallback={<Fallback />} >
-                    <NotificationList notifications={data} role={'admin'} />
-                </React.Suspense>
+                <NotificationList notifications={data} role={'admin'} />
             </Grid>
             <Box marginTop={4} display={"flex"} justifyContent={'center'}>
                 <ReactPagination

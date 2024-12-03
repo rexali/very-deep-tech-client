@@ -8,7 +8,7 @@ import { AppContext } from "@/context/AppContext";
 
 export default function ClearCartButton(props: any) {
 
-    const { dispatch,state } = useContext(AppContext);
+    const { state } = useContext(AppContext);
     const userId = state.user?._id ?? "6712c927857f3a3b3492459f";
     return (
         <Button
@@ -18,7 +18,14 @@ export default function ClearCartButton(props: any) {
             variant="contained"
             color='warning'
             onClick={async () => {
-                await clearUserCartsAPI(userId)
+                if (await clearUserCartsAPI(userId)) {
+                    alert('success');
+                    return true
+                }
+
+                alert('failed');
+                return false
+
             }}
             sx={{ mt: 3, mb: 2 }}
             startIcon={<ClearAll />}

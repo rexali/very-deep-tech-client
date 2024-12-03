@@ -35,10 +35,7 @@ export default function UserProducts() {
   }
   return (
     <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }}>
-
-      <React.Suspense fallback={<Fallback />} >
-        <ProductList products={data} activePage={activePage} setActivePage={setActivePage} role={'admin'} />
-      </React.Suspense>
+      <ProductList products={data} activePage={activePage} setActivePage={setActivePage} role={'admin'} />
       <Box marginTop={4} display={"flex"} justifyContent={'center'} >
         <ReactPagination
           activePage={activePage}

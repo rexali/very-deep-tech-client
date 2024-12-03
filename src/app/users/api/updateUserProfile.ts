@@ -11,10 +11,10 @@ const updateUserProfileAPI = async (profileData: any, setPostSuccess: any, setPo
             }, 
         });
 
-        if (data.data.status) {
-            setPostSuccess(data.data.status);
+        if (data.status) {
+            setPostSuccess(data.status);
         } else {
-            setPostError(data.data.status)
+            setPostError(data.status)
         }
 
     } catch (error: any) {
@@ -22,8 +22,8 @@ const updateUserProfileAPI = async (profileData: any, setPostSuccess: any, setPo
         setPostError('Error! ' + error.message)
     }finally{
         setTimeout(() => {
-            setPostSuccess(' ')
-            setPostError(" ")
+            setPostSuccess('')
+            setPostError("")
         }, 10000);
     }
 

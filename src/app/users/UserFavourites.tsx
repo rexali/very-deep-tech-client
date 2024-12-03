@@ -14,10 +14,10 @@ export default function UserFavourites() {
   const [activePage, setActivePage] = React.useState(1);
 
   const userId = getToken('_id') as string ?? "6712c927857f3a3b3492459f";
-  
+
   React.useEffect(() => {
     async function getData() {
-      const products = await getUserFavouritesAPI(userId,activePage);
+      const products = await getUserFavouritesAPI(userId, activePage);
       setData(products);
     }
 
@@ -33,13 +33,10 @@ export default function UserFavourites() {
       </Container>
     )
   }
-  
+
   return (
     <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }}>
-      <React.Suspense fallback={<Fallback />} >
-        <ProductList products={data} />
-      </React.Suspense>
-
+      <ProductList products={data} />
       <Box marginTop={4} display={"flex"} justifyContent={'center'} >
         <ReactPagination
           activePage={activePage}

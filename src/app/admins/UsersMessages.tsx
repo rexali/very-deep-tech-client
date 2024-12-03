@@ -37,9 +37,7 @@ export default function UserMessages() {
     <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }}>
       <Box>Total Messages: {data[0]?.totalMessages}</Box>
       <Grid container columnSpacing={1}>
-        <React.Suspense fallback={<Fallback />} >
           <MessageList messages={data} role={'admin'} />
-        </React.Suspense>
       </Grid>
       <Box marginTop={4} display={"flex"} justifyContent={'center'}>
         <ReactPagination

@@ -34,9 +34,7 @@ export default function UsersQoutes() {
   return (
     <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }}>
       <Box>Total Qoutes: {data[0]?.totalQoutes}</Box>
-      <React.Suspense fallback={<Fallback />} >
         <QouteList qoutes={data} />
-      </React.Suspense>
       <Box marginTop={4} display={"flex"} justifyContent={'center'} >
         <ReactPagination
           activePage={activePage}

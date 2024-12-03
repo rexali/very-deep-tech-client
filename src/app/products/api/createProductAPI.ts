@@ -14,10 +14,10 @@ const createProductAPI = async (productData: any, setPostSuccess: any, setPostEr
             },
 
         });
-        if (data.data.status) {
-            setPostSuccess(data.data.status)
+        if (data.status) {
+            setPostSuccess(data.status)
         } else {
-            setPostError(data.data.status)
+            setPostError(data.status)
         }
 
     } catch (error: any) {

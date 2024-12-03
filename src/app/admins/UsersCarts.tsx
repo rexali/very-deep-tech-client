@@ -34,16 +34,14 @@ export default function UsersProducts() {
   return (
     <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }}>
       <Box>Total Carts: {data[0]?.totalCarts}</Box>
-      <React.Suspense fallback={<Fallback />} >
-        <ProductList products={data} activePage={activePage} setActivePage={setActivePage} />
-      </React.Suspense>
+      <ProductList products={data} />
       <Box marginTop={4} display={"flex"} justifyContent={'center'}>
         <ReactPagination
           activePage={activePage}
           itemsCountPerPage={4}
           totalItemsCount={data[0]?.totalCarts}
           pageRangeDisplayed={5}
-          onchangeCallback={(v:any)=>setActivePage(v)} />
+          onchangeCallback={(v: any) => setActivePage(v)} />
       </Box>
     </Container>
   )

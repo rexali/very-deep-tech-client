@@ -31,11 +31,10 @@ export default function UsersSubscriptions() {
     )
   }
 
-  return (<Container maxWidth="lg" component={'main'} sx={{ mt: 10 }}>
+  return (
+  <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }}>
       <Box>Total Subscriptions: {data[0]?.totalSubscriptions}</Box>
-      <React.Suspense fallback={<Fallback />} >
         <SubscriptionList subscriptions={data} />
-      </React.Suspense>
       <Box marginTop={4} display={"flex"} justifyContent={'center'} >
         <ReactPagination
           activePage={activePage}

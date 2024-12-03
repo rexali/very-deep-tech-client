@@ -11,7 +11,6 @@ import Box from '@mui/material/Box';
 import { getUsersOrdersAPI } from './api/getUsersOrders';
 import Container from '@mui/material/Container';
 import Link from 'next/link';
-import Fallback from '@/components/common/fallback';
 
 
 export default function UsersOrders() {
@@ -36,12 +35,10 @@ export default function UsersOrders() {
   }
 
   return (
-    <React.Suspense fallback={<Fallback />} >
-
+    <Box >
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <Box>Total Orders: {data[0]?.totalOrders}</Box>
-
           <TableHead>
             <TableRow>
               <TableCell>User&apos;email</TableCell>
@@ -65,7 +62,6 @@ export default function UsersOrders() {
                 <TableCell align="right">{order?.createdAt ?? '12-12-24'}</TableCell>
                 <TableCell align="right">{order?.total}</TableCell>
                 <TableCell align="right">{order?.paymentStatus}</TableCell>
-
                 <TableCell align="right">
                   <Link href={'/orders/' + order._id}>View</Link>
                 </TableCell>
@@ -82,6 +78,6 @@ export default function UsersOrders() {
           pageRangeDisplayed={5}
           onchangeCallback={(v: any) => setActivePage(v)} />
       </Box>
-    </React.Suspense>
+    </Box>
   );
 }

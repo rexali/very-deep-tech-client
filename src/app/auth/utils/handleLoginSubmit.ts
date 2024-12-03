@@ -1,6 +1,5 @@
 'use client'
 
-import { getPathLink } from "@/utils/getPathLink";
 import { logInAPI } from "../api/logInAPI";
 
 /**

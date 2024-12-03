@@ -7,7 +7,7 @@ const handleCheckoutSubmit = async (
     event: any,
     setPostSuccess: any,
     setPostError: any,
-    setLoading:any,
+    setLoading: any,
     orderData: any,
     transactionData?: any
 ) => {
@@ -51,8 +51,8 @@ const handleCheckoutSubmit = async (
         case 'bank-transfer':
         case 'card':
             payWithPaystack(
-                contactData.email ?? "alybaba2009@gmail.com",
-                contactData.amount ?? 10000,
+                contactData.email ?? '',
+                contactData.amount ?? 0,
                 orderData,
                 transactionData,
                 setPostSuccess,
@@ -80,7 +80,7 @@ const handleCheckoutSubmit = async (
                 setLoading
             );
             alert(
-                'Use the detail below'
+                'Use the details below to make your payment'
             );
             break;
 

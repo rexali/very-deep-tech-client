@@ -14,7 +14,11 @@ const deleteMessageAPI = async (data: { messageId: any }) => {
             body: JSON.stringify(data)
         });
 
-        return await result.json();
+        let finalres = await result.json();
+        if (finalres.status === 'success') {
+            return true
+        }
+        return false
     } catch (error) {
         console.log(error);
     }

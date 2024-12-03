@@ -24,18 +24,17 @@ const handleChangePasswordSubmit = async (
             };
 
             const result = await changePasswordAPI(passwordData);
-            if (result.affectedRows === 1) {
+            if (result.status) {
                 successCallback("Success: Log in to your account now")
             } else {
                 failureCallback("Error!")
             }
 
         }
-    } catch (error) {
+    } catch (error: any) {
         console.warn(error);
+        failureCallback("Error! " + error.message)
     }
-
-
 
 };
 
