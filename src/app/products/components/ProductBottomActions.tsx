@@ -6,7 +6,7 @@ import Edit from '@mui/icons-material/Edit';
 import Minus from '@mui/icons-material/RemoveCircle';
 import Plus from '@mui/icons-material/AddCircle';
 import Box from "@mui/material/Box";
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, useRef } from "react";
 import StatusModal from "@/components/common/status-modal";
 import { AuthContext } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
@@ -22,8 +22,9 @@ import { getToken } from "@/utils/getToken";
 export default function ProductBottomActions({ product, role, cart }: { product: any, role?: string, cart?: any }) {
     const [open, setOpen] = useState(false);
     const [openQoute, setOpenQoute] = useState(false);
-
-    const [quantity, setQuantity] = useState<number>(product?.cartQuantity ?? 1);
+    const mountRef = useRef(true);
+    const [quantity, setQuantity] = useState<number>(1);
+    // const [quantity, setQuantity] = useState<number>(product?.cartQuantity ?? 1);
     const { state } = useContext(AuthContext);
     const { dispatch } = useContext(AppContext)
     const userId = state.user?._id || getToken('_id');
@@ -38,8 +39,8 @@ export default function ProductBottomActions({ product, role, cart }: { product:
     const handleOpenQuote = () => {
         setOpenQoute(true)
     }
-    useEffect(() => {
 
+    const plusToCartCount = (evt:any) => {
         let minusElement = window.document.querySelector('#minus') as any;
         let plusElement = window.document.querySelector('#plus') as any;
 
@@ -56,7 +57,27 @@ export default function ProductBottomActions({ product, role, cart }: { product:
             plusElement.previousSibling.value = Number(plusElement.previousSibling.value) + 1;
             setQuantity(plusElement.previousSibling.value)
         })
-    })
+    }
+
+    const minusToCartCount = (evt:any) => {
+        let minusElement = window.document.querySelector('#minus') as any;
+        let plusElement = window.document.querySelector('#plus') as any;
+
+        minusElement.addEventListener('click', () => {
+            if (Number(minusElement.nextSibling.value) === 1) {
+                minusElement.nextSibling.value = 1;
+                setQuantity(minusElement.nextSibling.value)
+            } else {
+                minusElement.nextSibling.value = Number(minusElement.nextSibling.value) - 1;
+                setQuantity(minusElement.nextSibling.value)
+            }
+        })
+        plusElement.addEventListener('click', () => {
+            plusElement.previousSibling.value = Number(plusElement.previousSibling.value) + 1;
+            setQuantity(plusElement.previousSibling.value)
+        })
+    }
+
 
     return (
         <Box sx={{ display: 'flex', justifyContent: "space-between", width: "100%" }}>
@@ -75,7 +96,7 @@ export default function ProductBottomActions({ product, role, cart }: { product:
                 </select>
             </label> */}
 
-            <span><Button id="minus" startIcon={<Minus />} /><input style={{ width: 5 }} id="value" value={quantity} /><Button id="plus" startIcon={<Plus />} /></span>
+            <span><Button onClick={(evt)=>minusToCartCount(evt)} id="minus"  style={{ textAlign: 'center' }} startIcon={<Minus />}/><input disabled={true} style={{ width: 8, textAlign: 'center' }} id="value" value={quantity} /><Button id="plus" onClick={()=>addToCartCount()} startIcon={<Plus />} /></span>
             {
                 (role === 'admin') && <Button
                     size="small"

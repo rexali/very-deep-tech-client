@@ -1,0 +1,31 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    Test
+    <div><button id="minus">-</button><input size="1" id="value" value="0" /><button id="plus" onclick="console.log(event.currentTarget.previousSibling.value)">+</button></div>
+    <script>
+        // document.querySelector('#minus').addEventListener('click', () => {
+        //     if (Number(document.querySelector('#minus').nextSibling.value) === 1) {
+        //         document.querySelector('#minus').nextSibling.value = 1;
+        //     } else {
+        //         document.querySelector('#minus').nextSibling.value = Number(document.querySelector('#minus').nextSibling.value) - 1;
+        //     }
+        // })
+        // document.querySelector('#plus').addEventListener('click', () => {
+        //     document.querySelector('#plus').previousSibling.value = Number(document.querySelector('#plus').previousSibling.value) + 1;
+        // })
+        // console.log(document.querySelector('#minus').nextSibling.value);
+        // console.log(document.querySelector('#plus').previousSibling.value);
+    </script>
+</body>
+
+</html>
