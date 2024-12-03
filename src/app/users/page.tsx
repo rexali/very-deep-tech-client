@@ -22,6 +22,8 @@ import { getCarts } from "@/store/actions/app-actions";
 import { getUserCartsAPI } from "./api/getUserCarts";
 import { AppContext } from "@/context/AppContext";
 import { signIn } from "@/store/actions/auth-actions";
+import { getToken } from "@/utils/getToken";
+
 
 export default function UserTabs() {
 
@@ -29,14 +31,14 @@ export default function UserTabs() {
     const auth = useAuth();
     const { dispatch } = useContext(AppContext);
     const mountRef = useRef(true);
-    // const userId = authContext.state.user._id !== null ? authContext.state.user._id : "6712c927857f3a3b3492459f";
-    const userId = auth.user._id !== null ? auth.user._id : "6712c927857f3a3b3492459f";
+    // const userId = "6712c927857f3a3b3492459f";
+    const userId = auth.user?._id as unknown as string ||  getToken('_id') as string;
 
     const openTab = (tabname: any) => {
         setTabName(tabname);
     }
 
-    const { user, error, isLoading } = useProfile();
+    const { user, error, isLoading } = useProfile(userId);
 
     const getData = useCallback(async () => {
         let userCarts = await getUserCartsAPI(userId);

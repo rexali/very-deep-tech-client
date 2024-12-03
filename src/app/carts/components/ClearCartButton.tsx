@@ -25,7 +25,6 @@ export default function ClearCartButton(props: any) {
 
                 alert('failed');
                 return false
-
             }}
             sx={{ mt: 3, mb: 2 }}
             startIcon={<ClearAll />}

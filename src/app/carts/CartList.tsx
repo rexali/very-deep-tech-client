@@ -9,7 +9,6 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Money from "@material-ui/icons/Money";
 import { handleCheckoutSubmit } from './utils/handleCheckoutSubmit';
-// import { getUserProfileAPI } from '../users/api/getUserProfileAPI';
 import ClearCartButton from './components/ClearCartButton';
 import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material';
 import { getToken } from '@/utils/getToken';
@@ -26,24 +25,14 @@ export default function CartList(props: any) {
     const [cashAndCarry, setCashAndCarry] = React.useState(false);
     const [callToOrder, setCallToOrder] = React.useState(false);
 
-
-
-    const userId = getToken('_id') as string ?? "6712c927857f3a3b3492459f";
-    const { user } = useProfile();
-
+    const userId = getToken('_id') as string;
+    const { user } = useProfile(userId);
 
     let cartTotal = props.products
         .map((product: any) => Number(product.product_price) * Number(product.cartQuantity))
         .reduce((prev: any, cur: any) => {
             return prev + cur;
         }, 0);
-
-
-    // read profile with user data for the form
-    // let user: any;
-    // (async () => {
-    //     user = await getUserProfileAPI(userId);
-    // })();
 
     const orderItems = props.products.map((product: any) => ({
         product: product._id,
@@ -102,6 +91,7 @@ export default function CartList(props: any) {
                         component="form"
                         onSubmit={async (evt) => {
                             if (userId) {
+                                setLoading('Sending data..');
                                 await handleCheckoutSubmit(
                                     evt,
                                     setSuccess,
@@ -110,7 +100,6 @@ export default function CartList(props: any) {
                                     orderData,
                                     transactionData
                                 );
-                                setLoading('Sending data..');
                             } else {
                                 savePathLink();
                                 window.location.assign('/auth/signin');
