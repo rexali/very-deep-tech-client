@@ -41,7 +41,7 @@ export async function signUpAPI(
         const result = await resp.json();
 
         // check result value
-        if (result.data.status === "success") {
+        if (result.status === "success") {
             // return result
             return result;
         } else {

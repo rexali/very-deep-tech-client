@@ -29,19 +29,16 @@ export const handleLoginSubmit = (
     // handle login
     logInAPI(email, password)
         .then((result: any) => {
-            if (result.data.status === "success") {
+            if (result.status === "success") {
                 setLoading("");
-                setLoginSuccess(result.data.status);
+                setLoginSuccess(result.status);
                 // check if window is defined
                 if (typeof window !== "undefined") {
                     // check if token is defined
-                    if (result.data.token && result.data.role === 'user') {
+                    if (result.data.token) {
                         // redirect user to a given url
                         window.location.assign('/users');
                         // router.push('/users');
-                    } else if (result.data.token && result.data.role === 'admin') {
-                        window.location.assign('/admins');
-                        // router.push('/admins');
                     } else {
                         window.location.assign('/');
                         // router.push('/');
@@ -62,7 +59,7 @@ export const handleLoginSubmit = (
             setTimeout(() => {
                 setLoginError('');
                 setLoginSuccess('');
-                getPathLink();
+                setLoading("");
             }, 20000);
         })
 }
