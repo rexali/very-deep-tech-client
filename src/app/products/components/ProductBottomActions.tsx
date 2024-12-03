@@ -39,21 +39,20 @@ export default function ProductBottomActions({ product, role, cart }: { product:
         setOpenQoute(true)
     }
 
-    const plusToCartCount = (evt:any) => {
-            if (Number(evt.currentTarget.previous.value) === 1) {
-                evt.currentTarget.previousSibling.value = 1;
-                setQuantity(evt.currentTarget.previousSibling.value)
+    const minusToCartCount = (evt:any) => {
+            if (Number(evt.currentTarget.nextSibling.value) === 1) {
+                evt.currentTarget.nextSibling.value = 1;
+                setQuantity(evt.currentTarget.nextSibling.value)
             } else {
-                evt.currentTarget.previousSibling.value = Number(evt.currentTarget.previousSibling.value) - 1;
-                setQuantity(evt.currentTarget.previousSibling.value)
+                evt.currentTarget.nextSibling.value = Number(evt.currentTarget.nextSibling.value) - 1;
+                setQuantity(evt.currentTarget.nextSibling.value)
             }
     }
 
-    const minusToCartCount = (evt:any) => {
-            evt.currentTarget.nextSibling.value = Number(evt.currentTarget.nextSibling.value) + 1;
-            setQuantity(evt.currentTarget.nextSibling.value)
+    const plusToCartCount = (evt:any) => {
+            evt.currentTarget.previousSibling.value = Number(evt.currentTarget.previousSibling.value) + 1;
+            setQuantity(evt.currentTarget.previousSibling.value)
     }
-
 
     return (
         <Box sx={{ display: 'flex', justifyContent: "space-between", width: "100%" }}>
@@ -72,7 +71,7 @@ export default function ProductBottomActions({ product, role, cart }: { product:
                 </select>
             </label> */}
 
-            <span><Button onClick={(evt)=>minusToCartCount(evt)} id="minus" style={{ textAlign: 'center' }} startIcon={<Minus/>}/><input disabled={true} style={{ width: 8, textAlign: 'center' }} id="value" value={quantity}/><Button id="plus" onClick={(evt)=>plusToCartCount(evt)} startIcon={<Plus />}/></span>
+            <Box textAlign={'center'}><Button onClick={(evt)=>minusToCartCount(evt)} id="minus" startIcon={<Minus/>}/><input disabled={true} style={{ width: 10, textAlign: 'center' }} id="value" value={quantity}/><Button id="plus" onClick={(evt)=>plusToCartCount(evt)} startIcon={<Plus />}/></Box>
             {
                 (role === 'admin') && <Button
                     size="small"
