@@ -15,7 +15,7 @@ const handleMessageSubmit = async (
     try {
         const {
             title,
-            comment
+            comment 
         } = event.target.elements;
     
         const messageData = {

@@ -25,25 +25,24 @@ export default function AddMessage() {
         <ThemeProvider theme={defaultTheme} >
             <Container component="main" maxWidth="xs">
                 {/* <CssBaseline /> */}
-                <Box
-                    sx={{
+
+                    <Typography component="h1" variant="h5">
+                        Post Message
+                    </Typography>
+                    <Box
+                     sx={{
                         mt: 15,
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
                     }}
-                >
-                    <Typography component="h1" variant="h5">
-                        Post Message
-                    </Typography>
-                    <Box
-                        component="form"
+                        component={'form'}
                         noValidate
                         onSubmit={async (evt) => {
                             setLoading('Sending data..')
                             await handleMessageSubmit(evt, setSuccess, setError,setLoading, userId);
                         }}
-                        sx={{ mt: 15 }}
+                    
                     >
                         <TextField
                             margin="normal"
@@ -78,7 +77,6 @@ export default function AddMessage() {
                             Send
                         </Button>
                     </Box>
-                </Box>
             </Container>
         </ThemeProvider>
     );

@@ -11,6 +11,7 @@ export default function EditProduct({ params }: { params:{productId:string} }) {
     const [data, setData] = useState<any>({});
     const [error, setError] =useState('');
     const [success, setSuccess] = useState('');
+    const [loading, setLoading] = React.useState('');
     
     useEffect(()=>{
             async function getData() {
@@ -26,12 +27,14 @@ export default function EditProduct({ params }: { params:{productId:string} }) {
     return (
         <Box
             component="form"
-            onSubmit={(evt) => handleProductEditSubmit(
+            onSubmit={(evt) => {
+                setLoading('Sending data..')
+                handleProductEditSubmit(
                 evt,
                 setSuccess,
                 setError,
                 params.productId
-            )}
+            )}}
             noValidate
             sx={{ mt: 1 }}
         >
@@ -149,7 +152,7 @@ export default function EditProduct({ params }: { params:{productId:string} }) {
                 autoComplete="given-name"
                 name="product_code"
                 required
-                fullWidth
+                fullWidth 
                 margin={"normal"}
                 id="product_code"
                 label="product_code"
@@ -159,6 +162,7 @@ export default function EditProduct({ params }: { params:{productId:string} }) {
 
             {success && <Box textAlign={"center"} sx={{ color: "green" }}>{success.toUpperCase()}</Box>}
             {error && <Box textAlign={"center"} sx={{ color: "red" }}>{error.toUpperCase()}</Box>}
+            {loading && <Box textAlign={"center"} sx={{ color: "green" }}>{loading.toUpperCase()}</Box>}
 
             <Button
                 type="submit"
