@@ -41,7 +41,7 @@ export default function CartPage() {
   if (!data?.length) {
     return <Fallback item={"No product in your cart yet"} />
   }
-
+ 
   return (
     <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }} >
       <Box>Carts: {data.length}</Box>

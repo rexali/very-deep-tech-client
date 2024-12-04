@@ -3,13 +3,14 @@
 import ClearAll from "@material-ui/icons/ClearAll";
 import Button from "@mui/material/Button";
 import { clearUserCartsAPI } from "../api/clearCartsAPI";
-import { useContext } from "react";
-import { AppContext } from "@/context/AppContext";
+import { useAuth } from "@/hooks/use-auth";
+import { getToken } from "@/utils/getToken";
 
 export default function ClearCartButton(props: any) {
 
-    const { state } = useContext(AppContext);
-    const userId = state.user?._id ?? "6712c927857f3a3b3492459f";
+    const auth = useAuth();
+    const userId = auth.user?._id as unknown as string || getToken('_id') as string;
+
     return (
         <Button
             type="submit"
@@ -19,12 +20,10 @@ export default function ClearCartButton(props: any) {
             color='warning'
             onClick={async () => {
                 if (await clearUserCartsAPI(userId)) {
-                    alert('success');
-                    return true
+                    props.refreshCart();
+                } else {
+                    alert('Clear Cart failed');
                 }
-
-                alert('failed');
-                return false
             }}
             sx={{ mt: 3, mb: 2 }}
             startIcon={<ClearAll />}

@@ -51,6 +51,7 @@ export default function ProductTopActions({ product, role }: { product: any, rol
                 onClick={async () => {
                     if (userId) {
                         await addToWishListOrRemove(userId, product._id, handleOpen);
+                        router.refresh();
                     } else {
                         savePathLink()
                         router.push('/auth/signin')

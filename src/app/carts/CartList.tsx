@@ -86,7 +86,7 @@ export default function CartList(props: any) {
                             return <Grid key={product._id} item xs={12} md={6}><CartCard product={product} refreshCart={props.refreshCart} /></Grid>
                         })}
                     </Grid>
-                    <ClearCartButton />
+                    <ClearCartButton refreshCart={props.refreshCart} />
                 </Grid>
 
                 <Grid item xs={12} md={4} sx={{ marginTop: 1 }}>

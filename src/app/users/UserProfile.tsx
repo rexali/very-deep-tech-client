@@ -21,13 +21,14 @@ export default function UserProfile(props: any) {
   const userId = auth.user?._id as unknown as string || getToken('_id') as string;
 
   const handleSubmit = async (event: any) => {
+    setLoading('Sending data..');
     await handleProfileUpdate(
       event,
       setSuccess,
       setError,
       setLoading,
       userId
-    )
+    ); 
   };
 
   React.useEffect(() => {

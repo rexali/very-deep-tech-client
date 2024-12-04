@@ -7,4 +7,4 @@ export const CartListComponent = dynamic(
     {
         ssr:false
     }
-)
+) 
