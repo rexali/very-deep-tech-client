@@ -4,7 +4,7 @@ import axios from "axios";
 const isAlReadyAddedToFavouriteByUserAPI = async (userId: string, productId: string) => {
 
     try {
-        let { data } = await axios.get(`${SERVER_URL}/favourites/` + userId, {
+        let { data } = await axios.get(`${SERVER_URL}/favourites/users/`+userId, {
             withCredentials: false,
             headers: {
                 'Content-Type': 'application/json',

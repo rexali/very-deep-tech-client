@@ -4,7 +4,7 @@ import axios from "axios";
 const deleteFavouriteAPI = async (productId: string, userId: string) => {
 
     try {
-        let { data } = await axios.delete(`${SERVER_URL}/favourites/` + productId + '/users/' + userId, {
+        let { data } = await axios.delete(`${SERVER_URL}/favourites/products/` + productId + '/users/' + userId, {
             withCredentials: false,
             headers: {
                 'Content-Type': 'application/json',

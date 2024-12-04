@@ -8,7 +8,7 @@ export async function addToWishListOrRemove(userId: string, productId: string, s
         if (await deleteFavouriteAPI(productId, userId)) {
             alert('Remove successfully')
         }
-    } else {
+    } else { 
         let favourite = await createFavouriteAPI({
             product_id: productId,
             user_id: userId
