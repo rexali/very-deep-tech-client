@@ -11,6 +11,7 @@ import ThemeProvider from '@mui/material/styles/ThemeProvider';
 import createTheme from '@mui/material/styles/createTheme';
 import { getToken } from '@/utils/getToken';
 import { handleMessageSubmit } from '../utils/handleMessageSubmit';
+import { useAuth } from '@/hooks/use-auth';
 
 const defaultTheme = createTheme();
 
@@ -18,8 +19,13 @@ export default function AddMessage() {
     const [success, setSuccess] = React.useState('');
     const [error, setError] = React.useState('');
     const [loading, setLoading] = React.useState('');
-
-    const userId = getToken('_id') as string;
+    const auth = useAuth();
+    const userId = auth.user._id;
+    
+  const handleSubmit = async (event: any) => {
+    setLoading('Sending data..')
+    await handleMessageSubmit(event, setSuccess, setError,setLoading, userId);
+  }
 
     return (
         <ThemeProvider theme={defaultTheme} >
@@ -38,10 +44,7 @@ export default function AddMessage() {
                     }}
                         component={'form'}
                         noValidate
-                        onSubmit={async (evt) => {
-                            setLoading('Sending data..')
-                            await handleMessageSubmit(evt, setSuccess, setError,setLoading, userId);
-                        }}
+                        onSubmit={handleSubmit}
                     
                     >
                         <TextField

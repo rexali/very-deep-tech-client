@@ -21,6 +21,11 @@ export default function AddNotification() {
   const [loading, setLoading] = React.useState('');
 
   const userId = getToken('_id') as string;
+  
+  const handleSubmit = async (event: any) => {
+    setLoading('Sending data..')
+    await handleNotificationSubmit(event, setSuccess, setError, setLoading, userId)
+  }
 
   return (
     <ThemeProvider theme={defaultTheme} >
@@ -38,11 +43,7 @@ export default function AddNotification() {
             alignItems: 'center',
           }}
           component={'form'}
-          onSubmit={async (evt: any) => {
-            setLoading('Sending data..')
-            await handleNotificationSubmit(evt, setSuccess, setError, setLoading, userId)
-          }
-          }
+          onSubmit={handleSubmit}
           noValidate
         >
 

@@ -18,7 +18,11 @@ export default function AddProduct() {
     const [loading, setLoading] = React.useState('');
 
     const userId = getToken('_id') as string;
-
+     
+  const handleSubmit = async (event: any) => {
+    setLoading('Sending data..')
+    await handleProductSubmit(event, setSuccess, setError, setLoading, userId)
+  }
     return (
         <Container maxWidth="md" component={'main'}>
             <Typography component="h1" variant="h5">
@@ -32,11 +36,7 @@ export default function AddProduct() {
                     alignItems: 'center',
                 }}
                 component={'form'}
-                onSubmit={async (evt) => {
-                    setLoading('Sending data..')
-                    await handleProductSubmit(evt, setSuccess, setError, setLoading, userId)
-                }
-                }
+                onSubmit={handleSubmit}
                 noValidate
             >
                 <TextField
