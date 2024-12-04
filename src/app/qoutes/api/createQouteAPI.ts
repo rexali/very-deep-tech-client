@@ -1,11 +1,11 @@
 import { fetchData } from "@/app/messages/api/fetchDataAPI";
 import { SERVER_URL } from "@/constants/url";
-import { savePathLink } from "@/utils/savePathLink";
 
 const createQouteAPI = async (
     event: any,
     setSuccess: any,
     setError: any,
+    setLoading:any
 ) => {
     // prevent default
     event.preventDefault();
@@ -26,12 +26,15 @@ const createQouteAPI = async (
         }
         let result = await fetchData(`${SERVER_URL}/qoutes`, { body: JSON.stringify(qouteData), method: "post" });
         if (result.data.qoute._id) {
+            setLoading('');
             setSuccess("Success")
         } else {
+            setLoading('');
             setError("Error!")
         }
-    } catch (error) {
-        setError("Error!")
+    } catch (error:any) {
+        setLoading('');
+        setError("Error! "+error.message)
         console.warn(error);
     };
 }

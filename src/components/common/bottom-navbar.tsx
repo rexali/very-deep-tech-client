@@ -27,10 +27,10 @@ export default function BottomNavbar() {
                 right: 0, 
                 bgcolor:'green'
                 }}>
-                <Button sx={{p:1}} key={'share'} onClick={()=>shareLink()} startIcon={<Share sx={{color:"white"}} />}></Button>
-                <Button sx={{p:1}} key={"email"} href="mailto:alybaba2009@gmail.com"  startIcon={<Email sx={{color:"white"}} />}></Button>
-                <Button sx={{p:1}} key={"tel"} href="tel:08065899144" startIcon={<Phone sx={{color:"white"}}/>}></Button>
-                <Button sx={{p:1}} key={"loc"} href="http://maps.google.com/?q= 19 Almubarak Waqf Foundation, Guda Abdullahi Road, Farm Center, Kano State" startIcon={<Place sx={{color:"white"}} />}></Button>
+                <Button sx={{p:2}} key={'share'} onClick={()=>shareLink()} startIcon={<Share sx={{color:"white"}} />}></Button>
+                <Button sx={{p:2}} key={"email"} href="mailto:alybaba2009@gmail.com"  startIcon={<Email sx={{color:"white"}} />}></Button>
+                <Button sx={{p:2}} key={"tel"} href="tel:08065899144" startIcon={<Phone sx={{color:"white"}}/>}></Button>
+                <Button sx={{p:2}} key={"loc"} href="http://maps.google.com/?q= 19 Almubarak Waqf Foundation, Guda Abdullahi Road, Farm Center, Kano State" startIcon={<Place sx={{color:"white"}} />}></Button>
             </Box>}
         </Container>
     )

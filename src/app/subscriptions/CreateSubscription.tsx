@@ -13,12 +13,18 @@ export default function CreateSubscription() {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
     const isMobile = useMediaQuery({ maxDeviceWidth: 1023 });
+    const [loading, setLoading] = useState('');
+
+    const handleSubmit = async (event: any) => {
+        setLoading('Sending data..')
+        await handleSubscribeSubmit(event, setSuccess, setError,setLoading)
+    };
 
     return (
         <center>
             <Box component={"form"}
                 sx={{ maxWidth: "lg", mt: 5 }}
-                onSubmit={async (evt) => await handleSubscribeSubmit(evt, setSuccess, setError)}
+                onSubmit={handleSubmit}
             >
 
                 <Grid container columnSpacing={1} rowSpacing={1}>
@@ -31,6 +37,7 @@ export default function CreateSubscription() {
                         <Button type="submit" variant="contained" size="large" color="success">Subscribe</Button>
                     </Grid>
                 </Grid>
+            {loading && <Box textAlign={"center"} sx={{ color: "green" }}>{loading.toUpperCase()}</Box>}
                 {success && <Box textAlign={"center"} sx={{ color: "green" }}>{success.toUpperCase()}</Box>}
                 {error && <Box textAlign={"center"} sx={{ color: "red" }}>{error.toUpperCase()}</Box>}
             </Box>

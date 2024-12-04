@@ -9,6 +9,11 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Copyright from '@/components/common/copyright';
 import { handleMessageSubmit } from '../messages/utils/handleMessageSubmit';
+import Share from "@mui/icons-material/Share";
+import Email from "@mui/icons-material/Email";
+import Phone from "@mui/icons-material/Phone";
+import Place from "@mui/icons-material/Place";
+import { shareLink } from "@/utils/shareLink";
 
 export default function ContactPage() {
   const [error, setError] = React.useState(' ');
@@ -21,18 +26,26 @@ export default function ContactPage() {
   }
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="xs" sx={{
+      marginTop: 8,
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center'
+    }}>
       <Typography component="h1" variant="h5">
         Contact us
       </Typography>
+      <Box>
+        <Button sx={{ p: 2, display: 'block' }} key={'share'} onClick={() => shareLink()} startIcon={<Share sx={{ color: "white" }} />}>Share this site</Button>
+        <Button sx={{ p: 2, display: 'block' }} key={"email"} href="mailto:alybaba2009@gmail.com" startIcon={<Email sx={{ color: "white" }} />}>Email us</Button>
+        <Button sx={{ p: 2, display: 'block' }} key={"tel"} href="tel:08065899144" startIcon={<Phone sx={{ color: "white" }} />}>Call us</Button>
+        <Button sx={{ p: 2, display: 'block' }} key={"loc"} href="http://maps.google.com/?q=19 Almubarak Waqf Foundation, Guda Abdullahi Road, Farm Center, Kano State" startIcon={<Place sx={{ color: "white" }} />}>Locate us</Button>
+      </Box>
+
+      <Box>Or use this:</Box>
+
       <Box
         component={'form'}
-        sx={{
-          marginTop: 8,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center'
-        }}
         onSubmit={handleSubmit}
         noValidate
       >

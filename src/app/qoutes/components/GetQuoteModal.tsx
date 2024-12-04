@@ -3,7 +3,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import { AddQoute } from '@/app/qoutes/AddQoute';
+import { AddQoute } from '../AddQoute';
 
 const style = {
     position: 'absolute' as 'absolute',

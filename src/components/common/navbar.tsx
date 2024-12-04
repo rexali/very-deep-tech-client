@@ -16,12 +16,11 @@ import { useMediaQuery } from 'react-responsive';
 import Cart from '@mui/icons-material/ShoppingCart';
 import { handleSignOut } from '@/app/auth/utils/handleSignOut';
 import Link from 'next/link';
-import { BASE_URL, SERVER_URL } from '@/constants/url';
+import { SERVER_URL } from '@/constants/url';
 import { Avatar, Button } from '@mui/material';
 import { AppContext } from '@/context/AppContext';
 import Notifications from '@mui/icons-material/Notifications';
 import Message from '@mui/icons-material/Message';
-import { AuthContext } from '@/context/AuthContext';
 import { useAuth } from '@/hooks/use-auth';
 
 const pages = [
@@ -39,10 +38,8 @@ const menus = [
 function NavBar() {
 
   const { state } = React.useContext(AppContext);
-  const authContext = React.useContext(AuthContext);
 
   const { user } = useAuth();
-
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
 
@@ -172,16 +169,18 @@ function NavBar() {
         <Box sx={{ flexGrow: 0 }}>
           <Tooltip title="Open menu">
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-              {user?.photo || authContext.user?.photo ? <Image
-                src={`${SERVER_URL}/uploads/${user?.photo || authContext?.user?.photo}`}
-                width={30}
-                height={30}
-                alt="Account"
-                layout="responsive"
-                style={{
-                  borderRadius: 20
-                }}
-              /> : <Avatar />
+              {
+                user?.photo ?
+                  <Image
+                    src={`${SERVER_URL}/uploads/${user.photo}`}
+                    width={30}
+                    height={30}
+                    alt="Account"
+                    layout="responsive"
+                    style={{
+                      borderRadius: 20
+                    }}
+                  /> : <Avatar />
               }
             </IconButton>
           </Tooltip>
