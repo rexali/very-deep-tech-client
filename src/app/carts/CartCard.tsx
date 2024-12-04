@@ -10,14 +10,16 @@ import Box from '@mui/material/Box';
 import Image from 'next/image';
 import Link from 'next/link';
 import { updateCartAPI } from './api/updateCartAPI';
-import { deleteCartAPI } from './api/deleteCartAPI';
-import { AuthContext } from '@/context/AuthContext';
 import { SERVER_URL } from '@/constants/url';
+import { useAuth } from '@/hooks/use-auth';
+import { getToken } from '@/utils/getToken';
+import { deleteUserCartAPI } from './api/deleteUserCartAPI';
 
 export default function CartCard({ product, refreshCart }: { product: any, refreshCart: any }) {
   const [quantity, setQuantity] = React.useState<number>(product?.cartQuantity ?? 0);
-  const { state } = React.useContext(AuthContext);
-  const userId = state.user?._id ?? "6712c927857f3a3b3492459f";
+
+  const auth = useAuth();
+  const userId = auth.user?._id as unknown as string || getToken('_id') as string;
 
   var range = (start: number, end: number) => [...Array(end - start + 1)].map((_, i) => start + i);
 
@@ -71,10 +73,11 @@ export default function CartCard({ product, refreshCart }: { product: any, refre
         <Button size="small" onClick={
           async () => {
             try {
-              const cartDelete = await deleteCartAPI(product.cartId);
+              const cartDelete = await deleteUserCartAPI(product.cartId, userId);
+              
               setTimeout(async () => {
                 await refreshCart();
-              }, 3000);
+              }, 1000);
             } catch (error) {
               console.warn(error);
             }
@@ -96,7 +99,10 @@ export default function CartCard({ product, refreshCart }: { product: any, refre
 
               setTimeout(async () => {
                 await refreshCart();
-              }, 3000);
+              }, 1000);
+
+
+
             }
           }>
             {range(0, Number(product?.product_quantity ?? 1)).map((v) => <option key={v} value={v}>{v}</option>)}

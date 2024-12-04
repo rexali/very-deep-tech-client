@@ -3,16 +3,16 @@
 import { BASE_URL, SERVER_URL } from "@/constants/url";
 import axios from "axios";
 
-const deleteCartAPI = async (id: string) => {
+const deleteUserCartAPI = async (cartId: string, userId: string) => {
 
     try {
-        let { data} = await axios.delete(`${SERVER_URL}/carts/` + id, {
+        let { data } = await axios.delete(`${SERVER_URL}/carts/` + cartId + '/users/' + userId, {
             withCredentials: false,
             headers: {
                 'Content-Type': 'application/json',
             },
         });
-        if(data.status ==='success'){
+        if (data.status === 'success') {
             return true
         }
         return false;
@@ -22,5 +22,5 @@ const deleteCartAPI = async (id: string) => {
 };
 
 export {
-    deleteCartAPI
+    deleteUserCartAPI
 }

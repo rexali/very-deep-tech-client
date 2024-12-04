@@ -3,10 +3,10 @@
 import { SERVER_URL } from "@/constants/url";
 import axios from "axios";
 
-const clearUserCartsAPI = async (id: string) => {
+const clearUserCartsAPI = async (userId: string) => {
 
     try {
-        let { data } = await axios.delete(`${SERVER_URL}/carts/` + id + "/users", {
+        let { data } = await axios.delete(`${SERVER_URL}/carts/users/` + userId, {
             withCredentials: false,
             headers: {
                 'Content-Type': 'application/json',
