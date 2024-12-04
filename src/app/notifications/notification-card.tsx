@@ -33,7 +33,7 @@ export default function NotificationCard({
                     variant="body2"
                     color="text.secondary"
                     component={'a'}
-                    href={`/notifications/${notification._id}`}
+                    href={`/notifications/${notification._id}`} 
                     sx={{ textDecoration: 'none' }}
                 >
                     {notification?.body}

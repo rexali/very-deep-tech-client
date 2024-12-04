@@ -53,7 +53,7 @@ const handleUpdateMessageAPI = async (
             setLoading('');
             setUpdateSuccess('');
             setUpdateSuccess("");
-        }, 10000);
+        }, 20000);
     }
 
 }

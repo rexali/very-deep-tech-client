@@ -1,10 +1,10 @@
 'use client'
 
-import { BASE_URL, SERVER_URL } from "@/constants/url";
+import { SERVER_URL } from "@/constants/url";
 
 const deleteMessageAPI = async (data: { messageId: any }) => {
     try {
-        let result = await fetch(`${SERVER_URL}/messages`, {
+        let response = await fetch(`${SERVER_URL}/messages`, {
             method: "delete",
             mode: 'cors',
             headers: {
@@ -14,10 +14,12 @@ const deleteMessageAPI = async (data: { messageId: any }) => {
             body: JSON.stringify(data)
         });
 
-        let finalres = await result.json();
-        if (finalres.status === 'success') {
+        let result = await response.json();
+        if (result.status === 'success') {
+            
             return true
         }
+
         return false
     } catch (error) {
         console.log(error);

@@ -36,13 +36,52 @@ export default function ContactPage() {
         Contact us
       </Typography>
       <Box>
-        <Button sx={{ p: 2, display: 'block' }} key={'share'} onClick={() => shareLink()} startIcon={<Share sx={{ color: "white" }} />}>Share this site</Button>
-        <Button sx={{ p: 2, display: 'block' }} key={"email"} href="mailto:alybaba2009@gmail.com" startIcon={<Email sx={{ color: "white" }} />}>Email us</Button>
-        <Button sx={{ p: 2, display: 'block' }} key={"tel"} href="tel:08065899144" startIcon={<Phone sx={{ color: "white" }} />}>Call us</Button>
-        <Button sx={{ p: 2, display: 'block' }} key={"loc"} href="http://maps.google.com/?q=19 Almubarak Waqf Foundation, Guda Abdullahi Road, Farm Center, Kano State" startIcon={<Place sx={{ color: "white" }} />}>Locate us</Button>
-      </Box>
+        <Button
+          type='button'
+          size="large"
+          fullWidth
+          variant="contained"
+          color='success'
+          sx={{ p: 2, mt: 3, mb: 2, display: 'block' }}
+          key={'share'}
+          onClick={() => shareLink()}
+          startIcon={<Share sx={{ color: "white" }}
+          />}>Share this site</Button>
+        <Button
+          type='button'
+          size="large"
+          fullWidth
+          variant="contained"
+          color='success'
+          sx={{ p: 2, mt: 3, mb: 2, display: 'block' }}
+          key={"email"}
+          href="mailto:alybaba2009@gmail.com"
+          startIcon={<Email sx={{ color: "white" }}
+          />}>Email us</Button>
+        <Button
+          type='button'
+          size="large"
+          fullWidth
+          variant="contained"
+          color='success'
+          sx={{ p: 2, mt: 3, mb: 2, display: 'block' }}
+          key={"tel"} href="tel:08065899144"
+          startIcon={<Phone sx={{ color: "white" }}
+          />}>Call us</Button>
+        <Button
+          type='button'
+          size="large"
+          fullWidth
+          variant="contained"
+          color='success'
+          sx={{ p: 2, mt: 3, mb: 2, display: 'block' }}
+          key={"loc"}
+          href="http://maps.google.com/?q=19 Almubarak Waqf Foundation, Guda Abdullahi Road, Farm Center, Kano State"
+          startIcon={<Place sx={{ color: "white" }}
+          />}>Locate us</Button>
+      </Box><br />
 
-      <Box>Or use this:</Box>
+      <Box>Or</Box><br />
 
       <Box
         component={'form'}

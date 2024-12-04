@@ -28,8 +28,11 @@ export default function DeleteProduct() {
                 <Button
                     color="warning"
                     onClick={async () => {
-                        await deleteProductAPI(params.get('productId') as string)
-                    }}
+                        if (await deleteProductAPI(params.get('productId') as string)) {
+                            alert('Deleted successfully');
+                        }
+                    }
+                    }
                     startIcon={<Remove />} >
                     Delete
                 </Button>
@@ -41,6 +44,6 @@ export default function DeleteProduct() {
                     </Button>
                 </Link>
             </Box>
-        </Container>
+        </Container >
     )
 }

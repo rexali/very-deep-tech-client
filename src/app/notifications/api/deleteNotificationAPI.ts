@@ -4,7 +4,7 @@ import { BASE_URL, SERVER_URL } from "@/constants/url";
 
 const deleteNotificationAPI = async (data: { notificationId: any }) => {
     try {
-        let result = await fetch(`${SERVER_URL}/notifications`, {
+        let response = await fetch(`${SERVER_URL}/notifications`, {
             method: "delete",
             mode: 'cors',
             headers: {
@@ -14,8 +14,8 @@ const deleteNotificationAPI = async (data: { notificationId: any }) => {
             body: JSON.stringify(data)
         });
 
-        const finalResult = await result.json();
-        if (finalResult.status) {
+        const result = await response.json();
+        if (result.status==='success') {
             return true
         }
 

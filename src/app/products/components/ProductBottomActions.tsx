@@ -6,7 +6,7 @@ import Edit from '@mui/icons-material/Edit';
 import Minus from '@mui/icons-material/RemoveCircle';
 import Plus from '@mui/icons-material/AddCircle';
 import Box from "@mui/material/Box";
-import { useState, useContext} from "react";
+import { useState, useContext } from "react";
 import StatusModal from "@/components/common/status-modal";
 import { AuthContext } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
@@ -19,7 +19,7 @@ import { savePathLink } from "@/utils/savePathLink";
 import { getToken } from "@/utils/getToken";
 import GetQouteModal from "@/app/qoutes/components/GetQuoteModal";
 
-export default function ProductBottomActions({ product, role, cart }: { product: any, role?: string, cart?: any }) {
+export default function ProductBottomActions({ product, role}: { product: any, role?: string }) {
     const [open, setOpen] = useState(false);
     const [openQoute, setOpenQoute] = useState(false);
     const [quantity, setQuantity] = useState<number>(1);
@@ -59,7 +59,7 @@ export default function ProductBottomActions({ product, role, cart }: { product:
             {
                 (role === 'admin') && <Button
                     size="small"
-                    onClick={() => { router.replace('/products/edit', {}) }}
+                    onClick={() => { router.push('/products/edit', {}) }}
                     startIcon={<Edit />}></Button>
             }
             <Button
