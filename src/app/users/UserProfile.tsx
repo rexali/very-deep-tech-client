@@ -12,7 +12,7 @@ import { useAuth } from "@/hooks/use-auth";
 
 
 export default function UserProfile(props: any) {
-  const [profile,] = React.useState<any>(props.user);
+  const [profile,] = React.useState<any>(props.user ?? {});
   const [error, setError] = React.useState('');
   const [success, setSuccess] = React.useState('');
 
@@ -26,7 +26,7 @@ export default function UserProfile(props: any) {
       setError,
       userId
     )
-}
+  }
 
   if (!Object.keys(profile)?.length) {
 
@@ -62,7 +62,7 @@ export default function UserProfile(props: any) {
       </Box>
       <Box
         component="form"
-        onSubmit={handleSubmit }
+        onSubmit={handleSubmit}
         noValidate
         sx={{ mt: 1 }}
       >

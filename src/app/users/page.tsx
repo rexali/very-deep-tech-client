@@ -21,17 +21,15 @@ import { useAuth } from "@/hooks/use-auth";
 import { getCarts } from "@/store/actions/app-actions";
 import { getUserCartsAPI } from "./api/getUserCarts";
 import { AppContext } from "@/context/AppContext";
-import { signIn } from "@/store/actions/auth-actions";
 import { getToken } from "@/utils/getToken";
 
 
 export default function UserTabs() {
 
     let [tabName, setTabName] = useState('profile');
-    const auth = useAuth();
     const { dispatch } = useContext(AppContext);
     const mountRef = useRef(true);
-    // const userId = "6712c927857f3a3b3492459f";
+    const auth = useAuth();
     const userId = auth.user?._id as unknown as string || getToken('_id') as string;
 
     const openTab = (tabname: any) => {
@@ -43,16 +41,7 @@ export default function UserTabs() {
     const getData = useCallback(async () => {
         let userCarts = await getUserCartsAPI(userId);
         dispatch(getCarts(userCarts));
-        dispatch(signIn({
-            user: {
-                token: "",
-                email: "",
-                _id: null,
-                role: "user",
-                photo: user?.photo
-            },
-        }))
-    }, [dispatch, user?.photo, userId])
+    }, [dispatch, userId])
 
 
     useEffect(() => {

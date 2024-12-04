@@ -29,6 +29,7 @@ export default function CartCard({ product, refreshCart }: { product: any, refre
             <Image
               src={`${SERVER_URL}/uploads/${product.product_pictures[0]}`}
               alt={product.product_name}
+              layout="responsive"
               style={{
                 display: 'block',
                 marginRight: 'auto',

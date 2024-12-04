@@ -22,6 +22,7 @@ import { AppContext } from '@/context/AppContext';
 import Notifications from '@mui/icons-material/Notifications';
 import Message from '@mui/icons-material/Message';
 import { AuthContext } from '@/context/AuthContext';
+import { useAuth } from '@/hooks/use-auth';
 
 const pages = [
   'About',
@@ -38,8 +39,7 @@ const menus = [
 function NavBar() {
 
   const { state } = React.useContext(AppContext);
-  const authContext = React.useContext(AuthContext);
-  const { user } = authContext;
+  const { user } = useAuth();
 
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);

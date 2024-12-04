@@ -8,16 +8,17 @@ import { getUserCartsAPI } from "./api/getUserCartsAPI";
 import { CartListComponent } from "./CartListComponent";
 import { AppContext } from "@/context/AppContext";
 import { useAuth } from '@/hooks/use-auth';
+import { getToken } from "@/utils/getToken";
 
 
 export default function CartPage() {
 
   const [data, setData] = useState<any>([]);
   const mountRef = useRef(true);
-  const { dispatch } = useContext(AppContext);
-  const {user} = useAuth();
+  const { state, dispatch } = useContext(AppContext);
+  const { user } = useAuth();
 
-  const userId = user?._id as unknown as string ;
+  const userId = user?._id as unknown as string || getToken('_id') as string;
 
   const getData = useCallback(async () => {
     let userCarts = await getUserCartsAPI(userId);
@@ -44,7 +45,7 @@ export default function CartPage() {
   return (
     <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }} >
       <Box>Carts: {data.length}</Box>
-      <CartListComponent products={data} refreshCart={getData} />
+      <CartListComponent products={state.carts || data} refreshCart={getData} />
     </Container>
   )
 }

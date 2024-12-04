@@ -27,7 +27,7 @@ export async function generateStaticParams() {
   const data = await fetch(SERVER_URL + "/products").then(res => res.json());
   return data.data.products.map((product: any) => ({
     productId: product._id
-  })) 
+  }))
 }
 
 export default async function ProductDetailPage({ params }: { params: { productId: string } }) {
@@ -78,6 +78,7 @@ export default async function ProductDetailPage({ params }: { params: { productI
                     <Image
                       src={`${SERVER_URL}/uploads/${product_picture}`}
                       alt={product.product_name}
+                      layout="responsive"
                       style={{
                         display: 'block',
                         marginRight: 'auto',
@@ -94,8 +95,7 @@ export default async function ProductDetailPage({ params }: { params: { productI
                       <Image
                         src={photo}
                         alt={'photo'}
-                        // height={315}
-                        // width={420} 
+                        layout="responsive"
                         style={{
                           display: 'block',
                           marginRight: 'auto',
@@ -199,6 +199,7 @@ export default async function ProductDetailPage({ params }: { params: { productI
                     <Image
                       src={product_photo}
                       alt={product.product_name}
+                      layout="responsive"
                       style={{
                         display: 'block',
                         marginRight: 'auto',
@@ -215,8 +216,7 @@ export default async function ProductDetailPage({ params }: { params: { productI
                       <Image
                         src={link}
                         alt={'link'}
-                        // height={315}
-                        // width={420} 
+                        layout="responsive"
                         style={{
                           display: 'block',
                           marginRight: 'auto',
