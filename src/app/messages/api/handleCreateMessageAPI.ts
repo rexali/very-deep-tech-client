@@ -6,7 +6,8 @@ import axios from "axios";
 const handleCreateMessageAPI = async (
     messageData: any,
     setSuccess: any,
-    setError: any
+    setError: any,
+    setLoading:any
 ) => {
     try {
         let { data } = await axios.post(`${SERVER_URL}/messages`, messageData, {
@@ -18,16 +19,19 @@ const handleCreateMessageAPI = async (
         });
         if (data.status) {
             setSuccess(data.status);
+            setLoading('')
         } else {
             setError(data.status);
+            setLoading('')
         }
     } catch (error: any) {
         console.warn(error);
         setError('ERROR! ' + error.message);
     } finally {
         setTimeout(() => {
-            setSuccess('')
-            setError("")
+            setSuccess('');
+            setError("");
+            setLoading('')
         }, 10000);
     }
 

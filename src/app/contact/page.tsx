@@ -17,6 +17,8 @@ const defaultTheme = createTheme();
 export default function SignIn() {
   const [error, setError] = React.useState('');
   const [success, setSuccess] = React.useState('');
+  const [loading, setLoading] = React.useState('');
+
 
   return (
     <ThemeProvider theme={defaultTheme} >
@@ -34,8 +36,14 @@ export default function SignIn() {
             CONTACT US
           </Typography>
 
-          <Box component="form" onSubmit={async (evt) => await handleMessageSubmit(evt, setSuccess, setError)} noValidate sx={{ mt: 1 }}>
-
+          <Box component="form" onSubmit={
+            async (evt) => {
+              setLoading('Sending data')
+              await handleMessageSubmit(evt, setSuccess, setError, setLoading);
+            }
+          }
+            noValidate sx={{ mt: 1 }}
+          >
             <TextField
               margin="normal"
               required
@@ -88,6 +96,8 @@ export default function SignIn() {
             />
             {success && <Box textAlign={"center"} sx={{ color: "green" }}>{success.toUpperCase()}</Box>}
             {error && <Box textAlign={"center"} sx={{ color: "red" }}>{error.toUpperCase()}</Box>}
+            {loading && <Box textAlign={"center"} sx={{ color: "green" }}>{loading.toUpperCase()}</Box>}
+
             <Button
               type="submit"
               fullWidth

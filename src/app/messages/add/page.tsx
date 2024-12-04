@@ -17,7 +17,9 @@ const defaultTheme = createTheme();
 export default function AddMessage() {
     const [success, setSuccess] = React.useState('');
     const [error, setError] = React.useState('');
-    const userId = getToken('_id') as string ?? "6712c927857f3a3b3492459f";
+    const [loading, setLoading] = React.useState('');
+
+    const userId = getToken('_id') as string;
 
     return (
         <ThemeProvider theme={defaultTheme} >
@@ -38,7 +40,8 @@ export default function AddMessage() {
                         component="form"
                         noValidate
                         onSubmit={async (evt) => {
-                            await handleMessageSubmit(evt, setSuccess, setError, userId);
+                            setLoading('Sending data..')
+                            await handleMessageSubmit(evt, setSuccess, setError,setLoading, userId);
                         }}
                         sx={{ mt: 15 }}
                     >
@@ -63,6 +66,8 @@ export default function AddMessage() {
                         />
                         {success && <Box textAlign={'center'} sx={{ color: "green" }}>{success.toUpperCase()}</Box>}
                         {error && <Box textAlign={'center'} sx={{ color: "red" }}>{error.toUpperCase()}</Box>}
+                        {loading && <Box textAlign={'center'} sx={{ color: "green" }}>{loading.toUpperCase()}</Box>}
+
                         <Button
                             type="submit"
                             fullWidth

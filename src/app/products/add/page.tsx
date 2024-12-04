@@ -15,7 +15,9 @@ export default function AddProduct() {
 
     const [error, setError] = React.useState('');
     const [success, setSuccess] = React.useState('');
-    const userId = getToken('_id') as string ?? "6712c927857f3a3b3492459f";
+    const [loading, setLoading] = React.useState('');
+
+    const userId = getToken('_id') as string;
 
     return (
         <Container maxWidth="md" component={'main'}>
@@ -33,7 +35,11 @@ export default function AddProduct() {
 
                 <Box
                     component="form"
-                    onSubmit={async (evt) => await handleProductSubmit(evt, setSuccess, setError, userId)}
+                    onSubmit={async (evt) => {
+                        setLoading('Sending data..')
+                        await handleProductSubmit(evt, setSuccess, setError, setLoading, userId)
+                    }
+                    }
                     noValidate
                     sx={{ mt: 10 }}
                 >
@@ -190,6 +196,7 @@ export default function AddProduct() {
 
                     {success && <Box textAlign={"center"} sx={{ color: "green" }}>{success.toUpperCase()}</Box>}
                     {error && <Box textAlign={"center"} sx={{ color: "red" }}>{error.toUpperCase()}</Box>}
+                    {loading && <Box textAlign={"center"} sx={{ color: "red" }}>{loading.toUpperCase()}</Box>}
 
                     <Button
                         type="submit"

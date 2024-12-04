@@ -18,7 +18,7 @@ import { savePathLink } from "@/utils/savePathLink";
 export default function ProductTopActions({ product, role }: { product: any, role?: string }) {
     const [open, setOpen] = useState(false);
     const router = useRouter();
-    const userId = getToken("_id") as string ??'6712c927857f3a3b3492459f';
+    const userId = getToken("_id") as string;
 
     const handleOpen = () => {
         setOpen(true)

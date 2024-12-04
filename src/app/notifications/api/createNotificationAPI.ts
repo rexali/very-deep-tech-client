@@ -4,7 +4,7 @@ import axios from "axios";
 import { SERVER_URL } from "@/constants/url"
 
 
-async function createNotificationAPI(notificationData: any, setSuccess: any, setError: any) {
+async function createNotificationAPI(notificationData: any, setSuccess: any, setError: any, setLoading:any) {
     try {
         const { data } = await axios.post(`${SERVER_URL}/notifications`, notificationData, {
             headers: {
@@ -13,12 +13,15 @@ async function createNotificationAPI(notificationData: any, setSuccess: any, set
         });
         if (data.data.notification._id) {
             setSuccess('SUCCESS');
+            setLoading('');
         } else {
             setError('ERROR');
+            setLoading('');
         }
     } catch (error: any) {
         console.warn(error);
         setError('ERROR! ' + error.message);
+        setLoading('');
     } finally {
         setTimeout(() => {
             setSuccess('')

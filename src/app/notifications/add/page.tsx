@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Copyright from '@/components/common/copyright';
-import {handleNotificationSubmit} from '../utils/handleNotificationSubmit';
+import { handleNotificationSubmit } from '../utils/handleNotificationSubmit';
 import { getToken } from '@/utils/getToken';
 
 // TODO remove, this demo shouldn't need to reset the theme.
@@ -18,7 +18,9 @@ const defaultTheme = createTheme();
 export default function AddNotification() {
   const [error, setError] = React.useState('');
   const [success, setSuccess] = React.useState('');
-  const userId = getToken('_id') as string ?? "6712c927857f3a3b3492459f";
+  const [loading, setLoading] = React.useState('');
+
+  const userId = getToken('_id') as string;
 
   return (
     <ThemeProvider theme={defaultTheme} >
@@ -36,13 +38,19 @@ export default function AddNotification() {
             Post Notice
           </Typography>
 
-          <Box component="form" onSubmit={async (evt) => await handleNotificationSubmit(evt, setSuccess, setError, userId)} noValidate sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={async (evt: any) => {
+            setLoading('Sending data..')
+            await handleNotificationSubmit(evt, setSuccess, setError, setLoading, userId)
+          }
+          }
+            noValidate sx={{ mt: 1 }}
+          >
 
             <TextField
               margin="normal"
               required
               fullWidth
-              id="tiltle"
+              id="title"
               label="Title"
               name="title"
               autoComplete="given_title"
@@ -63,6 +71,8 @@ export default function AddNotification() {
 
             {success && <Box textAlign={"center"} sx={{ color: "green" }}>{success.toUpperCase()}</Box>}
             {error && <Box textAlign={"center"} sx={{ color: "red" }}>{error.toUpperCase()}</Box>}
+            {loading && <Box textAlign={"center"} sx={{ color: "green" }}>{loading.toUpperCase()}</Box>}
+
             <Button
               type="submit"
               fullWidth
