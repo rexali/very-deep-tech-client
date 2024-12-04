@@ -3,10 +3,10 @@
 import { SERVER_URL } from "@/constants/url";
 import axios from "axios";
 
-const getCartsAPI = async () => {
+const getCartsAPI = async (page: number = 1) => {
 
     try {
-        let { data } = await axios.get(`${SERVER_URL}/carts`, {
+        let { data } = await axios.get(`${SERVER_URL}/carts?page=` + page, {
             withCredentials: false,
             headers: {
                 'Content-Type': 'application/json',

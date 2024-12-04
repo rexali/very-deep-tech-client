@@ -163,7 +163,7 @@ function NavBar() {
         </Link>}
         {/* end */}
         {/* Messages component */}
-        {!isMobile && <Link href={'/messages'} style={{ marginRight: 16, display: (user?._id !== null) ? '' : 'none' }} ><Message sx={{ color: "white" }} /></Link>}
+        {!isMobile && <Link href={'/messages/user'} style={{ marginRight: 16, display: (user?._id !== null) ? '' : 'none' }} ><Message sx={{ color: "white" }} /></Link>}
         {/* Notification component */}
         {!isMobile && <Link href='/notifications' style={{ marginRight: 16, display: (user?._id !== null) ? '' : 'none' }} ><Notifications sx={{ color: "white" }} /></Link>}
         <Box sx={{ flexGrow: 0 }}>
@@ -173,10 +173,9 @@ function NavBar() {
                 user?.photo ?
                   <Image
                     src={`${SERVER_URL}/uploads/${user.photo}`}
-                    width={30}
-                    height={30}
+                    width={20}
+                    height={20}
                     alt="Account"
-                    layout="responsive"
                     style={{
                       borderRadius: 20
                     }}
