@@ -173,11 +173,11 @@ function NavBar() {
                 user?.photo ?
                   <Image
                     src={`${SERVER_URL}/uploads/${user.photo}`}
-                    width={20}
-                    height={20}
+                    width={30}
+                    height={30}
                     alt="Account"
                     style={{
-                      borderRadius: 20
+                      borderRadius: 20,
                     }}
                   /> : <Avatar />
               }
