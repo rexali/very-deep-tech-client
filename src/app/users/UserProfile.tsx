@@ -12,7 +12,7 @@ import { useAuth } from "@/hooks/use-auth";
 
 
 export default function UserProfile(props: any) {
-  const [profile,] = React.useState<any>(props.user?.photo ?? {});
+  const [profile,] = React.useState<any>(props.user);
   const [error, setError] = React.useState('');
   const [success, setSuccess] = React.useState('');
 
