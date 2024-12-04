@@ -39,6 +39,8 @@ const menus = [
 function NavBar() {
 
   const { state } = React.useContext(AppContext);
+  const authContext = React.useContext(AuthContext);
+
   const { user } = useAuth();
 
 
@@ -170,12 +172,15 @@ function NavBar() {
         <Box sx={{ flexGrow: 0 }}>
           <Tooltip title="Open menu">
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-              {user?.photo ? <Image
-                src={`${SERVER_URL}/uploads/${user?.photo}`}
+              {user?.photo || authContext.user?.photo ? <Image
+                src={`${SERVER_URL}/uploads/${user?.photo || authContext?.user?.photo}`}
                 width={30}
                 height={30}
                 alt="Account"
-                style={{ borderRadius: 20 }}
+                layout="responsive"
+                style={{
+                  borderRadius: 20
+                }}
               /> : <Avatar />
               }
             </IconButton>
