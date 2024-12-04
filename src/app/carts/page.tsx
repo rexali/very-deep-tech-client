@@ -17,7 +17,7 @@ export default function CartPage() {
   const { dispatch } = useContext(AppContext);
   const {user} = useAuth();
 
-  const userId = user?._id as unknown as string;
+  const userId = user?._id as unknown as string ;
 
   const getData = useCallback(async () => {
     let userCarts = await getUserCartsAPI(userId);

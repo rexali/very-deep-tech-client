@@ -16,7 +16,7 @@ export default function FavouritePage() {
   const [data, setData] = useState<any>([]);
   const [activePage, setActivePage] = useState<number>(1);
   const { dispatch } = useContext(AppContext);
-  const userId = getToken("_id") as string ?? "6712c927857f3a3b3492459f";
+  const userId = getToken("_id") as string;
 
   useEffect(() => {
     async function getData() {

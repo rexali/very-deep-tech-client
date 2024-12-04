@@ -23,13 +23,10 @@ export default function ProductBottomActions({ product, role, cart }: { product:
     const [open, setOpen] = useState(false);
     const [openQoute, setOpenQoute] = useState(false);
     const [quantity, setQuantity] = useState<number>(1);
-    // const [quantity, setQuantity] = useState<number>(product?.cartQuantity ?? 1);
     const { state } = useContext(AuthContext);
     const { dispatch } = useContext(AppContext)
     const userId = state.user?._id || getToken('_id');
     const router = useRouter();
-
-    var range = (start: number, end: number) => [...Array(end - start + 1)].map((_, i) => start + i);
 
     const handleOpen = () => {
         setOpen(true)
@@ -39,39 +36,26 @@ export default function ProductBottomActions({ product, role, cart }: { product:
         setOpenQoute(true)
     }
 
-    const minusToCartCount = (evt:any) => {
-            if (Number(evt.currentTarget.nextSibling.value) === 1) {
-                evt.currentTarget.nextSibling.value = 1;
-                setQuantity(evt.currentTarget.nextSibling.value)
-            } else {
-                evt.currentTarget.nextSibling.value = Number(evt.currentTarget.nextSibling.value) - 1;
-                setQuantity(evt.currentTarget.nextSibling.value)
-            }
+    const minusToCartCount = (evt: any) => {
+        if (Number(evt.currentTarget.nextSibling.value) === 1) {
+            evt.currentTarget.nextSibling.value = 1;
+            setQuantity(evt.currentTarget.nextSibling.value)
+        } else {
+            evt.currentTarget.nextSibling.value = Number(evt.currentTarget.nextSibling.value) - 1;
+            setQuantity(evt.currentTarget.nextSibling.value)
+        }
     }
 
-    const plusToCartCount = (evt:any) => {
-            evt.currentTarget.previousSibling.value = Number(evt.currentTarget.previousSibling.value) + 1;
-            setQuantity(evt.currentTarget.previousSibling.value)
+    const plusToCartCount = (evt: any) => {
+        evt.currentTarget.previousSibling.value = Number(evt.currentTarget.previousSibling.value) + 1;
+        setQuantity(evt.currentTarget.previousSibling.value)
     }
 
     return (
         <Box sx={{ display: 'flex', justifyContent: "space-between", width: "100%" }}>
             <Button size="small" onClick={() => setOpenQoute(true)}>Get Qoutes</Button>
             {openQoute && <GetQouteModal closeCallback={handleOpenQuote} productId={product._id} />}
-            {/* <label>
-                <span>qty: </span>
-                <span style={{ marginRight: 5 }}>{quantity}</span>&nbsp;&nbsp;&nbsp;
-                <select onChange={
-                    async (evt: any) => {
-                        const { value } = evt.target;
-                        setQuantity(value);
-                    }
-                }>
-                    {range(1, Number(product?.product_quantity ?? 1)).map((v) => <option key={v} value={v}>{v}</option>)}
-                </select>
-            </label> */}
-
-            <Box textAlign={'center'}><Button onClick={(evt)=>minusToCartCount(evt)} id="minus" startIcon={<Minus/>}/><input disabled={true} style={{ width: 10, textAlign: 'center' }} id="value" value={quantity}/><Button id="plus" onClick={(evt)=>plusToCartCount(evt)} startIcon={<Plus />}/></Box>
+            <Box display={"flex"} justifyContent={'center'}><Button id="minus" onClick={(evt) => minusToCartCount(evt)} startIcon={<Minus />} /><input disabled={true} style={{ width: 15, textAlign: 'center', marginRight: 2, borderRadius: 5 }} value={quantity} /><Button id="plus" onClick={(evt) => plusToCartCount(evt)} startIcon={<Plus />} /></Box>
             {
                 (role === 'admin') && <Button
                     size="small"
