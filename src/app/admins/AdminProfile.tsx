@@ -7,15 +7,18 @@ import Update from "@material-ui/icons/Update";
 import * as React from "react";
 import { getUserProfileAPI } from "../users/api/getUserProfileAPI";
 import { handleProfileUpdate } from "../users/utils/handleProfileUpdate";
-import { BASE_URL, SERVER_URL } from "@/constants/url";
 import Image from "next/image";
 import Fallback from "@/components/common/fallback";
+import { useAuth } from "@/hooks/use-auth";
+import { SERVER_URL } from "@/constants/url";
 
 export default function AdminProfile() {
   const [adminProfile, setUserProfile] = React.useState<any>({});
   const [error, setError] = React.useState('');
   const [success, setSuccess] = React.useState('');
-  const userId = getToken('_id') as string ?? "6712c927857f3a3b3492459f";
+
+  const auth = useAuth();
+  const userId = getToken('_id') as string || auth.user?._id as unknown as string;
 
   React.useEffect(() => {
     async function getUserProfileData() {
@@ -42,8 +45,7 @@ export default function AdminProfile() {
       <Container maxWidth="lg" component={'main'} sx={{ mt: 5 }}>
         <Box>
           {adminProfile?.photo ? <Image
-            // src={`${SERVER_URL}/uploads/${adminProfile?.photo}`}
-            src={`https://very-deep-tech-server.onrender.com/uploads/ali.jpg`}
+            src={`${SERVER_URL}/uploads/${adminProfile.photo} ?? 'https://very-deep-tech-server.onrender.com/uploads/ali.jpg'`}
             width={150}
             height={150}
             alt="Account"

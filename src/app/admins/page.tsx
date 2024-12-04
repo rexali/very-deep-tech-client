@@ -73,7 +73,7 @@ function ProductsTab() {
 
     return (
 
-        <Container>
+        <Box>
             <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                 <Box component={'div'} textAlign={'left'} >
                     <Typography
@@ -88,14 +88,14 @@ function ProductsTab() {
             </Box>
 
             <UsersProducts />
-        </Container>
+        </Box>
     )
 }
 
 function ProfileTab() {
 
     return (
-        <Container>
+        <Box>
             <Box component={'div'} textAlign={'left'} >
                 <Typography
                     color='success'
@@ -104,7 +104,7 @@ function ProfileTab() {
                 </Typography>
             </Box>
             <UsersProfiles />
-        </Container>
+        </Box>
     )
 }
 
@@ -203,7 +203,7 @@ function TransactionTab() {
 function CartTab() {
 
     return (
-        <Container>
+        <Box>
             <Box component={'div'} textAlign={'left'} >
                 <Typography
                     color='success'
@@ -212,7 +212,7 @@ function CartTab() {
                 </Typography>
             </Box>
             <UsersCarts />
-        </Container>
+        </Box>
     )
 }
 

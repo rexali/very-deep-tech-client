@@ -11,7 +11,6 @@ import Box from '@mui/material/Box';
 import { getUsersProfilesAPI } from './api/getUsersProfilesAPI';
 import Container from '@mui/material/Container';
 import Link from 'next/link';
-import Fallback from '@/components/common/fallback';
 
 
 export default function UsersProfiles() {
@@ -54,7 +53,7 @@ export default function UsersProfiles() {
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
                   <TableCell component="th" scope="profile">
-                    {profile.firstName ?? 'Aliyu' + ' ' + profile.lastName ?? 'Bello'}
+                    {profile.firstName ?? 'Aliyu'}  {profile.lastName ?? ' Bello'}
                   </TableCell>
                   <TableCell align="right">
                     <Link href={`mailto:${profile?.user?.email}`}>{profile?.user?.email}</Link>

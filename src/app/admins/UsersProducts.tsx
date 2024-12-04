@@ -32,7 +32,7 @@ export default function UsersProducts() {
   }
 
   return (
-    <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }}>
+    <Box sx={{ mt: 10 }}>
       <Box>Total Products: {data[0]?.totalProducts}</Box>
         <ProductList products={data} />
       <Box marginTop={4} display={"flex"} justifyContent={'center'} >
@@ -43,6 +43,6 @@ export default function UsersProducts() {
           pageRangeDisplayed={5}
           onchangeCallback={(v: any) => setActivePage(v)} />
       </Box>
-    </Container>
+    </Box>
   )
 }
