@@ -12,7 +12,7 @@ import { useAuth } from "@/hooks/use-auth";
 
 
 export default function UserProfile(props: any) {
-  const [profile,] = React.useState<any>(props.user ?? {});
+  // const [user] = React.useState<any>({});
   const [error, setError] = React.useState('');
   const [success, setSuccess] = React.useState('');
 
@@ -26,13 +26,15 @@ export default function UserProfile(props: any) {
       setError,
       userId
     )
-  }
+  };
 
-  if (!Object.keys(profile)?.length) {
+  const {user} = props;
+  
+  if (!Object.keys(user).length) {
 
     return (
       <Container sx={{ mt: 8 }} component={"main"} maxWidth="md">
-        <Box textAlign={'center'}>No profile found</Box>
+        <Box textAlign={'center'}>No user profile found</Box>
       </Container>
     )
   }
@@ -42,8 +44,8 @@ export default function UserProfile(props: any) {
     <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }}>
       <p>photo: {props?.user?.photo}</p>
       <Box>
-        {profile.photo ? <Image
-          src={`${SERVER_URL}/uploads/${profile?.photo}`}
+        {user.photo ? <Image
+          src={`${SERVER_URL}/uploads/${user.photo}`}
           alt="Account"
           layout="responsive"
           style={{
@@ -89,7 +91,7 @@ export default function UserProfile(props: any) {
           margin={"normal"}
           id="first_name"
           label="First Name"
-          defaultValue={profile?.firstName}
+          defaultValue={user.firstName}
           autoFocus
         />
 
@@ -101,7 +103,7 @@ export default function UserProfile(props: any) {
           margin={"normal"}
           id="last_name"
           label="Last Name"
-          defaultValue={profile?.lastName}
+          defaultValue={user.lastName}
         />
 
         <TextField
@@ -112,7 +114,7 @@ export default function UserProfile(props: any) {
           margin={"normal"}
           id="email_address"
           label="Email Address"
-          defaultValue={profile?.user?.email}
+          defaultValue={user.user?.email}
         />
 
         <TextField
@@ -123,7 +125,7 @@ export default function UserProfile(props: any) {
           margin={"normal"}
           id="street_address"
           label="Address"
-          defaultValue={profile?.streetAddress}
+          defaultValue={user.streetAddress}
         />
 
         <TextField
@@ -134,7 +136,7 @@ export default function UserProfile(props: any) {
           margin={"normal"}
           id="local_govt"
           label="Local Govt"
-          defaultValue={profile?.localGovt}
+          defaultValue={user.localGovt}
         />
 
         <TextField
@@ -145,7 +147,7 @@ export default function UserProfile(props: any) {
           margin={"normal"}
           id="state"
           label="State"
-          defaultValue={profile?.state}
+          defaultValue={user.state}
         />
 
         {success && <Box textAlign={"center"} sx={{ color: "green" }}>{success.toUpperCase()}</Box>}

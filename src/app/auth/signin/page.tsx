@@ -28,6 +28,13 @@ export default function SignIn() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState('');
+  const router = useRouter();
+
+  const handleSubmit = (event: any) => {
+    // give user feedback
+    setLoading("Sending data...");
+    handleLoginSubmit(event, setLoading, setSuccess, setError, router)
+  }
 
   return (
     <ThemeProvider theme={defaultTheme} >
@@ -48,7 +55,7 @@ export default function SignIn() {
             Sign in
           </Typography>
           <Box component="form"
-            onSubmit={(evt) => handleLoginSubmit(evt, setLoading, setSuccess, setError, "/users")}
+            onSubmit={handleSubmit}
             noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"

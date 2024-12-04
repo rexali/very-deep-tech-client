@@ -13,10 +13,8 @@ export const handleLoginSubmit = (
     setLoading: Function,
     setLoginSuccess: Function,
     setLoginError: Function,
-    url: string,
+    router:any
 ) => {
-    // give user feedback
-    setLoading("Sending data...");
     // prevent defaut behaviour
     event.preventDefault();
     // get current form data
@@ -29,25 +27,24 @@ export const handleLoginSubmit = (
     logInAPI(email, password)
         .then((result: any) => {
             if (result.status === "success") {
-                setLoading("");
                 setLoginSuccess(result.status);
                 // check if window is defined
                 if (typeof window !== "undefined") {
                     // check if token is defined
                     if (result.data.token) {
                         // redirect user to a given url
-                        window.location.assign('/users');
-                        // router.push('/users');
+                        // window.location.assign('/users');
+                        router.push('/users');
                     } else {
-                        window.location.assign('/');
-                        // router.push('/');
+                        // window.location.assign('/');
+                        router.push('/');
                     }
 
                 } else {
                     setLoginError("Error! Let the developer knows");
                 }
             } else {
-                setLoginError(result.data.status);
+                setLoginError(result.status);
             }
         }).catch((err) => {
             // collect error thru error callback
