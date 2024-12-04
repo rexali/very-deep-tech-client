@@ -3,7 +3,7 @@
 import { SERVER_URL } from "@/constants/url";
 import axios from "axios";
 
-const updateProductAPI = async (productData: any, setPostSuccess: any, setPostError: any) => {
+const updateProductAPI = async (productData: any, setPostSuccess: any, setPostError: any, setLoading: any) => {
 
     try {
         let { data } = await axios.patch(`${SERVER_URL}/products`, productData, {
@@ -15,19 +15,23 @@ const updateProductAPI = async (productData: any, setPostSuccess: any, setPostEr
 
         });
         if (data.status === "success") {
-            setPostSuccess(data.status)
+            setLoading('');
+            setPostSuccess(data.status);
         } else {
-            setPostError(data.status)
+            setLoading('');
+            setPostError(data.status);
         }
 
     } catch (error: any) {
         console.warn(error);
-        setPostError("Error! " + error.message)
+        setLoading('');
+        setPostError("Error! " + error.message);
     } finally {
         setTimeout(() => {
+            setLoading('');
             setPostSuccess('')
             setPostError('')
-        }, 30000);
+        }, 20000);
     }
 };
 

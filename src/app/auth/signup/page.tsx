@@ -25,6 +25,12 @@ const defaultTheme = createTheme();
 export default function SignUp() {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
+    const [loading, setLoading] = React.useState('');
+
+    const handleSubmit = async (event: any) => {
+        setLoading('Sending data..');
+        handleSignUpSubmit(event, setError, setSuccess, setLoading)
+    };
 
     return (
         <ThemeProvider theme={defaultTheme}>
@@ -44,7 +50,7 @@ export default function SignUp() {
                     <Typography component="h1" variant="h5">
                         Sign up
                     </Typography>
-                    <Box component="form" onSubmit={(evt) => handleSignUpSubmit(evt, setError, setSuccess)} sx={{ mt: 3 }}>
+                    <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
                         <Grid container spacing={2}>
                             <Grid item xs={12} sm={6}>
                                 <TextField
@@ -102,6 +108,7 @@ export default function SignUp() {
                             <Grid item xs={12}>
                                 {error && (<Box className={styles.formError} textAlign={'center'}>{error.toUpperCase()}</Box>)}
                                 {success && (<Box className={styles.formSuccess} textAlign={'center'}>{success.toLowerCase()}</Box>)}
+                                {loading && <Box textAlign={"center"} sx={{ color: "green" }}>{loading.toUpperCase()}</Box>}
                                 <FormControlLabel
                                     control={<Checkbox value="allowExtraEmails" color="primary" name='remember_me' />}
                                     label="I want to receive inspiration, marketing promotions and updates via email."

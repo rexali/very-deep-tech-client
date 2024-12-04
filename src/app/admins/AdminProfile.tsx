@@ -16,9 +16,22 @@ export default function AdminProfile() {
   const [adminProfile, setUserProfile] = React.useState<any>({});
   const [error, setError] = React.useState('');
   const [success, setSuccess] = React.useState('');
+  const [loading, setLoading] = React.useState('');
+
 
   const auth = useAuth();
   const userId = getToken('_id') as string || auth.user?._id as unknown as string;
+
+  const handleSubmit = async (event: any) => {
+    setLoading('Sending data..')
+    await handleProfileUpdate(
+      event,
+      setSuccess,
+      setError,
+      setLoading,
+      userId
+    )
+  };
 
   React.useEffect(() => {
     async function getUserProfileData() {
@@ -27,7 +40,6 @@ export default function AdminProfile() {
     }
 
     getUserProfileData();
-
   }, [userId]);
 
   if (!Object.keys(adminProfile).length) {
@@ -45,7 +57,7 @@ export default function AdminProfile() {
       <Container maxWidth="lg" component={'main'} sx={{ mt: 5 }}>
         <Box>
           {adminProfile?.photo ? <Image
-            src={`${SERVER_URL}/uploads/${adminProfile.photo} ?? 'https://very-deep-tech-server.onrender.com/uploads/ali.jpg'`}
+            src={`${SERVER_URL}/uploads/${adminProfile.photo}`}
             width={150}
             height={150}
             alt="Account"
@@ -56,12 +68,7 @@ export default function AdminProfile() {
         </Box>
         <Box
           component="form"
-          onSubmit={async (evt) => await handleProfileUpdate(
-            evt,
-            setSuccess,
-            setError,
-            userId)
-          }
+          onSubmit={handleSubmit}
           noValidate
           sx={{ mt: 1 }}
         >
@@ -154,6 +161,8 @@ export default function AdminProfile() {
 
           {success && <Box textAlign={"center"} sx={{ color: "green" }}>{success.toUpperCase()}</Box>}
           {error && <Box textAlign={"center"} sx={{ color: "red" }}>{error.toUpperCase()}</Box>}
+          {loading && <Box textAlign={"center"} sx={{ color: "green" }}>{loading.toUpperCase()}</Box>}
+
 
           <Button
             type="submit"

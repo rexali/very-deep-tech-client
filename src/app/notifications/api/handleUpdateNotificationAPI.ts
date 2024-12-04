@@ -8,44 +8,43 @@ const handleUpdateNotificationAPI = async (
     event: any,
     setUpdateSuccess: any,
     setUpdateError: any,
+    setLoading: any,
     userId: any,
 ) => {
     // prevent default
     event.preventDefault();
     // check userId is defined
-    if (userId) {
-        try {
-            const {
-                title,
-                body,
-                notificationId
-            } = event.target.elements;
+    try {
+        const {
+            title,
+            body,
+            notificationId
+        } = event.target.elements;
 
-            const updateData = {
-                userId:'',
-                title: title.value,
-                body: body.value,
-                notificationId: notificationId.value,
-            }
-            let { data } = await axios.patch(`${SERVER_URL}/notifications`, updateData, {
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                },
-            });
-            if (data.status) {
-                setUpdateSuccess(data.status)
-            } else {
-                setUpdateError(data.status)
-            }
-        } catch (error) {
-            setUpdateError("Error!")
-            console.warn(error);
-        };
-
-    } else {
-        savePathLink()
-    }
+        const updateData = {
+            userId: userId ?? '',
+            title: title.value,
+            body: body.value,
+            notificationId: notificationId.value,
+        }
+        let { data } = await axios.patch(`${SERVER_URL}/notifications`, updateData, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+        });
+        if (data.status) {
+            setLoading('');
+            setUpdateSuccess(data.status);
+        } else {
+            setLoading('');
+            setUpdateError(data.status)
+        }
+    } catch (error) {
+        setLoading('');
+        setUpdateError("Error!")
+        console.warn(error);
+    };
 }
 
 export {

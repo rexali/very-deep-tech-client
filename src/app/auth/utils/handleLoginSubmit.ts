@@ -10,10 +10,10 @@ import { logInAPI } from "../api/logInAPI";
  */
 export const handleLoginSubmit = (
     event: React.FormEvent<HTMLFormElement>,
-    setLoading: Function,
     setLoginSuccess: Function,
     setLoginError: Function,
-    router:any
+    setLoading: Function,
+    router: any
 ) => {
     // prevent defaut behaviour
     event.preventDefault();
@@ -27,6 +27,7 @@ export const handleLoginSubmit = (
     logInAPI(email, password)
         .then((result: any) => {
             if (result.status === "success") {
+                setLoading('');
                 setLoginSuccess(result.status);
                 // check if window is defined
                 if (typeof window !== "undefined") {
@@ -41,15 +42,17 @@ export const handleLoginSubmit = (
                     }
 
                 } else {
+                    setLoading('');
                     setLoginError("Error! Let the developer knows");
                 }
             } else {
+                setLoading('');
                 setLoginError(result.status);
             }
         }).catch((err) => {
             // collect error thru error callback
+            setLoading('');
             setLoginError(err.message);
-            // print error
             console.warn(err);
         }).finally(() => {
             setTimeout(() => {

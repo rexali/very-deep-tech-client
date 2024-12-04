@@ -13,6 +13,7 @@ export const handleSignUpSubmit = (
     event: any,
     setSignUpError: any,
     setSignUpSuccess: any,
+    setLoading: any
 ) => {
     // prevent default behaviour
     event.preventDefault();
@@ -31,24 +32,28 @@ export const handleSignUpSubmit = (
             ).then(((result) => {
                 if (result.status === "success") {
                     // send success message
+                    setLoading('');
                     setSignUpSuccess(result.status);
                 } else {
                     // send failure message
+                    setLoading('');
                     setSignUpSuccess(result.status);
                 }
             })).catch((err) => {
                 // log error message
+                setLoading('');
+                setSignUpError(err.message);
                 console.warn(err);
-                setSignUpError(err.message)
             }).finally(() => {
                 setTimeout(() => {
                     setSignUpError('');
                     setSignUpSuccess('');
-                }, 30000);
+                    setLoading('');
+                }, 20000);
             })
         }
 
-    } catch (error:any) {
+    } catch (error: any) {
         // log error
         console.warn(error);
         setSignUpError(error.message)

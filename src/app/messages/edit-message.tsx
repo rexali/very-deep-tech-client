@@ -15,12 +15,14 @@ import { AppContext } from '@/context/AppContext';
 import { getMessages } from '@/store/actions/app-actions';
 import { getMessagesAPI } from './api/getMessagesAPI';
 import { getToken } from '@/utils/getToken';
+import { useAuth } from '@/hooks/use-auth';
 
 const defaultTheme = createTheme();
 
 export default function EditMessage({ message, callback }: { message: any, callback: any }) {
     const [success, setSuccess] = React.useState('');
     const [error, setError] = React.useState('');
+    const [loading, setLoading] = React.useState('');
     const [firstName,] = React.useState(message.firstName ?? '');
     const [lastName,] = React.useState(message.lastName ?? '');
     const [sender,] = React.useState(message.sender ?? '');
@@ -28,7 +30,16 @@ export default function EditMessage({ message, callback }: { message: any, callb
     const [title,] = React.useState(message.title);
     const [comment,] = React.useState(message.comment);
     const { dispatch } = React.useContext(AppContext);
-    const userId = getToken('_id') as string ?? "6712c927857f3a3b3492459f";
+
+    const auth = useAuth();
+    const userId = auth.user?._id as unknown as string || getToken('_id') as string;
+
+    const handleSubmit = async (event: any) => {
+        setLoading('Sending data..')
+        await handleUpdateMessageAPI(event, setSuccess, setError, setLoading, userId);
+        callback(false);
+        dispatch(getMessages(await getMessagesAPI()))
+    };
 
     return (
         <ThemeProvider theme={defaultTheme} >
@@ -42,11 +53,7 @@ export default function EditMessage({ message, callback }: { message: any, callb
                     <Box
                         component="form"
                         noValidate sx={{ mt: 1 }}
-                        onSubmit={async (evt) => {
-                            await handleUpdateMessageAPI(evt, setSuccess, setError, userId);
-                            callback(false);
-                            dispatch(getMessages(await getMessagesAPI()))
-                        }}
+                        onSubmit={handleSubmit}
                     >
                         <TextField
                             id="firstName"
@@ -95,6 +102,8 @@ export default function EditMessage({ message, callback }: { message: any, callb
                         />
                         {success && <Box textAlign={'center'} sx={{ color: "green" }}>{success.toUpperCase()}</Box>}
                         {error && <Box textAlign={'center'} sx={{ color: "red" }}>{error.toUpperCase()}</Box>}
+                        {loading && <Box textAlign={'center'} sx={{ color: "red" }}>{loading.toUpperCase()}</Box>}
+
                         <Button
                             type="submit"
                             fullWidth

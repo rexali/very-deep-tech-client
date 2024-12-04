@@ -3,38 +3,42 @@ import Send from "@material-ui/icons/Send";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { handleProductEditSubmit } from "../utils/handleProductEdit.Submit";
 import { getProductAPI } from "../api/getProductAPI";
 
-export default function EditProduct({ params }: { params:{productId:string} }) {
+export default function EditProduct({ params }: { params: { productId: string } }) {
     const [data, setData] = useState<any>({});
-    const [error, setError] =useState('');
+    const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
     const [loading, setLoading] = React.useState('');
-    
-    useEffect(()=>{
-            async function getData() {
-              const data = await getProductAPI(params.productId);
-              setData(data);
-            }
-        
-            getData();
-         
-          
+
+    const handleSubmit = async (event: any) => {
+        setLoading('Sending data..')
+        handleProductEditSubmit(
+            event,
+            setSuccess,
+            setError,
+            setLoading,
+            params.productId
+        )
+    };
+
+    useEffect(() => {
+        async function getData() {
+            const data = await getProductAPI(params.productId);
+            setData(data);
+        }
+
+        getData();
+
+
     }, [params.productId])
 
     return (
         <Box
             component="form"
-            onSubmit={(evt) => {
-                setLoading('Sending data..')
-                handleProductEditSubmit(
-                evt,
-                setSuccess,
-                setError,
-                params.productId
-            )}}
+            onSubmit={handleSubmit}
             noValidate
             sx={{ mt: 1 }}
         >
@@ -152,7 +156,7 @@ export default function EditProduct({ params }: { params:{productId:string} }) {
                 autoComplete="given-name"
                 name="product_code"
                 required
-                fullWidth 
+                fullWidth
                 margin={"normal"}
                 id="product_code"
                 label="product_code"

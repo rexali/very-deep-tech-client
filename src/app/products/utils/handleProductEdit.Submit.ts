@@ -1,6 +1,6 @@
 import { updateProductAPI } from "../api/updateProductAPI";
 
-const handleProductEditSubmit = async (event: any, setPostSuccess: any, setPostError: any, productId:string) => {
+const handleProductEditSubmit = async (event: any, setPostSuccess: any, setPostError: any, setLoading:any, productId:string) => {
     event.preventDefault();
     const {
         product_name,
@@ -28,7 +28,7 @@ const handleProductEditSubmit = async (event: any, setPostSuccess: any, setPostE
         product_code: product_code.value,
         productId
     }
-    await updateProductAPI(productData, setPostSuccess, setPostError);
+    await updateProductAPI(productData, setPostSuccess, setPostError, setLoading);
 
 };
 

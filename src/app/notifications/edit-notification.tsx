@@ -9,25 +9,33 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import ThemeProvider from '@mui/material/styles/ThemeProvider';
 import createTheme from '@mui/material/styles/createTheme';
-import { AuthContext } from '@/context/AuthContext';
 import RemoveIcon from '@mui/icons-material/Cancel';
 import { handleUpdateNotificationAPI } from './api/handleUpdateNotificationAPI';
 import { AppContext } from '@/context/AppContext';
 import { getNotifications } from '@/store/actions/app-actions';
 import { getNotificationAPI } from './api/getNotificationsAPI';
 import { getToken } from '@/utils/getToken';
+import { useAuth } from '@/hooks/use-auth';
 
 const defaultTheme = createTheme();
 
 export default function EditNotification({ notification, callback }: { callback: any, notification: any }) {
     const [success, setSuccess] = React.useState('');
     const [error, setError] = React.useState('');
+    const [loading, setLoading] = React.useState('');
     const [title,] = React.useState(notification.subject);
     const [body,] = React.useState(notification.body);
     const [notificationId,] = React.useState(notification.notificationId);
     const { dispatch } = React.useContext(AppContext);
-    const userId = getToken('_id') as string ?? "6712c927857f3a3b3492459f";
+    const auth = useAuth();
+    const userId = auth.user?._id as unknown as string || getToken('_id') as string;
 
+    const handleSubmit = async (event: any) => {
+        setLoading('Sending data..')
+        await handleUpdateNotificationAPI(event, setSuccess, setError, setLoading, userId);
+        callback(false);
+        dispatch(getNotifications(await getNotificationAPI()));
+    };
 
     return (
         <ThemeProvider theme={defaultTheme} >
@@ -41,11 +49,7 @@ export default function EditNotification({ notification, callback }: { callback:
                     <Box
                         component="form"
                         noValidate sx={{ mt: 1 }}
-                        onSubmit={async (evt) => {
-                            await handleUpdateNotificationAPI(evt, setSuccess, setError, userId);
-                            callback(false);
-                            dispatch(getNotifications(await getNotificationAPI()));
-                        }}
+                        onSubmit={handleSubmit}
                     >
                         <TextField
                             id="notificationId"
@@ -77,6 +81,8 @@ export default function EditNotification({ notification, callback }: { callback:
                         />
                         {success && <Box textAlign={'center'} sx={{ color: "green" }}>{success.toUpperCase()}</Box>}
                         {error && <Box textAlign={'center'} sx={{ color: "red" }}>{error.toUpperCase()}</Box>}
+                        {loading && <Box textAlign={'center'} sx={{ color: "red" }}>{loading.toUpperCase()}</Box>}
+
                         <Button
                             type="submit"
                             fullWidth

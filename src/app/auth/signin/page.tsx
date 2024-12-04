@@ -33,7 +33,7 @@ export default function SignIn() {
   const handleSubmit = (event: any) => {
     // give user feedback
     setLoading("Sending data...");
-    handleLoginSubmit(event, setLoading, setSuccess, setError, router)
+    handleLoginSubmit(event, setSuccess, setError, setLoading, router)
   }
 
   return (

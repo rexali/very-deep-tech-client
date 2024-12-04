@@ -12,9 +12,10 @@ import { useAuth } from "@/hooks/use-auth";
 
 
 export default function UserProfile(props: any) {
-  // const [user] = React.useState<any>({});
+  const [user, setUser] = React.useState<any>({});
   const [error, setError] = React.useState('');
   const [success, setSuccess] = React.useState('');
+  const [loading, setLoading] = React.useState('');
 
   const auth = useAuth();
   const userId = auth.user?._id as unknown as string || getToken('_id') as string;
@@ -24,12 +25,15 @@ export default function UserProfile(props: any) {
       event,
       setSuccess,
       setError,
+      setLoading,
       userId
     )
   };
 
-  const {user} = props;
-  
+  React.useEffect(() => {
+    setUser(props.user);
+  }, [props.user]);
+
   if (!Object.keys(user).length) {
 
     return (
@@ -42,7 +46,6 @@ export default function UserProfile(props: any) {
 
   return (
     <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }}>
-      <p>photo: {props?.user?.photo}</p>
       <Box>
         {user.photo ? <Image
           src={`${SERVER_URL}/uploads/${user.photo}`}
@@ -152,6 +155,7 @@ export default function UserProfile(props: any) {
 
         {success && <Box textAlign={"center"} sx={{ color: "green" }}>{success.toUpperCase()}</Box>}
         {error && <Box textAlign={"center"} sx={{ color: "red" }}>{error.toUpperCase()}</Box>}
+        {loading && <Box textAlign={"center"} sx={{ color: "green" }}>{loading.toUpperCase()}</Box>}
 
         <Button
           type="submit"
