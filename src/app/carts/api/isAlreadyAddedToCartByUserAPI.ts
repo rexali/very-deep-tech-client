@@ -6,7 +6,7 @@ import axios from "axios";
 const isAllReadyAddedToCartByUserAPI = async (userId: string, productId: string) => {
 
     try {
-        let { data } = await axios.get(`${SERVER_URL}/carts/` + userId, {
+        let { data } = await axios.get(`${SERVER_URL}/carts/users/` + userId, {
             withCredentials: false,
             headers: {
                 'Content-Type': 'application/json',
