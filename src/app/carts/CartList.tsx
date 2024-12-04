@@ -11,9 +11,9 @@ import Money from "@material-ui/icons/Money";
 import { handleCheckoutSubmit } from './utils/handleCheckoutSubmit';
 import ClearCartButton from './components/ClearCartButton';
 import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material';
-import { getToken } from '@/utils/getToken';
-import { savePathLink } from '@/utils/savePathLink';
 import { useProfile } from '../users/hooks/useProfile';
+import { useAuth } from '@/hooks/use-auth';
+
 
 export default function CartList(props: any) {
     const [error, setError] = React.useState('');
@@ -25,7 +25,8 @@ export default function CartList(props: any) {
     const [cashAndCarry, setCashAndCarry] = React.useState(false);
     const [callToOrder, setCallToOrder] = React.useState(false);
 
-    const userId = getToken('_id') as string;
+    const auth = useAuth();
+    const userId = auth.user._id as unknown as string;
     const { user } = useProfile(userId);
 
     let cartTotal = props.products
@@ -90,7 +91,6 @@ export default function CartList(props: any) {
                     <Box
                         component="form"
                         onSubmit={async (evt) => {
-                            if (userId) {
                                 setLoading('Sending data..');
                                 await handleCheckoutSubmit(
                                     evt,
@@ -100,10 +100,6 @@ export default function CartList(props: any) {
                                     orderData,
                                     transactionData
                                 );
-                            } else {
-                                savePathLink();
-                                window.location.assign('/auth/signin');
-                            }
                         }}
                         noValidate
                         sx={{ mt: 1 }}

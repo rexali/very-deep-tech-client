@@ -55,7 +55,7 @@ export default function ProductBottomActions({ product, role, cart }: { product:
         <Box sx={{ display: 'flex', justifyContent: "space-between", width: "100%" }}>
             <Button size="small" onClick={() => setOpenQoute(true)}>Get Qoutes</Button>
             {openQoute && <GetQouteModal closeCallback={handleOpenQuote} productId={product._id} />}
-            <Box display={"flex"} justifyContent={'center'}><Button size="small" id="minus" onClick={(evt) => minusToCartCount(evt)} startIcon={<Minus />} /><input disabled={true} style={{ width: 15, textAlign: 'center', marginRight: 4, borderRadius: 8 }} value={quantity} /><Button size="small" id="plus" onClick={(evt) => plusToCartCount(evt)} startIcon={<Plus />} /></Box>
+            <Box display={"flex"} justifyContent={'center'}><Button size="small" id="minus" onClick={(evt) => minusToCartCount(evt)} endIcon={<Minus />} /><input disabled={true} style={{ width: 15, textAlign: 'center', borderRadius: 8 }} value={quantity} /><Button size="small" id="plus" onClick={(evt) => plusToCartCount(evt)} startIcon={<Plus />} /></Box>
             {
                 (role === 'admin') && <Button
                     size="small"
