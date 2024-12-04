@@ -16,9 +16,9 @@ import Place from "@mui/icons-material/Place";
 import { shareLink } from "@/utils/shareLink";
 
 export default function ContactPage() {
-  const [error, setError] = React.useState(' ');
-  const [success, setSuccess] = React.useState(' ');
-  const [loading, setLoading] = React.useState(' ');
+  const [error, setError] = React.useState('');
+  const [success, setSuccess] = React.useState('');
+  const [loading, setLoading] = React.useState('');
 
   const handleSubmit = async (event: any) => {
     setLoading('Sending data..');

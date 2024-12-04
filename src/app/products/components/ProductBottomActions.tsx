@@ -6,18 +6,18 @@ import Edit from '@mui/icons-material/Edit';
 import Minus from '@mui/icons-material/RemoveCircle';
 import Plus from '@mui/icons-material/AddCircle';
 import Box from "@mui/material/Box";
-import { useState, useContext, useEffect, useRef } from "react";
+import { useState, useContext} from "react";
 import StatusModal from "@/components/common/status-modal";
 import { AuthContext } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 import { createCartAPI } from "@/app/carts/api/createCartAPI";
-import GetQouteModal from "@/components/GetQuoteModal";
 import { isAllReadyAddedToCartByUserAPI } from "@/app/carts/api/isAlreadyAddedToCartByUserAPI";
 import { getUserCartsAPI } from "@/app/carts/api/getUserCartsAPI";
 import { AppContext } from "@/context/AppContext";
 import { getCarts } from "@/store/actions/app-actions";
 import { savePathLink } from "@/utils/savePathLink";
 import { getToken } from "@/utils/getToken";
+import GetQouteModal from "@/app/qoutes/components/GetQuoteModal";
 
 export default function ProductBottomActions({ product, role, cart }: { product: any, role?: string, cart?: any }) {
     const [open, setOpen] = useState(false);
