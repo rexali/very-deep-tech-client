@@ -6,14 +6,15 @@ import * as React from "react";
 import ProductList from "../products/ProductList";
 import { getUserProductsAPI } from "./api/getUserProductsAPI";
 import { getToken } from "@/utils/getToken";
-import Fallback from "@/components/common/fallback";
 import ReactPagination from "@/components/react-pagination";
+import { useAuth } from "@/hooks/use-auth";
 
 export default function UserProducts() {
   const [data, setData] = React.useState<any>([]);
   const [activePage, setActivePage] = React.useState(1);
 
-  const userId = getToken('_id') as string ?? "6712c927857f3a3b3492459f"
+  const auth = useAuth();
+  const userId = auth.user?._id as unknown as string || getToken('_id') as string;
 
   React.useEffect(() => {
     async function getData() {

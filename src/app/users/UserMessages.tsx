@@ -7,11 +7,15 @@ import { AuthContext } from "@/context/AuthContext";
 import * as React from "react";
 import ReactPagination from "@/components/react-pagination";
 import { getToken } from "@/utils/getToken";
+import { useAuth } from "@/hooks/use-auth";
 
 export default function UserMessages() {
   const [activePage, setActivePage] = React.useState(1);
   const { state, dispatch } = React.useContext(AuthContext)
-  const userId = getToken('_id') as string ?? "6712c927857f3a3b3492459f"
+  
+  const auth = useAuth();
+  const userId = auth.user?._id as unknown as string || getToken('_id') as string;
+
   const handlePageChange = (pageNumber: any) => {
     setActivePage(pageNumber)
   }

@@ -9,6 +9,8 @@ const getUserFavouritesAPI = async (userId: string, page?: number) => {
             return [];
         }
         return data.data?.favourites.map((favourite: any) => ({
+            favouriteId: favourite._id,
+            userId: favourite.user._id,
             ...favourite.product,
             totalFavourites: favourite.totalFavourites
         }));

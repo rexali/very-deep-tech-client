@@ -1,16 +1,19 @@
-import { BASE_URL, SERVER_URL } from "@/constants/url";
+import { SERVER_URL } from "@/constants/url";
 import axios from "axios";
 
-const deleteFavouriteAPI = async (id: string) => {
+const deleteFavouriteAPI = async (productId: string, userId: string) => {
 
     try {
-        let { data } = await axios.delete(`${BASE_URL}/favourites/` + id, {
+        let { data } = await axios.delete(`${SERVER_URL}/favourites/` + productId + '/users/' + userId, {
             withCredentials: false,
             headers: {
                 'Content-Type': 'application/json',
             },
         });
-        return data.data?.cart;
+        if (data.status === 'success') {
+            return true
+        }
+        return false;
     } catch (error) {
         console.warn(error);
     }

@@ -8,12 +8,15 @@ import { getUserHistoryAPI } from "./api/getUserHistory";
 import TransactionList from "../transactions/TransactionList";
 import Box from "@mui/material/Box";
 import ReactPagination from "@/components/react-pagination";
+import { useAuth } from "@/hooks/use-auth";
 
 export default function UserHistory() {
   const [data, setData] = React.useState<any>([]);
   const [activePage, setActivePage] = React.useState(1);
 
-  const userId = getToken('_id') as string ?? "6712c927857f3a3b3492459f";
+ 
+  const auth = useAuth();
+  const userId = auth.user?._id as unknown as string || getToken('_id') as string;
 
   React.useEffect(() => {
     async function getData() {

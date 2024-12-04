@@ -52,7 +52,7 @@ export default function ProductBottomActions({ product, role}: { product: any, r
     }
 
     return (
-        <Box sx={{ display: 'flex', justifyContent: "space-between", width: "100%" }}>
+        <Box sx={{ display: 'flex', flexDirection:'row', justifyContent: "space-between"}}>
             <Button size="small" onClick={() => setOpenQoute(true)}>Get Qoutes</Button>
             {openQoute && <GetQouteModal closeCallback={handleOpenQuote} productId={product._id} />}
             <Box display={"flex"} justifyContent={'center'}><Button size="small" id="minus" onClick={(evt) => minusToCartCount(evt)} endIcon={<Minus />} /><input disabled={true} style={{ width: 15, textAlign: 'center', borderRadius: 8 }} value={quantity} /><Button size="small" id="plus" onClick={(evt) => plusToCartCount(evt)} startIcon={<Plus />} /></Box>

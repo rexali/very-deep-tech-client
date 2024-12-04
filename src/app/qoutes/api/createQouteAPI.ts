@@ -36,6 +36,13 @@ const createQouteAPI = async (
         setLoading('');
         setError("Error! "+error.message)
         console.warn(error);
+    }finally{
+        setTimeout(() => {
+            setLoading('');
+            setSuccess("")
+            setLoading('');       
+        }, 20000);
+       
     };
 }
 

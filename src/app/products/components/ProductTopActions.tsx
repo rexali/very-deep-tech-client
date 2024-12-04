@@ -10,21 +10,26 @@ import Box from "@mui/material/Box";
 import { useState } from "react";
 import StatusModal from "@/components/common/status-modal";
 import { shareLink } from "@/utils/shareLink";
-import { createFavouriteAPI } from "@/app/favourites/api/createFavouriteAPI";
 import { useRouter } from "next/navigation";
-import { isAlReadyAddedToFavouriteByUserAPI } from "@/app/favourites/api/isAlreadyAddedToFavouriteByUserAPI";
 import { savePathLink } from "@/utils/savePathLink";
+import { addToWishListOrRemove } from "@/app/favourites/utils/addToWishListOrRemove";
+import { useAuth } from "@/hooks/use-auth";
 
 export default function ProductTopActions({ product, role }: { product: any, role?: string }) {
     const [open, setOpen] = useState(false);
     const router = useRouter();
-    const userId = getToken("_id") as string;
+
+    const auth = useAuth();
+    const userId = auth.user?._id as unknown as string || getToken('_id') as string;
+
+    let likes = product?.likes ?? [];
+    let userLikes = likes.map((like: any) => like?.user);
 
     const handleOpen = () => {
         setOpen(true)
     }
     return (
-        <Box sx={{ display: 'flex', justifyContent: "space-between", width: "100%" }}>
+        <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: "space-between" }}>
 
             {
                 role === 'admin' &&
@@ -45,24 +50,14 @@ export default function ProductTopActions({ product, role }: { product: any, rol
                 size="small"
                 onClick={async () => {
                     if (userId) {
-                        if (!await isAlReadyAddedToFavouriteByUserAPI(userId, product._id)) {
-                            const favorite = await createFavouriteAPI({
-                                product_id: product._id,
-                                user_id: userId
-                            })
-                            if (favorite._id) {
-                                handleOpen();
-                            }
-                        } else {
-                            alert('Already added');
-                        }
+                        await addToWishListOrRemove(userId, product._id, handleOpen);
                     } else {
                         savePathLink()
                         router.push('/auth/signin')
                     }
 
                 }}
-                startIcon={<Favourite />}></Button>
+                startIcon={<Favourite sx={{ color: userLikes?.includes(userId) ? 'red' : 'green' }} />}></Button>
             {open && <StatusModal message={{
                 title: "Favourite Alert",
                 body: "Product added to wish list"
