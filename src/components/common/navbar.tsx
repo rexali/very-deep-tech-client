@@ -225,7 +225,7 @@ function NavBar() {
             {menus.map((menu, index) => (
               <MenuItem key={menu} onClick={handleCloseUserMenu}>
                 {
-                  user?._id !== null && <Link style={{ textDecoration: "none" }} key={index + "s"} href={`/${menu.toLowerCase()}`}>{menu}</Link>
+                  (user?._id !== null) && <Link style={{ textDecoration: "none" }} key={index + "s"} href={`/${menu === 'Messages' ? menu.toLowerCase() + '/user' : menu.toLowerCase()}`}>{menu}</Link>
                 }
               </MenuItem>
             ))}
