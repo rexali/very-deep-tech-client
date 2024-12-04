@@ -5,28 +5,28 @@ import { Avatar, Box, Button, FormLabel, TextField, FormControl } from "@mui/mat
 import Container from "@mui/material/Container";
 import Update from "@material-ui/icons/Update";
 import * as React from "react";
-import { getUserProfileAPI } from "./api/getUserProfileAPI";
 import { handleProfileUpdate } from "./utils/handleProfileUpdate";
 import Image from "next/image";
 import { SERVER_URL } from "@/constants/url";
+import { useAuth } from "@/hooks/use-auth";
 
 
 export default function UserProfile(props: any) {
-  const [profile, setUserProfile] = React.useState<any>({});
+  const [profile,] = React.useState<any>(props.user?.photo ?? {});
   const [error, setError] = React.useState('');
   const [success, setSuccess] = React.useState('');
 
-  const userId = getToken('_id') as string ?? "6712c927857f3a3b3492459f";
+  const auth = useAuth();
+  const userId = auth.user?._id as unknown as string || getToken('_id') as string;
 
-  React.useEffect(() => {
-    async function getUserProfileData() {
-      const profile = await getUserProfileAPI(userId ?? "6712c927857f3a3b3492459f");
-      setUserProfile(profile);
-    }
-
-    getUserProfileData();
-
-  }, [userId]);
+  const handleSubmit = async (event: any) => {
+    await handleProfileUpdate(
+      event,
+      setSuccess,
+      setError,
+      userId
+    )
+}
 
   if (!Object.keys(profile)?.length) {
 
@@ -42,7 +42,7 @@ export default function UserProfile(props: any) {
     <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }}>
       <p>photo: {props?.user?.photo}</p>
       <Box>
-        {profile?.photo ? <Image
+        {profile.photo ? <Image
           src={`${SERVER_URL}/uploads/${profile?.photo}`}
           alt="Account"
           layout="responsive"
@@ -62,12 +62,7 @@ export default function UserProfile(props: any) {
       </Box>
       <Box
         component="form"
-        onSubmit={async (evt) => await handleProfileUpdate(
-          evt,
-          setSuccess,
-          setError,
-          userId
-        )}
+        onSubmit={handleSubmit }
         noValidate
         sx={{ mt: 1 }}
       >

@@ -13,6 +13,7 @@ import ClearCartButton from './components/ClearCartButton';
 import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material';
 import { useProfile } from '../users/hooks/useProfile';
 import { useAuth } from '@/hooks/use-auth';
+import { getToken } from '@/utils/getToken';
 
 
 export default function CartList(props: any) {
@@ -26,7 +27,8 @@ export default function CartList(props: any) {
     const [callToOrder, setCallToOrder] = React.useState(false);
 
     const auth = useAuth();
-    const userId = auth.user._id as unknown as string;
+    const userId = auth.user?._id as unknown as string ||  getToken('_id') as string;
+
     const { user } = useProfile(userId);
 
     let cartTotal = props.products

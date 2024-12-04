@@ -9,6 +9,7 @@ import ReactPagination from "@/components/react-pagination";
 import Link from "next/link";
 import { getUserFavouritesAPI } from "./api/getUserFavouritesAPI";
 import { getToken } from "@/utils/getToken";
+import { useAuth } from "@/hooks/use-auth";
 
 
 export default function FavouritePage() {
@@ -16,7 +17,8 @@ export default function FavouritePage() {
   const [data, setData] = useState<any>([]);
   const [activePage, setActivePage] = useState<number>(1);
   const { dispatch } = useContext(AppContext);
-  const userId = getToken("_id") as string;
+  const auth = useAuth();
+  const userId = auth.user?._id as unknown as string ||  getToken('_id') as string;
 
   useEffect(() => {
     async function getData() {

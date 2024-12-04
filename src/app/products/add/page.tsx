@@ -10,6 +10,7 @@ import React from "react";
 import { handleProductSubmit } from "../utils/handleProductSubmit";
 import { getToken } from "@/utils/getToken";
 import Typography from "@mui/material/Typography";
+import { useAuth } from "@/hooks/use-auth";
 
 export default function AddProduct() {
 
@@ -17,12 +18,14 @@ export default function AddProduct() {
     const [success, setSuccess] = React.useState('');
     const [loading, setLoading] = React.useState('');
 
-    const userId = getToken('_id') as string;
-     
-  const handleSubmit = async (event: any) => {
-    setLoading('Sending data..')
-    await handleProductSubmit(event, setSuccess, setError, setLoading, userId)
-  }
+    const auth = useAuth();
+    const userId = auth.user?._id as unknown as string || getToken('_id') as string;
+
+    const handleSubmit = async (event: any) => {
+        setLoading('Sending data..')
+        await handleProductSubmit(event, setSuccess, setError, setLoading, userId)
+    }
+    
     return (
         <Container maxWidth="md" component={'main'}>
             <Typography component="h1" variant="h5">

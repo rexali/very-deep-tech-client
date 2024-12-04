@@ -32,7 +32,7 @@ export default function UserTabs() {
     const { dispatch } = useContext(AppContext);
     const mountRef = useRef(true);
     // const userId = "6712c927857f3a3b3492459f";
-    const userId = auth.user?._id as unknown as string ||  getToken('_id') as string;
+    const userId = auth.user?._id as unknown as string || getToken('_id') as string;
 
     const openTab = (tabname: any) => {
         setTabName(tabname);
@@ -43,7 +43,15 @@ export default function UserTabs() {
     const getData = useCallback(async () => {
         let userCarts = await getUserCartsAPI(userId);
         dispatch(getCarts(userCarts));
-        dispatch(signIn({ photo: user?.photo }))
+        dispatch(signIn({
+            user: {
+                token: "",
+                email: "",
+                _id: null,
+                role: "user",
+                photo: user?.photo
+            },
+        }))
     }, [dispatch, user?.photo, userId])
 
 
