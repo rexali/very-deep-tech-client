@@ -7,6 +7,7 @@ import TransactionCard from "./TransactionCard";
 export default function TransactionList(props: any) {
 
     return (
+       
         <div>
             {
                 props.transactions?.map((transaction: any, index: any) =>

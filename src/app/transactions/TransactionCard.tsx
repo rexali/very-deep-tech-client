@@ -1,7 +1,8 @@
-import { Card, CardContent, Typography, Box } from "@mui/material";
+import { Card, CardContent, Typography, Box,} from "@mui/material";
 import Link from "next/link";
 
 export default function TransactionCard({ transaction }: { transaction: any }) {
+
 
     return (
         <Box marginTop={4} display={"flex"} justifyContent={'center'}>

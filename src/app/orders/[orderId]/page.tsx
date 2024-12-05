@@ -35,46 +35,47 @@ export default async function OrderPage({ params }: { params: { orderId: string 
         <Container sx={{ mt: 8 }} component={"main"} maxWidth="md">
             <Box marginTop={4} display={"flex"} justifyContent={'center'}>
                 <Card sx={{ maxWidth: 345, margin: 1 }}>
-                    <CardContent sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+                    <CardContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                         {
                             order.items.map((item: any, i: number) => (
-                                <Box key={i}>
+                                <Box key={i} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                                     <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                                         <Typography gutterBottom fontSize={11} variant="body2" component="div">
                                             {i + 1}
                                         </Typography>
                                         <Typography gutterBottom fontSize={11} variant="body2" component="div">
-                                            Qty: {item?.quantity ?? 1}
+                                            Quantity: {item?.quantity ?? 1}
                                         </Typography>
+                                    </Box>
+                                    <Typography gutterBottom fontSize={11} variant="body2" component="div">
                                         <Link href={'/products/' + item?.product}>View product</Link>
-                                    </Box>
-                                    <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-                                        <Typography gutterBottom fontSize={11} variant="body2" component="div">
-                                            N {item?.price ?? 0}
-                                        </Typography>
-                                        <Typography gutterBottom fontSize={11} variant="body2" component="div">
-                                            N {item?.total ?? 0}
-                                        </Typography>
-                                    </Box>
+                                    </Typography>
+                                    <Typography gutterBottom fontSize={11} variant="body2" component="div">
+                                        Price:  N {item?.price ?? 0}
+                                    </Typography>
+                                    <Typography gutterBottom fontSize={11} variant="body2" component="div">
+                                        Total:  N {item?.total ?? 0}
+                                    </Typography>
                                 </Box>
                             ))
                         }
 
                         <Box>
                             <Typography gutterBottom fontSize={11} variant="body2" component="div">
-                                {order?.user?.email ?? 'email'}
+                                Email:  {order?.user?.email ?? 'email'}
                             </Typography>
 
                             <Typography gutterBottom fontSize={11} variant="body2" component="div">
-                                N {order?.total ?? 10}
+                                Total:  N {order?.total ?? 10}
                             </Typography>
                         </Box>
+
                         <Box>
                             <Typography gutterBottom fontSize={11} variant="body2" component="div">
-                                {order?.paymentStatus ?? 'pendin..'}
+                                Payment Status: {order?.paymentStatus ?? 'pendin..'}
                             </Typography>
                             <Typography gutterBottom fontSize={11} variant="body2" component="div">
-                                {order?.createdAt ?? '2024-11-'}
+                                Date:  {order?.createdAt ?? '2024-11-'}
                             </Typography>
                         </Box>
 
