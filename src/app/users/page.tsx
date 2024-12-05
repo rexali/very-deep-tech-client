@@ -6,14 +6,14 @@ import ProtectedRoute from "@/components/protected-route";
 import { Box, Typography, Button } from "@mui/material";
 import UserFavourites from "./UserFavourites";
 import UserMessages from "./UserMessages";
-import UserOrders from "./UserOrders";
+// import UserOrders from "./UserOrders";
 import UserProducts from "./UserProducts";
 import UserProfile from "./UserProfile";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import UserCart from "./UserCart";
 import "../products/styles/styles.css"
 import Add from "@material-ui/icons/Add";
-import UserHistory from "./UserHistory";
+// import UserHistory from "./UserHistory";
 import UserSettings from "./UserSettings";
 import UsersNotifications from "./UserNotifications";
 import { useProfile } from "./hooks/useProfile";
@@ -22,6 +22,8 @@ import { getCarts } from "@/store/actions/app-actions";
 import { getUserCartsAPI } from "./api/getUserCarts";
 import { AppContext } from "@/context/AppContext";
 import { getToken } from "@/utils/getToken";
+import UserOrders from "../orders/UserOrders";
+import UserTransactions from "../transactions/UserTransactions";
 
 
 export default function UserTabs() {
@@ -214,6 +216,7 @@ function OrderTab() {
                     Your order(s)
                 </Typography>
             </Box>
+            {/* <UserOrders /> */}
             <UserOrders />
         </Box>
     )
@@ -232,7 +235,8 @@ function TransactionTab() {
                     Your transaction(s)
                 </Typography>
             </Box>
-            <UserHistory />
+            {/* <UserHistory /> */}
+            <UserTransactions />
         </Box>
     )
 }
