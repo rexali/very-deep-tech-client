@@ -40,12 +40,16 @@ export default function ProductTopActions({ product, role }: { product: any, rol
                     }
                     }
                     startIcon={<Remove />}>
+                    Remove
                 </Button>
             }
             <Button
                 size="small"
                 onClick={(() => shareLink(product._id))}
-                startIcon={<Share />}></Button>
+                startIcon={<Share />}>
+                Share
+            </Button>
+
             <Button
                 size="small"
                 onClick={async () => {
@@ -58,7 +62,9 @@ export default function ProductTopActions({ product, role }: { product: any, rol
                     }
 
                 }}
-                startIcon={<Favourite sx={{ color: userLikes?.includes(userId) ? 'red' : 'green' }} />}></Button>
+                startIcon={<Favourite sx={{ color: userLikes?.includes(userId) ? 'red' : 'green' }} />}>
+                Like
+            </Button>
             {open && <StatusModal message={{
                 title: "Favourite Alert",
                 body: "Product added to wish list"

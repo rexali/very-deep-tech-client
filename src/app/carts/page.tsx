@@ -14,8 +14,7 @@ import { getToken } from "@/utils/getToken";
 export default function CartPage() {
 
   const [data, setData] = useState<any>([]);
-  const mountRef = useRef(true);
-  const { state, dispatch } = useContext(AppContext);
+  const { dispatch } = useContext(AppContext);
   const { user } = useAuth();
 
   const userId = user?._id as unknown as string || getToken('_id') as string;
@@ -24,28 +23,21 @@ export default function CartPage() {
     let userCarts = await getUserCartsAPI(userId);
     dispatch(getCarts(userCarts));
     setData(userCarts);
-  }, [dispatch, userId])
-
+  }, [userId, dispatch])
 
   useEffect(() => {
-    if (mountRef.current) {
-      getData();
-
-      return () => {
-        mountRef.current = false;
-      }
-    }
-  }, [getData, userId]);
+    getData();
+  }, [getData])
 
 
   if (!data?.length) {
     return <Fallback item={"No product in your cart yet"} />
   }
- 
+
   return (
     <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }} >
       <Box>Carts: {data.length}</Box>
-      <CartListComponent products={state.carts || data} refreshCart={getData} />
+      <CartListComponent products={data} refreshCart={getData} />
     </Container>
   )
 }
