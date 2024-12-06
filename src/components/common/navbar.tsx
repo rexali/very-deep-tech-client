@@ -75,8 +75,8 @@ function NavBar(props: any) {
   };
 
   const isMobile = useMediaQuery({ maxDeviceWidth: 1023 });
- 
-  const categories = Array.from(new Set(props.categories.map((category: any) => category.product_category.toUpperCase()))) ?? [];
+  let categories = props?.categories ?? [];
+  const categoriex = Array.from(new Set(categories.map((category: any) => category.toUpperCase())));
 
   return <AppBar position={isMobile ? "fixed" : "static"} sx={{ backgroundColor: 'green' }}>
     <Container maxWidth={"xl"}>
@@ -133,7 +133,7 @@ function NavBar(props: any) {
             ))}
             <hr />
             <MenuItem key={"categories"}>
-              Categories
+              CATEGORIES
             </MenuItem>
             <hr />
             {categories.map((category: any, index: any) => (

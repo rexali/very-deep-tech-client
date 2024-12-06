@@ -37,7 +37,7 @@ import { getInitialDataAPI } from './api/getInitialDataAPI';
 
 export default async function HomePage() {
   // const isMobile = useMediaQuery({ maxDeviceWidth: 1023 });
-  
+
   let data = await getInitialDataAPI() ?? {};
   // let data = props.data ?? []
 
@@ -47,9 +47,9 @@ export default async function HomePage() {
       <SearchInput />
       <MarketingMessage /> <br /><br />
       {/* replace the productData with categoryData */}
-      <HomeProductCategories products={data?.productData} />
+      <HomeProductCategories categories={data?.categoryData} />
       {/* replace the productData with featured Data */}
-      <FeaturedProducts products={data?.productData} />
+      <FeaturedProducts products={data?.featuredData?.length > 0 ? data.featuredData : data?.productData} />
       <Box margin={2} padding={2} display={"flex"} justifyContent={'center'}>
         <Link
           style={{ textDecoration: "none", color: 'green' }}
