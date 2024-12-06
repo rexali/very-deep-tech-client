@@ -3,7 +3,6 @@
 import Container from "@mui/material/Container";
 import * as React from "react";
 import ProductList from "../products/ProductList";
-import Fallback from "@/components/common/fallback";
 import { getUsersProductsAPI } from "./api/getUsersProductsAPI";
 import Box from "@mui/material/Box";
 import ReactPagination from "@/components/react-pagination";
@@ -34,7 +33,7 @@ export default function UsersProducts() {
   return (
     <Box sx={{ mt: 10 }}>
       <Box>Total Products: {data[0]?.totalProducts}</Box>
-        <ProductList products={data} />
+      <ProductList products={data} role={'admin'} />
       <Box marginTop={4} display={"flex"} justifyContent={'center'} >
         <ReactPagination
           activePage={activePage}

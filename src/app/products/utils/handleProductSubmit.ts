@@ -21,10 +21,13 @@ const handleProductSubmit = async (event: any, setPostSuccess: any, setPostError
 
         let formData = new Form();
 
-
-        let filesObject = document.querySelector('#product_pictures') as any;
-        for (let file of filesObject.files) {
-            formData.append('product_pictures', file);
+        try {
+            let filesObject = document.querySelector('#product_pictures') as any;
+            for (let file of filesObject.files) {
+                formData.append('product_pictures', file);
+            }
+        } catch (error) {
+            console.log(error);
         }
 
         formData.append('product_name', product_name.value);
@@ -43,7 +46,7 @@ const handleProductSubmit = async (event: any, setPostSuccess: any, setPostError
         await createProductAPI(formData, setPostSuccess, setPostError, setLoading);
 
     } catch (error) {
-        console.log(error)
+        console.log(error);
     }
 };
 

@@ -2,7 +2,7 @@ import Form from 'form-data'
 
 import { updateUserProfileAPI } from "../api/updateUserProfile";
 
-const handleProfileUpdate = async (event: any, setPostSuccess: any, setPostError: any,setLoading:any, userId:any) => {
+const handleProfileUpdate = async (event: any, setPostSuccess: any, setPostError: any, setLoading: any, userId: any) => {
     event.preventDefault();
     const {
         email_address,
@@ -11,15 +11,15 @@ const handleProfileUpdate = async (event: any, setPostSuccess: any, setPostError
         street_address,
         local_govt,
         state,
-        photo 
+        photo
     } = event.target.elements;
 
     const formData = new Form();
-     
+
     formData.append('email', email_address.value);
-    let filesObj:any; 
+    let filesObj: any;
     try {
-        filesObj = document.querySelector('#photo') as any;  
+        filesObj = document.querySelector('#photo') as any;
         formData.append('photo', filesObj.files[0]);
     } catch (error) {
         console.log(error)
@@ -30,8 +30,12 @@ const handleProfileUpdate = async (event: any, setPostSuccess: any, setPostError
     formData.append('localGovt', local_govt.value);
     formData.append('state', state.value);
     formData.append('user', userId);
+    try {
+        await updateUserProfileAPI(formData, setPostSuccess, setPostError, setLoading);
+    } catch (error) {
+        console.log(error)
+    }
 
-    await updateUserProfileAPI(formData, setPostSuccess, setPostError, setLoading);
 };
 
 export {

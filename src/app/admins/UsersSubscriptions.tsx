@@ -2,7 +2,6 @@
 
 import Container from "@mui/material/Container";
 import * as React from "react";
-import Fallback from "@/components/common/fallback";
 import Box from "@mui/material/Box";
 import { getSubscriptionsAPI } from "../subscriptions/api/getSubscriptionsAPI";
 import SubscriptionList from "../subscriptions/SubscriptionList";

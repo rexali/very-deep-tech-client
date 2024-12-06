@@ -14,7 +14,6 @@ export default function UserHistory() {
   const [data, setData] = React.useState<any>([]);
   const [activePage, setActivePage] = React.useState(1);
 
- 
   const auth = useAuth();
   const userId = auth.user?._id as unknown as string || getToken('_id') as string;
 

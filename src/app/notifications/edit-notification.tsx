@@ -16,6 +16,7 @@ import { getNotifications } from '@/store/actions/app-actions';
 import { getNotificationAPI } from './api/getNotificationsAPI';
 import { getToken } from '@/utils/getToken';
 import { useAuth } from '@/hooks/use-auth';
+import { useRouter } from 'next/navigation';
 
 const defaultTheme = createTheme();
 
@@ -23,18 +24,19 @@ export default function EditNotification({ notification, callback }: { callback:
     const [success, setSuccess] = React.useState('');
     const [error, setError] = React.useState('');
     const [loading, setLoading] = React.useState('');
-    const [title,] = React.useState(notification.subject);
+    const [title,] = React.useState(notification.title);
     const [body,] = React.useState(notification.body);
     const [notificationId,] = React.useState(notification.notificationId);
     const { dispatch } = React.useContext(AppContext);
     const auth = useAuth();
     const userId = auth.user?._id as unknown as string || getToken('_id') as string;
+    const router = useRouter()
 
     const handleSubmit = async (event: any) => {
         setLoading('Sending data..')
         await handleUpdateNotificationAPI(event, setSuccess, setError, setLoading, userId);
-        callback(false);
         dispatch(getNotifications(await getNotificationAPI()));
+        router.refresh();
     };
 
     return (
@@ -81,7 +83,7 @@ export default function EditNotification({ notification, callback }: { callback:
                         />
                         {success && <Box textAlign={'center'} sx={{ color: "green" }}>{success.toUpperCase()}</Box>}
                         {error && <Box textAlign={'center'} sx={{ color: "red" }}>{error.toUpperCase()}</Box>}
-                        {loading && <Box textAlign={'center'} sx={{ color: "red" }}>{loading.toUpperCase()}</Box>}
+                        {loading && <Box textAlign={'center'} sx={{ color: "green" }}>{loading.toUpperCase()}</Box>}
 
                         <Button
                             type="submit"

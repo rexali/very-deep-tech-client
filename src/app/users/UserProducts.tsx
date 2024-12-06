@@ -36,7 +36,7 @@ export default function UserProducts() {
   }
   return (
     <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }}>
-      <ProductList products={data} activePage={activePage} setActivePage={setActivePage} role={'admin'} />
+      <ProductList products={data} activePage={activePage} setActivePage={setActivePage} role={'user'} />
       <Box marginTop={4} display={"flex"} justifyContent={'center'} >
         <ReactPagination
           activePage={activePage}

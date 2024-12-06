@@ -4,14 +4,14 @@ import { SERVER_URL } from "@/constants/url";
 
 const deleteMessageAPI = async (data: { messageId: any }) => {
     try {
-        let response = await fetch(`${SERVER_URL}/messages`, {
+        let response = await fetch(`${SERVER_URL}/messages/`+data.messageId, {
             method: "delete",
             mode: 'cors',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(data)
+            // body: JSON.stringify(data)
         });
 
         let result = await response.json();

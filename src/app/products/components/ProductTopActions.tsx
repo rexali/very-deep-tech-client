@@ -1,7 +1,7 @@
 'use client'
 
 import Share from "@mui/icons-material/Share";
-import Remove from "@mui/icons-material/Remove";
+import Remove from "@mui/icons-material/RemoveCircle";
 
 import Button from "@mui/material/Button";
 import Favourite from '@mui/icons-material/Favorite';

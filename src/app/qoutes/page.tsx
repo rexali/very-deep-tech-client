@@ -1,21 +1,27 @@
 'use client'
 
-import { Container } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import QouteList from "./QouteList";
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { getQoutesAPI } from "./api/getQoutesAPI";
 
 export default function QoutesPage() {
   const [data, setData] = useState([]);
   const [activePage, setActivePage] = React.useState(1);
-  
-  useEffect(()=>{
-    async function getData(){
+
+  useEffect(() => {
+    async function getData() {
       setData(await getQoutesAPI(activePage));
     }
     getData();
-   
-  },[activePage])
+
+  }, [activePage]);
+
+  if (!data.length) {
+    <Container component={"main"} maxWidth="md" sx={{ mt: 8, minHeight: 420, display: "flex", justifyContent: 'center', alignItems: 'center' }}>
+      <Box textAlign={'center'}>No qoute(s) found</Box>
+    </Container>
+  }
 
   return (
     <Container component={'main'} sx={{ mt: 10 }}>

@@ -24,11 +24,14 @@ import { AppContext } from "@/context/AppContext";
 import { getToken } from "@/utils/getToken";
 import UserOrders from "../orders/UserOrders";
 import UserTransactions from "../transactions/UserTransactions";
+import { useSearchParams } from "next/navigation";
 
 
 export default function UserTabs() {
+    const searchParams = useSearchParams();
+    const tabId = searchParams.get('tabId');
+    let [tabName, setTabName] = useState(tabId ?? 'profile');
 
-    let [tabName, setTabName] = useState('profile');
     const { dispatch } = useContext(AppContext);
     const mountRef = useRef(true);
     const auth = useAuth();

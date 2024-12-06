@@ -14,6 +14,9 @@ import { useSearchParams } from "next/navigation";
 export default function DeleteProduct() {
 
     const params = useSearchParams();
+    const productId = params.get('productId') as string;
+    const role = params.get('role') as string;;
+
 
     return (
 
@@ -28,8 +31,12 @@ export default function DeleteProduct() {
                 <Button
                     color="warning"
                     onClick={async () => {
-                        if (await deleteProductAPI(params.get('productId') as string)) {
-                            alert('Deleted successfully');
+                        if (role === 'admin') {
+                            if (await deleteProductAPI(productId)) {
+                                alert('Deleted successfully');
+                            }
+                        } else {
+                            alert('You are not authorized')
                         }
                     }
                     }

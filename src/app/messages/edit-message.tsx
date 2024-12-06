@@ -16,6 +16,7 @@ import { getMessages } from '@/store/actions/app-actions';
 import { getMessagesAPI } from './api/getMessagesAPI';
 import { getToken } from '@/utils/getToken';
 import { useAuth } from '@/hooks/use-auth';
+import { useRouter } from 'next/navigation';
 
 const defaultTheme = createTheme();
 
@@ -33,12 +34,14 @@ export default function EditMessage({ message, callback }: { message: any, callb
 
     const auth = useAuth();
     const userId = auth.user?._id as unknown as string || getToken('_id') as string;
+    const router = useRouter()
+
 
     const handleSubmit = async (event: any) => {
         setLoading('Sending data..')
         await handleUpdateMessageAPI(event, setSuccess, setError, setLoading, userId);
-        callback(false);
-        dispatch(getMessages(await getMessagesAPI()))
+        dispatch(getMessages(await getMessagesAPI()));
+        router.refresh();
     };
 
     return (

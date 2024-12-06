@@ -2,7 +2,6 @@
 
 import Container from "@mui/material/Container";
 import * as React from "react";
-import Fallback from "@/components/common/fallback";
 import Box from "@mui/material/Box";
 import { getQoutesAPI } from "../qoutes/api/getQoutesAPI";
 import QouteList from "../qoutes/QouteList";

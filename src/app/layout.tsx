@@ -7,6 +7,7 @@ import AuthProvider from '@/context/AuthContext';
 import { Metadata } from "next";
 import { AppProvider } from '@/context/AppContext';
 import HomeFallback from '@/components/common/HomeFallback';
+import { getInitialDataAPI } from './api/getInitialDataAPI';
 
 const metadata: Metadata = {
   title: { absolute: "Cash Waqf", template: "%s | an Islamic endowment" },
@@ -18,19 +19,22 @@ const metadata: Metadata = {
   keywords: ["waqf", "endowment", 'Islamic endowment', 'awqaf', 'cash waqf'],
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+
+  // let initialData = await getInitialDataAPI() ?? {};
+
 
   return (
     <html lang="en" >
       <body>
         <AuthProvider>
           <AppProvider>
-            <NavBar />
             <React.Suspense fallback={<HomeFallback />}>
+              <NavBar />
               {children}
             </React.Suspense>
           </AppProvider>

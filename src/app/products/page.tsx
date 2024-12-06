@@ -21,19 +21,21 @@ export default function ProductsPage() {
 
   }, [activePage]);
 
-  
+
   if (!products.length) {
     return <Fallback item={'No product matches your search term'} />
   }
 
 
   return (
-    <Container maxWidth="md" component={'main'} sx={{ mt: 10 }}>
+    <Container maxWidth="md" component={'main'} sx={{ mt: 10 }} >
       <h3 style={{ display: 'flex', flexDirection: 'row', justifyContent: "space-between" }}>
         Products
       </h3>
       <ProductCategories products={products} />
-      <ProductList products={products} />
+      <Box marginTop={4} display={"flex"} justifyContent={'center'} >
+        <ProductList products={products} />
+      </Box>
       <Box marginTop={4} display={"flex"} justifyContent={'center'} >
         <ReactPagination
           activePage={activePage}

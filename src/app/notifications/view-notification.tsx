@@ -12,7 +12,7 @@ export default function ViewNotification({
         <Card sx={{ maxWidth: 345, marginTop: 2 }}>
             <CardContent >
                 <Typography gutterBottom variant="h5" component="div">
-                    {notification?.subject}
+                    {notification?.title}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                     {notification?.body}

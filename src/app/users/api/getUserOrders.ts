@@ -1,9 +1,9 @@
 import { SERVER_URL } from "@/constants/url";
 
-const getUserOrdersAPI = async (userId:string,page: number = 1) => {
+const getUserOrdersAPI = async (userId: string, page: number = 1) => {
 
     try {
-        let data = await fetch(`${SERVER_URL}/orders?page=` + page +'&userId='+userId).then(res=>res.json());
+        let data = await fetch(`${SERVER_URL}/orders/pages/` + page + '/users/' + userId).then(res => res.json());
         if (data.data === null) {
             return [];
         }

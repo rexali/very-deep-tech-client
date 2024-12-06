@@ -1,12 +1,13 @@
+'use client'
 import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import ProductCard from "./ProductCard";
 import { getProductsAPI } from './api/getProductsAPI';
 
-export default async function RecommendedProductList() {
+export default function RecommendedProductList(props: any) {
 
-    let products = await getProductsAPI();
-    let newProducts = products.slice(0, 2);
+    // let products = await getProductsAPI();
+    let newProducts = props?.products.slice(0, 2) ?? [];
 
     return (
         <div>

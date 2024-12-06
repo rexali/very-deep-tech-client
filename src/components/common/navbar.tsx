@@ -22,6 +22,7 @@ import { AppContext } from '@/context/AppContext';
 import Notifications from '@mui/icons-material/Notifications';
 import Message from '@mui/icons-material/Message';
 import { useAuth } from '@/hooks/use-auth';
+import { useRouter } from 'next/navigation';
 
 const pages = [
   'About',
@@ -35,11 +36,13 @@ const menus = [
   'Notifications'
 ];
 
-function NavBar() {
+function NavBar(props:any) {
 
   const { state } = React.useContext(AppContext);
 
   const { user } = useAuth();
+
+  const router = useRouter()
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
 
@@ -126,6 +129,9 @@ function NavBar() {
                 {<Link key={index + "li"} style={{ marginLeft: "5px", textDecoration: "none" }} href={`/${page.toLowerCase()}`}>{page}</Link>}
               </MenuItem>
             ))}
+            <hr />
+            Categories
+            <hr />
           </Menu>
         </Box>
         <Link
@@ -218,7 +224,7 @@ function NavBar() {
 
             {
               user?._id !== null && <MenuItem key={"signup"} onClick={handleCloseUserMenu}>
-                <Link onClick={handleSignOut} style={{ textDecoration: "none" }} href={`/users`}>Logout</Link>
+                <Link onClick={()=>handleSignOut(router)} style={{ textDecoration: "none" }} href={'#'}>Logout</Link>
               </MenuItem>
             }
             {/* Other Menu components */}

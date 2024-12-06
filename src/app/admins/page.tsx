@@ -18,10 +18,13 @@ import UsersNotifications from "./UsersNotifications";
 import AdminProfile from "./AdminProfile";
 import UsersQoutes from "./UsersQoutes";
 import UsersSubscriptions from "./UsersSubscriptions";
+import { useSearchParams } from "next/navigation";
 
 export default function UserTabs() {
-
-    let [tabName, setTabName] = useState('adminprofile');
+    const searchParams = useSearchParams();
+    const tabId = searchParams.get('tabId');
+    
+    let [tabName, setTabName] = useState(tabId ?? 'admin');
 
     const openTab = (tabname: any) => {
         setTabName(tabname);
@@ -32,14 +35,14 @@ export default function UserTabs() {
         minheight: { minHeight: 420 },
         marginTop: { marginTop: 60 }
     }
- 
+
     return (
         <ProtectedRoute>
             <div className="container" style={styles.minheight}>
 
                 <div className="scrollmenu" style={styles.marginTop}>
-                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('profiles')} href={""} ><small>Profiles</small></Link>
-                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('adminprofile')} href={""} ><small>Your profile</small></Link>
+                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('admin')} href={""} ><small>Your profile</small></Link>
+                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('profiles')} href={""} ><small>User Profiles</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('products')} href={""} ><small>Products</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('messages')} href={""} ><small>Messages</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('transactions')} href={""} ><small>Transactions</small></Link>
@@ -51,8 +54,8 @@ export default function UserTabs() {
                 </div>
 
                 <div className="tab-content">
-                    <div className="tab-pane container active" id="profile">
-                        {tabName === 'adminprofile' ? <AdminProfileTab /> : ''}
+                    <div className="tab-pane active" id={tabName}>
+                        {tabName === 'admin' ? <AdminProfileTab /> : ''}
                         {tabName === 'profiles' ? <ProfileTab /> : ''}
                         {tabName === 'qoutes' ? <QoutesTab /> : ''}
                         {tabName === 'products' ? <ProductsTab /> : ''}

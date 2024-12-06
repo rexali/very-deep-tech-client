@@ -19,7 +19,7 @@ import { savePathLink } from "@/utils/savePathLink";
 import { getToken } from "@/utils/getToken";
 import GetQouteModal from "@/app/qoutes/components/GetQuoteModal";
 
-export default function ProductBottomActions({ product, role}: { product: any, role?: string }) {
+export default function ProductBottomActions({ product, role }: { product: any, role?: string }) {
     const [open, setOpen] = useState(false);
     const [openQoute, setOpenQoute] = useState(false);
     const [quantity, setQuantity] = useState<number>(1);
@@ -52,49 +52,51 @@ export default function ProductBottomActions({ product, role}: { product: any, r
     }
 
     return (
-        <Box sx={{ display: 'flex', flexDirection:'row', justifyContent: "space-between"}}>
-            <Button size="small" onClick={() => setOpenQoute(true)}>Get Qoutes</Button>
-            {openQoute && <GetQouteModal closeCallback={handleOpenQuote} productId={product._id} />}
-            <Box display={"flex"} justifyContent={'center'}><Button size="small" id="minus" onClick={(evt) => minusToCartCount(evt)} endIcon={<Minus />} /><input disabled={true} style={{ width: 15, textAlign: 'center', borderRadius: 8 }} value={quantity} /><Button size="small" id="plus" onClick={(evt) => plusToCartCount(evt)} startIcon={<Plus />} /></Box>
-            {
-                (role === 'admin') && <Button
+        <Box>
+            <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: "space-between" }}>
+                <Button size="small" onClick={() => setOpenQoute(true)}>Get Qoutes</Button>
+                <Box display={"flex"} justifyContent={'center'}><Button size="small" id="minus" onClick={(evt) => minusToCartCount(evt)} endIcon={<Minus />} /><input disabled={true} style={{ width: 15, textAlign: 'center', borderRadius: 8 }} value={quantity} /><Button size="small" id="plus" onClick={(evt) => plusToCartCount(evt)} startIcon={<Plus />} /></Box>
+                {
+                    (role === 'admin') && <Button
+                        size="small"
+                        onClick={() => { router.push(`/products/edit?productId=${product._id}&role=admin`, {}) }}
+                        startIcon={<Edit />}></Button>
+                }
+                <Button
                     size="small"
-                    onClick={() => { router.push('/products/edit', {}) }}
-                    startIcon={<Edit />}></Button>
-            }
-            <Button
-                size="small"
-                onClick={async () => {
-                    if (userId) {
-                        if (!await isAllReadyAddedToCartByUserAPI(userId, product._id)) {
-                            const cart = await createCartAPI({
-                                product_id: product._id,
-                                user_id: userId,
-                                quantity: quantity,
-                                price: product.product_price
-                            })
-                            if (cart._id) {
-                                handleOpen();
+                    onClick={async () => {
+                        if (userId) {
+                            if (!await isAllReadyAddedToCartByUserAPI(userId, product._id)) {
+                                const cart = await createCartAPI({
+                                    product_id: product._id,
+                                    user_id: userId,
+                                    quantity: quantity,
+                                    price: product.product_price
+                                })
+                                if (cart._id) {
+                                    handleOpen();
+                                }
+
+                                let userCarts = await getUserCartsAPI(userId);
+                                dispatch(getCarts(userCarts));
+
+                            } else {
+                                alert('Already added');
                             }
 
-                            let userCarts = await getUserCartsAPI(userId);
-                            dispatch(getCarts(userCarts));
-
                         } else {
-                            alert('Already added');
+                            savePathLink();
+                            router.push('/auth/signin');
                         }
 
-                    } else {
-                        savePathLink();
-                        router.push('/auth/signin');
-                    }
-
-                }}
-                startIcon={<AddToCart />}>Add</Button>
+                    }}
+                    startIcon={<AddToCart />}>Add</Button>
+            </Box>
             {open && <StatusModal message={{
                 title: "Cart Alert",
                 body: "Product added to cart successfully"
             }} closeCallback={handleOpen} />}
+            {openQoute && <GetQouteModal closeCallback={handleOpenQuote} productId={product._id} />}
         </Box>
     )
 }

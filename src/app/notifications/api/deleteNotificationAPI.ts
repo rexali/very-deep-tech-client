@@ -1,17 +1,17 @@
 'use client'
 
-import { BASE_URL, SERVER_URL } from "@/constants/url";
+import { SERVER_URL } from "@/constants/url";
 
 const deleteNotificationAPI = async (data: { notificationId: any }) => {
     try {
-        let response = await fetch(`${SERVER_URL}/notifications`, {
+        let response = await fetch(`${SERVER_URL}/notifications/`+data.notificationId, {
             method: "delete",
             mode: 'cors',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(data)
+            // body: JSON.stringify(data)
         });
 
         const result = await response.json();

@@ -11,7 +11,6 @@ import Box from '@mui/material/Box';
 import { getUsersHistoryAPI } from './api/getUsersHistory';
 import Container from '@mui/material/Container';
 import Link from 'next/link';
-import Fallback from '@/components/common/fallback';
 
 
 export default function UsersTransactions() {

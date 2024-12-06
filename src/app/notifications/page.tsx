@@ -17,7 +17,6 @@ export default function Notifications() {
     const { dispatch, state } = React.useContext(AppContext);
     const notifications = useNotifications(dispatch, activePage);
 
-
     const handlePageChange = (pageNumber: any) => {
         setActivePage(pageNumber)
     }
@@ -25,7 +24,7 @@ export default function Notifications() {
     if (!notifications.length) {
 
         return (
-            <Container sx={{ mt: 8 }} component={"main"} maxWidth="md">
+            <Container sx={{mt:8, minHeight: 420, display: "flex", justifyContent: 'center', alignItems: 'center' }} component={"main"} maxWidth="md">
                 <Box textAlign={'center'}>No notification(s) found</Box>
             </Container>
         )
@@ -35,7 +34,7 @@ export default function Notifications() {
         <ProtectedRoute>
             <Container sx={{ mt: 8 }} component={"main"} maxWidth="md">
                 <Grid container columnSpacing={1}>
-                    <NotificationList notifications={notifications || state.notifications} role={user.role} />
+                    <NotificationList notifications={state?.notifications || notifications } role={user.role} />
                 </Grid>
             </Container>
             <Box marginTop={4} display={"flex"} justifyContent={'center'}>

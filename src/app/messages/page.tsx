@@ -14,8 +14,9 @@ import { useAuth } from '@/hooks/use-auth';
 export default function MessagesPage() {
     const { user } = useAuth()
     const [activePage, setActivePage] = React.useState(1);
-    const { state, dispatch } = React.useContext(AppContext)
+    const { state, dispatch } = React.useContext(AppContext);
     const { messages } = useMessages(dispatch, activePage);
+
 
     const handlePageChange = (pageNumber: any) => {
         setActivePage(pageNumber)
@@ -24,7 +25,7 @@ export default function MessagesPage() {
     if (!messages.length) {
 
         return (
-            <Container sx={{ mt: 8 }} component={"main"} maxWidth="md">
+            <Container component={"main"} maxWidth="md" sx={{ mt: 8, minHeight: 420, display: "flex", justifyContent: 'center', alignItems: 'center' }}>
                 <Box textAlign={'center'}>No message(s) found</Box>
             </Container>
         )
@@ -34,7 +35,7 @@ export default function MessagesPage() {
         <ProtectedRoute>
             <Container sx={{ mt: 8 }} component={"main"} maxWidth="md">
                 <Grid container columnSpacing={1}>
-                    <MessageList messages={messages} role={user.role} />
+                    <MessageList messages={state?.messages || messages} role={user.role} />
                 </Grid>
             </Container>
             <Box marginTop={4} display={"flex"} justifyContent={'center'}>
@@ -43,7 +44,7 @@ export default function MessagesPage() {
                     itemsCountPerPage={4}
                     totalItemsCount={messages[0]?.totalMessages}
                     pageRangeDisplayed={5}
-                    onchangeCallback={(v: any)=>handlePageChange(v)} />
+                    onchangeCallback={(v: any) => handlePageChange(v)} />
             </Box>
         </ProtectedRoute>
     );
