@@ -10,7 +10,7 @@ export default function HomeProductCategories({ categoryData }: { categoryData: 
         <ErrorBoundary>
             <Container maxWidth="md" component={'main'} sx={{ mt: 5 }}>
                 <h3>Categories</h3>
-                <HomeProductCategoryList categories={categoryData} />
+                <HomeProductCategoryList categoryData={categoryData} />
             </Container>
         </ErrorBoundary>
     )
