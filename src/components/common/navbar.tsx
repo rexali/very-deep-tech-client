@@ -76,7 +76,7 @@ function NavBar(props: any) {
 
   const isMobile = useMediaQuery({ maxDeviceWidth: 1023 });
   let categories = props?.categories ?? [];
-  const categoriex = Array.from(new Set(categories.map((category: any) => category.toUpperCase())));
+  const categoriex = Array.from(new Set(categories));
 
   return <AppBar position={isMobile ? "fixed" : "static"} sx={{ backgroundColor: 'green' }}>
     <Container maxWidth={"xl"}>
