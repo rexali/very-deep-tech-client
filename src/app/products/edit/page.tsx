@@ -87,15 +87,31 @@ export default function EditProduct() {
                     autoFocus
                 />
 
-                <input
-                    autoComplete="given-name"
-                    name="product_picture"
-                    required
-                    id="product_picture"
-                    type="file"
-                    accept="images/*"
-                    multiple
+                <TextField
+                    name="product_photos"
+                    id="product_photos"
+                    defaultValue={data?.product_pictures.join(',')}
+                    hidden
+                    disabled
                 />
+
+                <label>
+                    Product Photo(s)
+                    <input
+                        type='file'
+                        accept="image/*"
+                        name="product_pictures"
+                        id="product_pictures"
+                        multiple
+                        formEncType="multipart/form-data"
+                        style={{
+                            maxWidth: '100%',
+                            borderRadius: 5,
+                            borderColor: 'black',
+                        }}
+                    />
+                </label>
+
 
                 <TextField
                     autoComplete="given-name"

@@ -33,7 +33,7 @@ export const handleSignUpSubmit = (
                 if (result.status === "success") {
                     // send success message
                     setLoading('');
-                    setSignUpSuccess(result.status);
+                    setSignUpSuccess(result.status +'. You can now sign in. Link below');
                 } else {
                     // send failure message
                     setLoading('');
