@@ -1,6 +1,6 @@
 'use client'
 
-import { Container } from "@mui/material";
+import { Container, Box } from "@mui/material";
 import FeaturedProductList from "./FeaturedProductList";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import React from "react";
@@ -11,7 +11,7 @@ export default function FeaturedProducts({ products }: { products: any }) {
     <ErrorBoundary>
       <Container maxWidth="md" component={'main'} sx={{ mt: 5 }}>
         <h3>Featured</h3>
-        <FeaturedProductList products={products} />
+          <FeaturedProductList products={products} />
       </Container>
     </ErrorBoundary>
   )

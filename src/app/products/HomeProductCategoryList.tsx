@@ -19,15 +19,15 @@ export default function HomeProductCategoryList(props: any) {
                     categories.map((category: any, i: number) => {
                         return (
                             <Grid item key={category} xs={6} sm={6} md={6} lg={4}>
-                                <Card sx={{ backgroundColor: 'green', maxWidth: '100%', MaxHeight: '100%', textAlign: 'center', alignSelf: 'center' }}>
-                                    <CardContent>
-                                        <Link prefetch style={{ textDecoration: 'none', }} href={`/category/?term=${category.toLowerCase()}`}>
+                                <Link prefetch style={{ textDecoration: 'none', }} href={`/category/?term=${category.toLowerCase()}`}>
+                                    <Card sx={{ backgroundColor: 'green', maxWidth: '100%', MaxHeight: '100%', textAlign: 'center', alignSelf: 'center' }}>
+                                        <CardContent>
                                             <Button sx={{ fontSize: 11, color: 'white' }}>
                                                 {category}
                                             </Button>
-                                        </Link>
-                                    </CardContent>
-                                </Card>
+                                        </CardContent>
+                                    </Card>
+                                </Link>
                             </Grid>
                         )
                     })}

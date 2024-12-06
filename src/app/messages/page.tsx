@@ -34,7 +34,7 @@ export default function MessagesPage() {
     return (
         <ProtectedRoute>
             <Container sx={{ mt: 8 }} component={"main"} maxWidth="md">
-                <Grid container columnSpacing={1}>
+                <Grid container columnSpacing={1} marginTop={5} display={"flex"} justifyContent={'center'}>
                     <MessageList messages={state?.messages || messages} role={user.role} />
                 </Grid>
             </Container>

@@ -19,13 +19,13 @@ const metadata: Metadata = {
   keywords: ["waqf", "endowment", 'Islamic endowment', 'awqaf', 'cash waqf'],
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
 
-  // let initialData = await getInitialDataAPI() ?? {};
+  let initialData = await getInitialDataAPI() ?? {};
 
   return (
     <html lang="en" >
@@ -33,12 +33,12 @@ export default function RootLayout({
         <AuthProvider>
           <AppProvider>
             <React.Suspense fallback={<HomeFallback />}>
-              <NavBar />
+              <NavBar categories={initialData.categoryData} />
               {children}
+              <BottomNavigation />
+              <BottomNavbar />
             </React.Suspense>
           </AppProvider>
-          <BottomNavigation />
-          <BottomNavbar />
         </AuthProvider>
       </body>
     </html>

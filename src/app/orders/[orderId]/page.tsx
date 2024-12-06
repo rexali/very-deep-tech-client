@@ -35,7 +35,7 @@ export default async function OrderPage({ params }: { params: { orderId: string 
         <Container sx={{ mt: 8 }} component={"main"} maxWidth="md">
             <Box marginTop={4} display={"flex"} justifyContent={'center'}>
                 <Card sx={{ maxWidth: 345, margin: 1 }}>
-                    <CardContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <CardContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyItems:'space-between' }}>
                         {
                             order.items.map((item: any, i: number) => (
                                 <Box key={i} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>

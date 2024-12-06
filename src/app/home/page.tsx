@@ -30,9 +30,7 @@ export default function HomePage(props: any) {
       <SearchInput />
       <MarketingMessage /> <br /><br />
       <HomeProductCategories products={data} />
-      <Box marginTop={4} display={"flex"} justifyContent={'center'} >
-        <FeaturedProducts products={data} />
-      </Box>
+      <FeaturedProducts products={data} />
       <Box margin={2} padding={2} display={"flex"} justifyContent={'center'}>
         <Link
           style={{ textDecoration: "none", color: 'green' }}
@@ -43,9 +41,7 @@ export default function HomePage(props: any) {
           View all
         </Link>
       </Box>
-      <Box marginTop={4} display={"flex"} justifyContent={'center'} >
-        <PopularProducts products={data} />
-      </Box>
+      <PopularProducts products={data} />
       <Box marginTop={2} padding={2} display={"flex"} justifyContent={'center'}>
         <Link
           style={{ textDecoration: "none", color: 'green' }}
@@ -56,9 +52,7 @@ export default function HomePage(props: any) {
           View all
         </Link>
       </Box>
-      <Box marginTop={4} display={"flex"} justifyContent={'center'} >
-        <RecommendedProducts />
-      </Box>
+      <RecommendedProducts />
       <Box marginTop={2} padding={2} display={"flex"} justifyContent={'center'}>
         <Link
           style={{ textDecoration: "none", color: 'green' }}
@@ -69,9 +63,7 @@ export default function HomePage(props: any) {
           View all
         </Link>
       </Box>
-      <Box marginTop={4} display={"flex"} justifyContent={'center'} >
-        <NewProducts products={data} />
-      </Box>
+      <NewProducts products={data} />
       <Box marginTop={2} padding={2} display={"flex"} justifyContent={'center'}>
         <Link
           style={{ textDecoration: "none", color: 'green' }}

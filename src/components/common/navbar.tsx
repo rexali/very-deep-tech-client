@@ -36,7 +36,7 @@ const menus = [
   'Notifications'
 ];
 
-function NavBar(props:any) {
+function NavBar(props: any) {
 
   const { state } = React.useContext(AppContext);
 
@@ -75,6 +75,8 @@ function NavBar(props:any) {
   };
 
   const isMobile = useMediaQuery({ maxDeviceWidth: 1023 });
+ 
+  const categories = Array.from(new Set(props.categories.map((category: any) => category.product_category.toUpperCase()))) ?? [];
 
   return <AppBar position={isMobile ? "fixed" : "static"} sx={{ backgroundColor: 'green' }}>
     <Container maxWidth={"xl"}>
@@ -130,8 +132,15 @@ function NavBar(props:any) {
               </MenuItem>
             ))}
             <hr />
-            Categories
+            <MenuItem key={"categories"}>
+              Categories
+            </MenuItem>
             <hr />
+            {categories.map((category: any, index: any) => (
+              <MenuItem key={index + "me"} onClick={handleCloseNavMenu}>
+                {<Link key={index + "li"} style={{ marginLeft: "5px", textDecoration: "none" }} href={`/category/?term=${category.toLowerCase()}`}>{category}</Link>}
+              </MenuItem>
+            ))}
           </Menu>
         </Box>
         <Link
@@ -224,7 +233,7 @@ function NavBar(props:any) {
 
             {
               user?._id !== null && <MenuItem key={"signup"} onClick={handleCloseUserMenu}>
-                <Link onClick={()=>handleSignOut(router)} style={{ textDecoration: "none" }} href={'#'}>Logout</Link>
+                <Link onClick={() => handleSignOut(router)} style={{ textDecoration: "none" }} href={'#'}>Logout</Link>
               </MenuItem>
             }
             {/* Other Menu components */}

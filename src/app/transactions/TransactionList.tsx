@@ -8,7 +8,7 @@ export default function TransactionList(props: any) {
 
     return (
        
-        <div>
+        <Grid container columnSpacing={1} marginTop={5} display={"flex"} justifyContent={'center'}>
             {
                 props.transactions?.map((transaction: any, index: any) =>
                     <Grid item xs={12} md={6} key={transaction._id + index}>
@@ -17,7 +17,7 @@ export default function TransactionList(props: any) {
 
                 )
             }
-        </div>
+        </Grid>
     )
 
 }
