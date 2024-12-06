@@ -6,14 +6,12 @@ import ProtectedRoute from "@/components/protected-route";
 import { Box, Typography, Button } from "@mui/material";
 import UserFavourites from "./UserFavourites";
 import UserMessages from "./UserMessages";
-// import UserOrders from "./UserOrders";
 import UserProducts from "./UserProducts";
 import UserProfile from "./UserProfile";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import UserCart from "./UserCart";
 import "../products/styles/styles.css"
 import Add from "@material-ui/icons/Add";
-// import UserHistory from "./UserHistory";
 import UserSettings from "./UserSettings";
 import UsersNotifications from "./UserNotifications";
 import { useProfile } from "./hooks/useProfile";
@@ -29,7 +27,7 @@ import { useSearchParams } from "next/navigation";
 
 export default function UserTabs() {
     const searchParams = useSearchParams();
-    const tabId = searchParams.get('tabId');
+    const tabId = searchParams.get('tabId') || window.sessionStorage.getItem('tabId');
     let [tabName, setTabName] = useState(tabId ?? 'profile');
 
     const { dispatch } = useContext(AppContext);
@@ -38,6 +36,7 @@ export default function UserTabs() {
     const userId = auth.user?._id as unknown as string || getToken('_id') as string;
 
     const openTab = (tabname: any) => {
+        window.sessionStorage.setItem('tabId', tabname);
         setTabName(tabname);
     }
 
@@ -57,7 +56,7 @@ export default function UserTabs() {
                 mountRef.current = false;
             }
         }
-    }, [getData, userId]);
+    }, [getData]);
 
     return (
         <ProtectedRoute>

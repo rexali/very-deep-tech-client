@@ -11,23 +11,17 @@ import { searchProducts } from "./api/searchProducts";
 
 export default function SearchPage() {
   const searchParams = useSearchParams()
-  const mountRef = useRef(true)
   const [data, setData] = useState<any>([]);
   const [activePage, setActivePage] = useState<number>(1);
 
   const term = searchParams.get('term');
 
   useEffect(() => {
-    if (mountRef.current) {
-      (async () => {
+      async function getData(){
         setData(await searchProducts(term, activePage));
-      })();
     }
-
-    return () => {
-      mountRef.current = false
-    }
-  })
+    getData();
+  },[activePage, term])
 
   if (!data.length) {
     return <Fallback item={'No product matches your search term'} />
