@@ -29,7 +29,7 @@ export default async function HomePage() {
       <SearchInput />
       <MarketingMessage /> <br /><br />
       {/* replace the productData with categoryData */}
-      <HomeProductCategories categories={data?.categoryData} />
+      <HomeProductCategories categoryData={data?.categoryData} />
       {/* replace the productData with featured Data */}
       <FeaturedProducts products={data?.featuredData} />
       <Box margin={2} padding={2} display={"flex"} justifyContent={'center'}>
@@ -53,7 +53,7 @@ export default async function HomePage() {
           View all
         </Link>
       </Box>
-      {/* <RecommendedProducts /> */}
+      <RecommendedProducts />
       <Box marginTop={2} padding={2} display={"flex"} justifyContent={'center'}>
         <Link
           style={{ textDecoration: "none", color: 'green' }}

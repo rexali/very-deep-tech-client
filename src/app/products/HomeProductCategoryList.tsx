@@ -9,8 +9,9 @@ import Link from 'next/link';
 import Button from '@mui/material/Button';
 
 export default function HomeProductCategoryList(props: any) {
-    let categories = props.categories ?? [];
-    let categoriex = Array.from(new Set(categories.map((category: any) => category.toUpperCase())));
+    let categoryData = props?.categoryData ?? [];
+    let categories = categoryData.map((categoryData: { product_category: any; }) => categoryData.product_category)
+    const categoriex = Array.from(new Set(categories));
 
     return (
         <div>
