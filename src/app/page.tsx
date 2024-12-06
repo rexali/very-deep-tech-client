@@ -1,19 +1,3 @@
-
-// import * as React from "react";
-// import HomePage from "./home/page";
-// import { getProductsAPI } from "./products/api/getProductsAPI";
-// import { getInitialDataAPI } from "./api/getInitialDataAPI";
-
-// export default async function Page(props:any) {
-//   // let initialData = await getInitialDataAPI() ?? {};
-//   let products = await getProductsAPI() ?? [];
-//   return (
-//     <HomePage data={products} />
-//   );
-// }
-
-// 'use client'
-
 import React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import MarketingMessage from './MarketingMessage';
@@ -37,9 +21,7 @@ import { getInitialDataAPI } from './api/getInitialDataAPI';
 
 export default async function HomePage() {
   // const isMobile = useMediaQuery({ maxDeviceWidth: 1023 });
-
   let data = await getInitialDataAPI() ?? {};
-  // let data = props.data ?? []
 
   return (
     <main>
@@ -71,7 +53,7 @@ export default async function HomePage() {
           View all
         </Link>
       </Box>
-      <RecommendedProducts />
+      {/* <RecommendedProducts /> */}
       <Box marginTop={2} padding={2} display={"flex"} justifyContent={'center'}>
         <Link
           style={{ textDecoration: "none", color: 'green' }}

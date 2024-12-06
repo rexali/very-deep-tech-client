@@ -136,7 +136,7 @@ function NavBar(props: any) {
               CATEGORIES
             </MenuItem>
             <hr />
-            {categories.map((category: any, index: any) => (
+            {categoriex.map((category: any, index: any) => (
               <MenuItem key={index + "me"} onClick={handleCloseNavMenu}>
                 {<Link key={index + "li"} style={{ marginLeft: "5px", textDecoration: "none" }} href={`/category/?term=${category.toLowerCase()}`}>{category}</Link>}
               </MenuItem>
