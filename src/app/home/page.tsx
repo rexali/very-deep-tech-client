@@ -57,7 +57,7 @@ export default function HomePage(props: any) {
         </Link>
       </Box>
       <Box marginTop={4} display={"flex"} justifyContent={'center'} >
-        <RecommendedProducts products={data} />
+        <RecommendedProducts />
       </Box>
       <Box marginTop={2} padding={2} display={"flex"} justifyContent={'center'}>
         <Link

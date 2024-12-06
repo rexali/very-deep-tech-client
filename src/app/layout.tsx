@@ -19,14 +19,13 @@ const metadata: Metadata = {
   keywords: ["waqf", "endowment", 'Islamic endowment', 'awqaf', 'cash waqf'],
 }
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
 
   // let initialData = await getInitialDataAPI() ?? {};
-
 
   return (
     <html lang="en" >

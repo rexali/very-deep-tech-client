@@ -238,6 +238,16 @@ export default async function ProductDetailPage({ params }: { params: { productI
       <RatingReviewForm productId={product._id} />
       {/* cross-sell/upsells: Additional products: e.g People who viewed this item also bought */}
       <RecommendedProducts />
+      <Box marginTop={2} padding={2} display={"flex"} justifyContent={'center'}>
+        <Link
+          style={{ textDecoration: "none", color: 'green' }}
+          type="button"
+          color="success"
+          href={`/products`}
+        >
+          View all
+        </Link>
+      </Box>
     </Container>
   );
 }
