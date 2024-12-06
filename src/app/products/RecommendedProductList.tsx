@@ -7,7 +7,6 @@ import { getProductsAPI } from './api/getProductsAPI';
 export default async function RecommendedProductList(props: any) {
 
     let products = await getProductsAPI();
-    // let newProducts = props?.products.slice(0, 2) ?? [];
 
     return (
         <div>
