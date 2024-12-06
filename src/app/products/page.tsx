@@ -7,18 +7,18 @@ import ReactPagination from "@/components/react-pagination";
 import { getProductsAPI } from "./api/getProductsAPI";
 import ProductCategories from "./ProductCategory";
 import Fallback from "@/components/common/fallback";
-import { SERVER_URL } from "@/constants/url";
+import { getCategoriesAPI } from "./api/getCategoriesAPI";
 
 export default function ProductsPage() {
 
   const [activePage, setActivePage] = useState<number>(1);
   const [products, setProducts] = useState<any>([]);
-  const [categories, setCategories] = useState<any>([]);
+  const [categoryData, setCategoryData] = useState<any>([]);
 
 
   useEffect(() => {
     async function getData() {
-      setCategories(await fetch(`${SERVER_URL}/products/${activePage}/categories`).then(res=>res.json()));
+      setCategoryData(await getCategoriesAPI(activePage));
       setProducts(await getProductsAPI(activePage));
     }
     getData();
@@ -36,7 +36,7 @@ export default function ProductsPage() {
       <h3 style={{ display: 'flex', flexDirection: 'row', justifyContent: "space-between" }}>
         Products
       </h3>
-      <ProductCategories categories={categories} />
+      <ProductCategories categoryData={categoryData} />
       <Box marginTop={4} display={"flex"} justifyContent={'center'} >
         <ProductList products={products} />
       </Box>
