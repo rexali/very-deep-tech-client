@@ -9,14 +9,14 @@ import Link from 'next/link';
 import Button from '@mui/material/Button';
 
 export default function HomeProductCategoryList(props: any) {
-    let products = props.categories ?? [];
-    let categories = Array.from(new Set(products.map((category: any) => category.toUpperCase())));
+    let categories = props.categories ?? [];
+    let categoriex = Array.from(new Set(categories.map((category: any) => category.toUpperCase())));
 
     return (
         <div>
             <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} marginTop={5} display={"flex"} justifyContent={'center'}>
                 {
-                    categories.map((category: any, i: number) => {
+                    categoriex.map((category: any, i: number) => {
                         return (
                             <Grid item key={category} xs={6} sm={6} md={6} lg={4}>
                                 <Link prefetch style={{ textDecoration: 'none', }} href={`/category/?term=${category.toLowerCase()}`}>

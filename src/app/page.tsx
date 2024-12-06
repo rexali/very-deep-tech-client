@@ -31,7 +31,7 @@ export default async function HomePage() {
       {/* replace the productData with categoryData */}
       <HomeProductCategories categories={data?.categoryData} />
       {/* replace the productData with featured Data */}
-      <FeaturedProducts products={data?.featuredData?.length > 0 ? data.featuredData : data?.productData} />
+      <FeaturedProducts products={data?.featuredData} />
       <Box margin={2} padding={2} display={"flex"} justifyContent={'center'}>
         <Link
           style={{ textDecoration: "none", color: 'green' }}
