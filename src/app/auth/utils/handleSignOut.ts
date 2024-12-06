@@ -11,6 +11,7 @@ export function handleSignOut(router?:any) {
             window.localStorage.setItem("token", "");
             window.localStorage.setItem("_id", "");
             window.localStorage.setItem("email", "");
+            window.localStorage.clear();
             // navigate to log in page
             // window.location.assign("/auth/signin");
             router.push("/auth/signin")
