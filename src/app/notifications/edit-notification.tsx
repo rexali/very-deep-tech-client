@@ -26,7 +26,7 @@ export default function EditNotification({ notification, callback }: { callback:
     const [loading, setLoading] = React.useState('');
     const [title,] = React.useState(notification.title);
     const [body,] = React.useState(notification.body);
-    const [notificationId,] = React.useState(notification.notificationId);
+    const [notificationId,] = React.useState(notification._id);
     const { dispatch } = React.useContext(AppContext);
     const auth = useAuth();
     const userId = auth.user?._id as unknown as string || getToken('_id') as string;

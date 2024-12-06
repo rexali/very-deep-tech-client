@@ -20,14 +20,14 @@ const handleUpdateMessageAPI = async (
             messageId,
             firstName,
             lastName,
-            sender
+            email
         } = event.target.elements;
 
         const updateData = {
-            userId: userId,
+            userId: userId??'',
             title: title.value,
             comment: comment.value,
-            sender: sender.value ??'',
+            sender: email.value ??'',
             lastName: lastName.value ??'',
             firstName: firstName.value??'',
             messageId: messageId.value

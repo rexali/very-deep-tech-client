@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -22,6 +23,7 @@ const style = {
 export default function DeleleModal({ cb, closeCallback }: { cb: any, closeCallback: any }) {
     const [open, setOpen] = React.useState(true);
     const [result, setResult] = React.useState(false);
+    const router = useRouter();
 
     const handleOpen = () => setOpen(true);
     const handleClose = () => {
@@ -31,6 +33,7 @@ export default function DeleleModal({ cb, closeCallback }: { cb: any, closeCallb
 
     const handleDeletion = async () => {
         setResult(await cb());
+        router.refresh();
     }
 
     return (

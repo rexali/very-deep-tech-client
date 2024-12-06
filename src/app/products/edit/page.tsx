@@ -8,38 +8,45 @@ import React, { useState, useEffect } from "react";
 import { handleProductEditSubmit } from "../utils/handleProductEdit.Submit";
 import { getProductAPI } from "../api/getProductAPI";
 import Container from "@mui/material/Container";
+import { useSearchParams } from "next/navigation";
+import Image from 'next/image';
+import { SERVER_URL } from "@/constants/url";
+import Avatar from "@mui/material/Avatar";
 
-export default function EditProduct({ params }: { params: { productId: string, role: string } }) {
+export default function EditProduct() {
     const [data, setData] = useState<any>({});
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
     const [loading, setLoading] = React.useState('');
+    const params = useSearchParams() as any;
+    let productId = params.get('productId');
+    let role = params.get('role');
 
     const handleSubmit = async (event: any) => {
-        if (params.role === 'admin') {
+        if (role === 'admin') {
             setLoading('Sending data..')
             handleProductEditSubmit(
                 event,
                 setSuccess,
                 setError,
                 setLoading,
-                params.productId
+                productId
             )
         } else {
-            setLoading('You are not Unauthorized')
+            setLoading('You are not unauthorized')
         }
     };
 
     useEffect(() => {
         async function getData() {
-            const data = await getProductAPI(params.productId);
+            const data = await getProductAPI(productId);
             setData(data);
         }
 
         getData();
 
 
-    }, [params.productId])
+    }, [productId])
 
     return (
         <Container maxWidth="md" component={'main'} sx={{ mt: 8 }}>
@@ -49,6 +56,25 @@ export default function EditProduct({ params }: { params: { productId: string, r
                 noValidate
                 sx={{ mt: 1 }}
             >
+                <Box>
+                    {data.product_pictures[0] ? <Image
+                        src={`${SERVER_URL}/uploads/${data.product_pictures[0]}`}
+                        alt="Account"
+                        layout="responsive"
+                        style={{
+                            display: 'block',
+                            marginRight: 'auto',
+                            marginLeft: 'auto',
+                            width: "100%",
+                            // height: 'auto' 
+                            height: 140,
+                            borderRadius: 30
+                        }}
+                        width={0}
+                        height={0}
+                    /> : <Avatar />
+                    }
+                </Box>
                 <TextField
                     autoComplete="given-name"
                     name="product_name"
@@ -61,16 +87,14 @@ export default function EditProduct({ params }: { params: { productId: string, r
                     autoFocus
                 />
 
-                <TextField
+                <input
                     autoComplete="given-name"
                     name="product_picture"
                     required
-                    fullWidth
-                    margin={"normal"}
                     id="product_picture"
-                    label="Product Picture"
-                    defaultValue={data?.product_picture}
-                    autoFocus
+                    type="file"
+                    accept="images/*"
+                    multiple
                 />
 
                 <TextField
@@ -105,7 +129,7 @@ export default function EditProduct({ params }: { params: { productId: string, r
                     margin={"normal"}
                     id="product_description"
                     label="Product Description"
-                    defaultValue={data?.product_sub_category}
+                    defaultValue={data?.product_description}
                     autoFocus
                 />
 

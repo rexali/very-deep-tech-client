@@ -24,7 +24,6 @@ import UserOrders from "../orders/UserOrders";
 import UserTransactions from "../transactions/UserTransactions";
 import { useSearchParams } from "next/navigation";
 
-
 export default function UserTabs() {
     const searchParams = useSearchParams();
     const tabId = searchParams.get('tabId') || window.sessionStorage.getItem('tabId');

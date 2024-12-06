@@ -34,9 +34,11 @@ export default function DeleteProduct() {
                         if (role === 'admin') {
                             if (await deleteProductAPI(productId)) {
                                 alert('Deleted successfully');
+                            }else{
+                              alert('Failed');
                             }
                         } else {
-                            alert('You are not authorized')
+                            alert('You are not authorised')
                         }
                     }
                     }

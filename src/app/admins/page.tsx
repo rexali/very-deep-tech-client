@@ -22,11 +22,12 @@ import { useSearchParams } from "next/navigation";
 
 export default function UserTabs() {
     const searchParams = useSearchParams();
-    const tabId = searchParams.get('tabId');
+    const tabId = searchParams.get('tabId') || window.sessionStorage.getItem('tabId');
     
     let [tabName, setTabName] = useState(tabId ?? 'admin');
 
     const openTab = (tabname: any) => {
+        window.sessionStorage.setItem('tabId', tabname);
         setTabName(tabname);
     }
 

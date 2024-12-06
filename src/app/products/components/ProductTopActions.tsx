@@ -10,15 +10,15 @@ import Box from "@mui/material/Box";
 import { useState } from "react";
 import StatusModal from "@/components/common/status-modal";
 import { shareLink } from "@/utils/shareLink";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { savePathLink } from "@/utils/savePathLink";
 import { addToWishListOrRemove } from "@/app/favourites/utils/addToWishListOrRemove";
 import { useAuth } from "@/hooks/use-auth";
+import { goToSavedLinkpath } from "@/utils/goToSavedLinkPath";
 
 export default function ProductTopActions({ product, role }: { product: any, role?: string }) {
     const [open, setOpen] = useState(false);
     const router = useRouter();
-
     const auth = useAuth();
     const userId = auth.user?._id as unknown as string || getToken('_id') as string;
 
@@ -57,7 +57,8 @@ export default function ProductTopActions({ product, role }: { product: any, rol
                         await addToWishListOrRemove(userId, product._id, handleOpen);
                         router.refresh();
                     } else {
-                        savePathLink()
+                        // savePathLink()
+                        window.sessionStorage.setItem('next', goToSavedLinkpath(1) as string)
                         router.push('/auth/signin')
                     }
 

@@ -15,9 +15,10 @@ import { isAllReadyAddedToCartByUserAPI } from "@/app/carts/api/isAlreadyAddedTo
 import { getUserCartsAPI } from "@/app/carts/api/getUserCartsAPI";
 import { AppContext } from "@/context/AppContext";
 import { getCarts } from "@/store/actions/app-actions";
-import { savePathLink } from "@/utils/savePathLink";
 import { getToken } from "@/utils/getToken";
 import GetQouteModal from "@/app/qoutes/components/GetQuoteModal";
+import { goToSavedLinkpath } from "@/utils/goToSavedLinkPath";
+
 
 export default function ProductBottomActions({ product, role }: { product: any, role?: string }) {
     const [open, setOpen] = useState(false);
@@ -85,7 +86,8 @@ export default function ProductBottomActions({ product, role }: { product: any, 
                             }
 
                         } else {
-                            savePathLink();
+                            // savePathLink();
+                            window.sessionStorage.setItem('next', goToSavedLinkpath('1') as string)
                             router.push('/auth/signin');
                         }
 
