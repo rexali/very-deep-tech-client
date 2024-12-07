@@ -13,8 +13,8 @@ export function handleSignOut(router?:any) {
             window.localStorage.setItem("email", "");
             window.localStorage.clear();
             // navigate to log in page
-            // window.location.assign("/auth/signin");
-            router.push("/auth/signin")
+            window.location.assign("/auth/signin");
+            // router.push("/auth/signin")
         }
     } catch (error) {
         // print result

@@ -14,6 +14,8 @@ import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mu
 import { useProfile } from '../users/hooks/useProfile';
 import { useAuth } from '@/hooks/use-auth';
 import { getToken } from '@/utils/getToken';
+import { goToSavedLinkpath } from '@/utils/goToSavedLinkPath';
+import { useRouter } from 'next/navigation';
 
 
 export default function CartList(props: any) {
@@ -27,7 +29,8 @@ export default function CartList(props: any) {
     const [callToOrder, setCallToOrder] = React.useState(false);
 
     const auth = useAuth();
-    const userId = auth.user?._id as unknown as string ||  getToken('_id') as string;
+    const userId = auth.user?._id as unknown as string || getToken('_id') as string;
+    const router = useRouter()
 
     const { user } = useProfile(userId);
 
@@ -72,6 +75,25 @@ export default function CartList(props: any) {
 
     }
 
+
+    const handleSubmit = async (event: any) => {
+        if (userId) {
+            setLoading('Sending data..');
+            await handleCheckoutSubmit(
+                event,
+                setSuccess,
+                setError,
+                setLoading,
+                orderData,
+                transactionData
+            );
+        } else {
+            window.sessionStorage.setItem('next', goToSavedLinkpath() as string);
+            router.replace('/auth/signin');
+        }
+    }
+
+
     React.useEffect(() => {
         setCartTotal(cartTotal)
     }, [cartTotal])
@@ -92,17 +114,7 @@ export default function CartList(props: any) {
                 <Grid item xs={12} md={4} sx={{ marginTop: 1 }}>
                     <Box
                         component="form"
-                        onSubmit={async (evt) => {
-                                setLoading('Sending data..');
-                                await handleCheckoutSubmit(
-                                    evt,
-                                    setSuccess,
-                                    setError,
-                                    setLoading,
-                                    orderData,
-                                    transactionData
-                                );
-                        }}
+                        onSubmit={handleSubmit}
                         noValidate
                         sx={{ mt: 1 }}
                     >
@@ -269,25 +281,25 @@ export default function CartList(props: any) {
                         {
                             directPayment &&
                             (<Box sx={{ backgroundColor: 'green', color: "white" }}>
-                                <p>Bank: Jaiz Bank</p>
-                                <p>Acct. Number: 0016938829</p>
-                                <p>Name: Siniotech Information and Communication...</p>
+                                <p>&nbsp;&nbsp;Bank: Jaiz Bank</p>
+                                <p>&nbsp;&nbsp;Acct. Number: 0016938829</p>
+                                <p>&nbsp;&nbsp;Name: Siniotech Information and Communication...</p>
                             </Box>)
                         }
                         {
                             cashAndCarry &&
                             (<Box sx={{ backgroundColor: 'green', color: "white" }}>
-                                <p>Visit: Siniotech Ltd</p>
-                                <p>Address: 230 Naibawa Gasa A, Titi Dan Hassan, Kumbotso, Kano Sate</p>
-                                <p>Call: 07016807004</p>
+                                <p>&nbsp;&nbsp;Visit: Siniotech Ltd</p>
+                                <p>&nbsp;&nbsp;Address: 230 Naibawa Gasa A, Titi Dan Hassan, Kumbotso, Kano Sate</p>
+                                <p>&nbsp;&nbsp;Call: 07016807004</p>
                             </Box>)
                         }
                         {
                             callToOrder &&
                             (<Box sx={{ backgroundColor: 'green', color: "white" }}>
-                                <p>Call: 07016807004</p>
-                                <p>Visit: Siniotech Ltd</p>
-                                <p>Address: 230 Naibawa Gasa A, Titi Dan Hassan, Kumbotso, Kano Sate</p>
+                                <p>&nbsp;&nbsp;Call: 07016807004</p>
+                                <p>&nbsp;&nbsp;Visit: Siniotech Ltd</p>
+                                <p>&nbsp;&nbsp;Address: 230 Naibawa Gasa A, Titi Dan Hassan, Kumbotso, Kano Sate</p>
                             </Box>)
                         }
                         {success && <Box textAlign={"center"} sx={{ backgroundColor: 'green', color: "white", padding: 2, borderRadius: 2 }}>{success.toUpperCase()}</Box>}

@@ -12,7 +12,8 @@ const ProtectedRoute = ({ children }: { children: any }) => {
 
     if (typeof window !== 'undefined') {
         if (window.sessionStorage.getItem('next')) {
-            router.replace(goToSavedLinkpath('1') as string);
+            router.replace(goToSavedLinkpath() as string);
+            window.sessionStorage.clear();
         } else {
 
             if (role === 'admin' && token && _id !== null) {

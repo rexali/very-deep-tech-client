@@ -1,6 +1,6 @@
 'use client'
 
-import { BASE_URL, SERVER_URL } from "@/constants/url";
+import { SERVER_URL } from "@/constants/url";
 import axios from "axios";
 
 const getUserCartsAPI = async (userId: string, page: number = 1) => {
@@ -12,6 +12,7 @@ const getUserCartsAPI = async (userId: string, page: number = 1) => {
                 'Content-Type': 'application/json',
             },
         });
+
         let newcarts = data.data?.carts.map((cart: any) => {
             return {
                 ...cart,

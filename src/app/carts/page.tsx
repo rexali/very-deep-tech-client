@@ -14,15 +14,15 @@ import { getToken } from "@/utils/getToken";
 export default function CartPage() {
 
   const [data, setData] = useState<any>([]);
-  const { dispatch } = useContext(AppContext);
+  const { dispatch, state } = useContext(AppContext);
   const { user } = useAuth();
 
   const userId = user?._id as unknown as string || getToken('_id') as string;
 
   const getData = useCallback(async () => {
     let userCarts = await getUserCartsAPI(userId);
-    dispatch(getCarts(userCarts));
     setData(userCarts);
+    dispatch(getCarts(userCarts));
   }, [userId, dispatch])
 
   useEffect(() => {
@@ -37,7 +37,7 @@ export default function CartPage() {
   return (
     <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }} >
       <Box>Carts: {data.length}</Box>
-      <CartListComponent products={data} refreshCart={getData} />
+      <CartListComponent products={data || state.carts} refreshCart={getData} />
     </Container>
   )
 }
