@@ -37,7 +37,7 @@ export default function ProductsPage() {
 
 
   return (
-    <Container maxWidth="md" component={'main'} sx={{ mt: 10 }} >
+    <Container maxWidth="lg" component={'main'} sx={{ mt: 5 }} >
       <h3 style={{ display: 'flex', flexDirection: 'row', justifyContent: "space-between" }}>
         Products <TopbarFilter />
       </h3>
@@ -47,7 +47,6 @@ export default function ProductsPage() {
           {!isMobile && <DesktopProductCategories categoryData={categoryData} />}
           {!isMobile && <SidebarFilter />}
         </Box>
-
         <ProductList products={products} />
       </Box>
       <Box marginTop={4} display={"flex"} justifyContent={'center'} >

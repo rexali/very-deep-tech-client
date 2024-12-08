@@ -10,7 +10,7 @@ export default function ProductList(props: any) {
         <div>
             <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }} marginTop={5} display={"flex"} justifyContent={'center'}>
                 {products.map((product: any) => {
-                    return <Grid key={product._id} item xs={12} sm={12} md={6} lg={4}><ProductCard product={product} role={props?.role} /></Grid>
+                    return <Grid key={product._id} item xs={12} sm={12} md={6} lg={6}><ProductCard product={product} role={props?.role} /></Grid>
                 })}
             </Grid>
         </div>

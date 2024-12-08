@@ -2,7 +2,7 @@
 
 import { Container, Box } from "@mui/material";
 import { getCarts } from "@/store/actions/app-actions";
-import { useState, useContext, useEffect, useCallback } from "react";
+import { useState, useContext, useEffect, useCallback, useRef } from "react";
 import Fallback from "@/components/common/fallback";
 import { getUserCartsAPI } from "./api/getUserCartsAPI";
 import { CartListComponent } from "./CartListComponent";
@@ -16,20 +16,24 @@ export default function CartPage() {
   const [data, setData] = useState<any>([]);
   const [activePage, setActivePage] = useState<number>(1);
   const { dispatch } = useContext(AppContext);
+  const mountRef = useRef(true);
   const auth = useAuth();
   const userId = auth.user?._id as unknown as string || getToken('_id') as string;
 
-  const getData = useCallback(async () => {
+  async function getCartData() {
     const result = await getUserCartsAPI(userId, activePage)
     setData(result);
-    dispatch(getCarts(data))
-  }, [activePage, data, dispatch, userId])
+    dispatch(getCarts(result))
+  }
 
   useEffect(() => {
-
-    getData();
-
-  }, [getData]);
+    if (mountRef.current) {
+      getCartData()
+    }
+    return () => {
+      mountRef.current = false
+    }
+  });
 
 
   if (!data?.length) {
@@ -44,7 +48,7 @@ export default function CartPage() {
         activePage={activePage}
         setActivePage={setActivePage}
         totalCarts={data[0]?.totalCarts}
-        refreshCart={getData}
+        refreshCart={getCartData}
       />
     </Container>
   )
