@@ -5,7 +5,6 @@ import FAQHowItWorks from './FAQHowItWorks';
 import Copyright from '@/components/common/copyright';
 import SearchInput from "./search/SearchInput";
 import CreateSubscription from "./subscriptions/CreateSubscription";
-import { useMediaQuery } from "react-responsive";
 import Testimonials from './testimonials';
 import Portfolios from './portfolios';
 import Team from './team';
@@ -18,9 +17,10 @@ import RecommendedProducts from './products/RecommendedProducts';
 import NewProducts from './products/NewProducts';
 import { getInitialDataAPI } from './api/getInitialDataAPI';
 import ProductCategories from './products/ProductCategory';
+// import { useMediaQuery } from "react-responsive";
 
 export default async function AppPage() {
-  // const isMobile = useMediaQuery({ maxDeviceWidth: 1023 });
+// const isMobile = useMediaQuery({ maxDeviceWidth: 1023 });
   let data = await getInitialDataAPI() ?? {};
 
   return (

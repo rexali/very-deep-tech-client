@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Select, FormControl, InputLabel, MenuItem, Box } from '@mui/material';
 
 export default function TopbarFilter() {
-    const [query, setQuery] = useState('low');
+    const [query, setQuery] = useState('');
 
     const handleFilter = (event: any) => {
         const { value }: { value: string } = event.target;

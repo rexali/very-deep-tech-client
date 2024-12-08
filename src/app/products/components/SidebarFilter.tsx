@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material';
 
 export default function SidebarFilter() {
-    const [range, setRange] = useState<string>('0-5000');
+    const [range, setRange] = useState<string>('');
 
     const handlePriceRange = (event: any) => {
         const { value }: { value: string } = event.target;
@@ -22,7 +22,7 @@ export default function SidebarFilter() {
                     name='price_range'
                     value={range}
                     onChange={handlePriceRange}
-                >
+                >                    
                     <FormControlLabel value={'0-5000'} control={<Radio />} label='N 0 - 5000'></FormControlLabel>
                     <FormControlLabel value={'5000-10000'} control={<Radio />} label='N 5000 - 10000'></FormControlLabel>
                     <FormControlLabel value={'10000-50000'} control={<Radio />} label='N 10000 - 50000'></FormControlLabel>

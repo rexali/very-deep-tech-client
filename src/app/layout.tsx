@@ -8,7 +8,6 @@ import { Metadata } from "next";
 import { AppProvider } from '@/context/AppContext';
 import HomeFallback from '@/components/common/HomeFallback';
 import { getInitialDataAPI } from './api/getInitialDataAPI';
-import HomePage from './page';
 
 const metadata: Metadata = {
   title: { absolute: "Cash Waqf", template: "%s | an Islamic endowment" },
@@ -36,7 +35,6 @@ export default async function RootLayout({
             <React.Suspense fallback={<HomeFallback />}>
               <NavBar categoryData={initialData?.categoryData} />
               {children}
-              {/* <HomePage data={initialData} /> */}
               <BottomNavigation />
               <BottomNavbar />
             </React.Suspense>
