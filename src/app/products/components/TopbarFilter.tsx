@@ -1,23 +1,26 @@
 'use client'
 import ErrorBoundary from '@/components/ErrorBoundary';
 import React, { useState } from 'react';
-import { Select, FormControl, InputLabel, MenuItem } from '@mui/material';
+import { Select, FormControl, InputLabel, MenuItem, Box } from '@mui/material';
 
 export default function TopbarFilter() {
     const [query, setQuery] = useState('');
 
     const handleFilter = (query: string) => {
         switch (query) {
-            case 'Low':
+            case 'low':
                 alert(query);
                 break;
-            case 'High':
+            case 'high':
+                alert(query);
 
                 break;
-            case 'A-Z':
+            case 'ascend':
+                alert(query);
 
                 break;
-            case 'Z-A':
+            case 'descend':
+                alert(query);
 
                 break;
             default:
@@ -28,27 +31,29 @@ export default function TopbarFilter() {
 
     return (
         <ErrorBoundary>
-            <FormControl>
-                <InputLabel id='filter'>Sort</InputLabel>
-                <Select
-                    labelId='sort'
-                    id='sortitem'
-                    size='small'
-                    value={query}
-                    label={'Sort'}
-                    onChange={(event) => {
-                        const { name, value } = event.target;
-                        setQuery(value);
-                        handleFilter(query);
-                    }}
-                // sx={{ height: 20 }}
-                >
-                    <MenuItem>Low</MenuItem>
-                    <MenuItem>High</MenuItem>
-                    <MenuItem>A-Z</MenuItem>
-                    <MenuItem>Z-A</MenuItem>
-                </Select>
-            </FormControl>
+            <Box sx={{ minWidth: 100 }}>
+                <FormControl>
+                    <InputLabel id='filter'>Sort</InputLabel>
+                    <Select
+                        labelId='sort'
+                        id='sortitem'
+                        size='small'
+                        value={query}
+                        label={'Sort'}
+                        onChange={(event) => {
+                            const { name, value } = event.target;
+                            setQuery(value);
+                            handleFilter(query);
+                        }}
+                    // sx={{ height: 20 }}
+                    >
+                        <MenuItem value={'low'}>Low</MenuItem>
+                        <MenuItem value={'high'}>High</MenuItem>
+                        <MenuItem value={'ascend'}>A-Z</MenuItem>
+                        <MenuItem value={'descend'}>Z-A</MenuItem>
+                    </Select>
+                </FormControl>
+            </Box>
         </ErrorBoundary>
     )
 }
