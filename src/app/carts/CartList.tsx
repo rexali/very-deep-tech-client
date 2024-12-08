@@ -28,7 +28,6 @@ export default function CartList(props: any) {
     const [directPayment, setDirectPayment] = React.useState(false);
     const [cashAndCarry, setCashAndCarry] = React.useState(false);
     const [callToOrder, setCallToOrder] = React.useState(false);
-
     const auth = useAuth();
     const userId = auth.user?._id as unknown as string || getToken('_id') as string;
     const router = useRouter()
@@ -76,7 +75,6 @@ export default function CartList(props: any) {
 
     }
 
-
     const handleSubmit = async (event: any) => {
         if (userId) {
             setLoading('Sending data..');
@@ -102,7 +100,7 @@ export default function CartList(props: any) {
     return (
         <Container>
             <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-
+ 
                 <Grid item xs={12} md={8} sx={{ marginTop: 1 }}>
                     <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                         {props.products.map((product: any) => {

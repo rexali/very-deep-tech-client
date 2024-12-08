@@ -172,7 +172,7 @@ function NavBar(props: any) {
         </Box>
         {/* Carts components */}
         {!isMobile && <Link href={'/carts'} style={{ marginRight: 16, color: "white", textDecoration: "none" }} >
-          <Button sx={{ color: "white" }} startIcon={<Cart />}>Cart</Button><sup style={{ color: "yellow" }}>{state.carts?.length !== 0 ? state.carts?.length : ''}</sup>
+          <Button sx={{ color: "white" }} startIcon={<Cart />}>Cart</Button><sup style={{ color: "yellow" }}>{state.carts[0]?.totalCarts !== 0 ? state.carts[0]?.totalCarts : ''}</sup>
         </Link>}
         {isMobile && <Link href={'/carts'} style={{ color: "white", textDecoration: "none" }} >
           <Cart sx={{ fontSize: 18, }} /><sup style={{ color: "yellow", marginRight: 10 }}>{state.carts?.length !== 0 ? state.carts?.length : ''}</sup>
