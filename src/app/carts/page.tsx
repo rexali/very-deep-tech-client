@@ -2,23 +2,22 @@
 
 import { Container, Box } from "@mui/material";
 import { getCarts } from "@/store/actions/app-actions";
-import { useState,useContext, useEffect} from "react";
+import { useState, useContext, useEffect } from "react";
 import Fallback from "@/components/common/fallback";
 import { getUserCartsAPI } from "./api/getUserCartsAPI";
 import { CartListComponent } from "./CartListComponent";
 import { AppContext } from "@/context/AppContext";
 import { useAuth } from '@/hooks/use-auth';
 import { getToken } from "@/utils/getToken";
-import ReactPagination from "@/components/react-pagination";
 
 
 export default function CartPage() {
-  
+
   const [data, setData] = useState<any>([]);
   const [activePage, setActivePage] = useState<number>(1);
   const { dispatch } = useContext(AppContext);
   const auth = useAuth();
-  const userId = auth.user?._id as unknown as string ||  getToken('_id') as string;
+  const userId = auth.user?._id as unknown as string || getToken('_id') as string;
 
   useEffect(() => {
     async function getData() {
@@ -37,19 +36,14 @@ export default function CartPage() {
 
   return (
     <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }} >
-      <Box>Carts: {data.length}</Box>
+      <Box>Carts: {data[0]?.totalCarts}</Box>
       <CartListComponent
         products={data}
-      // refreshCart={getData}
+        activePage={activePage}
+        setActivePage={setActivePage}
+        totalCarts={data[0]?.totalCarts}
+       // refreshCart={getData}
       />
-      <Box marginTop={4} display={"flex"} justifyContent={'center'} >
-        <ReactPagination
-          activePage={activePage}
-          itemsCountPerPage={4}
-          totalItemsCount={data[0]?.totalCarts}
-          pageRangeDisplayed={5}
-          onchangeCallback={(v: any) => setActivePage(v)} />
-      </Box>
     </Container>
   )
 }

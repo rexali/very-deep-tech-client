@@ -16,6 +16,7 @@ import { useAuth } from '@/hooks/use-auth';
 import { getToken } from '@/utils/getToken';
 import { goToSavedLinkpath } from '@/utils/goToSavedLinkPath';
 import { useRouter } from 'next/navigation';
+import ReactPagination from '@/components/react-pagination';
 
 
 export default function CartList(props: any) {
@@ -108,6 +109,14 @@ export default function CartList(props: any) {
                             return <Grid key={product._id} item xs={12} md={6}><CartCard product={product} refreshCart={props.refreshCart} /></Grid>
                         })}
                     </Grid>
+                    <Box marginTop={4} display={"flex"} justifyContent={'center'} >
+                        <ReactPagination
+                            activePage={props.activePage}
+                            itemsCountPerPage={4}
+                            totalItemsCount={props.totalCarts}
+                            pageRangeDisplayed={5}
+                            onchangeCallback={(v: any) => props.setActivePage(v)} />
+                    </Box>
                     <ClearCartButton refreshCart={props.refreshCart} />
                 </Grid>
 
