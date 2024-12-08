@@ -35,10 +35,10 @@ export const handleLoginSubmit = (
                     if (result.data.token) {
                         // redirect user to a given url
                         // window.location.assign('/users');
-                        router.push('/users');
+                        router.push('/');
                     } else {
                         // window.location.assign('/');
-                        router.push('/');
+                        router.push('/auth/signin');
                     }
 
                 } else {

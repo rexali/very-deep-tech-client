@@ -13,7 +13,8 @@ export const handleSignUpSubmit = (
     event: any,
     setSignUpError: any,
     setSignUpSuccess: any,
-    setLoading: any
+    setLoading: any,
+    router?:any
 ) => {
     // prevent default behaviour
     event.preventDefault();
@@ -34,6 +35,7 @@ export const handleSignUpSubmit = (
                     // send success message
                     setLoading('');
                     setSignUpSuccess(result.status +'. You can now sign in. Link below');
+                    router.replace('/auth/signin');
                 } else {
                     // send failure message
                     setLoading('');
@@ -49,7 +51,7 @@ export const handleSignUpSubmit = (
                     setSignUpError('');
                     setSignUpSuccess('');
                     setLoading('');
-                }, 20000);
+                }, 10000);
             })
         }
 

@@ -6,27 +6,22 @@ import { goToSavedLinkpath } from "@/utils/goToSavedLinkPath";
 import { useRouter } from "next/navigation";
 
 const ProtectedRoute = ({ children }: { children: any }) => {
-    const router = useRouter()
+    const router = useRouter();
 
     const { user: { _id, role, token } } = useAuth();
 
-    if (typeof window !== 'undefined') {
-        if (window.sessionStorage.getItem('next')) {
-            router.replace(goToSavedLinkpath() as string);
-            window.sessionStorage.clear();
-        } else {
+    if (role === 'admin' && token && _id !== null) {
 
-            if (role === 'admin' && token && _id !== null) {
+        router.push('/admins');
+    } else if (role === 'user' && token && _id !== null) {
 
-                return children;
-            } else if (role === 'user' && token && _id !== null) {
+        router.push('/users');
+    } else {
 
-                return children;
-            }
-
-            return <SignIn />;
-        }
+        router.push('/auth/signin');
     }
+
+    return children
 
 }
 

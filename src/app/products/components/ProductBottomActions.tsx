@@ -86,9 +86,9 @@ export default function ProductBottomActions({ product, role }: { product: any, 
                             }
 
                         } else {
-                            // savePathLink();
-                            window.sessionStorage.setItem('next', goToSavedLinkpath('1') as string)
+                            window.sessionStorage.setItem('next', goToSavedLinkpath('1') as string);
                             router.push('/auth/signin');
+
                         }
 
                     }}

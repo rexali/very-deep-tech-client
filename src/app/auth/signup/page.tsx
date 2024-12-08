@@ -18,6 +18,7 @@ import Copyright from '@/components/common/copyright';
 import { handleSignUpSubmit } from '../utils/handleSignUpSubmit';
 import styles from "../styles/auth.module.css";
 import { useState } from 'react';
+import {useRouter} from 'next/navigation'
 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
@@ -26,10 +27,11 @@ export default function SignUp() {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
     const [loading, setLoading] = React.useState('');
+    const router =useRouter();
 
     const handleSubmit = async (event: any) => {
         setLoading('Sending data..');
-        handleSignUpSubmit(event, setError, setSuccess, setLoading)
+        handleSignUpSubmit(event, setError, setSuccess, setLoading, router)
     };
 
     return (

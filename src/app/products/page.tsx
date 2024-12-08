@@ -8,12 +8,15 @@ import { getProductsAPI } from "./api/getProductsAPI";
 import ProductCategories from "./ProductCategory";
 import Fallback from "@/components/common/fallback";
 import { getCategoriesAPI } from "./api/getCategoriesAPI";
+import DesktopProductCategories from "./DesktopProductCategories";
+import { useMediaQuery } from "react-responsive";
 
 export default function ProductsPage() {
 
   const [activePage, setActivePage] = useState<number>(1);
   const [products, setProducts] = useState<any>([]);
   const [categoryData, setCategoryData] = useState<any>([]);
+  const isMobile = useMediaQuery({ maxDeviceWidth: 1023 });
 
 
   useEffect(() => {
@@ -37,7 +40,8 @@ export default function ProductsPage() {
         Products
       </h3>
       <ProductCategories categoryData={categoryData} />
-      <Box marginTop={4} display={"flex"} justifyContent={'center'} >
+      <Box marginTop={4} display={"flex"} flexDirection={'row'} justifyContent={'center'} >
+        {!isMobile && <DesktopProductCategories categoryData={categoryData} />}
         <ProductList products={products} />
       </Box>
       <Box marginTop={4} display={"flex"} justifyContent={'center'} >

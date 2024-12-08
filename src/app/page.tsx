@@ -10,7 +10,6 @@ import Testimonials from './testimonials';
 import Portfolios from './portfolios';
 import Team from './team';
 import Partners from './partners';
-import HomeProductCategories from './products/HomeProductCategories';
 import FeaturedProducts from './products/FeaturedProducts';
 import PopularProducts from './products/PopularProducts';
 import Link from 'next/link';
@@ -18,6 +17,7 @@ import Box from '@mui/material/Box';
 import RecommendedProducts from './products/RecommendedProducts';
 import NewProducts from './products/NewProducts';
 import { getInitialDataAPI } from './api/getInitialDataAPI';
+import ProductCategories from './products/ProductCategory';
 
 export default async function HomePage() {
   // const isMobile = useMediaQuery({ maxDeviceWidth: 1023 });
@@ -29,7 +29,7 @@ export default async function HomePage() {
       <SearchInput />
       <MarketingMessage /> <br /><br />
       {/* replace the productData with categoryData */}
-      <HomeProductCategories categoryData={data?.categoryData} />
+      <ProductCategories categoryData={data?.categoryData} />
       {/* replace the productData with featured Data */}
       <FeaturedProducts products={data?.featuredData} />
       <Box margin={2} padding={2} display={"flex"} justifyContent={'center'}>
