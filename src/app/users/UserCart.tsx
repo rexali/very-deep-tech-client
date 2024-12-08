@@ -12,10 +12,10 @@ import { getCarts } from "@/store/actions/app-actions";
 import { AppContext } from "@/context/AppContext";
 import { useAuth } from "@/hooks/use-auth";
 
-export default function UserCarts() {
+export default function UserCarts(props: any) {
   const [data, setData] = React.useState<any>([]);
   const [activePage, setActivePage] = React.useState(1);
-  const {dispatch} = React.useContext(AppContext);
+  const { dispatch } = React.useContext(AppContext);
 
   const auth = useAuth();
   const userId = auth.user?._id as unknown as string || getToken('_id') as string;
@@ -29,7 +29,7 @@ export default function UserCarts() {
 
     getData();
 
-  }, [userId,dispatch]);
+  }, [userId, dispatch]);
 
   if (!data.length) {
 
@@ -42,7 +42,7 @@ export default function UserCarts() {
   return (
     <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }}>
       <React.Suspense fallback={<Fallback />} >
-        <ProductList products={data} />
+        <ProductList products={props.cart || data} />
       </React.Suspense>
       <Box marginTop={4} display={"flex"} justifyContent={'center'} >
         <ReactPagination

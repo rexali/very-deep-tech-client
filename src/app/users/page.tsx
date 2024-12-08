@@ -28,9 +28,9 @@ export default function UserTabs() {
     const searchParams = useSearchParams();
     const tabId = searchParams.get('tabId') || window.sessionStorage.getItem('tabId');
     let [tabName, setTabName] = useState(tabId ?? 'profile');
+    const [cart, setCart] = useState([]);
 
     const { dispatch } = useContext(AppContext);
-    const mountRef = useRef(true);
     const auth = useAuth();
     const userId = auth.user?._id as unknown as string || getToken('_id') as string;
 
@@ -54,7 +54,6 @@ export default function UserTabs() {
     return (
         <ProtectedRoute>
             <div className="container" style={styles.minheight}>
-
                 <div className="scrollmenu" style={styles.marginTop}>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('profile')} href={""} ><small>Profile</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('products')} href={""} ><small>Products</small></Link>
@@ -74,7 +73,7 @@ export default function UserTabs() {
                         {tabName === 'messages' ? <MessagesTab /> : ''}
                         {tabName === 'notifications' ? <NotificationsTab /> : ''}
                         {tabName === 'favourites' ? <FavouritesTab /> : ''}
-                        {tabName === 'cart' ? <CartTab /> : ''}
+                        {tabName === 'cart' ? <CartTab cart={cart} /> : ''}
                         {tabName === 'orders' ? <OrderTab /> : ''}
                         {tabName === 'transactions' ? <TransactionTab /> : ''}
                         {tabName === 'settings' ? <SettingsTab /> : ''}
@@ -182,7 +181,7 @@ function FavouritesTab() {
 }
 
 
-function CartTab() {
+function CartTab(props:any) {
 
     return (
         <Box>
@@ -194,7 +193,7 @@ function CartTab() {
                 </Typography>
             </Box>
 
-            <UserCart />
+            <UserCart cart={props.cart} />
         </Box>
     )
 }

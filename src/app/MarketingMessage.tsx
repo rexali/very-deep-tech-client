@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography"
 import React from "react"
 
 export default function MarketingMessage() {
-
+  
   return (
     <Container component="main" maxWidth="md">
       <Box sx={{

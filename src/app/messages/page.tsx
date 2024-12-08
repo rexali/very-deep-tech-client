@@ -25,7 +25,7 @@ export default function MessagesPage() {
     if (!messages.length) {
 
         return (
-            <Container component={"main"} maxWidth="md" sx={{ mt: 8, minHeight: 420, display: "flex", justifyContent: 'center', alignItems: 'center' }}>
+            <Container sx={{mt:8, minHeight: 420, display: "flex", justifyContent: 'center', alignItems: 'center' }} component={"main"} maxWidth="md">
                 <Box textAlign={'center'}>No message(s) found</Box>
             </Container>
         )
@@ -35,7 +35,7 @@ export default function MessagesPage() {
         <ProtectedRoute>
             <Container sx={{ mt: 8 }} component={"main"} maxWidth="md">
                 <Grid container columnSpacing={1} marginTop={5} display={"flex"} justifyContent={'center'}>
-                    <MessageList messages={state?.messages || messages} role={user.role} />
+                    <MessageList messages={messages || state.messages} role={user.role} />
                 </Grid>
             </Container>
             <Box marginTop={4} display={"flex"} justifyContent={'center'}>

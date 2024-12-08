@@ -2,10 +2,8 @@
 
 import SignIn from "@/app/auth/signin/page";
 import { useAuth } from "@/hooks/use-auth";
-import { useRouter } from "next/navigation";
 
 const ProtectedRoute = ({ children }: { children: any }) => {
-    const router = useRouter();
 
     const { user: { _id, role, token } } = useAuth();
 
@@ -17,7 +15,7 @@ const ProtectedRoute = ({ children }: { children: any }) => {
         return children
     }
 
-    return router.push('/auth/signin');
+    return <SignIn />;
 
 }
 
