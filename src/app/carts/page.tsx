@@ -13,23 +13,22 @@ import ReactPagination from "@/components/react-pagination";
 
 
 export default function CartPage() {
-
+  
   const [data, setData] = useState<any>([]);
-  const { dispatch, state } = useContext(AppContext);
-  const [activePage, setActivePage] =useState(1);
-  const { user } = useAuth();
-
-  const userId = user?._id as unknown as string || getToken('_id') as string;
+  const [activePage, setActivePage] = useState<number>(1);
+  const { dispatch } = useContext(AppContext);
+  const auth = useAuth();
+  const userId = auth.user?._id as unknown as string ||  getToken('_id') as string;
 
   useEffect(() => {
-    async function getData(id: string) {
-      const products = await getUserCartsAPI(id, activePage);
-      setData(products);
-      dispatch(getCarts(products));
+    async function getData() {
+      const result = await getUserCartsAPI(userId, activePage)
+      setData(result);
+      dispatch(getCarts(data))
     }
-    getData(userId);
+    getData();
 
-  }, [dispatch, userId, activePage]);
+  }, [activePage, data, dispatch, userId]);
 
 
   if (!data?.length) {
@@ -40,7 +39,7 @@ export default function CartPage() {
     <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }} >
       <Box>Carts: {data.length}</Box>
       <CartListComponent
-        products={data || state?.carts}
+        products={data}
       // refreshCart={getData}
       />
       <Box marginTop={4} display={"flex"} justifyContent={'center'} >
