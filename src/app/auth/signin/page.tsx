@@ -19,7 +19,7 @@ import { handleLoginSubmit } from '../utils/handleLoginSubmit';
 import ThemeProvider from '@mui/material/styles/ThemeProvider';
 import createTheme from '@mui/material/styles/createTheme';
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 const defaultTheme = createTheme();
 
@@ -28,12 +28,14 @@ export default function SignIn() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState('');
+  const params = useSearchParams();
   const router = useRouter();
+  let next = params.get('next');
 
   const handleSubmit = (event: any) => {
     // give user feedback
     setLoading("Sending data...");
-    handleLoginSubmit(event, setSuccess, setError, setLoading, router)
+    handleLoginSubmit(event, setSuccess, setError, setLoading, router,next)
   }
 
   return (

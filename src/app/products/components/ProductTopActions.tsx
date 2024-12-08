@@ -58,8 +58,7 @@ export default function ProductTopActions({ product, role }: { product: any, rol
                         router.refresh();
                     } else {
                         // savePathLink()
-                        window.sessionStorage.setItem('next', goToSavedLinkpath(1) as string)
-                        router.push('/auth/signin')
+                        router.push('/auth/signin?next='+goToSavedLinkpath(''));
                     }
 
                 }}

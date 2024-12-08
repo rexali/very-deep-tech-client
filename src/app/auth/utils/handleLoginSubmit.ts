@@ -13,7 +13,8 @@ export const handleLoginSubmit = (
     setLoginSuccess: Function,
     setLoginError: Function,
     setLoading: Function,
-    router: any
+    router: any,
+    next:any
 ) => {
     // prevent defaut behaviour
     event.preventDefault();
@@ -35,7 +36,7 @@ export const handleLoginSubmit = (
                     if (result.data.token) {
                         // redirect user to a given url
                         // window.location.assign('/users');
-                        router.push('/');
+                            router.push('/');             
                     } else {
                         // window.location.assign('/');
                         router.push('/auth/signin');
