@@ -42,7 +42,7 @@ export default function UserCarts(props: any) {
   return (
     <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }}>
       <React.Suspense fallback={<Fallback />} >
-        <ProductList products={props.cart || data} />
+        <ProductList products={data} />
       </React.Suspense>
       <Box marginTop={4} display={"flex"} justifyContent={'center'} >
         <ReactPagination
