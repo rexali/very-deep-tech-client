@@ -2,7 +2,6 @@
 
 import SignIn from "@/app/auth/signin/page";
 import { useAuth } from "@/hooks/use-auth";
-import { goToSavedLinkpath } from "@/utils/goToSavedLinkPath";
 import { useRouter } from "next/navigation";
 
 const ProtectedRoute = ({ children }: { children: any }) => {
@@ -12,16 +11,13 @@ const ProtectedRoute = ({ children }: { children: any }) => {
 
     if (role === 'admin' && token && _id !== null) {
 
-        router.push('/admins');
+        return children
     } else if (role === 'user' && token && _id !== null) {
 
-        router.push('/users');
-    } else {
-
-        router.push('/auth/signin');
+        return children
     }
 
-    return children
+    return router.push('/auth/signin');
 
 }
 

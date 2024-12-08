@@ -10,6 +10,7 @@ import Fallback from "@/components/common/fallback";
 import { getCategoriesAPI } from "./api/getCategoriesAPI";
 import DesktopProductCategories from "./DesktopProductCategories";
 import { useMediaQuery } from "react-responsive";
+import SearchInput from "../search/SearchInput";
 
 export default function ProductsPage() {
 
@@ -39,7 +40,7 @@ export default function ProductsPage() {
       <h3 style={{ display: 'flex', flexDirection: 'row', justifyContent: "space-between" }}>
         Products
       </h3>
-      <ProductCategories categoryData={categoryData} />
+      <SearchInput />
       <Box marginTop={4} display={"flex"} flexDirection={'row'} justifyContent={'center'} >
         {!isMobile && <DesktopProductCategories categoryData={categoryData} />}
         <ProductList products={products} />

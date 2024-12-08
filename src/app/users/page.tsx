@@ -48,13 +48,7 @@ export default function UserTabs() {
 
 
     useEffect(() => {
-        if (mountRef.current) {
             getData();
-
-            return () => {
-                mountRef.current = false;
-            }
-        }
     }, [getData]);
 
     return (

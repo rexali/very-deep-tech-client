@@ -8,16 +8,14 @@ const getUserCartsAPI = async (userId: string, page: number = 1) => {
             return [];
         }
         let carts = data.data?.carts;
-        let newcarts = carts.map((cart: any) => {
-            return {
-                ...cart,
-                product: {
-                    ...cart.product,
-                    cartId: cart._id,
-                    cartQuantity: cart.quantity
-                }
+        let newcarts = carts.map((cart: any) => ({
+            ...cart,
+            product: {
+                ...cart.product,
+                cartId: cart._id,
+                cartQuantity: cart.quantity
             }
-        });
+        }));
 
 
         return newcarts.map((cart: any) => cart.product);

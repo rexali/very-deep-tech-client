@@ -19,15 +19,18 @@ export default function CartPage() {
 
   const userId = user?._id as unknown as string || getToken('_id') as string;
 
-  const getData = useCallback(async () => {
-    let userCarts = await getUserCartsAPI(userId);
-    setData(userCarts);
-    dispatch(getCarts(userCarts));
-  }, [userId, dispatch])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  async function getData(id: string) {
+    const products = await getUserCartsAPI(id);
+    setData(products);
+    dispatch(getCarts(products));
+  }
 
   useEffect(() => {
-    getData();
-  }, [getData])
+
+    getData(userId);
+
+  }, [getData, userId]);
 
 
   if (!data?.length) {
