@@ -18,7 +18,7 @@ export default function DesktopProductFiler({ categoryData }: { categoryData: an
                             <Card sx={{ maxWidth: '100%', MaxHeight: '100%', textAlign: 'center', alignSelf: 'center' }}>
                                 <CardContent>
                                     <Button sx={{ fontSize: 11, color: 'white' }}>
-
+                                       
                                     </Button>
                                 </CardContent>
                             </Card>
