@@ -35,8 +35,8 @@ export default async function RootLayout({
           <AppProvider>
             <React.Suspense fallback={<HomeFallback />}>
               <NavBar categoryData={initialData?.categoryData} />
-              {/* {children} */}
-              <HomePage data={initialData} />
+              {children}
+              {/* <HomePage data={initialData} /> */}
               <BottomNavigation />
               <BottomNavbar />
             </React.Suspense>
