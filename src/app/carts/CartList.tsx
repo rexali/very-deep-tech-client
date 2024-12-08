@@ -87,8 +87,7 @@ export default function CartList(props: any) {
                 transactionData
             );
         } else {
-            window.sessionStorage.setItem('next', goToSavedLinkpath() as string);
-            router.replace('/auth/signin');
+            router.replace('/auth/signin?next='+goToSavedLinkpath());
         }
     }
 
@@ -103,19 +102,19 @@ export default function CartList(props: any) {
  
                 <Grid item xs={12} md={8} sx={{ marginTop: 1 }}>
                     <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                        {props.products.map((product: any) => {
-                            return <Grid key={product._id} item xs={12} md={6}><CartCard product={product} refreshCart={props.refreshCart} /></Grid>
+                        {props?.products.map((product: any) => {
+                            return <Grid key={product._id} item xs={12} md={6}><CartCard product={product} refreshCart={props?.refreshCart} /></Grid>
                         })}
                     </Grid>
                     <Box marginTop={4} display={"flex"} justifyContent={'center'} >
                         <ReactPagination
-                            activePage={props.activePage}
+                            activePage={props?.activePage}
                             itemsCountPerPage={4}
-                            totalItemsCount={props.totalCarts}
+                            totalItemsCount={props?.totalCarts}
                             pageRangeDisplayed={5}
-                            onchangeCallback={(v: any) => props.setActivePage(v)} />
+                            onchangeCallback={(v: any) => props?.setActivePage(v)} />
                     </Box>
-                    <ClearCartButton refreshCart={props.refreshCart} />
+                    <ClearCartButton refreshCart={props?.refreshCart} />
                 </Grid>
 
                 <Grid item xs={12} md={4} sx={{ marginTop: 1 }}>
