@@ -9,7 +9,7 @@ export default function TopbarFilter() {
     const handleFilter = (query: string) => {
         switch (query) {
             case 'Low':
-
+                alert(query);
                 break;
             case 'High':
 
@@ -23,7 +23,6 @@ export default function TopbarFilter() {
             default:
 
                 break;
-
         }
     }
 
@@ -34,11 +33,13 @@ export default function TopbarFilter() {
                 <Select
                     labelId='sort'
                     id='sortitem'
+                    size='small'
                     value={query}
                     label={'Sort'}
                     onChange={(event) => {
                         const { name, value } = event.target;
-                        setQuery(value)
+                        setQuery(value);
+                        handleFilter(query);
                     }}
                 // sx={{ height: 20 }}
                 >

@@ -17,10 +17,10 @@ export default function DesktopProductCategories(props: any) {
     return (
         <ErrorBoundary>
             <Container maxWidth="md" component={'main'} sx={{ mt: 5 }}>
-                <h3>Categories</h3>
+                <p>Categories</p>
                 {categoriex.map((catx: any, i: number) => {
                     return (
-                        <Link key={i} style={{ textDecoration: 'none', display: 'block' }} href={`/category/?term=${catx.toLowerCase()}`}>
+                        <Link key={i} style={{ textDecoration: 'none', display: 'block', margin: 2 }} href={`/category/?term=${catx.toLowerCase()}`}>
                             <Card sx={{ backgroundColor: 'green', maxWidth: '100%', MaxHeight: '100%', textAlign: 'center', alignSelf: 'center' }}>
                                 <CardContent>
                                     <Button sx={{ fontSize: 11, color: 'white' }}>
@@ -30,7 +30,7 @@ export default function DesktopProductCategories(props: any) {
                             </Card>
                         </Link>
                     )
-                   })
+                })
                 }
 
             </Container>

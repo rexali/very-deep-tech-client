@@ -5,11 +5,14 @@ import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mu
 
 export default function SidebarFilter() {
     const [range, setRange] = useState<string>('');
-    const prices = range.split('-').map(price=>price.trim());
+    const prices = range.split('-').map(price => price.trim()).filter(price => price !== '');
+    const handlePriceRange = (prices: any) => {
+        alert(prices[0]);
+    }
 
     return (
         <ErrorBoundary>
-            <FormControl>
+            <FormControl sx={{ m: 2 }}>
                 <FormLabel id='payment_method'>Price Range</FormLabel>
                 <RadioGroup
                     aria-labelledby='demo-controlled-radio-button-group'
@@ -18,6 +21,7 @@ export default function SidebarFilter() {
                     onChange={(evt) => {
                         const { value } = evt.target;
                         setRange(value);
+                        handlePriceRange(prices);
                     }}
                 >
                     <FormControlLabel value={'0-5000'} control={<Radio />} label='N 0 - 5000'></FormControlLabel>

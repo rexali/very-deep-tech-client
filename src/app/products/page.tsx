@@ -37,7 +37,7 @@ export default function ProductsPage() {
 
 
   return (
-    <Container maxWidth="lg" component={'main'} sx={{ mt: 5 }} >
+    <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }} >
       <h3 style={{ display: 'flex', flexDirection: 'row', justifyContent: "space-between" }}>
         Products <TopbarFilter />
       </h3>
