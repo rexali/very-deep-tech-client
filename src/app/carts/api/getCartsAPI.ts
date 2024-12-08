@@ -12,6 +12,15 @@ const getCartsAPI = async (page: number = 1) => {
                 'Content-Type': 'application/json',
             },
         });
+        
+        if (data.data === null) {
+            return [];
+        }
+
+        if (!data.data?.carts?.length) {
+            return [];
+        }
+
         let newcarts = data.data?.carts.map((cart: any) => {
             return {
                 ...cart,

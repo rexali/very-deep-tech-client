@@ -17,6 +17,10 @@ const getUserCartsAPI = async (userId: string, page: number = 1) => {
             return [];
         }
 
+        if (!data.data?.carts?.length ) {
+            return [];
+        }
+
         let newcarts = data.data?.carts.map((cart: any) => {
             return {
                 ...cart,
