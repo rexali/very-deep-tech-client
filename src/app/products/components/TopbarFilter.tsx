@@ -6,6 +6,27 @@ import { Select, FormControl, InputLabel, MenuItem } from '@mui/material';
 export default function TopbarFilter() {
     const [query, setQuery] = useState('');
 
+    const handleFilter = (query: string) => {
+        switch (query) {
+            case 'Low':
+
+                break;
+            case 'High':
+
+                break;
+            case 'A-Z':
+
+                break;
+            case 'Z-A':
+
+                break;
+            default:
+
+                break;
+
+        }
+    }
+
     return (
         <ErrorBoundary>
             <FormControl>
@@ -19,7 +40,7 @@ export default function TopbarFilter() {
                         const { name, value } = event.target;
                         setQuery(value)
                     }}
-                    // sx={{ height: 20 }}
+                // sx={{ height: 20 }}
                 >
                     <MenuItem>Low</MenuItem>
                     <MenuItem>High</MenuItem>

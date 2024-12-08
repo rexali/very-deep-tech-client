@@ -1,10 +1,12 @@
 'use client'
 import ErrorBoundary from '@/components/ErrorBoundary';
 import React, { useState } from 'react';
-import { Checkbox, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material';
+import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material';
 
 export default function SidebarFilter() {
-    const [range, setRange] = useState<any>(0);
+    const [range, setRange] = useState<string>('');
+    const prices = range.split('-').map(price=>price.trim());
+
     return (
         <ErrorBoundary>
             <FormControl>

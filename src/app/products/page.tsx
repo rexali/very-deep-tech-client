@@ -42,7 +42,7 @@ export default function ProductsPage() {
         Products <TopbarFilter />
       </h3>
       <SearchInput />
-      <Box marginTop={4} display={"flex"} flexDirection={'row'} justifyContent={'center'} >
+      <Box marginTop={4} display={"flex"} flexDirection={'row'} justifyContent={'space-between'} >
         <Box>
           {!isMobile && <DesktopProductCategories categoryData={categoryData} />}
           {!isMobile && <SidebarFilter />}

@@ -30,7 +30,7 @@ export default function DesktopProductCategories(props: any) {
                             </Card>
                         </Link>
                     )
-                })
+                   })
                 }
 
             </Container>
