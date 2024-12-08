@@ -19,17 +19,17 @@ import NewProducts from './products/NewProducts';
 import { getInitialDataAPI } from './api/getInitialDataAPI';
 import ProductCategories from './products/ProductCategory';
 
-export default async function HomePage() {
+export default async function HomePage(props:any) {
   // const isMobile = useMediaQuery({ maxDeviceWidth: 1023 });
-  let data = await getInitialDataAPI() ?? {};
+  // let data = await getInitialDataAPI() ?? {};
 
   return (
     <main>
       {/* <CssBaseline /> */}
       <SearchInput />
-      <ProductCategories categoryData={data?.categoryData} /><br />
+      <ProductCategories categoryData={props.data?.categoryData} /><br />
       <MarketingMessage /> <br />
-      <FeaturedProducts products={data?.featuredData} />
+      <FeaturedProducts products={props.data?.featuredData} />
       <Box margin={2} padding={2} display={"flex"} justifyContent={'center'}>
         <Link
           style={{ textDecoration: "none", color: 'green' }}
@@ -40,7 +40,7 @@ export default async function HomePage() {
           View all
         </Link>
       </Box>
-      <PopularProducts products={data?.popularData} />
+      <PopularProducts products={props.data?.popularData} />
       <Box marginTop={2} padding={2} display={"flex"} justifyContent={'center'}>
         <Link
           style={{ textDecoration: "none", color: 'green' }}
@@ -62,7 +62,7 @@ export default async function HomePage() {
           View all
         </Link>
       </Box>
-      <NewProducts products={data?.productData} />
+      <NewProducts products={props.data?.productData} />
       <Box marginTop={2} padding={2} display={"flex"} justifyContent={'center'}>
         <Link
           style={{ textDecoration: "none", color: 'green' }}
