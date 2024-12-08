@@ -13,18 +13,22 @@ export default function GlobalError({ error, reset }: { error: Error & { digest?
     }, [error])
 
     return (
-        <Container maxWidth={'md'} component={'main'} >
-            <Box sx={{ minHeight: 420, display: "flex", justifyContent: 'center', alignItems: 'center' }}>
-                <h2>Something went wrong</h2><br />
-                <p>name: {error.name}</p><br />
-                <p>message: {error.message}</p><br />
-                <Button
-                    sx={{ display: 'block' }}
-                    onClick={() => reset()}
-                >
-                    Try again
-                </Button>
-            </Box>
-        </Container>
+        <html lang="en">
+            <body>
+                <Container maxWidth={'md'} component={'main'} >
+                    <Box sx={{ minHeight: 420, display: "flex", justifyContent: 'center', alignItems: 'center' }}>
+                        <h2>Something went wrong</h2><br />
+                        <p>name: {error.name}</p><br />
+                        <p>message: {error.message}</p><br />
+                        <Button
+                            sx={{ display: 'block' }}
+                            onClick={() => reset()}
+                        >
+                            Try again
+                        </Button>
+                    </Box>
+                </Container>
+            </body>
+        </html>
     )
 }
