@@ -4,23 +4,24 @@ import React, { useState } from 'react';
 import { Select, FormControl, InputLabel, MenuItem, Box } from '@mui/material';
 
 export default function TopbarFilter() {
-    const [query, setQuery] = useState('');
+    const [query, setQuery] = useState('low');
 
-    const handleFilter = (query: string) => {
-        switch (query) {
+    const handleFilter = (event: any) => {
+        const { value }: { value: string } = event.target;
+        switch (value) {
             case 'low':
-                alert(query);
+                alert(value);
                 break;
             case 'high':
-                alert(query);
+                alert(value);
 
                 break;
             case 'ascend':
-                alert(query);
+                alert(value);
 
                 break;
             case 'descend':
-                alert(query);
+                alert(value);
 
                 break;
             default:
@@ -33,24 +34,20 @@ export default function TopbarFilter() {
         <ErrorBoundary>
             <Box sx={{ minWidth: 100 }}>
                 <FormControl>
-                    <InputLabel id='filter'>Sort</InputLabel>
+                    <InputLabel id='filterLabel'>Sort</InputLabel>
                     <Select
                         labelId='sort'
-                        id='sortitem'
+                        id='sort_item'
+                        name='sort_item'
                         size='small'
                         value={query}
                         label={'Sort'}
-                        onChange={(event) => {
-                            const { name, value } = event.target;
-                            setQuery(value);
-                            handleFilter(query);
-                        }}
-                    // sx={{ height: 20 }}
+                        onChange={handleFilter}
                     >
-                        <MenuItem value={'low'}>Low</MenuItem>
-                        <MenuItem value={'high'}>High</MenuItem>
-                        <MenuItem value={'ascend'}>A-Z</MenuItem>
-                        <MenuItem value={'descend'}>Z-A</MenuItem>
+                        <MenuItem value={'low'}>Lowest Price</MenuItem>
+                        <MenuItem value={'high'}>Highest Price</MenuItem>
+                        <MenuItem value={'ascend'}>Name (A-Z)</MenuItem>
+                        <MenuItem value={'descend'}>Name (Z-A)</MenuItem>
                     </Select>
                 </FormControl>
             </Box>

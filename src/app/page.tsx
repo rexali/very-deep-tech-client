@@ -17,6 +17,7 @@ import Box from '@mui/material/Box';
 import RecommendedProducts from './products/RecommendedProducts';
 import NewProducts from './products/NewProducts';
 import { getInitialDataAPI } from './api/getInitialDataAPI';
+import ProductCategories from './products/ProductCategory';
 
 export default async function HomePage() {
   // const isMobile = useMediaQuery({ maxDeviceWidth: 1023 });
@@ -26,7 +27,8 @@ export default async function HomePage() {
     <main>
       {/* <CssBaseline /> */}
       <SearchInput />
-      <MarketingMessage /> <br /><br />
+      <ProductCategories categoryData={data?.categoryData} /><br />
+      <MarketingMessage /> <br />
       <FeaturedProducts products={data?.featuredData} />
       <Box margin={2} padding={2} display={"flex"} justifyContent={'center'}>
         <Link

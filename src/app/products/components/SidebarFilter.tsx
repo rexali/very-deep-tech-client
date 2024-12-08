@@ -7,9 +7,8 @@ export default function SidebarFilter() {
     const [range, setRange] = useState<string>('0-5000');
 
     const handlePriceRange = (event: any) => {
-        const { value } = event.target;
-        setRange(value);
-        const prices = range.split('-').map(price => price.trim()).filter(price => price !== '');
+        const { value }: { value: string } = event.target;
+        const prices = value.split('-').map(price => price.trim()).filter(price => price !== '');
         alert(prices[0] + ', ' + prices[1]);
     }
 

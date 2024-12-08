@@ -20,14 +20,22 @@ export default function DesktopProductCategories(props: any) {
                 <p>Categories</p>
                 {categoriex.map((catx: any, i: number) => {
                     return (
-                        <Link key={i} style={{ textDecoration: 'none', display: 'block', margin: 2 }} href={`/category/?term=${catx.toLowerCase()}`}>
-                            <Card sx={{ backgroundColor: 'green', maxWidth: '100%', MaxHeight: '100%', textAlign: 'center', alignSelf: 'center' }}>
-                                <CardContent>
-                                    <Button sx={{ fontSize: 11, color: 'white' }}>
-                                        {catx}
-                                    </Button>
-                                </CardContent>
-                            </Card>
+                        <Link
+                            key={i}
+                            style={{
+                                maxWidth: '100%',
+                                maxHeight: '100%',
+                                textAlign: 'center',
+                                alignSelf: 'center',
+                                textDecoration: 'none',
+                                display: 'block',
+                                marginRight: 2,
+                                marginBottom: 1
+                            }}
+                            href={`/category/?term=${catx.toLowerCase()}`}>
+                            <Button variant='outlined' color='success'>
+                                {catx}
+                            </Button>
                         </Link>
                     )
                 })
