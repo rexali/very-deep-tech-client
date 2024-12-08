@@ -5,12 +5,13 @@ import { Box, Container } from "@mui/material";
 import ProductList from "./ProductList";
 import ReactPagination from "@/components/react-pagination";
 import { getProductsAPI } from "./api/getProductsAPI";
-import ProductCategories from "./ProductCategory";
 import Fallback from "@/components/common/fallback";
 import { getCategoriesAPI } from "./api/getCategoriesAPI";
 import DesktopProductCategories from "./DesktopProductCategories";
 import { useMediaQuery } from "react-responsive";
 import SearchInput from "../search/SearchInput";
+import TopbarFilter from "./components/TopbarFilter";
+import SidebarFilter from "./components/SidebarFilter";
 
 export default function ProductsPage() {
 
@@ -38,11 +39,15 @@ export default function ProductsPage() {
   return (
     <Container maxWidth="md" component={'main'} sx={{ mt: 10 }} >
       <h3 style={{ display: 'flex', flexDirection: 'row', justifyContent: "space-between" }}>
-        Products
+        Products <TopbarFilter />
       </h3>
       <SearchInput />
       <Box marginTop={4} display={"flex"} flexDirection={'row'} justifyContent={'center'} >
-        {!isMobile && <DesktopProductCategories categoryData={categoryData} />}
+        <Box>
+          {!isMobile && <DesktopProductCategories categoryData={categoryData} />}
+          {!isMobile && <SidebarFilter />}
+        </Box>
+
         <ProductList products={products} />
       </Box>
       <Box marginTop={4} display={"flex"} justifyContent={'center'} >
