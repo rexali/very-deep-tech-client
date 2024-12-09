@@ -36,7 +36,11 @@ export const handleLoginSubmit = (
                     if (result.data.token) {
                         // redirect user to a given url
                         // window.location.assign('/users');
+                        if(next){
+                            router.push(next);   
+                        }else{
                             router.push('/');             
+                        }
                     } else {
                         // window.location.assign('/');
                         router.push('/auth/signin');
