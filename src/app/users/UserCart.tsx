@@ -16,7 +16,7 @@ export default function UserCarts(props: any) {
   const { dispatch } = React.useContext(AppContext);
 
   const { user } = useAuth();
-  const userId = user?._id || getToken('_id') as string;
+  const userId = user?._id || getToken('_id') as string; 
   const { carts } = useUserCarts(userId, dispatch, activePage);
 
   if (!carts?.length) {

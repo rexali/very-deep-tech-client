@@ -3,7 +3,7 @@ import { SERVER_URL } from "@/constants/url";
 const getUserCartsAPI = async (userId: string, page: number = 1) => {
 
     try {
-        let data = await fetch(`${SERVER_URL}/carts/pages/` + page + '/users/' + userId).then(res => res.json());
+        let data = await fetch(`${SERVER_URL}/carts/pages/${page}/users/${userId}`).then(res => res.json());
         if (data.data === null) {
             return [];
         }
