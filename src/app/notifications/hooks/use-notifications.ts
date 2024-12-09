@@ -5,7 +5,7 @@ import { getNotifications } from '@/store/actions/app-actions';
 import axios from 'axios';
 import React, { useEffect } from 'react';
 
-export const useNotifications = (dispatch:any,pageNumber?:any) => {
+export const useNotifications = (dispatch: any, pageNumber?: any) => {
 
   const [result, setResult] = React.useState<any>([]);
 
@@ -14,9 +14,9 @@ export const useNotifications = (dispatch:any,pageNumber?:any) => {
     const getNotificationData = async () => {
 
       try {
-        let { data:{data:{notifications}} } = await axios.get(`${SERVER_URL}/notifications?page=${pageNumber}`, {
+        let { data: { data: { notifications } } } = await axios.get(`${SERVER_URL}/notifications?page=${pageNumber}`, {
           headers: {
-            'Accept':'application/json',
+            'Accept': 'application/json',
             'Content-Type': 'application/json',
           }
         });
@@ -30,7 +30,7 @@ export const useNotifications = (dispatch:any,pageNumber?:any) => {
 
     getNotificationData();
 
-  }, [dispatch,pageNumber]);
+  }, [dispatch, pageNumber]);
 
   return result;
 };

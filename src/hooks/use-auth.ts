@@ -1,13 +1,11 @@
 'use client'
 
-import { getUserCartsAPI } from '@/app/carts/api/getUserCartsAPI';
 import { signIn } from '../store/actions/auth-actions';
-import { BASE_URL, SERVER_URL } from '@/constants/url';
+import { SERVER_URL } from '@/constants/url';
 import { AuthContext } from '@/context/AuthContext';
 import { getToken } from '@/utils/getToken';
 import { saveToken } from '@/utils/saveToken';
 import React, { useState, useEffect, useContext } from 'react';
-import { getCarts } from '@/store/actions/app-actions';
 
 /**
  * Verify user authentication
@@ -19,7 +17,7 @@ export function useAuth() {
     // define user state
     const [user, setUser] = useState({
         token: "",
-        _id: null,
+        _id: "",
         email: "",
         role: "",
         photo: ""
@@ -62,8 +60,6 @@ export function useAuth() {
                     saveToken("email", res.data.email);
                     // dispatch the sign-in action 
                     dispatch(signIn({ ...res.data }));
-                    // get cartData
-                    getCartData(dispatch, res.data._id);
                 } else {
                     dispatch(signIn({}))
                 }
@@ -84,10 +80,4 @@ export function useAuth() {
         error,
         setLoggedIn
     };
-}
-
-
-async function getCartData(dispatch: any, userId: string) {
-    const carts = await getUserCartsAPI(userId);
-    dispatch(getCarts(carts));
 }

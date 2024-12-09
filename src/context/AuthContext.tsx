@@ -9,13 +9,13 @@ export const AuthContext = React.createContext<any>({});
 
 const initialState = {
     isLoading: true,
-    isSignout: false, 
+    isSignout: false,
     user: {
         token: "",
         email: "",
-        _id: null,
+        _id: "",
         role: "user",
-        photo:""
+        photo: ""
     },
 };
 
