@@ -12,7 +12,7 @@ const getFilteredProductsAPI = async (queryData: any, page: number = 1) => {
         console.warn(error);
     }
 };
-
+ 
 export {
     getFilteredProductsAPI
 }

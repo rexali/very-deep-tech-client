@@ -2,16 +2,16 @@
 import ErrorBoundary from '@/components/ErrorBoundary';
 import React, { useState } from 'react';
 import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material';
+import { getFilteredProductsAPI } from '../api/getFilteredProductsAPI';
 
-export default function SidebarFilter() {
+export default function SidebarFilter(props: any) {
     const [range, setRange] = useState<string>();
 
-    const handlePriceRange = (event: any) => {
+    const handlePriceRange = async (event: any) => {
         const { value }: { value: string } = event.target;
         const prices = value.split('-').map(price => price.trim()).filter(price => price !== '');
-        alert(prices[0] + ', ' + prices[1]);
+        props.handleSetProducts(await getFilteredProductsAPI({ filters: prices }));
     }
-
 
     return (
         <ErrorBoundary>
@@ -22,7 +22,7 @@ export default function SidebarFilter() {
                     name='price_range'
                     value={range}
                     onChange={handlePriceRange}
-                >                    
+                >
                     <FormControlLabel value={'0-5000'} control={<Radio />} label='N 0 - 5000'></FormControlLabel>
                     <FormControlLabel value={'5000-10000'} control={<Radio />} label='N 5000 - 10000'></FormControlLabel>
                     <FormControlLabel value={'10000-50000'} control={<Radio />} label='N 10000 - 50000'></FormControlLabel>

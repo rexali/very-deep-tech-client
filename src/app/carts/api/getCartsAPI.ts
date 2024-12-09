@@ -17,7 +17,7 @@ const getCartsAPI = async (page: number = 1) => {
             return [];
         }
 
-        if (!data.data?.carts?.length) {
+        if (!data.data.carts?.length) {
             return [];
         }
 

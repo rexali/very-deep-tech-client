@@ -2,32 +2,14 @@
 import ErrorBoundary from '@/components/ErrorBoundary';
 import React, { useState } from 'react';
 import { Select, FormControl, InputLabel, MenuItem, Box } from '@mui/material';
+import { getSortedProductsAPI } from '../api/getSortedProductsAPI';
 
-export default function TopbarFilter() {
+export default function TopbarFilter(props: any) {
     const [query, setQuery] = useState('');
 
-    const handleFilter = (event: any) => {
+    const handleFilter = async (event: any) => {
         const { value }: { value: string } = event.target;
-        switch (value) {
-            case 'low':
-                alert(value);
-                break;
-            case 'high':
-                alert(value);
-
-                break;
-            case 'ascend':
-                alert(value);
-
-                break;
-            case 'descend':
-                alert(value);
-
-                break;
-            default:
-
-                break;
-        }
+        props.handleSetProducts(await getSortedProductsAPI({ sort: value }));
     }
 
     return (
@@ -44,11 +26,11 @@ export default function TopbarFilter() {
                         label={'Sort'}
                         onChange={handleFilter}
                     >
-                        <MenuItem value={''}>Select</MenuItem>
-                        <MenuItem value={'low'}>Lowest Price</MenuItem>
-                        <MenuItem value={'high'}>Highest Price</MenuItem>
-                        <MenuItem value={'ascend'}>Name (A-Z)</MenuItem>
-                        <MenuItem value={'descend'}>Name (Z-A)</MenuItem>
+                        <MenuItem value={''}>Sort by</MenuItem>
+                        <MenuItem value={'low'}>Low - high Price</MenuItem>
+                        <MenuItem value={'high'}>High - low Price </MenuItem>
+                        <MenuItem value={'asc'}>Name (A-Z)</MenuItem>
+                        <MenuItem value={'desc'}>Name (Z-A)</MenuItem>
                     </Select>
                 </FormControl>
             </Box>

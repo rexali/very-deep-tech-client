@@ -14,5 +14,5 @@ const getSortedProductsAPI = async (queryData: any, page: number = 1) => {
 };
 
 export {
-    getSortedProductsAPI
+    getSortedProductsAPI 
 }

@@ -20,6 +20,10 @@ export default function ProductsPage() {
   const [categoryData, setCategoryData] = useState<any>([]);
   const isMobile = useMediaQuery({ maxDeviceWidth: 1023 });
 
+  const handleSetProducts = (value:any)=>{
+       setProducts(value)
+  }
+
 
   useEffect(() => {
     async function getData() {
@@ -39,13 +43,13 @@ export default function ProductsPage() {
   return (
     <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }} >
       <h3 style={{ display: 'flex', flexDirection: 'row', justifyContent: "space-between" }}>
-        Products <TopbarFilter />
+        Products <TopbarFilter handleSetProducts={handleSetProducts} />
       </h3>
       <SearchInput />
       <Box marginTop={4} display={"flex"} flexDirection={'row'} justifyContent={'space-between'} >
         <Box>
           {!isMobile && <DesktopProductCategories categoryData={categoryData} />}
-          {!isMobile && <SidebarFilter />}
+          {!isMobile && <SidebarFilter handleSetProducts={handleSetProducts} />}
         </Box>
         <ProductList products={products} />
       </Box>
