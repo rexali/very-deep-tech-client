@@ -33,6 +33,7 @@ export default function Notifications() {
     return (
         <ProtectedRoute>
             <Container sx={{ mt: 8 }} component={"main"} maxWidth="md">
+                <Box>Notifications</Box>
                 <Grid container columnSpacing={1} marginTop={5} display={"flex"} justifyContent={'center'}>
                     <NotificationList notifications={notifications || state?.notifications } role={user.role} />
                 </Grid>

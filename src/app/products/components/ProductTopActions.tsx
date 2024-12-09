@@ -35,7 +35,7 @@ export default function ProductTopActions({ product, role }: { product: any, rol
                 <Button
                     size="small"
                     onClick={() => {
-                        router.push(`/products/delete?productId=${product._id}&role=admin`);
+                        router.push(`/products/${product._id}/delete`);
                     }
                     }
                     startIcon={<Remove />}>

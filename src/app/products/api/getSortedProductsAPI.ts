@@ -1,11 +1,9 @@
 import { SERVER_URL } from "@/constants/url";
 
-const getSortedProductsAPI = async (queryData: any, page: number = 1) => {
+const getSortedProductsAPI = async (sort: any, page: number = 1) => {
 
     try {
-        let data = await fetch(`${SERVER_URL}/products/` + page + '/sorts',{
-            body:JSON.stringify(queryData)
-        }).then(res => res.json());
+        let data = await fetch(`${SERVER_URL}/sortings?page=${page}&sort=${sort}`).then(res => res.json());
 
         return data.data.products;
     } catch (error) {

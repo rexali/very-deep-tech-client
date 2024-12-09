@@ -1,18 +1,16 @@
 import { SERVER_URL } from "@/constants/url";
 
-const getFilteredProductsAPI = async (queryData: any, page: number = 1) => {
+const getFilteredProductsAPI = async (filters: any, page: number = 1) => {
 
     try {
-        let data = await fetch(`${SERVER_URL}/products/` + page + '/filters',{
-            body:JSON.stringify(queryData)
-        }).then(res => res.json());
+        let data = await fetch(`${SERVER_URL}/filterings?page=${page}&filter1=${filters[0]}&filter2=${filters[1]}`).then(res => res.json());
 
         return data.data.products;
     } catch (error) {
         console.warn(error);
     }
 };
- 
+
 export {
     getFilteredProductsAPI
 }

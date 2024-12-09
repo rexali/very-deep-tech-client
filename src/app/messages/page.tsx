@@ -21,18 +21,20 @@ export default function MessagesPage() {
         setActivePage(pageNumber)
     }
 
-    if (!messages.length) {
+    if (!messages?.length) {
 
         return (
-            <Container sx={{ mt: 8, minHeight: 420, display: "flex", justifyContent: 'center', alignItems: 'center' }} component={"main"} maxWidth="md">
+            <Container sx={{ mt: 8, minHeight: 520, display: "flex", justifyContent: 'center', alignItems: 'center' }} component={"main"} maxWidth="md">
                 <Box textAlign={'center'}>No message(s) found</Box>
             </Container>
         )
     }
 
+
     return (
         <ProtectedRoute>
             <Container sx={{ mt: 8 }} component={"main"} maxWidth="md">
+            <Box>Messages</Box>
                 <Grid container columnSpacing={1} marginTop={5} display={"flex"} justifyContent={'center'}>
                     <MessageList messages={messages || state.messages} role={user.role} />
                 </Grid>

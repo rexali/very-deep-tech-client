@@ -60,7 +60,7 @@ export default function ProductBottomActions({ product, role }: { product: any, 
                 {
                     (role === 'admin') && <Button
                         size="small"
-                        onClick={() => { router.push(`/products/edit?productId=${product._id}&role=admin`) }}
+                        onClick={() => { router.push(`/products/${product._id}/edit`) }}
                         startIcon={<Edit />}></Button>
                 }
                 <Button
