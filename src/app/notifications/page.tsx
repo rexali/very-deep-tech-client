@@ -9,10 +9,8 @@ import ProtectedRoute from '@/components/protected-route';
 import { useNotifications } from './hooks/use-notifications';
 import ReactPagination from '@/components/react-pagination';
 import { AppContext } from '@/context/AppContext';
-import { useAuth } from '@/hooks/use-auth';
 
-export default function Notifications() {
-    const { user } = useAuth();
+export default function NotificationsPage(props: any) {
     const [activePage, setActivePage] = React.useState(1);
     const { dispatch, state } = React.useContext(AppContext);
     const notifications = useNotifications(dispatch, activePage);
@@ -24,7 +22,7 @@ export default function Notifications() {
     if (!notifications.length) {
 
         return (
-            <Container sx={{mt:8, minHeight: 420, display: "flex", justifyContent: 'center', alignItems: 'center' }} component={"main"} maxWidth="md">
+            <Container sx={{ mt: 8, minHeight: 420, display: "flex", justifyContent: 'center', alignItems: 'center' }} component={"main"} maxWidth="md">
                 <Box textAlign={'center'}>No notification(s) found</Box>
             </Container>
         )
@@ -34,8 +32,9 @@ export default function Notifications() {
         <ProtectedRoute>
             <Container sx={{ mt: 8 }} component={"main"} maxWidth="md">
                 <Box>Notifications</Box>
+                {props.role === 'admin' && <Box>Total Notifications: {notifications[0]?.totalNotifications}</Box>}
                 <Grid container columnSpacing={1} marginTop={5} display={"flex"} justifyContent={'center'}>
-                    <NotificationList notifications={notifications || state?.notifications } role={user.role} />
+                    <NotificationList notifications={notifications || state?.notifications} role={props.role} />
                 </Grid>
             </Container>
             <Box marginTop={4} display={"flex"} justifyContent={'center'}>

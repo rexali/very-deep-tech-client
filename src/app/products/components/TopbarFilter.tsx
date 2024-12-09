@@ -9,7 +9,7 @@ export default function TopbarFilter(props: any) {
 
     const handleFilter = async (event: any) => {
         const { value }: { value: string } = event.target;
-        props.handleSetProducts(await getSortedProductsAPI(value));
+        props.handleSetProducts(await getSortedProductsAPI(value,props.activePage));
     }
 
     return (

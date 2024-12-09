@@ -10,7 +10,7 @@ type Anchor = 'top' | 'left' | 'bottom' | 'right';
 export default function SideDrawer({ children, searchCallback }: { children: any, searchCallback: any }) {
 
   const [state, setState] = React.useState({
-    top: false,
+    top: false, 
     left: false,
     bottom: false,
     right: true,

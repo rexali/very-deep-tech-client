@@ -12,6 +12,7 @@ import { useMediaQuery } from "react-responsive";
 import SearchInput from "../search/SearchInput";
 import TopbarFilter from "./components/TopbarFilter";
 import SidebarFilter from "./components/SidebarFilter";
+import SideDrawer from "@/components/common/side-drawer";
 
 export default function ProductsPage() {
 
@@ -20,8 +21,8 @@ export default function ProductsPage() {
   const [categoryData, setCategoryData] = useState<any>([]);
   const isMobile = useMediaQuery({ maxDeviceWidth: 1023 });
 
-  const handleSetProducts = (value:any)=>{
-       setProducts(value)
+  const handleSetProducts = (value: any) => {
+    setProducts(value)
   }
 
 
@@ -43,13 +44,13 @@ export default function ProductsPage() {
   return (
     <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }} >
       <h3 style={{ display: 'flex', flexDirection: 'row', justifyContent: "space-between" }}>
-        Products <TopbarFilter handleSetProducts={handleSetProducts} />
+        Products <TopbarFilter handleSetProducts={handleSetProducts} activePage={activePage} />
       </h3>
       <SearchInput />
       <Box marginTop={4} display={"flex"} flexDirection={'row'} justifyContent={'space-between'} >
         <Box>
           {!isMobile && <DesktopProductCategories categoryData={categoryData} />}
-          {!isMobile && <SidebarFilter handleSetProducts={handleSetProducts} />}
+          {!isMobile && <SidebarFilter handleSetProducts={handleSetProducts} activePage={activePage} />}
         </Box>
         <ProductList products={products} />
       </Box>

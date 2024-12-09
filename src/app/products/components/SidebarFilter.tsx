@@ -10,7 +10,7 @@ export default function SidebarFilter(props: any) {
     const handlePriceRange = async (event: any) => {
         const { value }: { value: string } = event.target;
         const prices = value.split('-').map(price => price.trim()).filter(price => price !== '');
-        props.handleSetProducts(await getFilteredProductsAPI(prices));
+        props.handleSetProducts(await getFilteredProductsAPI(prices, props.activePage));
     }
 
     return (

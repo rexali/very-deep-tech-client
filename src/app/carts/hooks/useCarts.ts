@@ -5,7 +5,7 @@ import { getCarts } from '@/store/actions/app-actions';
 import axios from 'axios';
 import React, { useEffect } from 'react';
 
-export const useCarts = (dispatch: any, pageNumber?: number) => {
+export const useCarts = (dispatch: any, pageNumber: number) => {
 
     const [carts, setCarts] = React.useState<any>([]);
 
@@ -14,15 +14,36 @@ export const useCarts = (dispatch: any, pageNumber?: number) => {
         const getCartData = async () => {
 
             try {
-                let { data: { data: { carts } } } = await axios.get(`${SERVER_URL}/carts?pages/${pageNumber}`, {
+                let { data } = await axios.get(`${SERVER_URL}/carts?page=${pageNumber}`, {
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json',
                     }
                 });
 
-                dispatch(getCarts(carts))
-                setCarts(carts);
+                if (data.data === null) {
+                    return [];
+                  }
+          
+                  if (!data.data.carts?.length) {
+                    return [];
+                  }
+          
+                  let newcarts = data.data?.carts.map((cart: any) => {
+                    return {
+                      ...cart,
+                      product: {
+                        ...cart.product,
+                        cartId: cart._id,
+                        cartQuantity: cart.quantity,
+                        totalCarts: cart.totalCarts
+                      }
+                    }
+                  });
+          
+                  const productsInCarts = newcarts.map((cart: any) => cart.product);
+                  dispatch(getCarts(productsInCarts));
+                  setCarts(productsInCarts);
 
             } catch (error) {
                 console.warn(error);

@@ -6,22 +6,15 @@ import ProductList from "../products/ProductList";
 import { getUsersCartsAPI } from "./api/getUserCarts";
 import Box from "@mui/material/Box";
 import ReactPagination from "@/components/react-pagination";
+import { useCarts } from "../carts/hooks/useCarts";
+import { AppContext } from "@/context/AppContext";
 
 export default function UsersProducts() {
-  const [data, setData] = React.useState<any>([]);
   const [activePage, setActivePage] = React.useState(1);
+  const {dispatch} = React.useContext(AppContext);
+  const {carts} = useCarts(dispatch,activePage);
 
-
-  React.useEffect(() => {
-    async function getData() {
-      const productsInCart = await getUsersCartsAPI(activePage);
-      setData(productsInCart);
-    }
-
-    getData();
-  }, [activePage]);
-
-  if (!data.length) {
+  if (!carts.length) {
 
     return (
       <Container sx={{ mt: 8 }} component={"main"} maxWidth="md">
@@ -32,13 +25,13 @@ export default function UsersProducts() {
 
   return (
     <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }}>
-      <Box>Total Carts: {data[0]?.totalCarts}</Box>
-      <ProductList products={data} />
+      <Box>Total Carts: {carts[0]?.totalCarts}</Box>
+      <ProductList products={carts} />
       <Box marginTop={4} display={"flex"} justifyContent={'center'}>
         <ReactPagination
           activePage={activePage}
           itemsCountPerPage={4}
-          totalItemsCount={data[0]?.totalCarts}
+          totalItemsCount={carts[0]?.totalCarts}
           pageRangeDisplayed={5}
           onchangeCallback={(v: any) => setActivePage(v)} />
       </Box>
