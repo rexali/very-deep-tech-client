@@ -5,32 +5,31 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import React, { useState, useEffect } from "react";
-import { handleProductEditSubmit } from "../utils/handleProductEdit.Submit";
-import { getProductAPI } from "../api/getProductAPI";
+import { handleProductEditSubmit } from "../../utils/handleProductEdit.Submit";
+import { getProductAPI } from "../../api/getProductAPI";
 import Container from "@mui/material/Container";
-import { useSearchParams } from "next/navigation";
 import Image from 'next/image';
 import { SERVER_URL } from "@/constants/url";
 import Avatar from "@mui/material/Avatar";
+import { useAuth } from "@/hooks/use-auth";
+import Typography from "@mui/material/Typography";
 
-export default function EditProduct() {
+export default function Page({ params }: { params: { productId: string } }) {
     const [data, setData] = useState<any>({});
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
     const [loading, setLoading] = React.useState('');
-    const params = useSearchParams() as any;
-    let productId = params.get('productId');
-    let role = params.get('role');
+    const { user } = useAuth();
 
     const handleSubmit = async (event: any) => {
-        if (role === 'admin') {
+        if (user?.role === 'admin') {
             setLoading('Sending data..')
             handleProductEditSubmit(
                 event,
                 setSuccess,
                 setError,
                 setLoading,
-                productId
+                params.productId
             )
         } else {
             setLoading('You are not unauthorized')
@@ -39,17 +38,20 @@ export default function EditProduct() {
 
     useEffect(() => {
         async function getData() {
-            const data = await getProductAPI(productId);
+            const data = await getProductAPI(params.productId);
             setData(data);
         }
 
         getData();
 
 
-    }, [productId])
+    }, [params.productId])
 
     return (
         <Container maxWidth="md" component={'main'} sx={{ mt: 8 }}>
+            <Typography component="h1" variant="h5">
+                Edit product
+            </Typography>
             <Box
                 component="form"
                 onSubmit={handleSubmit}

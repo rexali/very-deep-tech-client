@@ -44,6 +44,7 @@ export default function TopbarFilter() {
                         label={'Sort'}
                         onChange={handleFilter}
                     >
+                        <MenuItem value={''}>Select</MenuItem>
                         <MenuItem value={'low'}>Lowest Price</MenuItem>
                         <MenuItem value={'high'}>Highest Price</MenuItem>
                         <MenuItem value={'ascend'}>Name (A-Z)</MenuItem>

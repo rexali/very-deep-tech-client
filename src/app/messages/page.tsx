@@ -17,7 +17,6 @@ export default function MessagesPage() {
     const { state, dispatch } = React.useContext(AppContext);
     const { messages } = useMessages(dispatch, activePage);
 
-
     const handlePageChange = (pageNumber: any) => {
         setActivePage(pageNumber)
     }
@@ -25,7 +24,7 @@ export default function MessagesPage() {
     if (!messages.length) {
 
         return (
-            <Container sx={{mt:8, minHeight: 420, display: "flex", justifyContent: 'center', alignItems: 'center' }} component={"main"} maxWidth="md">
+            <Container sx={{ mt: 8, minHeight: 420, display: "flex", justifyContent: 'center', alignItems: 'center' }} component={"main"} maxWidth="md">
                 <Box textAlign={'center'}>No message(s) found</Box>
             </Container>
         )

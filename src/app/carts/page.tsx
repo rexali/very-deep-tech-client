@@ -13,9 +13,9 @@ export default function CartPage() {
 
   const [activePage, setActivePage] = useState<number>(1);
   const { dispatch } = useContext(AppContext);
-  const auth = useAuth();
-  const userId = auth.user?._id || getToken('_id') as string;
-  const { carts } = useUserCarts(dispatch, userId)
+  const {user} = useAuth();
+  const userId = user?._id || getToken('_id') as string;
+  const { carts } = useUserCarts(dispatch, userId);
 
   if (!carts?.length) {
     return <Fallback item={"No product in your cart yet"} />

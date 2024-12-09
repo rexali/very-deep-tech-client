@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material';
 
 export default function SidebarFilter() {
-    const [range, setRange] = useState<string>('');
+    const [range, setRange] = useState<string>();
 
     const handlePriceRange = (event: any) => {
         const { value }: { value: string } = event.target;

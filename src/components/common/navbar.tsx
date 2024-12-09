@@ -179,9 +179,9 @@ function NavBar(props: any) {
         </Link>}
         {/* end */}
         {/* Messages component */}
-        {!isMobile && <Link href={'/messages/user'} style={{ marginRight: 16, display: (user?._id !== null) ? '' : 'none' }} ><Message sx={{ color: "white" }} /></Link>}
+        {!isMobile && <Link href={'/messages/user'} style={{ marginRight: 16, display: user?._id ? '' : 'none' }} ><Message sx={{ color: "white" }} /></Link>}
         {/* Notification component */}
-        {!isMobile && <Link href='/notifications' style={{ marginRight: 16, display: (user?._id !== null) ? '' : 'none' }} ><Notifications sx={{ color: "white" }} /></Link>}
+        {!isMobile && <Link href='/notifications' style={{ marginRight: 16, display: user?._id ? '' : 'none' }} ><Notifications sx={{ color: "white" }} /></Link>}
         <Box sx={{ flexGrow: 0 }}>
           <Tooltip title="Open menu">
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -227,13 +227,13 @@ function NavBar(props: any) {
 
 
             {
-              user?._id !== null && <MenuItem key={"signup"} onClick={handleCloseUserMenu}>
+              user?._id && <MenuItem key={"signup"} onClick={handleCloseUserMenu}>
                 <Link style={{ textDecoration: "none" }} href={`/users`}>Account</Link>
               </MenuItem>
             }
 
             {
-              user?._id !== null && <MenuItem key={"signup"} onClick={handleCloseUserMenu}>
+              user?._id && <MenuItem key={"signup"} onClick={handleCloseUserMenu}>
                 <Link onClick={() => handleSignOut(router)} style={{ textDecoration: "none" }} href={'#'}>Logout</Link>
               </MenuItem>
             }
@@ -241,7 +241,7 @@ function NavBar(props: any) {
             {menus.map((menu, index) => (
               <MenuItem key={menu} onClick={handleCloseUserMenu}>
                 {
-                  (user?._id !== null) && <Link style={{ textDecoration: "none" }} key={index + "s"} href={`/${menu === 'Messages' ? menu.toLowerCase() + '/user' : menu.toLowerCase()}`}>{menu}</Link>
+                  user?._id && <Link style={{ textDecoration: "none" }} key={index + "s"} href={`/${menu === 'Messages' ? menu.toLowerCase() + '/user' : menu.toLowerCase()}`}>{menu}</Link>
                 }
               </MenuItem>
             ))}

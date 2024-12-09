@@ -5,18 +5,12 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Close from '@mui/icons-material/Close';
 import Remove from '@mui/icons-material/Remove';
-
 import Link from "next/link";
-import { deleteProductAPI } from "../api/deleteProductAPI";
-import { useSearchParams } from "next/navigation";
+import { deleteProductAPI } from "../../api/deleteProductAPI";
+import { useAuth } from "@/hooks/use-auth";
 
-
-export default function DeleteProduct() {
-
-    const params = useSearchParams();
-    const productId = params.get('productId') as string;
-    const role = params.get('role') as string;;
-
+export default function Page({ params }: { params: { productId: string } }) {
+    const { user } = useAuth();
 
     return (
 
@@ -31,11 +25,11 @@ export default function DeleteProduct() {
                 <Button
                     color="warning"
                     onClick={async () => {
-                        if (role === 'admin') {
-                            if (await deleteProductAPI(productId)) {
+                        if (user.role === 'admin') {
+                            if (await deleteProductAPI(params.productId)) {
                                 alert('Deleted successfully');
-                            }else{
-                              alert('Failed');
+                            } else {
+                                alert('Failed');
                             }
                         } else {
                             alert('You are not authorised')
@@ -46,7 +40,7 @@ export default function DeleteProduct() {
                     Delete
                 </Button>
 
-                <Link href={`/${params.get('path') ?? 'admins'}`} >
+                <Link href={`/${user.role === 'user' ? 'users' : 'admins'}`} >
                     <Button onClick={() => {
                     }} startIcon={<Close />} >
                         Close
