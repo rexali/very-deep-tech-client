@@ -29,8 +29,8 @@ export default function ProductCard({ product, role }: { product: any, role?: st
                 // height: 'auto' 
                 height: 80,
               }}
-              width={0}
-              height={0}
+              width={340}
+              height={140}
           />
           :
           <Image

@@ -30,14 +30,11 @@ export default function SideDrawer({ children, searchCallback }: { children: any
 
   const list = (anchor: Anchor) => (
     <Box
-      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 350 }}
+      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 'fit-content' }}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      <Box textAlign={'right'} >
-        <Button onClick={() => { toggleDrawer(anchor, false); searchCallback(false); }} startIcon={<CloseIcon />} ></Button>
-      </Box>
       {children}
     </Box>
   );
@@ -47,6 +44,15 @@ export default function SideDrawer({ children, searchCallback }: { children: any
       {(['right'] as const).map((anchor) => (
         <React.Fragment key={anchor}>
           {/* <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button> */}
+          <Box textAlign={'right'} >
+            <Button onClick={() => {
+              toggleDrawer(anchor, false);
+              searchCallback(false);
+            }
+            } startIcon={<CloseIcon />} >
+              Close
+            </Button>
+          </Box>
           <Drawer
             anchor={anchor}
             open={state[anchor]}
