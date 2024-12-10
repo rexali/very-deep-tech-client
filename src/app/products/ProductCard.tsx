@@ -12,7 +12,7 @@ import { SERVER_URL } from '@/constants/url';
 export default function ProductCard({ product, role }: { product: any, role?: string }) {
 
   return (
-    <Card sx={{ width: 345, margin: 1 }}>
+    <Card sx={{ maxWidth: 345}}>
       <ProductTopActions product={product} role={role} />
       <Link href={"/products/" + product._id}>
         {product.product_pictures?.length ?
@@ -52,7 +52,7 @@ export default function ProductCard({ product, role }: { product: any, role?: st
         <Typography gutterBottom variant="h5" component="div">
           {product.product_name ?? "Lizard"}
         </Typography>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="body2" sx={{color:'text.secondary'}}>
           N {product.product_price ?? 1000}
         </Typography>
         <Rating name="read-only" value={product?.averageRating ?? 3} readOnly />

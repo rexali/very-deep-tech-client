@@ -14,6 +14,7 @@ import { useRouter} from "next/navigation";
 import { addToWishListOrRemove } from "@/app/favourites/utils/addToWishListOrRemove";
 import { useAuth } from "@/hooks/use-auth";
 import { goToSavedLinkpath } from "@/utils/goToSavedLinkPath";
+import { CardActions } from "@mui/material";
 
 export default function ProductTopActions({ product, role }: { product: any, role?: string }) {
     const [open, setOpen] = useState(false);
@@ -28,7 +29,7 @@ export default function ProductTopActions({ product, role }: { product: any, rol
         setOpen(true)
     }
     return (
-        <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: "space-between" }}>
+        <CardActions sx={{ display: 'flex', flexDirection: 'row', justifyContent: "space-between" }}>
 
             {
                 role === 'admin' &&
@@ -68,6 +69,6 @@ export default function ProductTopActions({ product, role }: { product: any, rol
                 title: "Favourite Alert",
                 body: "Product added to wish list"
             }} closeCallback={handleOpen} />}
-        </Box>
+        </CardActions>
     )
 }

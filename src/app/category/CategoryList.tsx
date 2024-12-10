@@ -9,7 +9,7 @@ export default function CategoryList(props: any) {
 
     return (
         <div>
-            <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+            <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }} sx={{mt:5, marginLeft: "auto", marginRight: "auto"}}>
                 {products.map((product: any) => {
                     return <Grid key={product._id} item xs={12} md={6}><CategoryCard product={product} /></Grid>
                 })}

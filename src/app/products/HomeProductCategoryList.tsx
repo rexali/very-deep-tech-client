@@ -15,7 +15,7 @@ export default function HomeProductCategoryList(props: any) {
 
     return (
         <div>
-            <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} marginTop={5} display={"flex"} justifyContent={'center'}>
+            <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} sx={{mt:5, marginLeft: "auto", marginRight: "auto"}}>
                 {
                     categoriex.map((catx: any, i: number) => {
                         return (

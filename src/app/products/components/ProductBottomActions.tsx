@@ -18,6 +18,7 @@ import { getCarts } from "@/store/actions/app-actions";
 import { getToken } from "@/utils/getToken";
 import GetQouteModal from "@/app/qoutes/components/GetQuoteModal";
 import { goToSavedLinkpath } from "@/utils/goToSavedLinkPath";
+import { CardActions } from "@mui/material";
 
 
 export default function ProductBottomActions({ product, role }: { product: any, role?: string }) {
@@ -54,7 +55,7 @@ export default function ProductBottomActions({ product, role }: { product: any, 
 
     return (
         <Box>
-            <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: "space-between" }}>
+            <CardActions sx={{ display: 'flex', flexDirection: 'row', justifyContent: "space-between" }}>
                 <Button size="small" onClick={() => setOpenQoute(true)}>Get Qoutes</Button>
                 <Box display={"flex"} justifyContent={'center'}><Button size="small" id="minus" onClick={(evt) => minusToCartCount(evt)} endIcon={<Minus />} /><input disabled={true} style={{ width: 15, textAlign: 'center', borderRadius: 8 }} value={quantity} /><Button size="small" id="plus" onClick={(evt) => plusToCartCount(evt)} startIcon={<Plus />} /></Box>
                 {
@@ -86,12 +87,12 @@ export default function ProductBottomActions({ product, role }: { product: any, 
                             }
 
                         } else {
-                            router.push('/auth/signin?next='+goToSavedLinkpath(''));
+                            router.push('/auth/signin?next=' + goToSavedLinkpath(''));
                         }
 
                     }}
                     startIcon={<AddToCart />}>Add</Button>
-            </Box>
+            </CardActions>
             {open && <StatusModal message={{
                 title: "Cart Alert",
                 body: "Product added to cart successfully"
