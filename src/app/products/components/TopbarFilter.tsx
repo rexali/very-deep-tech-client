@@ -3,15 +3,26 @@ import ErrorBoundary from '@/components/ErrorBoundary';
 import React, { useState } from 'react';
 import { Select, FormControl, InputLabel, MenuItem, Box } from '@mui/material';
 import { getSortedProductsAPI } from '../api/getSortedProductsAPI';
+import SideDrawer from '@/components/common/side-drawer';
+import ProductList from '../ProductList';
+import ReactPagination from "@/components/react-pagination";
+import { useSortData } from '../hooks/useSortData';
 
 export default function TopbarFilter(props: any) {
-    const [query, setQuery] = useState('');
+    const [sort, setSort] = useState('');
+    const [activePage, setActivePage] = useState<number>(1);
+    const [open, setOpen] = useState<boolean>(false);
+    const {data} = useSortData(activePage,sort);
 
-    const handleFilter = async (event: any) => {
+    const handleFilter = (event: any) => {
         const { value }: { value: string } = event.target;
-        props.handleSetProducts(await getSortedProductsAPI(value,props.activePage));
+        setSort(value)
+        setOpen(true);
     }
 
+    const handleOpenCallback = (value: boolean) => {
+        setOpen(value);
+    }
     return (
         <ErrorBoundary>
             <Box sx={{ minWidth: 60 }}>
@@ -22,7 +33,7 @@ export default function TopbarFilter(props: any) {
                         id='sort_item'
                         name='sort_item'
                         size='small'
-                        value={query}
+                        value={sort}
                         label={'Sort'}
                         onChange={handleFilter}
                     >
@@ -34,6 +45,18 @@ export default function TopbarFilter(props: any) {
                     </Select>
                 </FormControl>
             </Box>
+            {open && <SideDrawer searchCallback={handleOpenCallback}>
+                <ProductList products={data} />
+                <Box marginTop={4} display={"flex"} justifyContent={'center'} >
+                    <ReactPagination
+                        activePage={activePage}
+                        itemsCountPerPage={4}
+                        totalItemsCount={data[0]?.totalProducts}
+                        pageRangeDisplayed={5}
+                        onchangeCallback={(v: any) => setActivePage(v)} />
+                </Box>
+            </SideDrawer>
+            }
         </ErrorBoundary>
     )
 }

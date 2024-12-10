@@ -1,16 +1,28 @@
 'use client'
 import ErrorBoundary from '@/components/ErrorBoundary';
 import React, { useState } from 'react';
-import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material';
-import { getFilteredProductsAPI } from '../api/getFilteredProductsAPI';
+import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup,Box } from '@mui/material';
+import SideDrawer from '@/components/common/side-drawer';
+import ProductList from '../ProductList';
+import ReactPagination from "@/components/react-pagination";
+import { useFilterData } from '../hooks/useFilterData';
+
 
 export default function SidebarFilter(props: any) {
-    const [range, setRange] = useState<string>();
+    const [range, setRange] = useState<string>('');
+    const [activePage, setActivePage] = useState<number>(1);
+    const [open, setOpen] = useState<boolean>(false);
+    const prices = range?.split('-').map(price => price.trim()).filter(price => price !== '');
+    const {data} = useFilterData(activePage,prices);
 
-    const handlePriceRange = async (event: any) => {
+    const handlePriceRange =(event: any) => {
         const { value }: { value: string } = event.target;
-        const prices = value.split('-').map(price => price.trim()).filter(price => price !== '');
-        props.handleSetProducts(await getFilteredProductsAPI(prices, props.activePage));
+        setRange(value);
+        setOpen(true);
+    }
+
+    const handleOpenCallback =(value:boolean)=>{
+        setOpen(value);
     }
 
     return (
@@ -30,6 +42,18 @@ export default function SidebarFilter(props: any) {
                     <FormControlLabel value={'100000-above'} control={<Radio />} label='N 100000 - above'></FormControlLabel>
                 </RadioGroup>
             </FormControl>
+            {open && <SideDrawer searchCallback={handleOpenCallback}>
+                <ProductList products={data} />
+                <Box marginTop={4} display={"flex"} justifyContent={'center'} >
+                    <ReactPagination
+                        activePage={activePage}
+                        itemsCountPerPage={4}
+                        totalItemsCount={data[0]?.totalProducts}
+                        pageRangeDisplayed={5}
+                        onchangeCallback={(v: any) => setActivePage(v)} />
+                </Box>
+            </SideDrawer>
+            }
         </ErrorBoundary>
     )
 }
