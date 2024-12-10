@@ -10,7 +10,7 @@ type Anchor = 'top' | 'left' | 'bottom' | 'right';
 export default function SideDrawer({ children, searchCallback }: { children: any, searchCallback: any }) {
 
   const [state, setState] = React.useState({
-    top: false, 
+    top: false,
     left: false,
     bottom: false,
     right: true,
@@ -32,8 +32,8 @@ export default function SideDrawer({ children, searchCallback }: { children: any
     <Box
       sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 350 }}
       role="presentation"
-    // onClick={toggleDrawer(anchor, true)}
-    // onKeyDown={toggleDrawer(anchor, true)}
+      onClick={toggleDrawer(anchor, false)}
+      onKeyDown={toggleDrawer(anchor, false)}
     >
       <Box textAlign={'right'} >
         <Button onClick={() => { toggleDrawer(anchor, false); searchCallback(false); }} startIcon={<CloseIcon />} ></Button>
