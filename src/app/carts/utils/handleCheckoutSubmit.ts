@@ -43,7 +43,6 @@ const handleCheckoutSubmit = async (
         method: payment_method.value
     }
 
-
     switch (contactData.method) {
         case 'paystack':
         case 'ussd':
@@ -82,6 +81,36 @@ const handleCheckoutSubmit = async (
             alert(
                 'Use the details below to make your payment'
             );
+            break;
+
+        case 'call-to-order':
+            await sendOrderAndTransaction(
+                orderData,
+                { ...transactionData, paymentMethod: 'Call to Order' },
+                setPostSuccess,
+                setPostError,
+                setLoading
+            );
+
+            alert(
+                'Use the details below to call us and tap checkout'
+            );
+
+            break;
+
+        case 'cash-and-carry':
+            await sendOrderAndTransaction(
+                orderData,
+                { ...transactionData, paymentMethod: 'Cash and Carry' },
+                setPostSuccess,
+                setPostError,
+                setLoading
+            );
+
+            alert(
+                'Use the detail below to visit us and tap checkout'
+            );
+
             break;
 
         default:

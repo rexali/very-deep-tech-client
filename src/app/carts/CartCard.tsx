@@ -14,12 +14,15 @@ import { SERVER_URL } from '@/constants/url';
 import { useAuth } from '@/hooks/use-auth';
 import { getToken } from '@/utils/getToken';
 import { deleteUserCartAPI } from './api/deleteUserCartAPI';
+import { AppContext } from '@/context/AppContext';
+import { getCarts } from '@/store/actions/app-actions';
+import { getUserCartsAPI } from './api/getUserCartsAPI';
 
-export default function CartCard({ product, refreshCart }: { product: any, refreshCart: any }) {
+export default function CartCard({ product }: { product: any }) {
   const [quantity, setQuantity] = React.useState<number>(product?.cartQuantity ?? 0);
-
+  const { dispatch } = React.useContext(AppContext)
   const auth = useAuth();
-  const userId = auth.user?._id as unknown as string || getToken('_id') as string;
+  const userId = auth.user?._id || getToken('_id') as string;
 
   var range = (start: number, end: number) => [...Array(end - start + 1)].map((_, i) => start + i);
 
@@ -74,10 +77,7 @@ export default function CartCard({ product, refreshCart }: { product: any, refre
           async () => {
             try {
               const cartDelete = await deleteUserCartAPI(product.cartId, userId);
-              
-              setTimeout(async () => {
-                await refreshCart();
-              }, 1000);
+              dispatch(getCarts(await getUserCartsAPI(userId, 1)));
             } catch (error) {
               console.warn(error);
             }
@@ -97,10 +97,7 @@ export default function CartCard({ product, refreshCart }: { product: any, refre
                 price: product.product_price
               });
 
-              setTimeout(async () => {
-                await refreshCart();
-              }, 1000);
-
+              dispatch(getCarts(await getUserCartsAPI(userId, 1)));
 
 
             }

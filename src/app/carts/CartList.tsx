@@ -77,7 +77,6 @@ export default function CartList(props: any) {
 
     const handleSubmit = async (event: any) => {
         if (userId) {
-            setLoading('Sending data..');
             await handleCheckoutSubmit(
                 event,
                 setSuccess,
@@ -103,7 +102,7 @@ export default function CartList(props: any) {
                 <Grid item xs={12} md={8} sx={{ marginTop: 1 }}>
                     <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                         {props?.products.map((product: any) => {
-                            return <Grid key={product._id} item xs={12} md={6}><CartCard product={product} refreshCart={props?.refreshCart} /></Grid>
+                            return <Grid key={product._id} item xs={12} md={6}><CartCard product={product} /></Grid>
                         })}
                     </Grid>
                     <Box marginTop={4} display={"flex"} justifyContent={'center'} >

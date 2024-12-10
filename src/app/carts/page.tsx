@@ -29,7 +29,6 @@ export default function CartPage() {
         activePage={activePage}
         setActivePage={setActivePage}
         totalCarts={carts[0]?.totalCarts}
-        refreshCart={undefined}
       />
     </Container>
   )

@@ -24,9 +24,11 @@ export function payWithPaystack(
         amount: amount * 100,
         // endpoint:'http://localhost:3000/webhook',
         onSuccess: async (transaction) => {
+            setLoading('Sending data..');
             try {
                 // payment complete
                 const orderId = await createOrderAPI({ ...orderData, paymentStatus: 'paid' }); // callback to handle add order and transaction data
+               
                 if (orderId) {
                     setPostSuccess("Order success");
                     setLoading('')
