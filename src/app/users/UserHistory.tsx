@@ -26,7 +26,7 @@ export default function UserHistory() {
     getData();
 
   }, [userId, activePage]);
-
+ 
   if (!data.length) {
 
     return (

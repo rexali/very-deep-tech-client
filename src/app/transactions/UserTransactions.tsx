@@ -13,10 +13,8 @@ import Link from "next/link";
 export default function UserHistory() {
     const [data, setData] = React.useState<any>([]);
     const [activePage, setActivePage] = React.useState(1);
-
-
     const auth = useAuth();
-    const userId = auth.user?._id as unknown as string || getToken('_id') as string;
+    const userId = auth.user?._id || getToken('_id') as string;
 
     React.useEffect(() => {
         async function getData() {
