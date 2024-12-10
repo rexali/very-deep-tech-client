@@ -21,15 +21,11 @@ export default function ProductCard({ product, role }: { product: any, role?: st
             alt={product.product_name}
             layout="responsive"
               style={{
-                // display: 'block',
                 marginRight: 'auto',
                 marginLeft: 'auto',
-                // width: "75%",
                 borderRadius:20,
-                // height: 'auto' 
-                // height: 80,
               }}
-              fill={true}
+              width={345}
               height={100}
           />
           :
