@@ -61,7 +61,7 @@ export default function Page() {
                 onSubmit={handleSubmit}
                 noValidate
                 sx={{ mt: 1 }}
-            >
+                >
                 <Box>
                     {data?.product_pictures[0] ? <Image
                         src={`${SERVER_URL}/uploads/${data?.product_pictures[0]}`}

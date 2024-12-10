@@ -30,37 +30,38 @@ export default function SideDrawer({ children, searchCallback }: { children: any
 
   const list = (anchor: Anchor) => (
     <Box
-      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 'fit-content' }}
+      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 360 }}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
+      <Box textAlign={'right'} >
+        <Button onClick={() => {
+          toggleDrawer(anchor, false);
+          searchCallback(false);
+        }
+        } startIcon={<CloseIcon />} >
+          Close
+        </Button>
+      </Box>
       {children}
     </Box>
   );
 
   return (
-    <div>
+    <div >
       {(['right'] as const).map((anchor) => (
-        <React.Fragment key={anchor}>
-          {/* <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button> */}
-          <Box textAlign={'right'} >
-            <Button onClick={() => {
-              toggleDrawer(anchor, false);
-              searchCallback(false);
-            }
-            } startIcon={<CloseIcon />} >
-              Close
-            </Button>
-          </Box>
-          <Drawer
-            anchor={anchor}
-            open={state[anchor]}
-            onClose={toggleDrawer(anchor, false)}
-          >
-            {list(anchor)}
-          </Drawer>
-        </React.Fragment>
+        <div key={anchor} onClick={toggleDrawer(anchor, false)}>
+          <React.Fragment  >
+            <Drawer
+              anchor={anchor}
+              open={state[anchor]}
+              onClose={toggleDrawer(anchor, false)}
+            >
+              {list(anchor)}
+            </Drawer>
+          </React.Fragment>
+        </div>
       ))}
     </div>
   );

@@ -24,13 +24,13 @@ export default function ProductCard({ product, role }: { product: any, role?: st
                 // display: 'block',
                 marginRight: 'auto',
                 marginLeft: 'auto',
-                width: "75%",
+                // width: "75%",
                 borderRadius:20,
                 // height: 'auto' 
-                height: 80,
+                // height: 80,
               }}
-              width={340}
-              height={140}
+              fill={true}
+              height={100}
           />
           :
           <Image
