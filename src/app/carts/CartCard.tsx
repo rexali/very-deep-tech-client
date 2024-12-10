@@ -28,7 +28,7 @@ export default function CartCard({ product }: { product: any }) {
 
   return (
     <Card sx={{ maxWidth: 345, margin: 1 }}>
-      <Box sx={{ display: 'flex', flexDirection: "row", justifyContent: "space-between" }}>
+      <Box sx={{ display: 'flex', flexDirection: "row", justifyContent: "space-around" }}>
         <Link href={"/products/" + product._id}>
           {product.product_pictures?.length ?
             <Image
@@ -40,6 +40,7 @@ export default function CartCard({ product }: { product: any }) {
                 marginRight: 'auto',
                 marginLeft: 'auto',
                 width: "100%",
+                borderRadius:20,
                 // height: 'auto' 
                 height: 140,
               }}

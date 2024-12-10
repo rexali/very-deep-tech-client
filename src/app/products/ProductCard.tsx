@@ -19,25 +19,29 @@ export default function ProductCard({ product, role }: { product: any, role?: st
           <Image
             src={`${SERVER_URL}/uploads/${product.product_pictures[0]}`}
             alt={product.product_name}
-            style={{
-              display:'block',
-              marginRight: 'auto',
-              marginLeft: 'auto',
-              width:'100%',
-              height:140
-            }}
-            width={0}
-            height={0}
+            layout="responsive"
+              style={{
+                display: 'block',
+                marginRight: 'auto',
+                marginLeft: 'auto',
+                width: "100%",
+                borderRadius:20,
+                // height: 'auto' 
+                height: 140,
+              }}
+              width={0}
+              height={0}
           />
           :
           <Image
             src={"https://placehold.co/600x400/orange/white"}
             alt={'photo'}
+            layout="responsive"
             style={{
               display: 'block',
               marginRight: 'auto',
               marginLeft: 'auto',
-              maxWidth: "100%",
+              width: "100%",
               // height: 'auto' 
               height: 140,
             }}
