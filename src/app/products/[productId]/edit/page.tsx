@@ -13,13 +13,17 @@ import { SERVER_URL } from "@/constants/url";
 import Avatar from "@mui/material/Avatar";
 import { useAuth } from "@/hooks/use-auth";
 import Typography from "@mui/material/Typography";
+import { usePathname } from "next/navigation";
 
-export default function Page({ params }: { params: { productId: string } }) {
+export default function Page() {
     const [data, setData] = useState<any>({});
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
     const [loading, setLoading] = React.useState('');
     const { user } = useAuth();
+    const pathname = usePathname();
+    const params = pathname.split('/').filter(param => param !== '');
+    const productId = params[1];
 
     const handleSubmit = async (event: any) => {
         if (user?.role === 'admin') {
@@ -29,7 +33,7 @@ export default function Page({ params }: { params: { productId: string } }) {
                 setSuccess,
                 setError,
                 setLoading,
-                params.productId
+                productId
             )
         } else {
             setLoading('You are not unauthorized')
@@ -38,14 +42,14 @@ export default function Page({ params }: { params: { productId: string } }) {
 
     useEffect(() => {
         async function getData() {
-            const data = await getProductAPI(params.productId);
+            const data = await getProductAPI(productId);
             setData(data);
         }
 
         getData();
 
 
-    }, [params.productId])
+    }, [productId])
 
     return (
         <Container maxWidth="md" component={'main'} sx={{ mt: 8 }}>

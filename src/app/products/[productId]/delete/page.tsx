@@ -8,8 +8,12 @@ import Remove from '@mui/icons-material/Remove';
 import Link from "next/link";
 import { deleteProductAPI } from "../../api/deleteProductAPI";
 import { useAuth } from "@/hooks/use-auth";
+import { usePathname } from "next/navigation";
 
-export default function Page({ params }: { params: { productId: string } }) {
+export default function Page() {
+    const pathname = usePathname();
+    const params = pathname.split('/').filter(param => param !== '');
+    const productId = params[1];
     const { user } = useAuth();
 
     return (
@@ -26,7 +30,7 @@ export default function Page({ params }: { params: { productId: string } }) {
                     color="warning"
                     onClick={async () => {
                         if (user.role === 'admin') {
-                            if (await deleteProductAPI(params.productId)) {
+                            if (await deleteProductAPI(productId)) {
                                 alert('Deleted successfully');
                             } else {
                                 alert('Failed');

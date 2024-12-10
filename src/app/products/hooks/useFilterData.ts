@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { SERVER_URL } from "@/constants/url";
 
 export const useFilterData = (page: number, filters: any[]) => {

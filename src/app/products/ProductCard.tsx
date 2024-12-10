@@ -24,10 +24,10 @@ export default function ProductCard({ product, role }: { product: any, role?: st
                 display: 'block',
                 marginRight: 'auto',
                 marginLeft: 'auto',
-                width: "100%",
+                width: "90%",
                 borderRadius:20,
                 // height: 'auto' 
-                height: 140,
+                height: 100,
               }}
               width={0}
               height={0}
