@@ -14,7 +14,7 @@ export default function TopbarFilter(props: any) {
 
     return (
         <ErrorBoundary>
-            <Box sx={{ minWidth: 120 }}>
+            <Box sx={{ minWidth: 60 }}>
                 <FormControl>
                     <InputLabel id='filterLabel'>Sort</InputLabel>
                     <Select

@@ -20,11 +20,14 @@ export default function ProductCard({ product, role }: { product: any, role?: st
             src={`${SERVER_URL}/uploads/${product.product_pictures[0]}`}
             alt={product.product_name}
             style={{
+              display:'block',
               marginRight: 'auto',
               marginLeft: 'auto',
+              width:'100%',
+              height:140
             }}
-            width={320}
-            height={140}
+            width={0}
+            height={0}
           />
           :
           <Image

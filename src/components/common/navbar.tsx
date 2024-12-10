@@ -132,11 +132,9 @@ function NavBar(props: any) {
                 {<Link key={index + "li"} style={{ marginLeft: "5px", textDecoration: "none" }} href={`/${page.toLowerCase()}`}>{page}</Link>}
               </MenuItem>
             ))}
-            <hr />
             <MenuItem key={"categories"}>
               CATEGORIES
             </MenuItem>
-            <hr />
             {categoriex.map((category: any, index: any) => (
               <MenuItem key={index + "me"} onClick={handleCloseNavMenu}>
                 {<Link key={index + "li"} style={{ marginLeft: "5px", textDecoration: "none" }} href={`/category/?term=${category.toLowerCase()}`}>{category}</Link>}
