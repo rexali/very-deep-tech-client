@@ -37,7 +37,7 @@ export default function DesktopProductCategories(props: any) {
 
     return (
         <ErrorBoundary>
-            <Container maxWidth="md" component={'main'} sx={{ mt: 5 }}>
+            <Container maxWidth="lg" component={'main'} sx={{ mt: 5 }}>
                 <p>Categories</p>
                 <List>
                     {renderListItems(categoriex)}

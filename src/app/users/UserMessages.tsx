@@ -25,7 +25,7 @@ export default function UserMessages() {
   if (!messages.length) {
 
     return (
-      <Container sx={{ mt: 8 }} component={"main"} maxWidth="md">
+      <Container sx={{ mt: 8 }} component={"main"} maxWidth="lg">
         <Box textAlign={'center'}>No message(s) found</Box>
       </Container>
     )

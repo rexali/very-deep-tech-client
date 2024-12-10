@@ -9,7 +9,7 @@ export default function PopularProducts({ products }: { products: any }) {
 
   return (
     <ErrorBoundary>
-      <Container maxWidth="md" component={'main'} sx={{ mt: 5 }}>
+      <Container maxWidth="lg" component={'main'} sx={{ mt: 5 }}>
         <h3>Popular</h3>
         <PopularProductList products={products} />
       </Container>

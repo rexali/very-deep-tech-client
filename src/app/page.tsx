@@ -20,7 +20,7 @@ import ProductCategories from './products/ProductCategory';
 // import { useMediaQuery } from "react-responsive";
 
 export default async function AppPage() {
-// const isMobile = useMediaQuery({ maxDeviceWidth: 1023 });
+  // const isMobile = useMediaQuery({ maxDeviceWidth: 1023 });
   let data = await getInitialDataAPI() ?? {};
 
   return (
@@ -32,7 +32,7 @@ export default async function AppPage() {
       <FeaturedProducts products={data?.featuredData} />
       <Box margin={2} padding={2} display={"flex"} justifyContent={'center'}>
         <Link
-          style={{ textDecoration: "none", color: 'green' }}
+          style={{ textDecoration: "none", color: 'green', borderColor:'green' }}
           type="button"
           color="success"
           href={`/products`}
@@ -43,7 +43,7 @@ export default async function AppPage() {
       <PopularProducts products={data?.popularData} />
       <Box marginTop={2} padding={2} display={"flex"} justifyContent={'center'}>
         <Link
-          style={{ textDecoration: "none", color: 'green' }}
+          style={{ textDecoration: "none", color: 'green',borderColor:'green' }}
           type="button"
           color="success"
           href={`/products`}
@@ -54,7 +54,7 @@ export default async function AppPage() {
       <RecommendedProducts />
       <Box marginTop={2} padding={2} display={"flex"} justifyContent={'center'}>
         <Link
-          style={{ textDecoration: "none", color: 'green' }}
+          style={{ textDecoration: "none", color: 'green', borderColor:'green' }}
           type="button"
           color="success"
           href={`/products`}
@@ -65,7 +65,7 @@ export default async function AppPage() {
       <NewProducts products={data?.productData} />
       <Box marginTop={2} padding={2} display={"flex"} justifyContent={'center'}>
         <Link
-          style={{ textDecoration: "none", color: 'green' }}
+          style={{ textDecoration: "none", color: 'green', borderColor:'green' }}
           type="button"
           color="success"
           href={`/products`}
