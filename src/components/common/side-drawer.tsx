@@ -57,6 +57,7 @@ export default function SideDrawer({ children, searchCallback }: { children: any
               anchor={anchor}
               open={state[anchor]}
               onClose={toggleDrawer(anchor, false)}
+              variant='persistent'
             >
               {list(anchor)}
             </Drawer>
