@@ -19,17 +19,27 @@ export default function ProductCard({ product, role }: { product: any, role?: st
           <Image
             src={`${SERVER_URL}/uploads/${product.product_pictures[0]}`}
             alt={product.product_name}
-            layout="responsive"
             style={{
               display: 'block',
               marginRight: 'auto',
               marginLeft: 'auto',
-              width: "100%",
+              maxWidth: "100%",
               // height: 'auto' 
               height: 140,
             }}
             width={0}
             height={0}
+            // layout="responsive"
+            // style={{
+              // display: 'block',
+              // marginRight: 'auto',
+              // marginLeft: 'auto',
+              // width: "100%",
+              // height: 'auto' 
+              // height: 140,
+            // }}
+            // width={345}
+            // height={140}
           />
           :
           <Image
@@ -39,7 +49,7 @@ export default function ProductCard({ product, role }: { product: any, role?: st
               display: 'block',
               marginRight: 'auto',
               marginLeft: 'auto',
-              width: "100%",
+              maxWidth: "100%",
               // height: 'auto' 
               height: 140,
             }}
