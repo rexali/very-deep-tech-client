@@ -63,8 +63,8 @@ export default function Page() {
                 sx={{ mt: 1 }}
             >
                 <Box>
-                    {data.product_pictures[0] ? <Image
-                        src={`${SERVER_URL}/uploads/${data.product_pictures[0]}`}
+                    {data?.product_pictures[0] ? <Image
+                        src={`${SERVER_URL}/uploads/${data?.product_pictures[0]}`}
                         alt="Account"
                         layout="responsive"
                         style={{
@@ -96,7 +96,7 @@ export default function Page() {
                 <TextField
                     name="product_photos"
                     id="product_photos"
-                    defaultValue={data?.product_pictures.join(',')}
+                    defaultValue={data?.product_pictures?.join(',')}
                     hidden
                     disabled
                 />
