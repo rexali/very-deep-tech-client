@@ -9,8 +9,12 @@ import ProductBottomActions from './components/ProductBottomActions';
 import Image from 'next/image';
 import { SERVER_URL } from '@/constants/url';
 import { CardMedia } from '@mui/material';
+import { useState } from "react";
+import placeholderImage  from '@/assets/images/cshop.png'
 
 export default function ProductCard({ product, role }: { product: any, role?: string }) {
+
+
 
   const renderImageItem = (product: any) => {
 
@@ -26,7 +30,7 @@ export default function ProductCard({ product, role }: { product: any, role?: st
               marginRight: 'auto',
               marginLeft: 'auto',
               width: "100%",
-              height: 100,
+              height: 140,
             }}
             width={0}
             height={0}
