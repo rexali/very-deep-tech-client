@@ -1,6 +1,6 @@
 'use client'
 import ErrorBoundary from '@/components/ErrorBoundary';
-import React, { useState } from 'react';
+import React, { Suspense, useState } from 'react';
 import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, Box } from '@mui/material';
 import SideDrawer from '@/components/common/side-drawer';
 import ProductList from '../ProductList';
@@ -48,10 +48,10 @@ export default function SidebarFilter(props: any) {
             {
                 open && <SideDrawer searchCallback={handleOpenCallback}>
                     <Box>Sorting result:</Box>
+                    <Suspense fallback={<Fallback />}>
+                        <ProductList products={data} />
+                    </Suspense>
 
-                    {!data?.length && <Fallback item={'No product found yet. Wait..'} />}
-
-                    <ProductList products={data} />
                     <Box marginTop={4} display={"flex"} justifyContent={'center'} >
                         <ReactPagination
                             activePage={activePage}
