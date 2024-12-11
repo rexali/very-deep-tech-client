@@ -7,12 +7,13 @@ import SideDrawer from '@/components/common/side-drawer';
 import ProductList from '../ProductList';
 import ReactPagination from "@/components/react-pagination";
 import { useSortData } from '../hooks/useSortData';
+import Fallback from '@/components/common/fallback';
 
 export default function TopbarFilter(props: any) {
     const [sort, setSort] = useState('');
     const [activePage, setActivePage] = useState<number>(1);
     const [open, setOpen] = useState<boolean>(false);
-    const {data} = useSortData(activePage,sort);
+    const { data } = useSortData(activePage, sort);
 
     const handleFilter = (event: any) => {
         const { value }: { value: string } = event.target;
@@ -46,6 +47,8 @@ export default function TopbarFilter(props: any) {
                 </FormControl>
             </Box>
             {open && <SideDrawer searchCallback={handleOpenCallback}>
+                <Box>Sorting result:</Box>
+                {!data?.length && <Fallback item={'No product found yet. Wait..'} />}
                 <ProductList products={data} />
                 <Box marginTop={4} display={"flex"} justifyContent={'center'} >
                     <ReactPagination

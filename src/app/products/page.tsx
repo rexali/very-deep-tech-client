@@ -37,7 +37,7 @@ export default function ProductsPage() {
 
 
   if (!products.length) {
-    return <Fallback item={'No product matches your search term'} />
+    return <Fallback item={'No product found yet. Wait..'} />
   }
 
 

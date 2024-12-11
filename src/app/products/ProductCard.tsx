@@ -20,17 +20,13 @@ export default function ProductCard({ product, role }: { product: any, role?: st
           <Image
             src={`${SERVER_URL}/uploads/${product.product_pictures[0]}`}
             alt={product.product_name}
-            // style={{ objectFit: 'cover' }}
-            // width={340}
-            // height={200}
-            // layout='responsive'
             layout="responsive"
             style={{
               display: 'block',
               marginRight: 'auto',
               marginLeft: 'auto',
               width: "100%",
-              height: 140,
+              height: 100,
             }}
             width={0}
             height={0}
@@ -58,18 +54,17 @@ export default function ProductCard({ product, role }: { product: any, role?: st
         marginTop: 4,
         marginLeft: "auto",
         marginRight: "auto",
-        marginBottom: 4,
-        height:200
+        marginBottom: 4
       }}
     >
       <ProductTopActions product={product} role={role} />
       {renderImageItem(product)}
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {product.product_name ?? "Lizard"}
+          {product?.product_name}
         </Typography>
         <Typography gutterBottom variant="body2" sx={{ color: 'text.secondary' }}>
-          N {product.product_price ?? 1000}
+          N {product?.product_price}
         </Typography>
         <Rating name="read-only" value={product?.averageRating ?? 3} readOnly />
       </CardContent>
