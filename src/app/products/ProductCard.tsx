@@ -21,8 +21,9 @@ export default function ProductCard({ product, role }: { product: any, role?: st
             src={`${SERVER_URL}/uploads/${product.product_pictures[0]}`}
             alt={product.product_name}
             style={{ objectFit: 'cover' }}
-            width={320}
-            height={100}
+            width={340}
+            height={200}
+            layout='responsive'
           />
         </Link>
       </CardMedia> :

@@ -14,9 +14,9 @@ import Avatar from "@mui/material/Avatar";
 import { useAuth } from "@/hooks/use-auth";
 import Typography from "@mui/material/Typography";
 import { usePathname } from "next/navigation";
+import { useProduct } from "../../hooks/useProduct";
 
 export default function Page() {
-    const [data, setData] = useState<any>({});
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
     const [loading, setLoading] = React.useState('');
@@ -24,6 +24,7 @@ export default function Page() {
     const pathname = usePathname();
     const params = pathname.split('/').filter(param => param !== '');
     const productId = params[1];
+    const {data} = useProduct(productId);
 
     const handleSubmit = async (event: any) => {
         if (user?.role === 'admin') {
@@ -39,17 +40,6 @@ export default function Page() {
             setLoading('You are not unauthorized')
         }
     };
-
-    useEffect(() => {
-        async function getData() {
-            const data = await getProductAPI(productId);
-            setData(data);
-        }
-
-        getData();
-
-
-    }, [productId])
 
     return (
         <Container maxWidth="md" component={'main'} sx={{ mt: 8 }}>
