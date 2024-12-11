@@ -10,11 +10,12 @@ import Image from 'next/image';
 import { SERVER_URL } from '@/constants/url';
 import { CardMedia } from '@mui/material';
 import { useState } from "react";
-import placeholderImage  from '@/assets/images/cshop.png'
+import placeholderImage from '@/assets/images/cshop.png'
 
 export default function ProductCard({ product, role }: { product: any, role?: string }) {
-
-
+  let src = `${SERVER_URL}/uploads/${product.product_pictures[0]}`
+  
+  const [imgSrc, setImgSrc] = useState<any>(src);
 
   const renderImageItem = (product: any) => {
 
@@ -22,7 +23,7 @@ export default function ProductCard({ product, role }: { product: any, role?: st
       <CardMedia sx={{ position: 'relative' }}>
         <Link href={"/products/" + product._id}>
           <Image
-            src={`${SERVER_URL}/uploads/${product.product_pictures[0]}`}
+            src={imgSrc}
             alt={product.product_name}
             layout="responsive"
             style={{
@@ -34,6 +35,12 @@ export default function ProductCard({ product, role }: { product: any, role?: st
             }}
             width={0}
             height={0}
+            placeholder="blur"
+            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=="
+            onError={() => {
+              setImgSrc(placeholderImage)
+            }}
+
           />
         </Link>
       </CardMedia> :
