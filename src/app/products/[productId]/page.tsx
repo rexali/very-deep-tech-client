@@ -112,9 +112,7 @@ export default async function ProductDetailPage({ params }: { params: { productI
           </Grid>
           <Grid item xs={12} md={6}>
             <CardContent style={{ height: 400, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-              <CardActions>
-                <ProductTopActions product={product} />
-              </CardActions>
+              <ProductTopActions product={product} />
               <Typography gutterBottom variant="h5" component="div">
                 <span>Name: {product.product_name ?? "Lizard"}</span>
               </Typography>
@@ -122,9 +120,7 @@ export default async function ProductDetailPage({ params }: { params: { productI
               <Typography gutterBottom variant="h5" component="div" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                 <span>Price: N {product.product_price ?? "Lizard"}</span><Link href={'tel:07016807004'} style={{ fontSize: 12, textDecoration: 'none' }}>Tel: 07016807004</Link>
               </Typography>
-              <CardActions>
-                <ProductBottomActions product={product} />
-              </CardActions>
+              <ProductBottomActions product={product} />
             </CardContent>
           </Grid>
           <Grid item xs={12} md={12}>

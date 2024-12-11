@@ -20,7 +20,7 @@ export default function ProductTopActions({ product, role }: { product: any, rol
     const [open, setOpen] = useState(false);
     const router = useRouter();
     const auth = useAuth();
-    const userId = auth.user?._id as unknown as string || getToken('_id') as string;
+    const userId = auth.user?._id || getToken('_id') as string;
 
     let likes = product?.likes ?? [];
     let userLikes = likes.map((like: any) => like?.user);
