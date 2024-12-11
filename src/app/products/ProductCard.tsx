@@ -26,6 +26,7 @@ export default function ProductCard({ product, role }: { product: any, role?: st
             // layout='responsive'
             layout="responsive"
             style={{
+              objectFit: 'cover',
               display: 'block',
               marginRight: 'auto',
               marginLeft: 'auto',
@@ -55,10 +56,10 @@ export default function ProductCard({ product, role }: { product: any, role?: st
     <Card
       sx={{
         maxWidth: "100%",
-        marginTop: 10,
+        marginTop: 4,
         marginLeft: "auto",
         marginRight: "auto",
-        marginBottom: 10
+        marginBottom: 4
       }}
     >
       <ProductTopActions product={product} role={role} />

@@ -15,6 +15,7 @@ import { useAuth } from "@/hooks/use-auth";
 import Typography from "@mui/material/Typography";
 import { usePathname } from "next/navigation";
 import { useProduct } from "../../hooks/useProduct";
+import Fallback from "@/components/common/fallback";
 
 export default function Page() {
     const [error, setError] = useState('');
@@ -24,12 +25,12 @@ export default function Page() {
     const pathname = usePathname();
     const params = pathname.split('/').filter(param => param !== '');
     const productId = params[1];
-    const {data} = useProduct(productId);
+    const { data } = useProduct(productId);
 
     const handleSubmit = async (event: any) => {
         if (user?.role === 'admin') {
             setLoading('Sending data..')
-            handleProductEditSubmit(
+            await handleProductEditSubmit(
                 event,
                 setSuccess,
                 setError,
@@ -41,6 +42,11 @@ export default function Page() {
         }
     };
 
+
+    if (!Object.keys(data)?.length) {
+        return <Fallback item={'No product details found'} />
+    }
+
     return (
         <Container maxWidth="md" component={'main'} sx={{ mt: 8 }}>
             <Typography component="h1" variant="h5">
@@ -51,7 +57,7 @@ export default function Page() {
                 onSubmit={handleSubmit}
                 noValidate
                 sx={{ mt: 1 }}
-                >
+            >
                 <Box>
                     {data?.product_pictures[0] ? <Image
                         src={`${SERVER_URL}/uploads/${data?.product_pictures[0]}`}
