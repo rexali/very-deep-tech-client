@@ -84,7 +84,6 @@ export default async function ProductDetailPage({ params }: { params: { productI
                         marginRight: 'auto',
                         marginLeft: 'auto',
                         width: "100%",
-                        // height: 'auto' 
                         height: 140,
                       }}
                       width={0}

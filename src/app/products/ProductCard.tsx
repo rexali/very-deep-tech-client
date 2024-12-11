@@ -20,10 +20,20 @@ export default function ProductCard({ product, role }: { product: any, role?: st
           <Image
             src={`${SERVER_URL}/uploads/${product.product_pictures[0]}`}
             alt={product.product_name}
-            style={{ objectFit: 'cover' }}
-            width={340}
-            height={200}
-            layout='responsive'
+            // style={{ objectFit: 'cover' }}
+            // width={340}
+            // height={200}
+            // layout='responsive'
+            layout="responsive"
+            style={{
+              display: 'block',
+              marginRight: 'auto',
+              marginLeft: 'auto',
+              width: "100%",
+              height: 140,
+            }}
+            width={0}
+            height={0}
           />
         </Link>
       </CardMedia> :
@@ -42,7 +52,15 @@ export default function ProductCard({ product, role }: { product: any, role?: st
   };
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card
+      sx={{
+        maxWidth: "100%",
+        marginTop: 10,
+        marginLeft: "auto",
+        marginRight: "auto",
+        marginBottom: 10
+      }}
+    >
       <ProductTopActions product={product} role={role} />
       {renderImageItem(product)}
       <CardContent>
