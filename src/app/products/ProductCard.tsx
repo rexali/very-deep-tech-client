@@ -30,8 +30,8 @@ export default function ProductCard({ product, role }: { product: any, role?: st
               marginRight: 'auto',
               marginLeft: 'auto',
               borderRadius:20,
-              width: "100%",
-              height: "100%",
+              width: "100vw",
+              height: "100vh",
             }}
             // sizes="(min-width:768px) 100vw, (max-width:1200px) 50vw, 33vw"
             width={0}
@@ -65,7 +65,8 @@ export default function ProductCard({ product, role }: { product: any, role?: st
         marginTop: 4,
         marginLeft: "auto",
         marginRight: "auto",
-        marginBottom: 4
+        marginBottom: 4,
+        height:200
       }}
     >
       <ProductTopActions product={product} role={role} />
