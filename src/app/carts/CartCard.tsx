@@ -7,7 +7,6 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import Image from 'next/image';
 import Link from 'next/link';
 import { updateCartAPI } from './api/updateCartAPI';
 import { SERVER_URL } from '@/constants/url';
@@ -15,11 +14,9 @@ import { useAuth } from '@/hooks/use-auth';
 import { getToken } from '@/utils/getToken';
 import { deleteUserCartAPI } from './api/deleteUserCartAPI';
 import { AppContext } from '@/context/AppContext';
-import { getCarts } from '@/store/actions/app-actions';
-import { getUserCartsAPI } from './api/getUserCartsAPI';
 import CardImage from '../products/components/CardImage';
 
-export default function CartCard({ product }: { product: any }) {
+export default function CartCard({ product, router, refreshCart }: { product: any, router: any, refreshCart: any }) {
   const [quantity, setQuantity] = React.useState<number>(product?.cartQuantity ?? 0);
   const { dispatch } = React.useContext(AppContext)
   const auth = useAuth();
@@ -32,8 +29,8 @@ export default function CartCard({ product }: { product: any }) {
       <Box sx={{ display: 'flex', flexDirection: "row", justifyContent: "space-around" }}>
         <Link href={"/products/" + product._id}>
           {product.product_pictures?.length ?
-           <CardImage 
-           src={`${SERVER_URL}/uploads/${product.product_pictures[0]}`}
+            <CardImage
+              src={`${SERVER_URL}/uploads/${product.product_pictures[0]}`}
               alt={product.product_name}
               layout="responsive"
               style={{
@@ -41,39 +38,25 @@ export default function CartCard({ product }: { product: any }) {
                 marginRight: 'auto',
                 marginLeft: 'auto',
                 width: "100%",
-                borderRadius:20,
+                borderRadius: 20,
                 // height: 'auto' 
                 height: 140,
               }}
               width={0}
               height={0}
-           
-           />
-          //  <Image
-          //     src={`${SERVER_URL}/uploads/${product.product_pictures[0]}`}
-          //     alt={product.product_name}
-          //     layout="responsive"
-          //     style={{
-          //       display: 'block',
-          //       marginRight: 'auto',
-          //       marginLeft: 'auto',
-          //       width: "100%",
-          //       borderRadius:20,
-          //       // height: 'auto' 
-          //       height: 140,
-          //     }}
-          //     width={0}
-          //     height={0}
-          //   />
+
+            />
             :
-            <Image
+            <CardImage
               src={"https://placehold.co/600x400/orange/white"}
               alt={'photo'}
+              layout="responsive"
               style={{
                 display: 'block',
                 marginRight: 'auto',
                 marginLeft: 'auto',
                 width: "100%",
+                borderRadius: 20,
                 // height: 'auto' 
                 height: 140,
               }}
@@ -96,7 +79,7 @@ export default function CartCard({ product }: { product: any }) {
           async () => {
             try {
               const cartDelete = await deleteUserCartAPI(product.cartId, userId);
-              dispatch(getCarts(await getUserCartsAPI(userId, 1)));
+              router.refresh();
             } catch (error) {
               console.warn(error);
             }
@@ -107,21 +90,23 @@ export default function CartCard({ product }: { product: any }) {
           <select onChange={
             async (evt: any) => {
               const { value } = evt.target;
-              setQuantity(value)
-              let cartUpdate = await updateCartAPI({
-                _id: product.cartId,
-                product_id: product._id,
-                user_id: userId,
-                quantity: value,
-                price: product.product_price
-              });
-
-              dispatch(getCarts(await getUserCartsAPI(userId, 1)));
-
+              setQuantity(value);
+              try {
+                let cartUpdate = await updateCartAPI({
+                  _id: product.cartId,
+                  product_id: product._id,
+                  user_id: userId,
+                  quantity: value,
+                  price: product.product_price
+                });
+                router.refresh();
+              } catch (error) {
+                console.warn(error);
+              }
 
             }
           }>
-            {range(0, Number(product?.product_quantity ?? 1)).map((v) => <option key={v} value={v}>{v}</option>)}
+            {range(0, Number(product?.product_quantity ?? 1)).slice(0, 10).map((v) => <option key={v} value={v}>{v}</option>)}
           </select>
         </label>
       </CardActions>

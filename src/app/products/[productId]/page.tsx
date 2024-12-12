@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
@@ -12,7 +11,6 @@ import Grid from '@mui/material/Grid';
 import ReviewPage from '@/app/reviews/page';
 import RatingReviewForm from '@/app/reviews/RatingReviewForm';
 import ProductTopActions from '../components/ProductTopActions';
-import Image from 'next/image';
 import ProductBottomActions from '../components/ProductBottomActions';
 import Link from 'next/link';
 import Rating from '@mui/material/Rating';
@@ -80,48 +78,13 @@ export default async function ProductDetailPage({ params }: { params: { productI
                     <CardImage
                       src={`${SERVER_URL}/uploads/${product_picture}`}
                       alt={product.product_name}
-                      // width={0}
-                      // height={0}
-                      // style={{
-                      //   display: 'block',
-                      //   marginRight: 'auto',
-                      //   marginLeft: 'auto',
-                      //   width: "100%",
-                      //   height: 245,
-                      // }}
-                      // layout="responsive"
                     />
-                    {/* <Image
-                      src={`${SERVER_URL}/uploads/${product_picture}`}
-                      alt={product.product_name}
-                      layout="responsive"
-                      style={{
-                        display: 'block',
-                        marginRight: 'auto',
-                        marginLeft: 'auto',
-                        width: "100%",
-                        height: 140,
-                      }}
-                      width={0}
-                      height={0}
-                    /> */}
                   </div>
                 ) : photos.map((photo, i) =>
                   <div key={i} style={{ display: 'inline-block', margin: 4 }}>
-                    <Image
+                    <CardImage
                       src={photo}
                       alt={'photo'}
-                      layout="responsive"
-                      style={{
-                        display: 'block',
-                        marginRight: 'auto',
-                        marginLeft: 'auto',
-                        width: "100%",
-                        // height: 'auto' 
-                        height: 250,
-                      }}
-                      width={0}
-                      height={0}
                     />
                   </div>)
               }
@@ -178,15 +141,8 @@ export default async function ProductDetailPage({ params }: { params: { productI
             </Typography>
             <Typography variant="body2" component={"div"} sx={{ color: 'text.secondary' }}>
               <React.Suspense fallback={<Fallback />}>
-                <ProductDetailsVideo src={product.product_demos_links ?? 'https://www.youtube.com/embed/tgbNymZ7vqY'} />
+                <ProductDetailsVideo src={product?.product_demos_links ?? 'https://www.youtube.com/embed/tgbNymZ7vqY'} />
               </React.Suspense>
-              {/* <iframe
-                width={420}
-                height={315}
-                src={product.product_demos_links ?? 'https://www.youtube.com/embed/tgbNymZ7vqY'}
-              >
-                Loading ....
-              </iframe> */}
             </Typography>
           </Grid>
           {/* Add multiple and scrollable images here using carousel or scrollmenu */}
@@ -214,49 +170,12 @@ export default async function ProductDetailPage({ params }: { params: { productI
                     <CardImage
                       src={product_photo}
                       alt={product.product_name}
-                      layout="responsive"
-                      style={{
-                        display: 'block',
-                        marginRight: 'auto',
-                        marginLeft: 'auto',
-                        width: "100%",
-                        // height: 'auto' 
-                        height: 140,
-                      }}
-                      width={0}
-                      height={0}
                     />
-                    {/* <Image
-                      src={product_photo}
-                      alt={product.product_name}
-                      layout="responsive"
-                      style={{
-                        display: 'block',
-                        marginRight: 'auto',
-                        marginLeft: 'auto',
-                        width: "100%",
-                        // height: 'auto' 
-                        height: 140,
-                      }}
-                      width={0}
-                      height={0}
-                    /> */}
                   </div>) : links.map((link, i) =>
                     <div key={i} style={{ display: 'inline-block', margin: 10 }}>
-                      <Image
+                      <CardImage
                         src={link}
                         alt={'link'}
-                        layout="responsive"
-                        style={{
-                          display: 'block',
-                          marginRight: 'auto',
-                          marginLeft: 'auto',
-                          width: "100%",
-                          // height: 'auto' 
-                          height: 140,
-                        }}
-                        width={0}
-                        height={0}
                       />
                     </div>)
               }
