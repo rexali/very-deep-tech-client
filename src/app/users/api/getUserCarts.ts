@@ -1,24 +1,37 @@
 import { SERVER_URL } from "@/constants/url";
+import axios from "axios";
 
 const getUserCartsAPI = async (userId: string, page: number = 1) => {
-
     try {
-        let data = await fetch(`${SERVER_URL}/carts/pages/${page}/users/${userId}`).then(res => res.json());
+        let { data } = await axios.get(`${SERVER_URL}/carts/pages/${page}/users/${userId}`, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            }
+        });
         if (data.data === null) {
             return [];
         }
-        let carts = data.data?.carts;
-        let newcarts = carts.map((cart: any) => ({
-            ...cart,
-            product: {
-                ...cart.product,
-                cartId: cart._id,
-                cartQuantity: cart.quantity
+
+        if (!data.data.carts?.length) {
+            return [];
+        }
+
+        let newcarts = data.data?.carts.map((cart: any) => {
+            return {
+                ...cart,
+                product: {
+                    ...cart.product,
+                    cartId: cart._id,
+                    cartQuantity: cart.quantity,
+                    totalCarts: cart.totalCarts
+                }
             }
-        }));
+        });
 
+        const productsInCarts = newcarts.map((cart: any) => cart.product);
 
-        return newcarts.map((cart: any) => cart.product);
+        return productsInCarts;
     } catch (error) {
         console.warn(error);
     }
