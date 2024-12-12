@@ -47,7 +47,7 @@ export default function SidebarFilter(props: any) {
             </FormControl>
             {
                 open && <SideDrawer searchCallback={handleOpenCallback} >
-                    <Box sx={{mt:10}}>
+                    <Box sx={{m:2}}>
                         Filtering result:
                         <Suspense fallback={<Fallback />}>
                             <ProductList products={data} />

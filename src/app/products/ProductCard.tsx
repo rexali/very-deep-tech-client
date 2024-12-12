@@ -26,7 +26,6 @@ export default function ProductCard({ product, role }: { product: any, role?: st
             alt={product.product_name}
             layout="responsive"
             style={{
-              display: 'block',
               marginRight: 'auto',
               marginLeft: 'auto',
               borderRadius:20,
