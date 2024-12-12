@@ -1,7 +1,8 @@
 'use client'
+import Fallback from "@/components/common/fallback";
 import { useEffect, useState } from "react";
 export function ProductDetailsVideo({ src }: { src: string }) {
-    const [videoSrc, setVideoSrc] = useState<any>();
+    const [videoSrc, setVideoSrc] = useState<any>('');
 
     useEffect(() => {
         async function getVideoSrc() {
@@ -14,6 +15,10 @@ export function ProductDetailsVideo({ src }: { src: string }) {
         }
         getVideoSrc();
     }, [src]);
+
+    if (!videoSrc) {
+        return <Fallback />
+    }
 
     return <iframe src={videoSrc} width={420} height={315} />
 }

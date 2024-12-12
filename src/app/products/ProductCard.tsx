@@ -17,7 +17,7 @@ export default function ProductCard({ product, role }: { product: any, role?: st
   const [imgSrc, setImgSrc] = React.useState<any>(src);
 
   const renderImageItem = (product: any) => {
-
+ 
     return product.product_pictures?.length ?
       <Link href={"/products/" + product._id} >
         <Image

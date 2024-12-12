@@ -80,16 +80,16 @@ export default async function ProductDetailPage({ params }: { params: { productI
                     <CardImage
                       src={`${SERVER_URL}/uploads/${product_picture}`}
                       alt={product.product_name}
-                      width={0}
-                      height={0}
-                      style={{
-                        display: 'block',
-                        marginRight: 'auto',
-                        marginLeft: 'auto',
-                        width: "100%",
-                        height: 245,
-                      }}
-                      layout="responsive"
+                      // width={0}
+                      // height={0}
+                      // style={{
+                      //   display: 'block',
+                      //   marginRight: 'auto',
+                      //   marginLeft: 'auto',
+                      //   width: "100%",
+                      //   height: 245,
+                      // }}
+                      // layout="responsive"
                     />
                     {/* <Image
                       src={`${SERVER_URL}/uploads/${product_picture}`}
