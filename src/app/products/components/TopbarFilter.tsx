@@ -47,7 +47,7 @@ export default function TopbarFilter(props: any) {
                 </FormControl>
             </Box>
             {open && <SideDrawer searchCallback={handleOpenCallback}>
-                <Box sx={{ mt: 4 }}>
+                <Box sx={{ mt: 10 }}>
                     Filtering result:
                     {!data?.length && <Fallback item={'No product found yet. Wait..'} />}
                     <ProductList products={data} />

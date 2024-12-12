@@ -35,7 +35,7 @@ export default async function ProductCard({ product, role }: { product: any, rol
               marginRight: 'auto',
               marginLeft: 'auto',
               width: "100%",
-              height: 120,
+              height: 100,
             }}
           />
           {/* <Image
@@ -82,7 +82,7 @@ export default async function ProductCard({ product, role }: { product: any, rol
         marginLeft: "auto",
         marginRight: "auto",
         marginBottom: 4,
-        height: 345
+        height: 200
       }}
     >
       <ProductTopActions product={product} role={role} />
