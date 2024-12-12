@@ -19,7 +19,7 @@ export default function ProductCard({ product, role }: { product: any, role?: st
   const renderImageItem = (product: any) => {
 
     return product.product_pictures?.length ?
-      <CardMedia sx={{ position: 'relative',width:'100%', height:140 }}>
+      <CardMedia sx={{ position: 'relative',width:'100%', height:200 }}>
         <Link href={"/products/" + product._id}>
           <Image
             src={imgSrc}
@@ -30,8 +30,8 @@ export default function ProductCard({ product, role }: { product: any, role?: st
               marginRight: 'auto',
               marginLeft: 'auto',
               borderRadius:20,
-              width: "100vw",
-              height: "100vh",
+              width: "100%",
+              objectFit:'contain'
             }}
             // sizes="(min-width:768px) 100vw, (max-width:1200px) 50vw, 33vw"
             width={0}
@@ -65,8 +65,7 @@ export default function ProductCard({ product, role }: { product: any, role?: st
         marginTop: 4,
         marginLeft: "auto",
         marginRight: "auto",
-        marginBottom: 4,
-        height:200
+        marginBottom: 4
       }}
     >
       <ProductTopActions product={product} role={role} />
