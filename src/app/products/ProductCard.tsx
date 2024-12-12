@@ -9,15 +9,12 @@ import ProductBottomActions from './components/ProductBottomActions';
 import Image from 'next/image';
 import { SERVER_URL } from '@/constants/url';
 import { CardMedia } from '@mui/material';
-import { useState } from "react";
 import placeholderImage from '@/assets/images/cshop.png'
 import CardImage from './components/CardImage';
-import { getBlurDataURL } from './utils/getBlurDataUrl';
 
-export default async function ProductCard({ product, role }: { product: any, role?: string }) {
+export default function ProductCard({ product, role }: { product: any, role?: string }) {
   let src = `${SERVER_URL}/uploads/${product.product_pictures[0]}`
   // const [imgSrc, setImgSrc] = useState<any>(src);
-  const { base64 } = await getBlurDataURL(src);
 
   const renderImageItem = (product: any) => {
 
@@ -28,7 +25,6 @@ export default async function ProductCard({ product, role }: { product: any, rol
             src={src}
             width={0}
             height={0}
-            blurData={base64}
             sizes="(min-width:768px) 100vw, (max-width:1200px) 50vw, 33vw"
             style={{
               display: 'block',
