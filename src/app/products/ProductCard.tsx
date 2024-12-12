@@ -19,22 +19,23 @@ export default function ProductCard({ product, role }: { product: any, role?: st
   const renderImageItem = (product: any) => {
 
     return product.product_pictures?.length ?
-      <CardMedia sx={{ position: 'relative' }}>
+      <CardMedia sx={{ position: 'relative',width:'100%', height:140 }}>
         <Link href={"/products/" + product._id}>
           <Image
             src={imgSrc}
             alt={product.product_name}
             layout="responsive"
             style={{
+              position:'relative'
               marginRight: 'auto',
               marginLeft: 'auto',
               borderRadius:20,
               width: "100%",
-              // height: 140,
+              height: "100%",
             }}
-            sizes="(min-width:768px) 100vw, (max-width:1200px) 50vw, 33vw"
+            // sizes="(min-width:768px) 100vw, (max-width:1200px) 50vw, 33vw"
             width={0}
-            height={140}
+            height={0}
             placeholder="blur"
             blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAVQAAABkCAYAAADZn8isAAABFElEQVR42u3UMQEAAAQAMHL4FFVYCCG8W4hlb00A8JZCBRAqgFABhAqAUAGECiBUAKECIFQAoQIIFQChAggVQKgAQgVAqABCBRAqgFABECqAUAGECoBQAYQKIFQAoQIgVAChAggVQKgACBVAqABCBUCoAEIFECqAUAEQKoBQAYQKgFABhAogVAChAiBUAKECCBVAqAAIFUCoAEIFQKgAQgUQKoBQARAqgFABhAogVACECiBUAKECIFQAoQIIFUCoAAgVQKgAQgUQqlABhAogVAChAiBUAKECCBVAqAAIFUCoAEIFQKgAQgUQKoBQARAqgFABhAogVACECiBUAKECIFQAoQIIFUCoAAgVQKgAQgUQKgA/Bz0MpgVVm/VcAAAAAElFTkSuQmCC"
             onError={() => {
