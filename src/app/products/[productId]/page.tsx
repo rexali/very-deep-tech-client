@@ -17,6 +17,8 @@ import ProductBottomActions from '../components/ProductBottomActions';
 import Link from 'next/link';
 import Rating from '@mui/material/Rating';
 import RecommendedProducts from '../RecommendedProducts';
+import CardImage from '../components/CardImage';
+import { ProductDetailsVideo } from '../components/ProductDetailsVideo';
 
 
 export const revalidate = 3600;
@@ -74,8 +76,22 @@ export default async function ProductDetailPage({ params }: { params: { productI
               {product.product_pictures?.length ?
 
                 product.product_pictures.map((product_picture: any, i: any) =>
-                  <div key={i} style={{ display: 'inline-block', margin: 10 }}>
-                    <Image
+                  <div key={i} style={{ display: 'inline-block', margin: 4 }}>
+                    <CardImage
+                      src={`${SERVER_URL}/uploads/${product_picture}`}
+                      alt={product.product_name}
+                      width={0}
+                      height={0}
+                      style={{
+                        display: 'block',
+                        marginRight: 'auto',
+                        marginLeft: 'auto',
+                        width: "100%",
+                        height: 245,
+                      }}
+                      layout="responsive"
+                    />
+                    {/* <Image
                       src={`${SERVER_URL}/uploads/${product_picture}`}
                       alt={product.product_name}
                       layout="responsive"
@@ -88,25 +104,26 @@ export default async function ProductDetailPage({ params }: { params: { productI
                       }}
                       width={0}
                       height={0}
+                    /> */}
+                  </div>
+                ) : photos.map((photo, i) =>
+                  <div key={i} style={{ display: 'inline-block', margin: 4 }}>
+                    <Image
+                      src={photo}
+                      alt={'photo'}
+                      layout="responsive"
+                      style={{
+                        display: 'block',
+                        marginRight: 'auto',
+                        marginLeft: 'auto',
+                        width: "100%",
+                        // height: 'auto' 
+                        height: 250,
+                      }}
+                      width={0}
+                      height={0}
                     />
-                  </div>) : photos.map((photo, i) =>
-                    <div key={i} style={{ display: 'inline-block', margin: 10 }}>
-                      <Image
-                        src={photo}
-                        alt={'photo'}
-                        layout="responsive"
-                        style={{
-                          display: 'block',
-                          marginRight: 'auto',
-                          marginLeft: 'auto',
-                          width: "100%",
-                          // height: 'auto' 
-                          height: 140,
-                        }}
-                        width={0}
-                        height={0}
-                      />
-                    </div>)
+                  </div>)
               }
             </Box>
           </Grid>
@@ -160,13 +177,16 @@ export default async function ProductDetailPage({ params }: { params: { productI
               Product Demo:
             </Typography>
             <Typography variant="body2" component={"div"} sx={{ color: 'text.secondary' }}>
-              <iframe
+              <React.Suspense fallback={<Fallback />}>
+                <ProductDetailsVideo src={product.product_demos_links ?? 'https://www.youtube.com/embed/tgbNymZ7vqY'} />
+              </React.Suspense>
+              {/* <iframe
                 width={420}
                 height={315}
                 src={product.product_demos_links ?? 'https://www.youtube.com/embed/tgbNymZ7vqY'}
               >
                 Loading ....
-              </iframe>
+              </iframe> */}
             </Typography>
           </Grid>
           {/* Add multiple and scrollable images here using carousel or scrollmenu */}
@@ -191,7 +211,7 @@ export default async function ProductDetailPage({ params }: { params: { productI
 
                 product.product_photos_links?.split(',').map((product_photo: any, i: any) =>
                   <div key={i} style={{ display: 'inline-block', margin: 10 }}>
-                    <Image
+                    <CardImage
                       src={product_photo}
                       alt={product.product_name}
                       layout="responsive"
@@ -206,6 +226,21 @@ export default async function ProductDetailPage({ params }: { params: { productI
                       width={0}
                       height={0}
                     />
+                    {/* <Image
+                      src={product_photo}
+                      alt={product.product_name}
+                      layout="responsive"
+                      style={{
+                        display: 'block',
+                        marginRight: 'auto',
+                        marginLeft: 'auto',
+                        width: "100%",
+                        // height: 'auto' 
+                        height: 140,
+                      }}
+                      width={0}
+                      height={0}
+                    /> */}
                   </div>) : links.map((link, i) =>
                     <div key={i} style={{ display: 'inline-block', margin: 10 }}>
                       <Image

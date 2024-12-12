@@ -17,6 +17,7 @@ import { deleteUserCartAPI } from './api/deleteUserCartAPI';
 import { AppContext } from '@/context/AppContext';
 import { getCarts } from '@/store/actions/app-actions';
 import { getUserCartsAPI } from './api/getUserCartsAPI';
+import CardImage from '../products/components/CardImage';
 
 export default function CartCard({ product }: { product: any }) {
   const [quantity, setQuantity] = React.useState<number>(product?.cartQuantity ?? 0);
@@ -31,8 +32,8 @@ export default function CartCard({ product }: { product: any }) {
       <Box sx={{ display: 'flex', flexDirection: "row", justifyContent: "space-around" }}>
         <Link href={"/products/" + product._id}>
           {product.product_pictures?.length ?
-            <Image
-              src={`${SERVER_URL}/uploads/${product.product_pictures[0]}`}
+           <CardImage 
+           src={`${SERVER_URL}/uploads/${product.product_pictures[0]}`}
               alt={product.product_name}
               layout="responsive"
               style={{
@@ -46,7 +47,24 @@ export default function CartCard({ product }: { product: any }) {
               }}
               width={0}
               height={0}
-            />
+           
+           />
+          //  <Image
+          //     src={`${SERVER_URL}/uploads/${product.product_pictures[0]}`}
+          //     alt={product.product_name}
+          //     layout="responsive"
+          //     style={{
+          //       display: 'block',
+          //       marginRight: 'auto',
+          //       marginLeft: 'auto',
+          //       width: "100%",
+          //       borderRadius:20,
+          //       // height: 'auto' 
+          //       height: 140,
+          //     }}
+          //     width={0}
+          //     height={0}
+          //   />
             :
             <Image
               src={"https://placehold.co/600x400/orange/white"}

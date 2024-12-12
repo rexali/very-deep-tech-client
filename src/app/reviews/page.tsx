@@ -5,9 +5,9 @@ import Container from "@mui/material/Container";
 export default function ReviewPage(props: any) {
 
 
-    if (!props.ratings?.length) {
+    if (!props?.ratings?.length) {
         <Container component={"main"} maxWidth="md" sx={{ mt: 8, minHeight: 420, display: "flex", justifyContent: 'center', alignItems: 'center' }}>
-            <Box textAlign={'center'}>No qoute(s) found</Box>
+            <Box textAlign={'center'}>No review(s) found</Box>
         </Container>
     }
 
