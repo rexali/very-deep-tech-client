@@ -11,18 +11,34 @@ import { SERVER_URL } from '@/constants/url';
 import { CardMedia } from '@mui/material';
 import { useState } from "react";
 import placeholderImage from '@/assets/images/cshop.png'
+import CardImage from './components/CardImage';
+import { getBlurDataURL } from './utils/getBlurDataUrl';
 
-export default function ProductCard({ product, role }: { product: any, role?: string }) {
+export default async function ProductCard({ product, role }: { product: any, role?: string }) {
   let src = `${SERVER_URL}/uploads/${product.product_pictures[0]}`
-  
-  const [imgSrc, setImgSrc] = useState<any>(src);
+  // const [imgSrc, setImgSrc] = useState<any>(src);
+  const { base64 } = await getBlurDataURL(src);
 
   const renderImageItem = (product: any) => {
 
     return product.product_pictures?.length ?
       <CardMedia sx={{ position: 'relative' }}>
         <Link href={"/products/" + product._id}>
-          <Image
+          <CardImage
+            src={src}
+            width={0}
+            height={0}
+            blurData={base64}
+            sizes="(min-width:768px) 100vw, (max-width:1200px) 50vw, 33vw"
+            style={{
+              display: 'block',
+              marginRight: 'auto',
+              marginLeft: 'auto',
+              width: "100%",
+              height: 120,
+            }}
+          />
+          {/* <Image
             src={imgSrc}
             alt={product.product_name}
             layout="responsive"
@@ -39,9 +55,9 @@ export default function ProductCard({ product, role }: { product: any, role?: st
             blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAVQAAABkCAYAAADZn8isAAABFElEQVR42u3UMQEAAAQAMHL4FFVYCCG8W4hlb00A8JZCBRAqgFABhAqAUAGECiBUAKECIFQAoQIIFQChAggVQKgAQgVAqABCBRAqgFABECqAUAGECoBQAYQKIFQAoQIgVAChAggVQKgACBVAqABCBUCoAEIFECqAUAEQKoBQAYQKgFABhAogVAChAiBUAKECCBVAqAAIFUCoAEIFQKgAQgUQKoBQARAqgFABhAogVACECiBUAKECIFQAoQIIFUCoAAgVQKgAQgUQqlABhAogVAChAiBUAKECCBVAqAAIFUCoAEIFQKgAQgUQKoBQARAqgFABhAogVACECiBUAKECIFQAoQIIFUCoAAgVQKgAQgUQKgA/Bz0MpgVVm/VcAAAAAElFTkSuQmCC"
             onError={() => {
               setImgSrc(placeholderImage)
-            }}
+            }} */}
 
-          />
+          {/* /> */}
         </Link>
       </CardMedia> :
       <CardMedia>
@@ -65,7 +81,8 @@ export default function ProductCard({ product, role }: { product: any, role?: st
         marginTop: 4,
         marginLeft: "auto",
         marginRight: "auto",
-        marginBottom: 4
+        marginBottom: 4,
+        height: 345
       }}
     >
       <ProductTopActions product={product} role={role} />

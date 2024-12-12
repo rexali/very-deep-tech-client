@@ -47,16 +47,18 @@ export default function TopbarFilter(props: any) {
                 </FormControl>
             </Box>
             {open && <SideDrawer searchCallback={handleOpenCallback}>
-                <Box>Sorting result:</Box>
-                {!data?.length && <Fallback item={'No product found yet. Wait..'} />}
-                <ProductList products={data} />
-                <Box marginTop={4} display={"flex"} justifyContent={'center'} >
-                    <ReactPagination
-                        activePage={activePage}
-                        itemsCountPerPage={4}
-                        totalItemsCount={data[0]?.totalProducts}
-                        pageRangeDisplayed={5}
-                        onchangeCallback={(v: any) => setActivePage(v)} />
+                <Box sx={{ mt: 4 }}>
+                    Filtering result:
+                    {!data?.length && <Fallback item={'No product found yet. Wait..'} />}
+                    <ProductList products={data} />
+                    <Box marginTop={4} display={"flex"} justifyContent={'center'} >
+                        <ReactPagination
+                            activePage={activePage}
+                            itemsCountPerPage={4}
+                            totalItemsCount={data[0]?.totalProducts}
+                            pageRangeDisplayed={5}
+                            onchangeCallback={(v: any) => setActivePage(v)} />
+                    </Box>
                 </Box>
             </SideDrawer>
             }

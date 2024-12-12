@@ -46,19 +46,21 @@ export default function SidebarFilter(props: any) {
                 </RadioGroup>
             </FormControl>
             {
-                open && <SideDrawer searchCallback={handleOpenCallback}>
-                    <Box>Sorting result:</Box>
-                    <Suspense fallback={<Fallback />}>
-                        <ProductList products={data} />
-                    </Suspense>
+                open && <SideDrawer searchCallback={handleOpenCallback} >
+                    <Box sx={{mt:4}}>
+                        Filtering result:
+                        <Suspense fallback={<Fallback />}>
+                            <ProductList products={data} />
+                        </Suspense>
 
-                    <Box marginTop={4} display={"flex"} justifyContent={'center'} >
-                        <ReactPagination
-                            activePage={activePage}
-                            itemsCountPerPage={4}
-                            totalItemsCount={data[0]?.totalProducts}
-                            pageRangeDisplayed={5}
-                            onchangeCallback={(v: any) => setActivePage(v)} />
+                        <Box marginTop={4} display={"flex"} justifyContent={'center'} >
+                            <ReactPagination
+                                activePage={activePage}
+                                itemsCountPerPage={4}
+                                totalItemsCount={data[0]?.totalProducts}
+                                pageRangeDisplayed={5}
+                                onchangeCallback={(v: any) => setActivePage(v)} />
+                        </Box>
                     </Box>
                 </SideDrawer>
             }
