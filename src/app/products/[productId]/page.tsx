@@ -66,7 +66,7 @@ export default async function ProductDetailPage({ params }: { params: { productI
                 whiteSpace: 'nowrap',
                 marginLeft: 'auto',
                 marginRight: 'auto',
-                textAlign: 'center',
+                textAlign: 'center', 
                 maxWidth: 'fit-content',
                 borderRadius: 15
               }}
@@ -78,6 +78,14 @@ export default async function ProductDetailPage({ params }: { params: { productI
                     <CardImage
                       src={`${SERVER_URL}/uploads/${product_picture}`}
                       alt={product.product_name}
+                      style={{
+                        display: 'block',
+                        marginRight: 'auto',
+                        marginLeft: 'auto',
+                        borderRadius: 20,
+                      }}
+                      width={345}
+                      height={245}
                     />
                   </div>
                 ) : photos.map((photo, i) =>
@@ -170,12 +178,28 @@ export default async function ProductDetailPage({ params }: { params: { productI
                     <CardImage
                       src={product_photo}
                       alt={product.product_name}
+                      style={{
+                        display: 'block',
+                        marginRight: 'auto',
+                        marginLeft: 'auto',
+                        borderRadius: 20,
+                      }}
+                      width={345}
+                      height={245}
                     />
                   </div>) : links.map((link, i) =>
                     <div key={i} style={{ display: 'inline-block', margin: 10 }}>
                       <CardImage
                         src={link}
                         alt={'link'}
+                        style={{
+                          display: 'block',
+                          marginRight: 'auto',
+                          marginLeft: 'auto',
+                          borderRadius: 20,
+                        }}
+                        width={345}
+                        height={245}
                       />
                     </div>)
               }

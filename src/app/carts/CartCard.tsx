@@ -33,12 +33,13 @@ export default function CartCard({ product, refreshCart }: { product: any, refre
             <CardImage
               src={`${SERVER_URL}/uploads/${product.product_pictures[0]}`}
               alt={product.product_name}
+              width={170}
+              height={170}
               style={{
                 borderRadius: 20,
               }}
-              width={170}
-              height={170}
             />
+
             :
             <CardImage
               src={"https://placehold.co/600x400/orange/white"}
