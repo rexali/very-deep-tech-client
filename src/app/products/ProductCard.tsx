@@ -29,12 +29,13 @@ export default function ProductCard({ product, role }: { product: any, role?: st
               display: 'block',
               marginRight: 'auto',
               marginLeft: 'auto',
+              borderRadius:20,
               width: "100%",
-              height: 100,
+              // height: 140,
             }}
             sizes="(min-width:768px) 100vw, (max-width:1200px) 50vw, 33vw"
             width={0}
-            height={0}
+            height={140}
             placeholder="blur"
             blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAVQAAABkCAYAAADZn8isAAABFElEQVR42u3UMQEAAAQAMHL4FFVYCCG8W4hlb00A8JZCBRAqgFABhAqAUAGECiBUAKECIFQAoQIIFQChAggVQKgAQgVAqABCBRAqgFABECqAUAGECoBQAYQKIFQAoQIgVAChAggVQKgACBVAqABCBUCoAEIFECqAUAEQKoBQAYQKgFABhAogVAChAiBUAKECCBVAqAAIFUCoAEIFQKgAQgUQKoBQARAqgFABhAogVACECiBUAKECIFQAoQIIFUCoAAgVQKgAQgUQqlABhAogVAChAiBUAKECCBVAqAAIFUCoAEIFQKgAQgUQKoBQARAqgFABhAogVACECiBUAKECIFQAoQIIFUCoAAgVQKgAQgUQKgA/Bz0MpgVVm/VcAAAAAElFTkSuQmCC"
             onError={() => {
@@ -64,8 +65,7 @@ export default function ProductCard({ product, role }: { product: any, role?: st
         marginTop: 4,
         marginLeft: "auto",
         marginRight: "auto",
-        marginBottom: 4,
-        height: 200
+        marginBottom: 4
       }}
     >
       <ProductTopActions product={product} role={role} />
