@@ -16,7 +16,7 @@ import { deleteUserCartAPI } from './api/deleteUserCartAPI';
 import { AppContext } from '@/context/AppContext';
 import CardImage from '../products/components/CardImage';
 
-export default function CartCard({ product, router, refreshCart }: { product: any, router: any, refreshCart: any }) {
+export default function CartCard({ product, refreshCart }: { product: any, refreshCart: any }) {
   const [quantity, setQuantity] = React.useState<number>(product?.cartQuantity ?? 0);
   const { dispatch } = React.useContext(AppContext)
   const auth = useAuth();
@@ -79,7 +79,7 @@ export default function CartCard({ product, router, refreshCart }: { product: an
           async () => {
             try {
               const cartDelete = await deleteUserCartAPI(product.cartId, userId);
-              router.refresh();
+              await refreshCart();
             } catch (error) {
               console.warn(error);
             }
@@ -99,7 +99,7 @@ export default function CartCard({ product, router, refreshCart }: { product: an
                   quantity: value,
                   price: product.product_price
                 });
-                router.refresh();
+                await refreshCart();
               } catch (error) {
                 console.warn(error);
               }

@@ -26,7 +26,7 @@ export default async function AppPage() {
   return (
     <main>
       {/* <CssBaseline /> */}
-      <SearchInput />
+      <SearchInput /> <br />
       <ProductCategories categoryData={data?.categoryData} /> <br />
       <MarketingMessage /> <br />
       <FeaturedProducts products={data?.featuredData} />
