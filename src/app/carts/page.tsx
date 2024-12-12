@@ -18,7 +18,7 @@ export default function CartPage() {
   const { user } = useAuth();
   const userId = user?._id || getToken('_id') as string;
   const { carts } = useUserCarts(userId, dispatch, activePage);
-  const [products, setProducts] = useState<Array<any>>(carts ?? []);
+  const [products, setProducts] = useState<Array<any>>(carts);
 
   const getCartData = useCallback(async () => {
     let productsInCart = await getUserCartsAPI(userId, activePage);
@@ -26,7 +26,7 @@ export default function CartPage() {
     dispatch(getCarts(productsInCart));
   }, [activePage, dispatch, userId])
 
-  if (!carts?.length) {
+  if (!products?.length) {
     return <Fallback item={"No product in your cart yet"} />
   }
 
