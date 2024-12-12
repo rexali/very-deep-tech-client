@@ -15,6 +15,7 @@ import { getToken } from '@/utils/getToken';
 import { deleteUserCartAPI } from './api/deleteUserCartAPI';
 import { AppContext } from '@/context/AppContext';
 import CardImage from '../products/components/CardImage';
+import Grid from '@mui/material/Grid';
 
 export default function CartCard({ product, refreshCart }: { product: any, refreshCart: any }) {
   const [quantity, setQuantity] = React.useState<number>(product?.cartQuantity ?? 0);
@@ -32,19 +33,11 @@ export default function CartCard({ product, refreshCart }: { product: any, refre
             <CardImage
               src={`${SERVER_URL}/uploads/${product.product_pictures[0]}`}
               alt={product.product_name}
-              layout="responsive"
               style={{
-                display: 'block',
-                marginRight: 'auto',
-                marginLeft: 'auto',
-                width: "100%",
                 borderRadius: 20,
-                // height: 'auto' 
-                height: 140,
               }}
-              width={0}
-              height={0}
-
+              width={170}
+              height={170}
             />
             :
             <CardImage
