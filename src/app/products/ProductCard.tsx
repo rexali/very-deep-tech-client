@@ -19,31 +19,30 @@ export default function ProductCard({ product, role }: { product: any, role?: st
   const renderImageItem = (product: any) => {
 
     return product.product_pictures?.length ?
-      <CardMedia sx={{ position: 'relative',width:'100%', height:200 }}>
-        <Link href={"/products/" + product._id}>
-          <Image
-            src={imgSrc}
-            alt={product.product_name}
-            layout="responsive"
-            style={{
-              position:'relative', 
-              marginRight: 'auto',
-              marginLeft: 'auto',
-              borderRadius:20,
-              width: "100%",
-              objectFit:'contain'
-            }}
-            // sizes="(min-width:768px) 100vw, (max-width:1200px) 50vw, 33vw"
-            width={0}
-            height={0}
-            placeholder="blur"
-            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAVQAAABkCAYAAADZn8isAAABFElEQVR42u3UMQEAAAQAMHL4FFVYCCG8W4hlb00A8JZCBRAqgFABhAqAUAGECiBUAKECIFQAoQIIFQChAggVQKgAQgVAqABCBRAqgFABECqAUAGECoBQAYQKIFQAoQIgVAChAggVQKgACBVAqABCBUCoAEIFECqAUAEQKoBQAYQKgFABhAogVAChAiBUAKECCBVAqAAIFUCoAEIFQKgAQgUQKoBQARAqgFABhAogVACECiBUAKECIFQAoQIIFUCoAAgVQKgAQgUQqlABhAogVAChAiBUAKECCBVAqAAIFUCoAEIFQKgAQgUQKoBQARAqgFABhAogVACECiBUAKECIFQAoQIIFUCoAAgVQKgAQgUQKgA/Bz0MpgVVm/VcAAAAAElFTkSuQmCC"
-            onError={() => {
-              setImgSrc(placeholderImage)
-            }}
-          />
-        </Link>
-      </CardMedia> :
+      <Link href={"/products/" + product._id} >
+        <Image
+          src={imgSrc}
+          alt={product.product_name}
+          layout="responsive"
+          style={{
+            position: 'relative',
+            marginRight: 'auto',
+            marginLeft: 'auto',
+            maxWidth:'100%',
+            borderRadius: 20,
+            objectFit: 'scale-down'
+          }}
+          // sizes="(min-width:768px) 100vw, (max-width:1200px) 50vw, 33vw"
+          width={0}
+          height={140}
+          placeholder="blur"
+          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAVQAAABkCAYAAADZn8isAAABFElEQVR42u3UMQEAAAQAMHL4FFVYCCG8W4hlb00A8JZCBRAqgFABhAqAUAGECiBUAKECIFQAoQIIFQChAggVQKgAQgVAqABCBRAqgFABECqAUAGECoBQAYQKIFQAoQIgVAChAggVQKgACBVAqABCBUCoAEIFECqAUAEQKoBQAYQKgFABhAogVAChAiBUAKECCBVAqAAIFUCoAEIFQKgAQgUQKoBQARAqgFABhAogVACECiBUAKECIFQAoQIIFUCoAAgVQKgAQgUQqlABhAogVAChAiBUAKECCBVAqAAIFUCoAEIFQKgAQgUQKoBQARAqgFABhAogVACECiBUAKECIFQAoQIIFUCoAAgVQKgAQgUQKgA/Bz0MpgVVm/VcAAAAAElFTkSuQmCC"
+          onError={() => {
+            setImgSrc(placeholderImage)
+          }}
+        />
+      </Link>
+      :
       <CardMedia>
         <Link href={"/products/" + product._id}>
           <Image
