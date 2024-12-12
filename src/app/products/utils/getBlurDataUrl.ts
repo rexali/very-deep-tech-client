@@ -1,3 +1,5 @@
+'use client'
+
 import {getPlaiceholder}from 'plaiceholder';
 
 export async function getBlurDataURL(src:string) {

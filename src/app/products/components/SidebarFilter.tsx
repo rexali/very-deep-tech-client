@@ -64,6 +64,6 @@ export default function SidebarFilter(props: any) {
                     </Box>
                 </SideDrawer>
             }
-        </ErrorBoundary>
+        </ErrorBoundary> 
     )
 }
