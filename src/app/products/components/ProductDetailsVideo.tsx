@@ -6,7 +6,7 @@ export function ProductDetailsVideo({ src }: { src: string }) {
 
     useEffect(() => {
         async function getVideoSrc() {
-            let response = await fetch(src);
+            let response = await fetch('https://www.youtube.com/embed/tgbNymZ7vqY');
             if (response.ok) {
                 setVideoSrc(await response.json());
             } else {
@@ -17,7 +17,7 @@ export function ProductDetailsVideo({ src }: { src: string }) {
     }, [src]);
 
     if (!videoSrc) {
-        return <Fallback />
+        return <Fallback item={'No Video Demo Now'} />
     }
 
     return <iframe src={videoSrc} width={420} height={315} />
