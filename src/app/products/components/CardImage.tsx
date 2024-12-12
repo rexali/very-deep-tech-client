@@ -25,3 +25,17 @@ export default function CardImage(props: any) {
         {...props}
     />
 }
+
+// <CardImage
+//     src={src}
+//     width={0}
+//     height={0}
+//     sizes="(min-width:768px) 100vw, (max-width:1200px) 50vw, 33vw"
+//     style={{
+//         display: 'block',
+//         marginRight: 'auto',
+//         marginLeft: 'auto',
+//         width: "100%",
+//         height: 100,
+//     }}
+// />

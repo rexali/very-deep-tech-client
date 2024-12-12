@@ -1,3 +1,4 @@
+'use client'
 import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -10,31 +11,17 @@ import Image from 'next/image';
 import { SERVER_URL } from '@/constants/url';
 import { CardMedia } from '@mui/material';
 import placeholderImage from '@/assets/images/cshop.png'
-import CardImage from './components/CardImage';
 
 export default function ProductCard({ product, role }: { product: any, role?: string }) {
   let src = `${SERVER_URL}/uploads/${product.product_pictures[0]}`
-  // const [imgSrc, setImgSrc] = useState<any>(src);
+  const [imgSrc, setImgSrc] = React.useState<any>(src);
 
   const renderImageItem = (product: any) => {
 
     return product.product_pictures?.length ?
       <CardMedia sx={{ position: 'relative' }}>
         <Link href={"/products/" + product._id}>
-          <CardImage
-            src={src}
-            width={0}
-            height={0}
-            sizes="(min-width:768px) 100vw, (max-width:1200px) 50vw, 33vw"
-            style={{
-              display: 'block',
-              marginRight: 'auto',
-              marginLeft: 'auto',
-              width: "100%",
-              height: 100,
-            }}
-          />
-          {/* <Image
+          <Image
             src={imgSrc}
             alt={product.product_name}
             layout="responsive"
@@ -43,17 +30,17 @@ export default function ProductCard({ product, role }: { product: any, role?: st
               marginRight: 'auto',
               marginLeft: 'auto',
               width: "100%",
-              height: 120,
+              height: 100,
             }}
+            sizes="(min-width:768px) 100vw, (max-width:1200px) 50vw, 33vw"
             width={0}
             height={0}
             placeholder="blur"
             blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAVQAAABkCAYAAADZn8isAAABFElEQVR42u3UMQEAAAQAMHL4FFVYCCG8W4hlb00A8JZCBRAqgFABhAqAUAGECiBUAKECIFQAoQIIFQChAggVQKgAQgVAqABCBRAqgFABECqAUAGECoBQAYQKIFQAoQIgVAChAggVQKgACBVAqABCBUCoAEIFECqAUAEQKoBQAYQKgFABhAogVAChAiBUAKECCBVAqAAIFUCoAEIFQKgAQgUQKoBQARAqgFABhAogVACECiBUAKECIFQAoQIIFUCoAAgVQKgAQgUQqlABhAogVAChAiBUAKECCBVAqAAIFUCoAEIFQKgAQgUQKoBQARAqgFABhAogVACECiBUAKECIFQAoQIIFUCoAAgVQKgAQgUQKgA/Bz0MpgVVm/VcAAAAAElFTkSuQmCC"
             onError={() => {
               setImgSrc(placeholderImage)
-            }} */}
-
-          {/* /> */}
+            }}
+          />
         </Link>
       </CardMedia> :
       <CardMedia>
