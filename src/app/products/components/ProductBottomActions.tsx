@@ -59,7 +59,7 @@ export default function ProductBottomActions({ product, role }: { product: any, 
             <CardActions sx={{ display: 'flex', flexDirection: 'row', justifyContent: "space-between" }}>
                 {/* <Button size="small" onClick={() => setOpenQoute(true)}>Get Qoutes</Button> */}
                 {/* <Button size="small" sx={{fontSize:11}}  id="minus" onClick={(evt) => minusToCartCount(evt)} endIcon={<Minus />} /><input disabled={true} style={{ width: 15, textAlign: 'center', borderRadius: 8 }} value={quantity} /><Button size="small" sx={{fontSize:11}} id="plus" onClick={(evt) => plusToCartCount(evt)} startIcon={<Plus />} /> */}
-                <span onClick={(evt) => minusToCartCount(evt)}><Minus /></span><input disabled={true} style={{ width: 15, textAlign: 'center', borderRadius: 8 }} value={quantity} /><span onClick={(evt) => plusToCartCount(evt)}><Plus /></span>
+            <Box><span onClick={(evt) => minusToCartCount(evt)}><Minus sx={{fontSize:11}} /></span><input disabled={true} style={{ width: 15, textAlign: 'center', borderRadius: 8 }} value={quantity} /><span onClick={(evt) => plusToCartCount(evt)}><Plus sx={{fontSize:11}} /></span></Box>
                 {
                     (role === 'admin') && <Button
                         size="small"
@@ -68,6 +68,7 @@ export default function ProductBottomActions({ product, role }: { product: any, 
                 }
                 <Button
                     size="small"
+                    sx={{}}
                     onClick={async () => {
                         if (userId) {
                             if (!await isAllReadyAddedToCartByUserAPI(userId, product._id)) {
@@ -93,7 +94,7 @@ export default function ProductBottomActions({ product, role }: { product: any, 
                         }
 
                     }}
-                    startIcon={<AddToCart />}>Add</Button>
+                    startIcon={<AddToCart sx={{fontSize:11}} />}><span style={{fontSize:11}}>Add</span></Button>
             </CardActions>
             {open && <StatusModal message={{
                 title: "Cart Alert",

@@ -73,17 +73,20 @@ export default function ProductCard({ product, role }: { product: any, role?: st
     >
       <ProductTopActions product={product} role={role} />
       {renderImageItem(product)}
-      <CardContent sx={{ display: 'flex', flexDirection: 'row', justifyContent: "space-between" }}>
+      <CardContent>
         <Box>
-          <Typography gutterBottom variant="h6" sx={{textOverflow:'ellipsis'}} component="div">
+          <Box sx={{ textOverflow: 'ellipsis', fontSize: 11, fontWeight:'bold' }} component="div">
             {product?.product_name}
-          </Typography>
-          <Typography gutterBottom variant="body2" sx={{ color: 'text.secondary' }}>
-            N {product?.product_price}
-          </Typography>
+          </Box>
+          <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: "space-between" }}>
+            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+              N {product?.product_price}
+            </Typography>
+            <Link href={'#'} style={{fontSize: 10, textDecoration: 'none' }} onClick={() => setOpenQoute(true)}>Get Qoutes</Link>
+          </Box>
           <Rating name="read-only" size='small' value={product?.averageRating ?? 3} readOnly />
         </Box>
-        <Link href={'#'} style={{ alignSelf: 'center', fontSize:11, textDecoration:'none'}} onClick={() => setOpenQoute(true)}>Get Qoutes</Link>
+
       </CardContent>
       <ProductBottomActions product={product} role={role} />
       {openQoute && <GetQouteModal closeCallback={handleOpenQuote} productId={product._id} />}
