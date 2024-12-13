@@ -6,7 +6,6 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import React, { useState, useEffect } from "react";
 import { handleProductEditSubmit } from "../../utils/handleProductEdit.Submit";
-import { getProductAPI } from "../../api/getProductAPI";
 import Container from "@mui/material/Container";
 import Image from 'next/image';
 import { SERVER_URL } from "@/constants/url";
@@ -59,7 +58,8 @@ export default function Page() {
                 sx={{ mt: 1 }}
             >
                 <Box>
-                    {data?.product_pictures[0] ? <Image
+                    {data?.product_pictures[0] ? 
+                    <Image
                         src={`${SERVER_URL}/uploads/${data?.product_pictures[0]}`}
                         alt="Account"
                         layout="responsive"

@@ -56,7 +56,7 @@ export default function ProductBottomActions({ product, role }: { product: any, 
     return (
         <Box>
             <CardActions sx={{ display: 'flex', flexDirection: 'row', justifyContent: "space-between" }}>
-                <Button size="small" onClick={() => setOpenQoute(true)}>Get Qoutes</Button>
+                {/* <Button size="small" onClick={() => setOpenQoute(true)}>Get Qoutes</Button> */}
                 <Box display={"flex"} justifyContent={'center'}><Button size="small" id="minus" onClick={(evt) => minusToCartCount(evt)} endIcon={<Minus />} /><input disabled={true} style={{ width: 15, textAlign: 'center', borderRadius: 8 }} value={quantity} /><Button size="small" id="plus" onClick={(evt) => plusToCartCount(evt)} startIcon={<Plus />} /></Box>
                 {
                     (role === 'admin') && <Button
