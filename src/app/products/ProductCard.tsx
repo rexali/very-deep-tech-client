@@ -81,9 +81,9 @@ export default function ProductCard({ product, role }: { product: any, role?: st
           <Typography gutterBottom variant="body2" sx={{ color: 'text.secondary' }}>
             N {product?.product_price}
           </Typography>
-          <Rating name="read-only" sx={{fontSize:'11'}} value={product?.averageRating ?? 3} readOnly />
+          <Rating name="read-only" size='small' value={product?.averageRating ?? 3} readOnly />
         </Box>
-        <Link href={'#'} style={{ alignSelf: 'center', textDecoration:'none'}} onClick={() => setOpenQoute(true)}>Get Qoutes</Link>
+        <Link href={'#'} style={{ alignSelf: 'center', fontSize:10, textDecoration:'none'}} onClick={() => setOpenQoute(true)}>Get Qoutes</Link>
       </CardContent>
       <ProductBottomActions product={product} role={role} />
       {openQoute && <GetQouteModal closeCallback={handleOpenQuote} productId={product._id} />}

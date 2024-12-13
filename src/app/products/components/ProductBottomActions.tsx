@@ -58,7 +58,8 @@ export default function ProductBottomActions({ product, role }: { product: any, 
         <Box>
             <CardActions sx={{ display: 'flex', flexDirection: 'row', justifyContent: "space-between" }}>
                 {/* <Button size="small" onClick={() => setOpenQoute(true)}>Get Qoutes</Button> */}
-                <Button size="small" sx={{fontSize:11}}  id="minus" onClick={(evt) => minusToCartCount(evt)} endIcon={<Minus />} /><input disabled={true} style={{ width: 15, textAlign: 'center', borderRadius: 8 }} value={quantity} /><Button size="small" sx={{fontSize:11}} id="plus" onClick={(evt) => plusToCartCount(evt)} startIcon={<Plus />} />
+                {/* <Button size="small" sx={{fontSize:11}}  id="minus" onClick={(evt) => minusToCartCount(evt)} endIcon={<Minus />} /><input disabled={true} style={{ width: 15, textAlign: 'center', borderRadius: 8 }} value={quantity} /><Button size="small" sx={{fontSize:11}} id="plus" onClick={(evt) => plusToCartCount(evt)} startIcon={<Plus />} /> */}
+                <span onClick={(evt) => minusToCartCount(evt)}><Minus /></span><input disabled={true} style={{ width: 15, textAlign: 'center', borderRadius: 8 }} value={quantity} /><span onClick={(evt) => plusToCartCount(evt)}><Plus /></span>
                 {
                     (role === 'admin') && <Button
                         size="small"
