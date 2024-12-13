@@ -75,15 +75,15 @@ export default function ProductCard({ product, role }: { product: any, role?: st
       {renderImageItem(product)}
       <CardContent sx={{ display: 'flex', flexDirection: 'row', justifyContent: "space-between" }}>
         <Box>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom variant="h5" sx={{fontSize:11, textOverflow:'ellipsis'}} component="div">
             {product?.product_name}
           </Typography>
           <Typography gutterBottom variant="body2" sx={{ color: 'text.secondary' }}>
             N {product?.product_price}
           </Typography>
-          <Rating name="read-only" value={product?.averageRating ?? 3} readOnly />
+          <Rating name="read-only" sx={{fontSize:'11'}} value={product?.averageRating ?? 3} readOnly />
         </Box>
-        <Button size="small" sx={{ alignSelf: 'end', fontSize:12 }} onClick={() => setOpenQoute(true)}>Get Qoutes</Button>
+        <Link href={'#'} style={{ alignSelf: 'center', textDecoration:'none'}} onClick={() => setOpenQoute(true)}>Get Qoutes</Link>
       </CardContent>
       <ProductBottomActions product={product} role={role} />
       {openQoute && <GetQouteModal closeCallback={handleOpenQuote} productId={product._id} />}
