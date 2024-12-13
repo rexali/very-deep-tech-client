@@ -1,7 +1,6 @@
 'use client'
 
 import * as React from 'react';
-import CartCard from "../carts/CartCard";
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import TextField from '@mui/material/TextField';
@@ -47,6 +46,7 @@ export default function CheckoutForm({
 
     const handleSubmit = async (event: any) => {
         if (userId) {
+            setLoading('Sending data..')
             await handleCheckoutSubmit(
                 event,
                 setSuccess,

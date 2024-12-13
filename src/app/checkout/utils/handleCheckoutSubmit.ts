@@ -93,7 +93,7 @@ const handleCheckoutSubmit = async (
             );
 
             alert(
-                'Use the details below to call us and tap checkout'
+                'Use the details below to call us'
             );
 
             break;
