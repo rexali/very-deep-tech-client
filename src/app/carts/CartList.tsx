@@ -35,12 +35,13 @@ export default function CartList(props: any) {
                             href={'/checkout'}
                             style={{
                                 display: 'block',
-                                padding: 2,
+                                padding: 5,
                                 borderColor: 'green',
                                 borderStyle: 'dotted',
                                 textDecoration: 'none',
                                 color: 'green',
-                                fontSize: 16
+                                fontSize: 16,
+                                width:'50vw'
                             }}>
                             CHECKOUT
                         </Link>

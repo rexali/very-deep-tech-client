@@ -6,7 +6,6 @@ import Typography from '@mui/material/Typography';
 import Link from 'next/link';
 import Rating from '@mui/material/Rating';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import ProductTopActions from './components/ProductTopActions';
 import ProductBottomActions from './components/ProductBottomActions';
 import Image from 'next/image';
@@ -53,10 +52,19 @@ export default function ProductCard({ product, role }: { product: any, role?: st
           <Image
             src={"https://placehold.co/600x400/orange/white"}
             alt={'photo'}
-            layout="responsive"
-            style={{ objectFit: 'cover' }}
-            width={320}
-            height={100}
+            style={{
+              display: 'block',
+              marginRight: 'auto',
+              marginLeft: 'auto',
+              borderRadius: 20,
+            }}
+            width={170}
+            height={170}
+            placeholder="blur"
+            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAVQAAABkCAYAAADZn8isAAABFElEQVR42u3UMQEAAAQAMHL4FFVYCCG8W4hlb00A8JZCBRAqgFABhAqAUAGECiBUAKECIFQAoQIIFQChAggVQKgAQgVAqABCBRAqgFABECqAUAGECoBQAYQKIFQAoQIgVAChAggVQKgACBVAqABCBUCoAEIFECqAUAEQKoBQAYQKgFABhAogVAChAiBUAKECCBVAqAAIFUCoAEIFQKgAQgUQKoBQARAqgFABhAogVACECiBUAKECIFQAoQIIFUCoAAgVQKgAQgUQqlABhAogVAChAiBUAKECCBVAqAAIFUCoAEIFQKgAQgUQKoBQARAqgFABhAogVACECiBUAKECIFQAoQIIFUCoAAgVQKgAQgUQKgA/Bz0MpgVVm/VcAAAAAElFTkSuQmCC"
+            onError={() => {
+              setImgSrc(placeholderImage)
+            }}
           />
         </Link>
       </CardMedia>
@@ -75,14 +83,14 @@ export default function ProductCard({ product, role }: { product: any, role?: st
       {renderImageItem(product)}
       <CardContent>
         <Box>
-          <Box sx={{ textOverflow: 'ellipsis', fontSize: 11, fontWeight:'bold' }} component="div">
+          <Box sx={{ textOverflow: 'ellipsis', fontSize: 11, fontWeight: 'bold' }} component="div">
             {product?.product_name}
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: "space-between" }}>
             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
               N {product?.product_price}
             </Typography>
-            <Link href={'#'} style={{fontSize: 10, textDecoration: 'none', alignSelf:'center' }} onClick={() => setOpenQoute(true)}>Get Qoutes</Link>
+            <Link href={'#'} style={{ fontSize: 10, textDecoration: 'none', alignSelf: 'center' }} onClick={() => setOpenQoute(true)}>Get Qoutes</Link>
           </Box>
           <Rating name="read-only" size='small' value={product?.averageRating ?? 1} readOnly />
         </Box>
