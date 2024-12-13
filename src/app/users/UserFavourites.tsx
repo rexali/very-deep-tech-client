@@ -4,7 +4,6 @@ import Container from "@mui/material/Container";
 import * as React from "react";
 import ProductList from "../products/ProductList";
 import { getToken } from "@/utils/getToken";
-import Fallback from "@/components/common/fallback";
 import { getUserFavouritesAPI } from "../favourites/api/getUserFavouritesAPI";
 import Box from "@mui/material/Box";
 import ReactPagination from "@/components/react-pagination";

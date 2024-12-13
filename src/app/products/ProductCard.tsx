@@ -84,7 +84,7 @@ export default function ProductCard({ product, role }: { product: any, role?: st
             </Typography>
             <Link href={'#'} style={{fontSize: 10, textDecoration: 'none', alignSelf:'center' }} onClick={() => setOpenQoute(true)}>Get Qoutes</Link>
           </Box>
-          <Rating name="read-only" size='small' value={product?.averageRating ?? 3} readOnly />
+          <Rating name="read-only" size='small' value={product?.averageRating ?? 1} readOnly />
         </Box>
 
       </CardContent>

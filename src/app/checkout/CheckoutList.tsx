@@ -2,11 +2,11 @@
 
 import * as React from 'react';
 import Grid from '@mui/material/Grid';
-import CartCard from "../carts/CartCard";
 import Container from '@mui/material/Container';
 import { useAuth } from '@/hooks/use-auth';
 import { getToken } from '@/utils/getToken';
 import CheckoutForm from './CheckoutForm';
+import CheckoutCard from './CheckoutCard';
 
 
 export default function CheckoutList(props: any) {
@@ -65,8 +65,8 @@ export default function CheckoutList(props: any) {
 
                 <Grid item xs={12} md={8} sx={{ marginTop: 1 }}>
                     <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                        {props?.products.map((product: any) => {
-                            return <Grid key={product._id} item xs={12} md={6}><CartCard product={product} refreshCart={props.refreshCart} /></Grid>
+                        {props?.products?.map((product: any) => {
+                            return <Grid key={product._id} item xs={12} md={6}><CheckoutCard product={product} /></Grid>
                         })}
                     </Grid>
                 </Grid>

@@ -35,7 +35,7 @@ export default function CheckoutPage() {
 
   return (
     <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }} >
-      <Box>Carts: {products[0]?.totalCarts}</Box>
+      <Box>Items: {products[0]?.totalCarts}</Box>
       <CheckoutListComponent
         products={products}
         activePage={activePage}

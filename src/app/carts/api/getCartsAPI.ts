@@ -21,7 +21,7 @@ const getCartsAPI = async (page: number = 1) => {
             return [];
         }
 
-        let newcarts = data.data?.carts.map((cart: any) => {
+        let newcarts = data.data.carts?.map((cart: any) => {
             return {
                 ...cart,
                 product: {
@@ -34,7 +34,7 @@ const getCartsAPI = async (page: number = 1) => {
         });
 
 
-        return newcarts.map((cart: any) => cart.product);
+        return newcarts?.map((cart: any) => cart.product);
     } catch (error) {
         console.warn(error);
     }

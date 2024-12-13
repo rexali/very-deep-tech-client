@@ -15,7 +15,6 @@ import { getToken } from '@/utils/getToken';
 import { deleteUserCartAPI } from './api/deleteUserCartAPI';
 import { AppContext } from '@/context/AppContext';
 import CardImage from '../products/components/CardImage';
-import Grid from '@mui/material/Grid';
 
 export default function CartCard({ product, refreshCart }: { product: any, refreshCart: any }) {
   const [quantity, setQuantity] = React.useState<number>(product?.cartQuantity ?? 0);

@@ -28,11 +28,11 @@ export default function UserTabs() {
     const searchParams = useSearchParams();
     const tabId = searchParams.get('tabId') || window.sessionStorage.getItem('tabId');
     let [tabName, setTabName] = useState(tabId ?? 'profile');
-    const [cart, setCart] = useState([]);
+    const [cart, setCart] = useState<any>([]);
 
     const { dispatch } = useContext(AppContext);
     const auth = useAuth();
-    const userId = auth.user?._id as unknown as string || getToken('_id') as string;
+    const userId = auth.user?._id || getToken('_id') as string;
 
     const openTab = (tabname: any) => {
         window.sessionStorage.setItem('tabId', tabname);
@@ -44,6 +44,7 @@ export default function UserTabs() {
     const getData = useCallback(async () => {
         let userCarts = await getUserCartsAPI(userId);
         dispatch(getCarts(userCarts));
+        setCart(userCarts)
     }, [dispatch, userId])
 
 

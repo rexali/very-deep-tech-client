@@ -7,7 +7,6 @@ import { CartListComponent } from "./CartListComponent";
 import { AppContext } from "@/context/AppContext";
 import { useAuth } from '@/hooks/use-auth';
 import { getToken } from "@/utils/getToken";
-import { useUserCarts } from "./hooks/useUserCarts";
 import { getUserCartsAPI } from "../users/api/getUserCarts";
 import { getCarts } from "@/store/actions/app-actions";
 
@@ -17,7 +16,6 @@ export default function CartPage() {
   const { dispatch } = useContext(AppContext);
   const { user } = useAuth();
   const userId = user?._id || getToken('_id') as string;
-  // const { carts } = useUserCarts(userId, dispatch, activePage);
   const [products, setProducts] = useState<Array<any>>([]);
 
   const getCartData = useCallback(async () => {

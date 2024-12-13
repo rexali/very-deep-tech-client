@@ -9,7 +9,6 @@ import ClearCartButton from './components/ClearCartButton';
 import ReactPagination from '@/components/react-pagination';
 import Link from 'next/link';
 
-
 export default function CartList(props: any) {
 
     return (
@@ -32,7 +31,19 @@ export default function CartList(props: any) {
                     </Box>
                     <ClearCartButton refreshCart={props?.refreshCart} />
                     <Box marginTop={2} display={"flex"} justifyContent={'center'}>
-                        <Link href={'/checkout'} style={{ display:'block', padding: 2, borderColor: 'green', borderStyle: 'dotted', textDecoration: 'none', color: 'green' }}></Link>
+                        <Link
+                            href={'/checkout'}
+                            style={{
+                                display: 'block',
+                                padding: 2,
+                                borderColor: 'green',
+                                borderStyle: 'dotted',
+                                textDecoration: 'none',
+                                color: 'green',
+                                fontSize: 16
+                            }}>
+                            CHECKOUT
+                        </Link>
                     </Box>
                 </Grid>
             </Grid>

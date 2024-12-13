@@ -3,7 +3,6 @@
 import Container from "@mui/material/Container";
 import * as React from "react";
 import { getToken } from "@/utils/getToken";
-import Fallback from "@/components/common/fallback";
 import { getUserHistoryAPI } from "./api/getUserHistory";
 import TransactionList from "../transactions/TransactionList";
 import Box from "@mui/material/Box";
