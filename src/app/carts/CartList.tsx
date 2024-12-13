@@ -34,7 +34,6 @@ export default function CartList(props: any) {
                     <Box marginTop={2} display={"flex"} justifyContent={'center'}>
                         <Link href={'/checkout'} style={{ display:'block', padding: 2, borderColor: 'green', borderStyle: 'dotted', textDecoration: 'none', color: 'green' }}></Link>
                     </Box>
-
                 </Grid>
             </Grid>
         </Container>
