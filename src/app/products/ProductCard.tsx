@@ -65,7 +65,7 @@ export default function ProductCard({ product, role }: { product: any, role?: st
   return (
     <Card
       sx={{
-        maxWidth: 175,
+        maxWidth: 180,
         margin: 1,
         marginLeft: "auto",
         marginRight: "auto",
@@ -83,7 +83,7 @@ export default function ProductCard({ product, role }: { product: any, role?: st
           </Typography>
           <Rating name="read-only" value={product?.averageRating ?? 3} readOnly />
         </Box>
-        <Button size="small" sx={{ alignSelf: 'end' }} onClick={() => setOpenQoute(true)}>Get Qoutes</Button>
+        <Button size="small" sx={{ alignSelf: 'end', fontSize:12 }} onClick={() => setOpenQoute(true)}>Get Qoutes</Button>
       </CardContent>
       <ProductBottomActions product={product} role={role} />
       {openQoute && <GetQouteModal closeCallback={handleOpenQuote} productId={product._id} />}
