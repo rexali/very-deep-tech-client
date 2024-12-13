@@ -59,18 +59,8 @@ export default function ReviewForm(props: any) {
                 color='success'
                 sx={{ mt: 3, mb: 2 }}
             >
-                Send review
+                Post review
             </Button>
-            {/* <Button
-                type="reset"
-                fullWidth
-                variant="contained"
-                color='success'
-                sx={{ mt: 3, mb: 2 }}
-            >
-                reset
-            </Button> */}
-
         </Box>
     );
 }

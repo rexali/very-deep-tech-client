@@ -1,6 +1,6 @@
-import { savePathLink } from "@/utils/savePathLink";
 import { createReviewAPI } from "../api/createReviewAPI";
 import { isBoughtByUserAPI } from "../api/isBoughtByUserAPI";
+import { goToSavedLinkpath } from "@/utils/goToSavedLinkPath";
 
 const handleReviewSubmit = async (event: any, setPostSuccess: any, setPostError: any) => {
     event.preventDefault();
@@ -21,13 +21,11 @@ const handleReviewSubmit = async (event: any, setPostSuccess: any, setPostError:
     if (reviewData.userId) {
         if (await isBoughtByUserAPI(reviewData.userId, reviewData.productId)) {
             await createReviewAPI(reviewData, setPostSuccess, setPostError);
-            // console.log(reviewData);
         } else {
-            alert('Buy first, then use it, and post review thereafter')
+            alert(`\n\n\n\n Buy this product first, and post a review thereafter`)
         }
     } else {
-        savePathLink();
-        window.location.assign('/auth/signin');
+        window.location.assign('/auth/signin?next='+goToSavedLinkpath());
     }
 
 };

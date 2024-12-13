@@ -17,13 +17,14 @@ import { getToken } from '@/utils/getToken';
 import { goToSavedLinkpath } from '@/utils/goToSavedLinkPath';
 import { useRouter } from 'next/navigation';
 import ReactPagination from '@/components/react-pagination';
+import Link from 'next/link';
 
 
 export default function CartList(props: any) {
     const [error, setError] = React.useState('');
     const [success, setSuccess] = React.useState('');
     const [loading, setLoading] = React.useState('');
-    const [cartTotals, setCartTotal] = React.useState<number>();
+    const [cartTotal, setCartTotal] = React.useState<number>();
     const [method, setMethod] = React.useState('paystack');
     const [directPayment, setDirectPayment] = React.useState(false);
     const [cashAndCarry, setCashAndCarry] = React.useState(false);
@@ -34,7 +35,7 @@ export default function CartList(props: any) {
 
     const { user } = useProfile(userId);
 
-    let cartTotal = props.products
+    let totalAmount = props.products
         .map((product: any) => Number(product.product_price) * Number(product.cartQuantity))
         .reduce((prev: any, cur: any) => {
             return prev + cur;
@@ -59,7 +60,7 @@ export default function CartList(props: any) {
                 return prev + cur;
             }, 0)
         ,
-        total: cartTotal,
+        total: totalAmount,
         paymentStatus: "pending",
         shippingMethod: "GENERAL"
     };
@@ -92,8 +93,8 @@ export default function CartList(props: any) {
 
 
     React.useEffect(() => {
-        setCartTotal(cartTotal)
-    }, [cartTotal])
+        setCartTotal(totalAmount)
+    }, [totalAmount])
 
     return (
         <Container>
@@ -238,7 +239,7 @@ export default function CartList(props: any) {
                             margin={"normal"}
                             id="total_amount"
                             label="Total Amount"
-                            defaultValue={cartTotals}
+                            defaultValue={cartTotal}
                             disabled
                         />
 
@@ -323,6 +324,7 @@ export default function CartList(props: any) {
                         >
                             CHECKOUT
                         </Button>
+                        <Link type='button' style={{textDecoration:'none', display:'block'}} href={'/checkout'}>CHECKOUT</Link>
 
                     </Box>
                 </Grid>
