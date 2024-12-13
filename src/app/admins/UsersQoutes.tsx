@@ -13,8 +13,13 @@ export default function UsersQoutes() {
 
   React.useEffect(() => {
     async function getData() {
-      const qoutes = await getQoutesAPI(activePage);
-      setData(qoutes);
+      try {
+        const qoutes = await getQoutesAPI(activePage);
+        setData(qoutes);
+      } catch (error) {
+        console.warn(error);
+      }
+      
     }
 
     getData();

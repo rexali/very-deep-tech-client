@@ -23,20 +23,31 @@ export default function AdminProfile() {
   const userId = getToken('_id') as string || auth.user?._id as unknown as string;
 
   const handleSubmit = async (event: any) => {
-    setLoading('Sending data..')
-    await handleProfileUpdate(
-      event,
-      setSuccess,
-      setError,
-      setLoading,
-      userId
-    )
+    setLoading('Sending data..');
+    try {
+      await handleProfileUpdate(
+        event,
+        setSuccess,
+        setError,
+        setLoading,
+        userId
+      )
+    } catch (error) {
+      console.warn(error);
+      
+    }
+
   };
 
   React.useEffect(() => {
     async function getUserProfileData() {
-      const adminProfile = await getUserProfileAPI(userId);
-      setUserProfile(adminProfile);
+      try {
+        const adminProfile = await getUserProfileAPI(userId);
+        setUserProfile(adminProfile);
+      } catch (error) {
+        console.warn(error);
+      }
+
     }
 
     getUserProfileData();

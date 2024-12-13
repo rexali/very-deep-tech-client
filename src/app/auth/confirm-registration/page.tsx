@@ -25,7 +25,12 @@ export default function ConfirmRegistration() {
   React.useEffect(() => {
     //  send the rCode and email to database, to verify
     (async () => {
-      setResult(await confirmRegistrationAPI({ email, rCode }));
+      try {
+        setResult(await confirmRegistrationAPI({ email, rCode })); 
+      } catch (error) {
+        console.warn(error);
+      }
+
     })();
   }, [email,rCode])
 

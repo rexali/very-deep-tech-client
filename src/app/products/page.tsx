@@ -28,8 +28,13 @@ export default function ProductsPage() {
 
   useEffect(() => {
     async function getData() {
-      setCategoryData(await getCategoriesAPI(activePage));
-      setProducts(await getProductsAPI(activePage));
+      try {
+        setCategoryData(await getCategoriesAPI(activePage));
+        setProducts(await getProductsAPI(activePage));
+      } catch (error) {
+        console.warn(error);
+      }
+
     }
     getData();
 

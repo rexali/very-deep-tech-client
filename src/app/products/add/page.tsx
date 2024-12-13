@@ -22,8 +22,12 @@ export default function AddProduct() {
     const userId = auth.user?._id as unknown as string || getToken('_id') as string;
 
     const handleSubmit = async (event: any) => {
-        setLoading('Sending data..')
-        await handleProductSubmit(event, setSuccess, setError, setLoading, userId)
+        setLoading('Sending data..');
+        try {
+            await handleProductSubmit(event, setSuccess, setError, setLoading, userId)
+        } catch (error) {
+            console.warn(error);     
+        }
     }
     
     return (

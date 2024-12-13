@@ -21,6 +21,18 @@ export default function ChangePassword() {
   const email = useSearchParams().get('email') as string;
   const [error, setError] = React.useState('');
   const [success, setSuccess] = React.useState('');
+  const [loading, setLoading] = React.useState('');
+
+  const handleSubmit = async (event: any) => {
+    // give user feedback
+    setLoading("Sending data...");
+    try {
+      await handleChangePasswordSubmit(event, email, rCode, setSuccess, setError)
+    } catch (error) {
+      console.warn(error);
+    }
+
+  }
 
   return (
     <React.Suspense fallback={<Fallback />}>
@@ -39,7 +51,7 @@ export default function ChangePassword() {
             <Typography component="h1" variant="h5">
               Change password
             </Typography>
-            <Box component="form" onSubmit={(evt) => handleChangePasswordSubmit(evt, email, rCode, setSuccess, setError)} noValidate sx={{ mt: 1 }}>
+            <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
               <TextField
                 margin="normal"
                 required
@@ -70,6 +82,7 @@ export default function ChangePassword() {
               />
               {error && (<Box className={styles.formError} textAlign={'center'}>{error.toUpperCase()}</Box>)}
               {success && (<Box className={styles.formSuccess} textAlign={'center'}>{success.toUpperCase()}</Box>)}
+              {loading && (<Box className={styles.formSuccess} textAlign={'center'}>{loading.toUpperCase()}</Box>)}
               <Button
                 type="submit"
                 fullWidth

@@ -19,7 +19,12 @@ export default function UsersTransactions() {
 
   React.useEffect(() => {
     async function getData() {
-      setData(await getUsersHistoryAPI(activePage));
+      try {
+        setData(await getUsersHistoryAPI(activePage));
+      } catch (error) {
+        console.error(error);
+      }
+     
     }
     getData();
 

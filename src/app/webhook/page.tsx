@@ -15,7 +15,12 @@ export default function WebhookPage() {
 
     React.useEffect(() => {
         (async () => {
-            setResult(await verifyPayment(reference));
+            try {
+                setResult(await verifyPayment(reference));       
+            } catch (error) {
+                console.warn(error);
+                
+            } 
         })();
 
     }, [reference])

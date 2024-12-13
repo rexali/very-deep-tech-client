@@ -18,8 +18,12 @@ export default function UserHistory() {
 
     React.useEffect(() => {
         async function getData() {
-            const transactions = await getUserHistoryAPI(userId, activePage);
-            setData(transactions);
+            try {
+                const transactions = await getUserHistoryAPI(userId, activePage);
+                setData(transactions);   
+            } catch (error) {
+                console.warn(error);  
+            }
         }
 
         getData();

@@ -19,6 +19,18 @@ export default function ForgetPassword() {
 
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const [loading, setLoading] = useState('');
+
+  const handleSubmit = async (event: any) => {
+    // give user feedback
+    setLoading("Sending data...");
+    try {
+      await handleForgetPasswordSubmit(event, setSuccess, setError)
+    } catch (error) {
+      console.warn(error);
+    }
+   
+  }
 
   return (
     <ThemeProvider theme={defaultTheme} >
@@ -36,7 +48,7 @@ export default function ForgetPassword() {
             Forget password
           </Typography>
 
-          <Box component="form" onSubmit={(evt) => handleForgetPasswordSubmit(evt, setSuccess, setError)} noValidate sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
@@ -50,6 +62,7 @@ export default function ForgetPassword() {
             />
             {error && (<Box className={styles.formError} textAlign={'center'}>{error.toUpperCase()}</Box>)}
             {success && (<Box className={styles.formSuccess} textAlign={'center'}>{success.toUpperCase()}</Box>)}
+            {loading && (<Box className={styles.formSuccess} textAlign={'center'}>{loading.toUpperCase()}</Box>)}
             <Button
               type="submit"
               fullWidth

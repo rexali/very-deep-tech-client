@@ -13,8 +13,13 @@ export default function UsersSubscriptions() {
 
   React.useEffect(() => {
     async function getData() {
-      const subscriptions = await getSubscriptionsAPI(activePage);
-      setData(subscriptions);
+      try {
+        const subscriptions = await getSubscriptionsAPI(activePage);
+        setData(subscriptions);
+      } catch (error) {
+        console.warn(error);  
+      }
+
     }
 
     getData();

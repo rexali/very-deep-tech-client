@@ -19,9 +19,13 @@ export default function CartPage() {
   const [products, setProducts] = useState<Array<any>>([]);
 
   const getCartData = useCallback(async () => {
-    let productsInCart = await getUserCartsAPI(userId, activePage);
-    dispatch(getCarts(productsInCart));
-    setProducts(productsInCart);
+    try {
+      let productsInCart = await getUserCartsAPI(userId, activePage);
+      dispatch(getCarts(productsInCart));
+      setProducts(productsInCart); 
+    } catch (error) {
+      console.warn(error); 
+    }
   }, [activePage, dispatch, userId])
 
   useEffect(() => {

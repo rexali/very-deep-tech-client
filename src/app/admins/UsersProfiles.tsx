@@ -19,7 +19,12 @@ export default function UsersProfiles() {
 
   React.useEffect(() => {
     async function getData() {
-      setData(await getUsersProfilesAPI(activePage));
+      try {
+        setData(await getUsersProfilesAPI(activePage));
+      } catch (error) {
+        console.error(error)  
+      }
+     
     }
     getData();
 

@@ -10,16 +10,25 @@ export const revalidate = 3600;
 export const dynamicParams = true;
 
 export async function generateStaticParams() {
-    const data = await fetch(SERVER_URL + "/orders").then(res => res.json());
-    return data.data.orders.map((order: any) => ({
-        orderId: order._id
-    }))
+    try {
+        const data = await fetch(SERVER_URL + "/orders").then(res => res.json());
+        return data.data.orders.map((order: any) => ({
+            orderId: order._id
+        }))   
+    } catch (error) {
+        console.warn(error); 
+    }
 }
 
 export default async function OrderPage({ params }: { params: { orderId: string } }) {
     const orderId = params.orderId;
-
-    let order = await getOrderAPI(orderId) ?? {};
+    let order:any
+    try {
+        order = await getOrderAPI(orderId) ?? {};  
+    } catch (error) {
+        console.warn(error); 
+    }
+   
 
     if (!Object.keys(order).length) {
 

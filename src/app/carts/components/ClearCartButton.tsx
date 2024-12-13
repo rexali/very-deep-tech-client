@@ -19,11 +19,16 @@ export default function ClearCartButton(props: any) {
             variant="contained"
             color='warning'
             onClick={async () => {
-                if (await clearUserCartsAPI(userId)) {
-                    props.refreshCart();
-                } else {
-                    alert('Clear Cart failed');
+                try {
+                    if (await clearUserCartsAPI(userId)) {
+                        props.refreshCart();
+                    } else {
+                        alert('Clear Cart failed');
+                    }    
+                } catch (error) {
+                    console.warn(error);  
                 }
+
             }}
             sx={{ mt: 3, mb: 2 }}
             startIcon={<ClearAll />}

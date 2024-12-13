@@ -12,7 +12,12 @@ export default function QoutesPage() {
 
   useEffect(() => {
     async function getData() {
-      setData(await getSubscriptionsAPI(activePage));
+      try {
+        setData(await getSubscriptionsAPI(activePage));
+      } catch (error) {
+        console.warn(error); 
+      }
+     
     }
     getData();
 
