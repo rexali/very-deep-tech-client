@@ -22,9 +22,14 @@ export default function FavouritePage() {
 
   useEffect(() => {
     async function getData() {
-      const result = await getUserFavouritesAPI(userId, activePage)
-      setData(result);
-      dispatch(getFavourites(data))
+      try {
+        const result = await getUserFavouritesAPI(userId, activePage)
+        setData(result);
+        dispatch(getFavourites(data))
+      } catch (error) {
+        console.warn(error);   
+      }
+     
     }
     getData();
 

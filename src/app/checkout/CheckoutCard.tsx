@@ -22,8 +22,8 @@ export default function CheckoutCard({ product}: { product: any}) {
             <CardImage
               src={`${SERVER_URL}/uploads/${product.product_pictures[0]}`}
               alt={product.product_name}
-              width={100}
-              height={100}
+              width={80}
+              height={80}
               style={{
                 borderRadius: 10,
               }}
@@ -46,7 +46,7 @@ export default function CheckoutCard({ product}: { product: any}) {
             {product?.product_name}
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-            x  N {product?.product_price}
+           {product?.cartQuantity} x  N {product?.product_price}
           </Typography>
         </CardContent>
       </Box>

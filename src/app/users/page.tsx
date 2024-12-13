@@ -42,14 +42,19 @@ export default function UserTabs() {
     const { user, error, isLoading } = useProfile(userId);
 
     const getData = useCallback(async () => {
-        let userCarts = await getUserCartsAPI(userId);
-        dispatch(getCarts(userCarts));
-        setCart(userCarts)
+        try {
+            let userCarts = await getUserCartsAPI(userId);
+            dispatch(getCarts(userCarts));
+            setCart(userCarts)
+        } catch (error) {
+            console.warn(error);
+        }
+
     }, [dispatch, userId])
 
 
     useEffect(() => {
-            getData();
+        getData();
     }, [getData]);
 
     return (
@@ -182,7 +187,7 @@ function FavouritesTab() {
 }
 
 
-function CartTab(props:any) {
+function CartTab(props: any) {
 
     return (
         <Box>

@@ -10,44 +10,52 @@ import ReactPagination from '@/components/react-pagination';
 import Link from 'next/link';
 
 export default function CartList(props: any) {
+    const [cartTotal, setCartTotal] = React.useState<number>(0);
+
+    let totalAmount = props.products
+        .map((product: any) => Number(product.product_price) * Number(product.cartQuantity))
+        .reduce((prev: any, cur: any) => {
+            return prev + cur;
+        }, 0);
+
+    React.useEffect(() => {
+        setCartTotal(totalAmount)
+    }, [totalAmount])
 
     return (
         <Container>
             <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-
-                <Grid item xs={12} md={8} sx={{ marginTop: 1 }}>
-                    <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                        {props?.products.map((product: any) => {
-                            return <Grid key={product._id} item xs={12} md={6}><CartCard product={product} refreshCart={props.refreshCart} /></Grid>
-                        })}
-                    </Grid>
-                    <Box marginTop={4} display={"flex"} justifyContent={'center'} >
-                        <ReactPagination
-                            activePage={props?.activePage}
-                            itemsCountPerPage={4}
-                            totalItemsCount={props?.totalCarts}
-                            pageRangeDisplayed={5}
-                            onchangeCallback={(v: any) => props?.setActivePage(v)} />
-                    </Box>
-                    <ClearCartButton refreshCart={props?.refreshCart} />
-                    <Box marginTop={2} display={"flex"} justifyContent={'center'}>
-                        <Link
-                            href={'/checkout'}
-                            style={{
-                                display: 'block',
-                                padding: 5,
-                                borderColor: 'green',
-                                borderStyle: 'dotted',
-                                textDecoration: 'none',
-                                color: 'green',
-                                fontSize: 16,
-                                width:'50vw'
-                            }}>
-                            CHECKOUT
-                        </Link>
-                    </Box>
-                </Grid>
+                {props?.products.map((product: any) => {
+                    return <Grid key={product._id} item xs={12} md={6}><CartCard product={product} refreshCart={props.refreshCart} /></Grid>
+                })}
             </Grid>
+            <Box sx={{display: 'flex', flexDirection: "row", justifyContent: "space-between" }}>Total <span>{cartTotal}</span></Box>
+            <Box marginTop={4} display={"flex"} justifyContent={'center'} >
+                <ReactPagination
+                    activePage={props?.activePage}
+                    itemsCountPerPage={4}
+                    totalItemsCount={props?.totalCarts}
+                    pageRangeDisplayed={5}
+                    onchangeCallback={(v: any) => props?.setActivePage(v)} />
+            </Box>
+            <ClearCartButton refreshCart={props?.refreshCart} />
+            <Box marginTop={2} display={"flex"} justifyContent={'center'}>
+                <Link
+                    href={'/checkout'}
+                    style={{
+                        display: 'block',
+                        padding: 5,
+                        borderColor: 'green',
+                        borderStyle: 'solid',
+                        textDecoration: 'none',
+                        color: 'green',
+                        fontSize: 16,
+                        width: '50vw',
+                        textAlign: 'center'
+                    }}>
+                    CHECKOUT
+                </Link>
+            </Box>
         </Container>
     )
 }

@@ -1,8 +1,8 @@
 'use client'
 
 import { clearUserCartsAPI } from "@/app/carts/api/clearCartsAPI";
-import { createOrderAPI } from "@/app/carts/api/createOrderAPI";
-import { createTransactionAPI } from "@/app/carts/api/createTransactionAPI";
+import { createOrderAPI } from "@/app/orders/api/createOrderAPI";
+import { createTransactionAPI } from "@/app/transactions/api/createTransactionAPI";
 import { getToken } from "@/utils/getToken";
 import PaystackPop from "@paystack/inline-js";
 
@@ -49,7 +49,6 @@ export function payWithPaystack(
                         console.log("Transaction failed");
                         setPostError("Transaction failed");
                         setLoading('')
-
                     }
 
                 } else {
@@ -72,11 +71,11 @@ export function payWithPaystack(
                 }, 10000);
             }
 
-        },
+        }, 
         onCancel: () => {
             // user close pop up
             () => {
-                alert("Thank you. If you have any complaint, don't hesitate to send us a message");
+                alert("\n\n\n\n Thank you. If you have any complaint, don't hesitate to send us a message");
             }
         }
     });

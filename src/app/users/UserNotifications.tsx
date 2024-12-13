@@ -17,7 +17,11 @@ export default function UsersNotifications() {
 
     React.useEffect(() => {
         async function getData() {
-            setData(await getUsersNotificationsAPI(activePage));
+            try {
+                setData(await getUsersNotificationsAPI(activePage));    
+            } catch (error) {
+                console.warn(error);    
+            }  
         }
         getData();
 

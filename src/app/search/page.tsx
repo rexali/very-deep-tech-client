@@ -18,7 +18,11 @@ export default function SearchPage() {
 
   useEffect(() => {
       async function getData(){
-        setData(await searchProducts(term, activePage));
+        try {
+          setData(await searchProducts(term, activePage));
+        } catch (error) {
+          console.warn(error);
+        } 
     }
     getData();
   },[activePage, term])

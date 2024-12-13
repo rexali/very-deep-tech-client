@@ -18,8 +18,14 @@ export default function UserProducts() {
 
   React.useEffect(() => {
     async function getData() {
-      const products = await getUserProductsAPI(userId, activePage);
-      setData(products);
+      try {
+        const products = await getUserProductsAPI(userId, activePage);
+        setData(products);
+      } catch (error) {
+        console.warn(error);
+        
+      }
+
     }
 
     getData();

@@ -22,13 +22,19 @@ export default function UserProfile(props: any) {
 
   const handleSubmit = async (event: any) => {
     setLoading('Sending data..');
-    await handleProfileUpdate(
-      event,
-      setSuccess,
-      setError,
-      setLoading,
-      userId
-    ); 
+    try {
+      await handleProfileUpdate(
+        event,
+        setSuccess,
+        setError,
+        setLoading,
+        userId
+      ); 
+    } catch (error) {
+      console.warn(error);
+    }
+
+    
   };
 
   React.useEffect(() => {

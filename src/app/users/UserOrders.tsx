@@ -18,8 +18,14 @@ export default function UserOrders() {
 
   React.useEffect(() => {
     async function getData() {
-      let orders = await getUserOrdersAPI(userId, activePage);
-      setData(orders);
+      try {
+        let orders = await getUserOrdersAPI(userId, activePage);
+        setData(orders);
+      } catch (error) {
+        console.warn(error);
+        
+      }
+
     }
 
     getData();

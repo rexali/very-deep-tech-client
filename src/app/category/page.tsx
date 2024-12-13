@@ -3,7 +3,7 @@
 import Fallback from "@/components/common/fallback";
 import { Box, Container } from "@mui/material";
 import { useSearchParams } from "next/navigation";
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import { searchProductsCategoryAPI } from "./api/searchProductsCategoryAPI";
 import ReactPagination from "@/components/react-pagination";
 import CategoryList from "./CategoryList";
@@ -14,15 +14,19 @@ export default function CategoryPage() {
   const [data, setData] = useState<any>([]);
   const [activePage, setActivePage] = useState<number>(1);
 
-  
+
   useEffect(() => {
     async function getData() {
-      let categoryData = await searchProductsCategoryAPI(term, activePage)
-       setData(categoryData);
-     }
-      getData();
-     
-  },[activePage, term]);
+      try {
+        let categoryData = await searchProductsCategoryAPI(term, activePage)
+        setData(categoryData);
+      } catch (error) {
+        console.warn(error);
+      }
+    }
+    getData();
+
+  }, [activePage, term]);
 
   if (!data.length) {
     return <Fallback item={'No product matches your category yet'} />

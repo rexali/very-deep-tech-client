@@ -11,7 +11,12 @@ export default function QoutesPage() {
 
   useEffect(() => {
     async function getData() {
-      setData(await getQoutesAPI(activePage));
+      try {
+        setData(await getQoutesAPI(activePage));
+      } catch (error) {
+        console.warn(error);
+      }
+     
     }
     getData();
 

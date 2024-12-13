@@ -7,10 +7,11 @@ import { useAuth } from '@/hooks/use-auth';
 import { getToken } from '@/utils/getToken';
 import CheckoutForm from './CheckoutForm';
 import CheckoutCard from './CheckoutCard';
+import Box from '@mui/material/Box';
 
 
 export default function CheckoutList(props: any) {
-    const [cartTotal, setCartTotal] = React.useState<number>();
+    const [cartTotal, setCartTotal] = React.useState<number>(0);
     const auth = useAuth();
     const userId = auth.user?._id || getToken('_id') as string;
 
@@ -69,6 +70,7 @@ export default function CheckoutList(props: any) {
                             return <Grid key={product._id} item xs={12} md={6}><CheckoutCard product={product} /></Grid>
                         })}
                     </Grid>
+                    <Box sx={{ display: 'flex', flexDirection: "row", justifyContent: "space-between" }}>Total <span>{cartTotal}</span></Box>
                 </Grid>
 
                 <Grid item xs={12} md={4} sx={{ marginTop: 1 }}>

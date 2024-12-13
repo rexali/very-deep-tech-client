@@ -23,10 +23,10 @@ export default function CartCard({ product, refreshCart }: { product: any, refre
   const userId = auth.user?._id || getToken('_id') as string;
 
   var range = (start: number, end: number) => [...Array(end - start + 1)].map((_, i) => start + i);
-
+  
   return (
     <Card sx={{ maxWidth: 345, margin: 1 }}>
-      <Box sx={{ display: 'flex', flexDirection: "row", justifyContent: "space-around" }}>
+      <Box sx={{ display: 'flex', flexDirection: "row", justifyContent: "space-between" }}>
         <Link href={"/products/" + product._id}>
           {product.product_pictures?.length ?
             <CardImage
@@ -38,7 +38,6 @@ export default function CartCard({ product, refreshCart }: { product: any, refre
                 borderRadius: 20,
               }}
             />
-
             :
             <CardImage
               src={"https://placehold.co/600x400/orange/white"}
@@ -60,10 +59,10 @@ export default function CartCard({ product, refreshCart }: { product: any, refre
         </Link>
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            {product.product_name ?? "Lizard"}
+            {product?.product_name}
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-            x  N {product.product_price ?? 1000}
+           {product?.cartQuantity} x  N {product?.product_price}
           </Typography>
         </CardContent>
       </Box>

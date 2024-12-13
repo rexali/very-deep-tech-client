@@ -18,8 +18,13 @@ export default function UserFavourites() {
 
   React.useEffect(() => {
     async function getData() {
-      const products = await getUserFavouritesAPI(userId, activePage);
+      try {
+        const products = await getUserFavouritesAPI(userId, activePage);
       setData(products);
+      } catch (error) {
+        console.warn(error);
+      }
+      
     }
 
     getData();
