@@ -3,11 +3,10 @@
 import { Container, Box } from "@mui/material";
 import { useState, useContext, useCallback, useEffect } from "react";
 import Fallback from "@/components/common/fallback";
-import { CartListComponent } from "./CartListComponent";
+import { CheckoutListComponent } from "./CheckoutListComponent";
 import { AppContext } from "@/context/AppContext";
 import { useAuth } from '@/hooks/use-auth';
 import { getToken } from "@/utils/getToken";
-import { useUserCarts } from "./hooks/useUserCarts";
 import { getUserCartsAPI } from "../users/api/getUserCarts";
 import { getCarts } from "@/store/actions/app-actions";
 
@@ -17,7 +16,6 @@ export default function CheckoutPage() {
   const { dispatch } = useContext(AppContext);
   const { user } = useAuth();
   const userId = user?._id || getToken('_id') as string;
-  // const { carts } = useUserCarts(userId, dispatch, activePage);
   const [products, setProducts] = useState<Array<any>>([]);
 
   const getCartData = useCallback(async () => {
@@ -38,7 +36,7 @@ export default function CheckoutPage() {
   return (
     <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }} >
       <Box>Carts: {products[0]?.totalCarts}</Box>
-      <CartListComponent
+      <CheckoutListComponent
         products={products}
         activePage={activePage}
         setActivePage={setActivePage}

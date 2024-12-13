@@ -19,14 +19,14 @@ export default function CheckoutForm({
     tax,
     shippingMethod,
     shippingCost,
-    cartTotals,
+    cartTotal,
     orderData,
     transactionData,
 }: {
     tax: any,
     shippingMethod: any,
     shippingCost: any,
-    cartTotals: any
+    cartTotal: any
     orderData: any,
     transactionData: any,
 
@@ -147,7 +147,7 @@ export default function CheckoutForm({
                     margin={"normal"}
                     id="shipping_method"
                     label="Shipping Method"
-                    defaultValue={shippingMethod ?? 'GENERAL'}
+                    defaultValue={shippingMethod}
                     disabled
                 />
 
@@ -159,7 +159,7 @@ export default function CheckoutForm({
                     margin={"normal"}
                     id="shipping_cost"
                     label="Shipping Cost"
-                    defaultValue={shippingCost ?? 0}
+                    defaultValue={shippingCost}
                     disabled
                 />
 
@@ -171,7 +171,7 @@ export default function CheckoutForm({
                     margin={"normal"}
                     id="tax"
                     label="Tax"
-                    defaultValue={tax ?? 0}
+                    defaultValue={tax}
                     disabled
                 />
 
@@ -183,7 +183,7 @@ export default function CheckoutForm({
                     margin={"normal"}
                     id="total_amount"
                     label="Total Amount"
-                    defaultValue={cartTotals ?? 0}
+                    defaultValue={cartTotal}
                     disabled
                 />
 
