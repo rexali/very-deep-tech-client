@@ -1,8 +1,8 @@
 import { getToken } from "@/utils/getToken";
 import { clearUserCartsAPI } from "../carts/api/clearCartsAPI";
-import { createOrderAPI } from "../carts/api/createOrderAPI";
-import { createTransactionAPI } from "../carts/api/createTransactionAPI";
 import { v4 as uuidV4 } from 'uuid'
+import { createOrderAPI } from "../orders/api/createOrderAPI";
+import { createTransactionAPI } from "../transactions/api/createTransactionAPI";
 
 export async function sendOrderAndTransaction(
     orderData: any,
