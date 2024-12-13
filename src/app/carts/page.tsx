@@ -9,6 +9,8 @@ import { useAuth } from '@/hooks/use-auth';
 import { getToken } from "@/utils/getToken";
 import { getUserCartsAPI } from "../users/api/getUserCarts";
 import { getCarts } from "@/store/actions/app-actions";
+import { useRouter } from "next/navigation";
+import { goToSavedLinkpath } from "@/utils/goToSavedLinkPath";
 
 export default function CartPage() {
 
@@ -17,20 +19,27 @@ export default function CartPage() {
   const { user } = useAuth();
   const userId = user?._id || getToken('_id') as string;
   const [products, setProducts] = useState<Array<any>>([]);
+  const router = useRouter();
 
   const getCartData = useCallback(async () => {
-    try {
-      let productsInCart = await getUserCartsAPI(userId, activePage);
-      dispatch(getCarts(productsInCart));
-      setProducts(productsInCart); 
-    } catch (error) {
-      console.warn(error); 
+    if (userId) {
+      try {
+        let productsInCart = await getUserCartsAPI(userId, activePage);
+        dispatch(getCarts(productsInCart));
+        setProducts(productsInCart);
+      } catch (error) {
+        console.warn(error);
+      }
+    } else {
+      router.push('/auth/signin?next=' + goToSavedLinkpath(activePage));
     }
-  }, [activePage, dispatch, userId])
+  }, [activePage, dispatch, router, userId])
 
   useEffect(() => {
+
     getCartData();
-  }, [getCartData])
+
+  }, [getCartData, userId])
 
 
   if (!products?.length) {

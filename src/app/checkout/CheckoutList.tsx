@@ -11,7 +11,7 @@ import Box from '@mui/material/Box';
 
 
 export default function CheckoutList(props: any) {
-    const [cartTotal, setCartTotal] = React.useState<number>(0);
+    const [cartTotal, setCartTotal] = React.useState<number>();
     const auth = useAuth();
     const userId = auth.user?._id || getToken('_id') as string;
 
@@ -57,7 +57,7 @@ export default function CheckoutList(props: any) {
     }
 
     React.useEffect(() => {
-        setCartTotal(totalAmount)
+        setCartTotal(totalAmount);
     }, [totalAmount])
 
     return (

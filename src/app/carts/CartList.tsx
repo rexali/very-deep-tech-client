@@ -10,7 +10,7 @@ import ReactPagination from '@/components/react-pagination';
 import Link from 'next/link';
 
 export default function CartList(props: any) {
-    const [cartTotal, setCartTotal] = React.useState<number>(0);
+    const [cartTotal, setCartTotal] = React.useState<number>();
 
     let totalAmount = props.products
         .map((product: any) => Number(product.product_price) * Number(product.cartQuantity))
@@ -29,7 +29,7 @@ export default function CartList(props: any) {
                     return <Grid key={product._id} item xs={12} md={6}><CartCard product={product} refreshCart={props.refreshCart} /></Grid>
                 })}
             </Grid>
-            <Box sx={{display: 'flex', flexDirection: "row", justifyContent: "space-between" }}>Total <span>{cartTotal}</span></Box>
+            <Box sx={{ m: 1, display: 'flex', flexDirection: "row", justifyContent: "space-between" }}>Total <span>{cartTotal}</span></Box>
             <Box marginTop={4} display={"flex"} justifyContent={'center'} >
                 <ReactPagination
                     activePage={props?.activePage}

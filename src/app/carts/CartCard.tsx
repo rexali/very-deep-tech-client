@@ -26,7 +26,7 @@ export default function CartCard({ product, refreshCart }: { product: any, refre
   
   return (
     <Card sx={{ maxWidth: 345, margin: 1 }}>
-      <Box sx={{ display: 'flex', flexDirection: "row", justifyContent: "space-between" }}>
+      <Box sx={{ display: 'flex', flexDirection: "row", justifyContent: "space-around" }}>
         <Link href={"/products/" + product._id}>
           {product.product_pictures?.length ?
             <CardImage
@@ -42,18 +42,11 @@ export default function CartCard({ product, refreshCart }: { product: any, refre
             <CardImage
               src={"https://placehold.co/600x400/orange/white"}
               alt={'photo'}
-              layout="responsive"
+              width={170}
+              height={170}
               style={{
-                display: 'block',
-                marginRight: 'auto',
-                marginLeft: 'auto',
-                width: "100%",
                 borderRadius: 20,
-                // height: 'auto' 
-                height: 140,
               }}
-              width={0}
-              height={0}
             />
           }
         </Link>
