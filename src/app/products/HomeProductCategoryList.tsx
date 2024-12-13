@@ -14,7 +14,7 @@ export default function HomeProductCategoryList(props: any) {
     const categoriex = Array.from(new Set([...categories]));
 
     return (
-            <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} sx={{mt:5, marginLeft: "auto", marginRight: "auto"}}>
+            <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} sx={{mt:2, marginLeft: "auto", marginRight: "auto"}}>
                 {
                     categoriex.map((catx: any, i: number) => {
                         return (

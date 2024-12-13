@@ -9,7 +9,7 @@ export default function FeaturedProducts({ products }: { products: any }) {
 
   return (
     <ErrorBoundary>
-      <Container maxWidth="md" component={'main'} sx={{ mt: 5 }}>
+      <Container maxWidth="md" component={'main'} sx={{ mt: 2 }}>
         <h3>Featured</h3>
           <FeaturedProductList products={products} />
       </Container>

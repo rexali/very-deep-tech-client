@@ -9,7 +9,7 @@ export default function NewProducts({ products }: { products: any }) {
 
   return (
     <ErrorBoundary>
-      <Container maxWidth="md" component={'main'} sx={{ mt: 5 }}>
+      <Container maxWidth="md" component={'main'} sx={{ mt: 2 }}>
         <h3>New</h3>
         <NewProductList products={products}/>
       </Container>

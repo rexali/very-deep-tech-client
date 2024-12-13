@@ -39,15 +39,15 @@ export default function ProductTopActions({ product, role }: { product: any, rol
                         router.push(`/products/${product._id}/delete`);
                     }
                     }
-                    startIcon={<Remove />}>
-                    Remove
+                    startIcon={<Remove sx={{fontSize: 11}} />}>
+                    <span style={{fontSize: 11}}>Remove</span>
                 </Button>
             }
             <Button
                 size="small"
                 onClick={(() => shareLink(product._id))}
-                startIcon={<Share />}>
-                Share
+                startIcon={<Share sx={{fontSize: 11}} />}>
+                <span style={{ fontSize: 11 }}>Share</span>
             </Button>
 
             <Button
@@ -62,8 +62,8 @@ export default function ProductTopActions({ product, role }: { product: any, rol
                     }
 
                 }}
-                startIcon={<Favourite sx={{ color: userLikes?.includes(userId) ? 'red' : 'green' }} />}>
-                Like
+                startIcon={<Favourite sx={{fontSize: 11, color: userLikes?.includes(userId) ? 'red' : 'green' }} />}>
+                <span style={{ fontSize: 11 }}>Like</span>
             </Button>
             {open && <StatusModal message={{
                 title: "Favourite Alert",

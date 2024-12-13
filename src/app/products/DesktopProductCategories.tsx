@@ -27,9 +27,9 @@ export default function DesktopProductCategories(props: any) {
                 }}
                 href={`/category/?term=${catx.toLowerCase()}`}>
                 <ListItem>
-                    <ListItemButton>
-                        <ListItemText primary={catx} />
-                    </ListItemButton>
+                    {/* <ListItemButton> */}
+                    <ListItemText primary={catx} />
+                    {/* </ListItemButton> */}
                 </ListItem>
             </Link>
         )
@@ -37,7 +37,7 @@ export default function DesktopProductCategories(props: any) {
 
     return (
         <ErrorBoundary>
-            <Container maxWidth="lg" component={'main'} sx={{ mt: 5 }}>
+            <Container maxWidth="lg" component={'main'} sx={{ mt: 2 }}>
                 <p>Categories</p>
                 <List>
                     {renderListItems(categoriex)}

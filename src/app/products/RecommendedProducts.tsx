@@ -10,7 +10,7 @@ export default function RecommendedProducts() {
 
   return (
     <ErrorBoundary>
-      <Container maxWidth="md" component={'main'} sx={{ mt: 5 }}>
+      <Container maxWidth="md" component={'main'} sx={{ mt: 2 }}>
         {/* People who viewed this item also bought: */}
         <h3><span>Recommended</span></h3>
         <Suspense fallback={<Fallback />}>

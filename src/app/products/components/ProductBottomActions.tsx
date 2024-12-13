@@ -57,18 +57,15 @@ export default function ProductBottomActions({ product, role }: { product: any, 
     return (
         <Box>
             <CardActions sx={{ display: 'flex', flexDirection: 'row', justifyContent: "space-between" }}>
-                {/* <Button size="small" onClick={() => setOpenQoute(true)}>Get Qoutes</Button> */}
-                {/* <Button size="small" sx={{fontSize:11}}  id="minus" onClick={(evt) => minusToCartCount(evt)} endIcon={<Minus />} /><input disabled={true} style={{ width: 15, textAlign: 'center', borderRadius: 8 }} value={quantity} /><Button size="small" sx={{fontSize:11}} id="plus" onClick={(evt) => plusToCartCount(evt)} startIcon={<Plus />} /> */}
-            <Box><span onClick={(evt) => minusToCartCount(evt)}><Minus sx={{fontSize:11}} /></span><input disabled={true} style={{ width: 15, textAlign: 'center', borderRadius: 8 }} value={quantity} /><span onClick={(evt) => plusToCartCount(evt)}><Plus sx={{fontSize:11}} /></span></Box>
+                <Box><span onClick={(evt) => minusToCartCount(evt)}><Minus sx={{ mr: 1 }} /></span><input disabled={true} style={{ width: 15, textAlign: 'center', borderRadius: 8 }} value={quantity} /><span onClick={(evt) => plusToCartCount(evt)}><Plus sx={{ ml: 1 }} /></span></Box>
                 {
                     (role === 'admin') && <Button
                         size="small"
                         onClick={() => { router.push(`/products/${product._id}/edit`) }}
-                        startIcon={<Edit />}></Button>
+                        startIcon={<Edit sx={{fontSize: 11}} />}></Button>
                 }
                 <Button
                     size="small"
-                    sx={{}}
                     onClick={async () => {
                         if (userId) {
                             if (!await isAllReadyAddedToCartByUserAPI(userId, product._id)) {
@@ -94,7 +91,7 @@ export default function ProductBottomActions({ product, role }: { product: any, 
                         }
 
                     }}
-                    startIcon={<AddToCart sx={{fontSize:11}} />}><span style={{fontSize:11}}>Add</span></Button>
+                    startIcon={<AddToCart sx={{ fontSize: 11 }} />}><span style={{ fontSize: 11 }}>Add</span></Button>
             </CardActions>
             {open && <StatusModal message={{
                 title: "Cart Alert",

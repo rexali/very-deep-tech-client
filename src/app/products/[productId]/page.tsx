@@ -85,7 +85,7 @@ export default async function ProductDetailPage({ params }: { params: { productI
                         borderRadius: 20,
                       }}
                       width={345}
-                      height={245}
+                      height={345}
                     />
                   </div>
                 ) : photos.map((photo, i) =>
