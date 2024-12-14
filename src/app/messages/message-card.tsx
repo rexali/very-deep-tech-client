@@ -18,7 +18,7 @@ export default function MessageCard({
     message,
     role,
     refreshMessages
-}: { message: any, role: any, refreshMessages: any }) {
+}: { message: any, role: any, refreshMessages?: any }) {
 
     const [edit, setEdit] = React.useState(false);
     const [open, setOpen] = React.useState(false);

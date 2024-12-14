@@ -42,7 +42,7 @@ export default function UsersNotifications() {
         <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }}>
             <Box>Total Notifications: {data[0]?.totalNotifications}</Box>
             <Grid container columnSpacing={1}>
-                <NotificationList notifications={data} role={'admin'} />
+                <NotificationList notifications={data} role={'admin'} refreshNotifications={()=>{}} />
             </Grid>
             <Box marginTop={4} display={"flex"} justifyContent={'center'}>
                 <ReactPagination

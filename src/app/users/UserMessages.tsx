@@ -35,7 +35,7 @@ export default function UserMessages() {
   return (
     <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }}>
       <Grid container columnSpacing={1}>
-        <MessageList messages={messages} role={state.user?.role} />
+        <MessageList messages={messages} role={state.user?.role} refreshMessages={()=>{}}/>
       </Grid>
       <Box marginTop={4} display={"flex"} justifyContent={'center'}>
         <ReactPagination
