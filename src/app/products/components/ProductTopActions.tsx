@@ -15,7 +15,7 @@ import { addToWishListOrRemove } from "@/app/favourites/utils/addToWishListOrRem
 import { useAuth } from "@/hooks/use-auth";
 import { goToSavedLinkpath } from "@/utils/goToSavedLinkPath";
 import { CardActions } from "@mui/material";
-
+ 
 export default function ProductTopActions({ product, role }: { product: any, role?: string }) {
     const [open, setOpen] = useState(false);
     const router = useRouter();

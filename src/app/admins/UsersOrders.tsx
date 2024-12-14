@@ -11,6 +11,7 @@ import Box from '@mui/material/Box';
 import { getUsersOrdersAPI } from './api/getUsersOrders';
 import Container from '@mui/material/Container';
 import Link from 'next/link';
+import { Button } from '@mui/material';
 
 
 export default function UsersOrders() {
@@ -48,11 +49,14 @@ export default function UsersOrders() {
           <TableHead>
             <TableRow>
               <TableCell>User&apos;email</TableCell>
-              <TableCell align="right">Order status</TableCell>
+              <TableCell align="right">Order status (OS)</TableCell>
               <TableCell align="right">Date (n) Time &nbsp;</TableCell>
               <TableCell align="right">Total &nbsp;</TableCell>
-              <TableCell align="right">Payment status &nbsp;</TableCell>
+              <TableCell align="right">Payment status (PS) &nbsp;</TableCell>
               <TableCell align="right">View &nbsp;</TableCell>
+              <TableCell align="center">Update OS</TableCell>
+              <TableCell align="center">Update PS</TableCell>
+
             </TableRow>
           </TableHead>
           <TableBody>
@@ -68,9 +72,11 @@ export default function UsersOrders() {
                 <TableCell align="right">{order?.createdAt ?? '12-12-24'}</TableCell>
                 <TableCell align="right">{order?.total}</TableCell>
                 <TableCell align="right">{order?.paymentStatus}</TableCell>
-                <TableCell align="right">
+                <TableCell align="center">
                   <Link href={'/orders/' + order._id}>View</Link>
                 </TableCell>
+                <TableCell align="center"><Button size='small' onClick={()=>{alert(order?._id)}}>Update ({order?.orderStatus})</Button></TableCell>
+                <TableCell align="center"><Button size='small' onClick={()=>{alert(order?._id)}}>Update ({order?.paymentStatus})</Button></TableCell>
               </TableRow>
             ))}
           </TableBody>

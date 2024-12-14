@@ -11,6 +11,7 @@ import Box from '@mui/material/Box';
 import { getUsersHistoryAPI } from './api/getUsersHistory';
 import Container from '@mui/material/Container';
 import Link from 'next/link';
+import Button from '@mui/material/Button';
 
 
 export default function UsersTransactions() {
@@ -24,7 +25,7 @@ export default function UsersTransactions() {
       } catch (error) {
         console.error(error);
       }
-     
+
     }
     getData();
 
@@ -62,6 +63,9 @@ export default function UsersTransactions() {
                 <TableCell align="right">{transaction.amount}</TableCell>
                 <TableCell align="right">
                   <Link href={`mailto:${transaction?.user?.email}`}>{transaction?.user?.email}</Link>
+                </TableCell>
+                <TableCell align="center">
+                  <Button size='small' onClick={() => { alert(transaction?._id) }}>Update ({transaction?.paymentStatus})</Button>
                 </TableCell>
               </TableRow>
             ))}

@@ -100,4 +100,4 @@ export default function ProductCard({ product, role }: { product: any, role?: st
       {openQoute && <GetQouteModal closeCallback={handleOpenQuote} productId={product._id} />}
     </Card>
   );
-}
+} 
