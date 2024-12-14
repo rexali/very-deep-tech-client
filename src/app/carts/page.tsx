@@ -32,7 +32,7 @@ export default function CartPage() {
         console.warn(error);
       }
     } else {
-      router.push('/auth/signin?next=' + goToSavedLinkpath(activePage));
+      router.push('/auth/signin');
     }
   }, [activePage, dispatch, router, userId])
 
