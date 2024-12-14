@@ -22,28 +22,24 @@ export default function CheckoutPage() {
   const [products, setProducts] = useState<Array<any>>([]);
   const router = useRouter();
 
-  const getCartData = useCallback(async (userId: string, activePage: number, dispatch: any, router: any) => {
-    if (userId) {
-      try {
-        let productsInCart = await getUserCartsAPI(userId, activePage);
-        dispatch(getCarts(productsInCart));
-        setProducts(productsInCart);
-      } catch (error) {
-        console.warn(error)
-      }
-    } else {
-      router.push('/auth/signin?next=' + goToSavedLinkpath(activePage));
+  const getCartData = useCallback(async () => {
+    try {
+      let productsInCart = await getUserCartsAPI(userId, activePage);
+      dispatch(getCarts(productsInCart));
+      setProducts(productsInCart);
+    } catch (error) {
+      console.warn(error)
     }
 
-  }, [])
+  }, [activePage, dispatch, userId])
 
   useEffect(() => {
-    getCartData(userId, activePage, dispatch, router);
-  }, [activePage, dispatch, getCartData, router, userId])
+    getCartData();
+  }, [getCartData])
 
 
   if (!products?.length) {
-    return <Fallback item={"No product in your cart yet"} />
+    return <Fallback item={"No product in your cart yet. " + (userId) ? '' : 'Please sign in'} />
   }
 
   return (
@@ -55,7 +51,7 @@ export default function CheckoutPage() {
           activePage={activePage}
           setActivePage={setActivePage}
           totalCarts={products[0]?.totalCarts}
-          refreshCart={()=>getCartData(userId, activePage, dispatch, router)}
+          refreshCart={() => getCartData()}
         />
       </Container>
     </ErrorBoundary>
