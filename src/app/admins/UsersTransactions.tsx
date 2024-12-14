@@ -33,7 +33,7 @@ export default function UsersTransactions() {
   if (!data.length) {
 
     return (
-      <Container sx={{ mt: 8 }} component={"main"} maxWidth="md">
+      <Container sx={{ mt: 8, minHeight: 420, display: "flex", justifyContent: 'center', alignItems: 'center' }} component={"main"} maxWidth="md">
         <Box textAlign={'center'}>No transaction(s) found</Box>
       </Container>
     )

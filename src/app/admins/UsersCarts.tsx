@@ -24,7 +24,7 @@ export default function UsersProducts() {
   }
 
   return (
-    <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }}>
+    <Container maxWidth="lg" component={'main'} sx={{ mt: 8, minHeight: 420, display: "flex", justifyContent: 'center', alignItems: 'center' }}>
       <Box>Total Carts: {carts[0]?.totalCarts}</Box>
       <ProductList products={carts} />
       <Box marginTop={4} display={"flex"} justifyContent={'center'}>

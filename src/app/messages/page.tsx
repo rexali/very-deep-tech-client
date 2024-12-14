@@ -9,15 +9,11 @@ import Box from '@mui/material/Box';
 import ProtectedRoute from '@/components/protected-route';
 import ReactPagination from '@/components/react-pagination';
 import { AppContext } from '@/context/AppContext';
-import { useAuth } from '@/hooks/use-auth';
-import { useRouter } from 'next/navigation';
 
-export default function MessagesPage(props:any) {
-    const { user } = useAuth();
+export default function MessagesPage(props: any) {
     const [activePage, setActivePage] = React.useState(1);
     const { state, dispatch } = React.useContext(AppContext);
     const { messages } = useMessages(dispatch, activePage);
-    const messageRouter = useRouter();
 
     const handlePageChange = (pageNumber: any) => {
         setActivePage(pageNumber)
@@ -39,7 +35,7 @@ export default function MessagesPage(props:any) {
                 <Box>Messages</Box>
                 {props.role === 'admin' && <Box>Total Messages: {messages[0]?.totalMessages}</Box>}
                 <Grid container columnSpacing={1} marginTop={5} display={"flex"} justifyContent={'center'}>
-                    <MessageList messages={messages || state.messages} role={props.role} messageRouter={messageRouter} />
+                    <MessageList messages={state?.messages.length > 0 ? state?.messages : messages} role={props.role} />
                 </Grid>
             </Container>
             <Box marginTop={4} display={"flex"} justifyContent={'center'}>

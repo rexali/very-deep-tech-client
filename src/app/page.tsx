@@ -32,7 +32,7 @@ export default async function AppPage() {
     <main>
       {/* <CssBaseline /> */}
       <SearchInput /> <br />
-      <ProductCategories categoryData={data?.categoryData} /> <br />
+      <ProductCategories categoryData={data?.categoryData} />
       <MarketingMessage /> <br />
       <FeaturedProducts products={data?.featuredData} />
       <Box margin={2} padding={2} display={"flex"} justifyContent={'center'}>

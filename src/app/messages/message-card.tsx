@@ -16,8 +16,7 @@ import { useMediaQuery } from 'react-responsive';
 export default function MessageCard({
     message,
     role,
-    messageRouter
-}: { message: any, role: any, messageRouter: any }) {
+}: { message: any, role: any}) {
 
     const [edit, setEdit] = React.useState(false);
     const [open, setOpen] = React.useState(false);
@@ -52,7 +51,7 @@ export default function MessageCard({
                     <Link href={'#'} style={{ textDecoration: 'none' }} onClick={() => setOpen(true)}><DeleteForever /> Delete</Link>
                 </Typography>}
             </CardContent>
-            {open && <DeleleModal cb={async () => { deleteMessageAPI({ messageId: message._id }); messageRouter.refresh(); }} closeCallback={setOpen} />}
+            {open && <DeleleModal cb={async () =>deleteMessageAPI({ messageId: message._id })} closeCallback={setOpen} />}
         </Card>
     );
 }

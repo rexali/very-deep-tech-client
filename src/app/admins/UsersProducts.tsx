@@ -29,7 +29,7 @@ export default function UsersProducts() {
   if (!data.length) {
 
     return (
-      <Container sx={{ mt: 8 }} component={"main"} maxWidth="md">
+      <Container sx={{ mt: 8, minHeight: 420, display: "flex", justifyContent: 'center', alignItems: 'center' }} component={"main"} maxWidth="md">
         <Box textAlign={'center'}>No product(s) found</Box>
       </Container>
     )

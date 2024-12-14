@@ -39,7 +39,7 @@ export default function UserTabs() {
 
     return (
         <ProtectedRoute>
-            <div className="container" style={styles.minheight}>
+            <div className="containerx" style={styles.minheight}>
 
                 <div className="scrollmenu" style={styles.marginTop}>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('admin')} href={""} ><small>Your profile</small></Link>
