@@ -28,6 +28,7 @@ export default function MessagesPage(props: any) {
         )
     }
 
+    let mess =state?.messages?.length > 0 ? state.messages : messages;
 
     return (
         <ProtectedRoute>
@@ -35,7 +36,7 @@ export default function MessagesPage(props: any) {
                 <Box>Messages</Box>
                 {props.role === 'admin' && <Box>Total Messages: {messages[0]?.totalMessages}</Box>}
                 <Grid container columnSpacing={1} marginTop={5} display={"flex"} justifyContent={'center'}>
-                    <MessageList messages={state?.messages.length > 0 ? state?.messages : messages} role={props.role} />
+                    <MessageList messages={mess} role={props.role} />
                 </Grid>
             </Container>
             <Box marginTop={4} display={"flex"} justifyContent={'center'}>
