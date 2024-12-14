@@ -12,8 +12,8 @@ import Link from 'next/link';
 export default function CartList(props: any) {
     const [cartTotal, setCartTotal] = React.useState<number>();
 
-    let totalAmount = props.products
-        .map((product: any) => Number(product.product_price) * Number(product.cartQuantity))
+    let totalAmount = props?.products
+        ?.map((product: any) => Number(product.product_price) * Number(product.cartQuantity))
         .reduce((prev: any, cur: any) => {
             return prev + cur;
         }, 0);
@@ -25,8 +25,8 @@ export default function CartList(props: any) {
     return (
         <Container>
             <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                {props?.products.map((product: any) => {
-                    return <Grid key={product._id} item xs={12} md={6}><CartCard product={product} refreshCart={props.refreshCart} /></Grid>
+                {props?.products?.map((product: any) => {
+                    return <Grid key={product._id} item xs={12} md={6}><CartCard product={product} refreshCart={props?.refreshCart} /></Grid>
                 })}
             </Grid>
             <Box sx={{ m: 1, display: 'flex', flexDirection: "row", justifyContent: "space-between" }}>Total <span>{cartTotal}</span></Box>

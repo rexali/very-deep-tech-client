@@ -11,6 +11,7 @@ import { getUserCartsAPI } from "../users/api/getUserCarts";
 import { getCarts } from "@/store/actions/app-actions";
 import { useRouter } from "next/navigation";
 import { goToSavedLinkpath } from "@/utils/goToSavedLinkPath";
+import ErrorBoundary from "@/components/ErrorBoundary";
 
 export default function CheckoutPage() {
 
@@ -46,15 +47,17 @@ export default function CheckoutPage() {
   }
 
   return (
-    <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }} >
-      <Box>Items: {products[0]?.totalCarts}</Box>
-      <CheckoutListComponent
-        products={products}
-        activePage={activePage}
-        setActivePage={setActivePage}
-        totalCarts={products[0]?.totalCarts}
-        refreshCart={getCartData}
-      />
-    </Container>
+    <ErrorBoundary>
+      <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }} >
+        <Box>Items: {products[0]?.totalCarts}</Box>
+        <CheckoutListComponent
+          products={products}
+          activePage={activePage}
+          setActivePage={setActivePage}
+          totalCarts={products[0]?.totalCarts}
+          refreshCart={getCartData}
+        />
+      </Container>
+    </ErrorBoundary>
   )
 }
