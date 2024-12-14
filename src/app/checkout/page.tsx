@@ -18,11 +18,11 @@ export default function CheckoutPage() {
   const [activePage, setActivePage] = useState<number>(1);
   const { dispatch } = useContext(AppContext);
   const { user } = useAuth();
-  const userId = user?._id || getToken('_id') as string;
+  const userId = user?._id as string || getToken('_id') as string;
   const [products, setProducts] = useState<Array<any>>([]);
-  const router = useRouter()
+  const router = useRouter();
 
-  const getCartData = useCallback(async () => {
+  const getCartData = useCallback(async (userId: string, activePage: number, dispatch: any, router: any) => {
     if (userId) {
       try {
         let productsInCart = await getUserCartsAPI(userId, activePage);
@@ -35,11 +35,11 @@ export default function CheckoutPage() {
       router.push('/auth/signin?next=' + goToSavedLinkpath(activePage));
     }
 
-  }, [activePage, dispatch, router, userId])
+  }, [])
 
   useEffect(() => {
-    getCartData();
-  }, [getCartData])
+    getCartData(userId, activePage, dispatch, router);
+  }, [activePage, dispatch, getCartData, router, userId])
 
 
   if (!products?.length) {
@@ -55,7 +55,7 @@ export default function CheckoutPage() {
           activePage={activePage}
           setActivePage={setActivePage}
           totalCarts={products[0]?.totalCarts}
-          refreshCart={getCartData}
+          refreshCart={()=>getCartData(userId, activePage, dispatch, router)}
         />
       </Container>
     </ErrorBoundary>
