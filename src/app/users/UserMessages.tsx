@@ -8,10 +8,12 @@ import * as React from "react";
 import ReactPagination from "@/components/react-pagination";
 import { getToken } from "@/utils/getToken";
 import { useAuth } from "@/hooks/use-auth";
+import { useRouter } from "next/navigation";
 
 export default function UserMessages() {
   const [activePage, setActivePage] = React.useState(1);
-  const { state, dispatch } = React.useContext(AuthContext)
+  const { state, dispatch } = React.useContext(AuthContext);
+  const router = useRouter()
   
   const auth = useAuth();
   const userId = auth.user?._id as unknown as string || getToken('_id') as string;
@@ -35,7 +37,7 @@ export default function UserMessages() {
   return (
     <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }}>
       <Grid container columnSpacing={1}>
-        <MessageList messages={messages} role={state.user?.role} />
+        <MessageList messages={messages} role={state.user?.role} messageRouter={router} />
       </Grid>
       <Box marginTop={4} display={"flex"} justifyContent={'center'}>
         <ReactPagination
