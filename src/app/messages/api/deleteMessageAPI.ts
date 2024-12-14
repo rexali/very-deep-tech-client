@@ -1,10 +1,12 @@
 'use client'
 
 import { SERVER_URL } from "@/constants/url";
+import { getMessages } from "@/store/actions/app-actions";
+import { getMessagesAPI } from "./getMessagesAPI";
 
-const deleteMessageAPI = async (data: { messageId: any }) => {
+const deleteMessageAPI = async (data: { messageId: any, dispatch: any }) => {
     try {
-        let response = await fetch(`${SERVER_URL}/messages/`+data.messageId, {
+        let response = await fetch(`${SERVER_URL}/messages/` + data.messageId, {
             method: "delete",
             mode: 'cors',
             headers: {
@@ -16,7 +18,7 @@ const deleteMessageAPI = async (data: { messageId: any }) => {
 
         let result = await response.json();
         if (result.status === 'success') {
-            
+            data.dispatch(getMessages(await getMessagesAPI()));
             return true
         }
 

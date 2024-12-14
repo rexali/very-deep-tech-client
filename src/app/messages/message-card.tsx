@@ -12,15 +12,17 @@ import DeleleModal from '@/components/delete-modal';
 import { deleteMessageAPI } from './api/deleteMessageAPI';
 import Message from '@mui/icons-material/Message';
 import { useMediaQuery } from 'react-responsive';
+import { AppContext } from '@/context/AppContext';
 
 export default function MessageCard({
     message,
     role,
-}: { message: any, role: any}) {
+}: { message: any, role: any }) {
 
     const [edit, setEdit] = React.useState(false);
     const [open, setOpen] = React.useState(false);
     const isMobile = useMediaQuery({ maxDeviceWidth: 1023 });
+    const { dispatch } = React.useContext(AppContext);
 
     if (edit) {
         return <EditMessage callback={setEdit} message={message} />
@@ -51,7 +53,7 @@ export default function MessageCard({
                     <Link href={'#'} style={{ textDecoration: 'none' }} onClick={() => setOpen(true)}><DeleteForever /> Delete</Link>
                 </Typography>}
             </CardContent>
-            {open && <DeleleModal cb={async () =>deleteMessageAPI({ messageId: message._id })} closeCallback={setOpen} />}
+            {open && <DeleleModal cb={async () => deleteMessageAPI({ messageId: message._id, dispatch })} closeCallback={setOpen} />}
         </Card>
     );
 }
