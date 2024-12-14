@@ -5,8 +5,6 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -20,20 +18,21 @@ const style = {
     p: 4,
 };
 
-export default function DeleleModal({ cb, closeCallback }: { cb: any, closeCallback: any }) {
+export default function DeleleModal({ cb, closeCallback, refreshCallback }: { cb: any, closeCallback: any, refreshCallback: any }) {
     const [open, setOpen] = React.useState(true);
     const [result, setResult] = React.useState(false);
-    const router = useRouter();
 
     const handleOpen = () => setOpen(true);
+
     const handleClose = () => {
         closeCallback(false);
         setOpen(false);
     };
 
     const handleDeletion = async () => {
+        // run delete callback, etc and set state of the op. success or failed
         setResult(await cb());
-        router.refresh();
+        refreshCallback()
     }
 
     return (
@@ -52,7 +51,7 @@ export default function DeleleModal({ cb, closeCallback }: { cb: any, closeCallb
                     </Typography>
                     <Typography id="modal-modal-description" sx={{ mt: 2, display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                         <Button variant='contained' onClick={() => closeCallback(false)} color='success'>No</Button>
-                        <Button variant='contained' onClick={handleDeletion} color='warning'>Yes</Button>
+                        <Button variant='contained' onClick={handleDeletion} color='warning'>{!result ? 'Yes' : 'Close'}</Button>
                     </Typography>
                 </Box>
             </Modal>

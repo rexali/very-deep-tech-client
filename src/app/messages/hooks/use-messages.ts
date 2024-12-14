@@ -5,7 +5,7 @@ import { getMessages } from '@/store/actions/app-actions';
 import axios from 'axios';
 import React, { useEffect } from 'react';
 
-export const useMessages = (dispatch: any, pageNumber?: any) => {
+export const useMessages = (dispatch: any, pageNumber: any = 1) => {
 
   const [messages, setMessages] = React.useState<any>([]);
 

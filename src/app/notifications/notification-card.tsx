@@ -13,8 +13,9 @@ import { deleteNotificationAPI } from './api/deleteNotificationAPI';
 
 export default function NotificationCard({
     notification,
-    role
-}: { notification: any, role?: any }) {
+    role,
+    refreshNotifications
+}: { notification: any, role?: any,  refreshNotifications?:any }) {
 
     const [edit, setEdit] = React.useState(false);
     const [open, setOpen] = React.useState(false);
@@ -33,7 +34,7 @@ export default function NotificationCard({
                     variant="body2"
                     color="text.secondary"
                     component={'a'}
-                    href={`/notifications/${notification._id}`} 
+                    href={`/notifications/${notification._id}`}
                     sx={{ textDecoration: 'none' }}
                 >
                     {notification?.body}
@@ -43,7 +44,11 @@ export default function NotificationCard({
                     <Link href={''} style={{ textDecoration: 'none' }} onClick={() => setOpen(true)}><DeleteForever /> Delete</Link>
                 </Typography>}
             </CardContent>
-            {open && <DeleleModal cb={async () => await deleteNotificationAPI({ notificationId: notification._id })} closeCallback={setOpen} />}
+            {open && <DeleleModal
+                cb={async () => await deleteNotificationAPI({ notificationId: notification._id })}
+                closeCallback={setOpen}
+                refreshCallback={refreshNotifications}
+            />}
 
         </Card>
     );

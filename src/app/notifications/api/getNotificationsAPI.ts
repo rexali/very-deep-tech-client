@@ -1,9 +1,9 @@
 'use client'
 
-import { BASE_URL, SERVER_URL } from "@/constants/url";
+import {SERVER_URL } from "@/constants/url";
 import axios from "axios";
 
-const getNotificationAPI = async (pageNumber: any = 1) => {
+const getNotificationsAPI = async (pageNumber: any = 1) => {
 
     try {
         let { data } = await axios.get(`${SERVER_URL}/notifications?page=${pageNumber}`, {
@@ -21,5 +21,5 @@ const getNotificationAPI = async (pageNumber: any = 1) => {
 }
 
 export {
-    getNotificationAPI
+    getNotificationsAPI
 }
