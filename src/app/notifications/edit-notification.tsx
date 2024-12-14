@@ -13,7 +13,7 @@ import RemoveIcon from '@mui/icons-material/Cancel';
 import { handleUpdateNotificationAPI } from './api/handleUpdateNotificationAPI';
 import { AppContext } from '@/context/AppContext';
 import { getNotifications } from '@/store/actions/app-actions';
-import { getNotificationAPI } from './api/getNotificationsAPI';
+import { getNotificationsAPI } from './api/getNotificationsAPI';
 import { getToken } from '@/utils/getToken';
 import { useAuth } from '@/hooks/use-auth';
 import { useRouter } from 'next/navigation';
@@ -35,7 +35,7 @@ export default function EditNotification({ notification, callback }: { callback:
     const handleSubmit = async (event: any) => {
         setLoading('Sending data..')
         await handleUpdateNotificationAPI(event, setSuccess, setError, setLoading, userId);
-        dispatch(getNotifications(await getNotificationAPI()));
+        dispatch(getNotifications(await getNotificationsAPI()));
         router.refresh();
     };
 
