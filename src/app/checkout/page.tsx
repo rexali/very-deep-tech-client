@@ -39,7 +39,7 @@ export default function CheckoutPage() {
 
 
   if (!products?.length) {
-    return <Fallback item={"No product in your cart yet. "} />
+    return <Fallback item={"No product in your cart yet. Wait.."} />
   }
 
   return (
