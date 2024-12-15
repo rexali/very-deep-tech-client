@@ -1,13 +1,17 @@
 import { SERVER_URL } from "@/constants/url";
+import axios from "axios";
 
 const featureProductAPI = async (featuredData: any) => {
 
     try {
-        let data = await fetch(`${SERVER_URL}/products/featureproduct`, {
-            method: 'patch',
-            body: JSON.stringify(featuredData)
-        }).then(res => res.json());
-        if (data.status === 'success') {
+        let data = await axios.patch(`${SERVER_URL}/products/featureproduct`, featuredData, {
+            withCredentials: false,
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+        });
+        if (data.data.status === 'success') {
             return true;
         }
 

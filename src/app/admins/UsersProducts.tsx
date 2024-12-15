@@ -49,13 +49,8 @@ export default function UsersProducts() {
               <TableCell align="right">product Name</TableCell>
               <TableCell align="right">Date (n) Time &nbsp;</TableCell>
               <TableCell align="right">Owner&apos;email</TableCell>
-              <TableCell align="right" colSpan={5} rowSpan={2}>
-                <TableCell colSpan={5}>Actions</TableCell>
-                <TableCell align="right">Approve</TableCell>
-                <TableCell align="right">Edit &nbsp;</TableCell>
-                <TableCell align="right">Delete &nbsp;</TableCell>
-                <TableCell align="right">Promote &nbsp;</TableCell>
-                <TableCell align="right">View &nbsp;</TableCell>
+              <TableCell align="center" colSpan={5}>
+                    Actions
               </TableCell>
             </TableRow>
           </TableHead>
@@ -80,7 +75,7 @@ export default function UsersProducts() {
                       await getProductData();
                     }
                     }>
-                      {product.approved ? 'Approved' : 'Approve'}
+                      {product?.approved === 'yes' ? 'Approved' : 'Approve'}
                     </Button>
                   </TableCell>
 
@@ -98,7 +93,7 @@ export default function UsersProducts() {
                       await featureProductAPI({ productId: product._id, featured: 'yes' });
                       await getProductData();
                     }}>
-                      {product?.featured ? 'Promoted' : 'Promote'}
+                      {product?.featured === 'yes' ? 'Promoted' : 'Promote'}
                     </Button>
                   </TableCell>
 

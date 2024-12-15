@@ -13,13 +13,14 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const defaultTheme = createTheme();
 
 export default function SettingPage() {
-  
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
       email: data.get('email'),
       password: data.get('password'),
+      confirmPassword: data.get('confirm-password'),
     });
   };
 
@@ -35,30 +36,41 @@ export default function SettingPage() {
             alignItems: 'center',
           }}
         >
-        
+
           <Typography component="h1" variant="h5">
             Change password
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form"
+            onSubmit={handleSubmit}
+            noValidate={false}
+            sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
               fullWidth
               name="old-password"
-              label="Old Password"
+              label="Old password"
               type="password"
               id="old-password"
-              autoComplete="current-password"
             />
             <TextField
               margin="normal"
               required
               fullWidth
               name="current-password"
-              label="Current Password"
+              label="Current password"
               type="password"
               id="current-password"
-              autoComplete="current-password"
+            />
+
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="confirm-password"
+              label="Confirm password"
+              type="password"
+              id="confirm-password"
             />
 
             <Button

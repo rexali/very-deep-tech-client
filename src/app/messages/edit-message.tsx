@@ -26,7 +26,7 @@ export default function EditMessage({ message, callback }: { message: any, callb
     const [loading, setLoading] = React.useState('');
     const [firstName,] = React.useState(message.firstName ?? '');
     const [lastName,] = React.useState(message.lastName ?? '');
-    const [sender,] = React.useState(message.sender ?? '');
+    const [email,] = React.useState(message.sender ?? '');
     const [messageId,] = React.useState(message._id);
     const [title,] = React.useState(message.title);
     const [comment,] = React.useState(message.comment);
@@ -55,7 +55,8 @@ export default function EditMessage({ message, callback }: { message: any, callb
                     </Typography>
                     <Box
                         component="form"
-                        noValidate sx={{ mt: 1 }}
+                        noValidate ={false}
+                        sx={{ mt: 1 }}
                         onSubmit={handleSubmit}
                     >
                         <TextField
@@ -79,7 +80,7 @@ export default function EditMessage({ message, callback }: { message: any, callb
                         <TextField
                             id="email"
                             name="email"
-                            defaultValue={sender}
+                            defaultValue={email}
                             hidden
                         />
                         <TextField

@@ -6,9 +6,9 @@ import Container from "@mui/material/Container";
 import Update from "@material-ui/icons/Update";
 import * as React from "react";
 import { handleProfileUpdate } from "./utils/handleProfileUpdate";
-import Image from "next/image";
 import { SERVER_URL } from "@/constants/url";
 import { useAuth } from "@/hooks/use-auth";
+import CardImage from "../products/components/CardImage";
 
 
 export default function UserProfile(props: any) {
@@ -29,12 +29,12 @@ export default function UserProfile(props: any) {
         setError,
         setLoading,
         userId
-      ); 
+      );
     } catch (error) {
       console.warn(error);
     }
 
-    
+
   };
 
   React.useEffect(() => {
@@ -54,22 +54,15 @@ export default function UserProfile(props: any) {
   return (
     <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }}>
       <Box>
-        {user.photo ? <Image
-          src={`${SERVER_URL}/uploads/${user.photo}`}
-          alt="Account"
-          layout="responsive"
-          style={{
-            display: 'block',
-            marginRight: 'auto',
-            marginLeft: 'auto',
-            width: "100%",
-            // height: 'auto' 
-            height: 140,
-            borderRadius: 30
-          }}
-          width={0}
-          height={0}
-        /> : <Avatar />
+        {user.photo ?
+          <CardImage
+            src={`${SERVER_URL}/uploads/${user.photo}`}
+            alt={user?.firstName}
+            width={150}
+            height={150}
+            style={{ borderRadius: 30 }}
+
+          /> : <Avatar />
         }
       </Box>
       <Box

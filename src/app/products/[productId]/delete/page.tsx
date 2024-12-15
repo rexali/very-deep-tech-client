@@ -23,8 +23,9 @@ export default function Page() {
             component={'main'}
             sx={{ minHeight: 520, display: "flex", justifyContent: 'center', alignItems: 'center' }}
         >
-            <p>Do you really want to delete this item?</p>
-            <Box sx={{ display: "flex", flexDirection: 'row', justifyContent: 'space-around' }} >
+            <Box component={'div'} textAlign={'center'}>Do you really want to delete this item?</Box>
+
+            <Box sx={{ display: "flex", flexDirection: 'row', justifyContent: 'space-around' }} component={'div'} >
                 <Link href={`/${user.role === 'user' ? 'users' : 'admins'}`} >
                     <Button onClick={() => {
                     }} startIcon={<Close />} >

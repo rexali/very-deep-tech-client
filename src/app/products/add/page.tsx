@@ -19,20 +19,20 @@ export default function AddProduct() {
     const [loading, setLoading] = React.useState('');
 
     const auth = useAuth();
-    const userId = auth.user?._id as unknown as string || getToken('_id') as string;
+    const userId = auth.user?._id || getToken('_id') as string;
 
     const handleSubmit = async (event: any) => {
         setLoading('Sending data..');
         try {
             await handleProductSubmit(event, setSuccess, setError, setLoading, userId)
         } catch (error) {
-            console.warn(error);     
+            console.warn(error);
         }
     }
-    
+
     return (
         <Container maxWidth="md" component={'main'}>
-            <Typography component="h1" variant="h5">
+            <Typography component="h1" variant="h5" textAlign={'center'}>
                 Add product
             </Typography>
             <Box
@@ -44,7 +44,7 @@ export default function AddProduct() {
                 }}
                 component={'form'}
                 onSubmit={handleSubmit}
-                noValidate
+                noValidate={false}
             >
                 <TextField
                     autoComplete="given-name"
@@ -64,6 +64,7 @@ export default function AddProduct() {
                         accept="image/*"
                         name="product_pictures"
                         id="product_pictures"
+                        required
                         multiple
                         formEncType="multipart/form-data"
                         style={{
@@ -82,119 +83,101 @@ export default function AddProduct() {
                     margin={"normal"}
                     id="product_category"
                     label="Product Category"
-                    autoFocus
+                    type='text'
+
                 />
 
                 <TextField
-                    autoComplete="given-name"
                     name="product_sub_category"
                     required
                     fullWidth
                     margin={"normal"}
                     id="product_sub_category"
                     label="Product Sub-Category"
-                    autoFocus
+                    type="text"
                 />
 
                 <TextField
-                    autoComplete="given-name"
                     name="product_price"
                     required
                     fullWidth
                     margin={"normal"}
                     id="product_price"
                     label="Product Price"
-                    autoFocus
+                    type="number"
                 />
 
                 <TextField
-                    autoComplete="given-name"
                     name="product_description"
                     required
                     fullWidth
                     margin={"normal"}
                     id="product_description"
                     label="Product Description"
-                    autoFocus
+                    type="text"
                 />
 
                 <TextField
-                    autoComplete="given-name"
                     name="product_quantity"
                     required
                     fullWidth
                     margin={"normal"}
                     id="product_quantity"
                     label="Product Quantity"
-                    autoFocus
+                    type='number'
                 />
 
                 <TextField
-                    autoComplete="given-name"
                     name="product_weight"
                     required
                     fullWidth
+                    type="number"
                     margin={"normal"}
                     id="product_weight"
                     label="Product Weight"
-                    autoFocus
-                    disabled
                 />
 
                 <TextField
-                    autoComplete="given-name"
                     name="product_size"
                     required
+                    type="text"
                     fullWidth
                     margin={"normal"}
                     id="product_size"
                     label="product_size"
-                    autoFocus
+                    placeholder="e.g., 16 by 4"
                 />
 
                 <TextField
-                    autoComplete="given-name"
                     name="product_code"
                     required
+                    type="text"
                     fullWidth
                     margin={"normal"}
                     id="product_code"
                     label="product_code"
-                    autoFocus
                 />
 
                 <TextField
-                    autoComplete="given-name"
                     name="product_demo_link"
                     required
                     fullWidth
                     margin={"normal"}
+                    type='url'
                     id="product_demos_links"
-                    label="Product Video Demo Link(s)"
-                    placeholder="seperated it with comma"
-                    autoFocus
+                    label="Product Video Demo Link"
+                    placeholder="Copy and paste url"
                 />
 
                 <TextField
-                    autoComplete="given-name"
                     name="product_photos_links"
                     required
                     fullWidth
                     margin={"normal"}
                     id="product_photos_links"
-                    label="Product Photos Links"
-                    placeholder="seperated it with comma"
-                />
-
-                <TextField
-                    autoComplete="given-name"
-                    name="featured"
-                    required
-                    fullWidth
-                    type='checkbox'
-                    margin={"normal"}
-                    id="featured"
-                    label="Featured"
+                    label="Other product photos links"
+                    type="text"
+                    placeholder="Copy and paste url, seperate it with comma"
                 />
 
                 {success && <Box textAlign={"center"} sx={{ color: "green" }}>{success.toUpperCase()}</Box>}

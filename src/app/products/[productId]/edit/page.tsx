@@ -7,7 +7,6 @@ import TextField from "@mui/material/TextField";
 import React, { useState, useEffect } from "react";
 import { handleProductEditSubmit } from "../../utils/handleProductEdit.Submit";
 import Container from "@mui/material/Container";
-import Image from 'next/image';
 import { SERVER_URL } from "@/constants/url";
 import Avatar from "@mui/material/Avatar";
 import { useAuth } from "@/hooks/use-auth";
@@ -15,6 +14,7 @@ import Typography from "@mui/material/Typography";
 import { usePathname } from "next/navigation";
 import { useProduct } from "../../hooks/useProduct";
 import Fallback from "@/components/common/fallback";
+import CardImage from "../../components/CardImage";
 
 export default function Page() {
     const [error, setError] = useState('');
@@ -48,37 +48,32 @@ export default function Page() {
 
     return (
         <Container maxWidth="md" component={'main'} sx={{ mt: 8 }}>
-            <Typography component="h1" variant="h5">
+            <Typography component="h1" variant="h5" textAlign={"center"}>
                 Edit product
             </Typography>
             <Box
                 component="form"
                 onSubmit={handleSubmit}
-                noValidate
+                noValidate={false}
                 sx={{ mt: 1 }}
             >
                 <Box>
-                    {data?.product_pictures[0] ? 
-                    <Image
-                        src={`${SERVER_URL}/uploads/${data?.product_pictures[0]}`}
-                        alt="Account"
-                        layout="responsive"
-                        style={{
-                            display: 'block',
-                            marginRight: 'auto',
-                            marginLeft: 'auto',
-                            width: "100%",
-                            // height: 'auto' 
-                            height: 140,
-                            borderRadius: 30
-                        }}
-                        width={0}
-                        height={0}
-                    /> : <Avatar />
+                    {data?.product_pictures[0] ?
+                        <CardImage
+                            src={`${SERVER_URL}/uploads/${data?.product_pictures[0]}`}
+                            alt={data?.product_name}
+                            style={{
+                                display: 'block',
+                                marginRight: 'auto',
+                                marginLeft: 'auto',
+                                borderRadius: 30
+                            }}
+                            width={140}
+                            height={140}
+                        /> : <Avatar />
                     }
                 </Box>
                 <TextField
-                    autoComplete="given-name"
                     name="product_name"
                     required
                     fullWidth
@@ -86,6 +81,7 @@ export default function Page() {
                     id="product_name"
                     label="Product Name"
                     defaultValue={data?.product_name}
+                    type='text'
                     autoFocus
                 />
 
@@ -93,7 +89,7 @@ export default function Page() {
                     name="product_photos"
                     id="product_photos"
                     defaultValue={data?.product_pictures?.join(',')}
-                    hidden
+                    hidden={false}
                     disabled
                 />
 
@@ -116,7 +112,6 @@ export default function Page() {
 
 
                 <TextField
-                    autoComplete="given-name"
                     name="product_category"
                     required
                     fullWidth
@@ -124,11 +119,10 @@ export default function Page() {
                     id="product_category"
                     label="Product Category"
                     defaultValue={data?.product_category}
-                    autoFocus
+                    type='text'
                 />
 
                 <TextField
-                    autoComplete="given-name"
                     name="product_sub_category"
                     required
                     fullWidth
@@ -136,11 +130,10 @@ export default function Page() {
                     id="product_sub_category"
                     label="Product Sub-Category"
                     defaultValue={data?.product_sub_category}
-                    autoFocus
+                    type='text'
                 />
 
                 <TextField
-                    autoComplete="given-name"
                     name="product_description"
                     required
                     fullWidth
@@ -148,11 +141,10 @@ export default function Page() {
                     id="product_description"
                     label="Product Description"
                     defaultValue={data?.product_description}
-                    autoFocus
+                    type='text'
                 />
 
                 <TextField
-                    autoComplete="given-name"
                     name="product_price"
                     required
                     fullWidth
@@ -160,11 +152,10 @@ export default function Page() {
                     id="product_price"
                     label="Product Price"
                     defaultValue={data?.product_price}
-                    autoFocus
+                    type='number'
                 />
 
                 <TextField
-                    autoComplete="given-name"
                     name="product_quantity"
                     required
                     fullWidth
@@ -172,12 +163,11 @@ export default function Page() {
                     id="product_quantity"
                     label="Product Quantity"
                     defaultValue={data?.product_quantity}
-                    autoFocus
+                    type='number'
                 />
 
 
                 <TextField
-                    autoComplete="given-name"
                     name="product_weight"
                     required
                     fullWidth
@@ -185,12 +175,10 @@ export default function Page() {
                     id="product_weight"
                     label="Product Weight"
                     defaultValue={data?.product_weight}
-                    autoFocus
-                    disabled
+                    type='number'
                 />
 
                 <TextField
-                    autoComplete="given-name"
                     name="product_size"
                     required
                     fullWidth
@@ -198,11 +186,11 @@ export default function Page() {
                     id="product_size"
                     label="product_size"
                     defaultValue={data?.product_size}
-                    autoFocus
+                    type='text'
+                    placeholder="e.g., 16 by 4"
                 />
 
                 <TextField
-                    autoComplete="given-name"
                     name="product_code"
                     required
                     fullWidth
@@ -210,7 +198,7 @@ export default function Page() {
                     id="product_code"
                     label="product_code"
                     defaultValue={data?.product_code}
-                    autoFocus
+                    type='text'
                 />
 
                 {success && <Box textAlign={"center"} sx={{ color: "green" }}>{success.toUpperCase()}</Box>}

@@ -11,6 +11,7 @@ import Image from "next/image";
 import Fallback from "@/components/common/fallback";
 import { useAuth } from "@/hooks/use-auth";
 import { SERVER_URL } from "@/constants/url";
+import CardImage from "../products/components/CardImage";
 
 export default function AdminProfile() {
   const [adminProfile, setUserProfile] = React.useState<any>({});
@@ -34,7 +35,7 @@ export default function AdminProfile() {
       )
     } catch (error) {
       console.warn(error);
-      
+
     }
 
   };
@@ -67,14 +68,15 @@ export default function AdminProfile() {
 
       <Container maxWidth="lg" component={'main'} sx={{ mt: 5 }}>
         <Box>
-          {adminProfile?.photo ? <Image
-            src={`${SERVER_URL}/uploads/${adminProfile.photo}`}
-            width={150}
-            height={150}
-            alt="Account"
-            style={{ borderRadius: 30 }}
-            layout="responsive"
-          /> : <Avatar />
+          {adminProfile?.photo ?
+            <CardImage
+              src={`${SERVER_URL}/uploads/${adminProfile.photo}`}
+              alt={adminProfile?.firstName}
+              width={150}
+              height={150}
+              style={{ borderRadius: 30 }}
+            />
+            : <Avatar />
           }
         </Box>
         <Box

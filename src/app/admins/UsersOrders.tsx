@@ -42,10 +42,10 @@ export default function UsersOrders() {
   }
 
   return (
-    <Box >
+    <Box>
+       <Box>Total Orders: {data[0]?.totalOrders}</Box>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <Box>Total Orders: {data[0]?.totalOrders}</Box>
           <TableHead>
             <TableRow>
               <TableCell>User&apos;s email</TableCell>
@@ -81,21 +81,21 @@ export default function UsersOrders() {
                       size='small'
                       sx={{ m: 1, }}
                       onClick={async () => {
-                        await orderStatusAPI({ orderId: order?._id, orderStaus: 'pending', paymentStatus: 'paid' });
+                        await orderStatusAPI({ orderId: order?._id, orderStatus: 'pending', paymentStatus: 'paid' });
                         await getOrderData();
                       }}>
-                      Pending to paid
+                     <span style={{fontSize:12}}>Pending to paid</span>
                     </Button>
                   </TableCell>
                   <TableCell>
                     <Button
                       size='small'
-                      sx={{ m: 1 }}
+                      sx={{ m: 1}}
                       onClick={async () => {
-                        await orderStatusAPI({ orderId: order?._id, orderStaus: 'shipped', paymentStatus: 'paid' });
+                        await orderStatusAPI({ orderId: order?._id, orderStatus: 'shipped', paymentStatus: 'paid' });
                         await getOrderData();
                       }}>
-                      Paid to shipped
+                        <span style={{fontSize:12}}>Paid to shipped</span>
                     </Button>
                   </TableCell>
                   <TableCell>
@@ -104,10 +104,10 @@ export default function UsersOrders() {
                       sx={{ m: 1 }}
                       onClick={
                         async () => {
-                          await orderStatusAPI({ orderId: order?._id, orderStaus: 'delivered', paymentStatus: 'paid' });
+                          await orderStatusAPI({ orderId: order?._id, orderStatus: 'delivered', paymentStatus: 'paid' });
                           await getOrderData();
                         }}>
-                      Shipped to delivered
+                      <span style={{fontSize:12}}>Shipped to delivered</span>
                     </Button>
                   </TableCell>
                 </TableCell>

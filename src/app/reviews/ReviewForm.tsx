@@ -15,7 +15,7 @@ export default function ReviewForm(props: any) {
         <Box
             component="form"
             onSubmit={async (evt) => await handleReviewSubmit(evt, setSuccess, setError)}
-            noValidate
+            noValidate={false}
             sx={{ mt: 1 }}
         >
             <input

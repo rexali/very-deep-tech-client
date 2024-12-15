@@ -11,15 +11,15 @@ export function AddQoute(props: any) {
 
     const handleSubmit = async (event: any) => {
         setLoading('Sending data..')
-        await createQouteAPI(event, setSuccess, setError, setLoading)
+        await createQouteAPI(event, setSuccess, setError, setLoading);
     };
 
     return (
         <Box
             component="form"
             onSubmit={handleSubmit}
-            noValidate
-            sx={{ mt: 1 }}
+            noValidate={false}
+            sx={{ m: 2, borderRadius: 20 }}
         >
             <h3>Request Qoute(s)</h3>
 
@@ -40,6 +40,7 @@ export function AddQoute(props: any) {
                 fullWidth
                 name="phone"
                 label="Phone"
+                type="text"
                 id="phone"
             />
 
@@ -62,7 +63,7 @@ export function AddQoute(props: any) {
                 name="message"
                 label="Message"
                 type='default'
-                defaultValue={'What is the latest price?'}
+                defaultValue={'What is the latest price for this?'}
                 id="message"
                 multiline
             />

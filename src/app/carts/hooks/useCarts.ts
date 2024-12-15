@@ -15,6 +15,7 @@ export const useCarts = (dispatch: any, pageNumber: number) => {
 
       try {
         let { data } = await axios.get(`${SERVER_URL}/carts?page=${pageNumber}`, {
+          withCredentials: false,
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',

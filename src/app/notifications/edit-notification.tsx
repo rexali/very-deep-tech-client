@@ -50,7 +50,8 @@ export default function EditNotification({ notification, callback }: { callback:
                     </Typography>
                     <Box
                         component="form"
-                        noValidate sx={{ mt: 1 }}
+                        noValidate ={false}
+                        sx={{ mt: 1 }}
                         onSubmit={handleSubmit}
                     >
                         <TextField

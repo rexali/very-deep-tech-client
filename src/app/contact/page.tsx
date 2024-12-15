@@ -32,10 +32,10 @@ export default function ContactPage() {
       flexDirection: 'column',
       alignItems: 'center'
     }}>
-      <Typography component="h1" variant="h5">
+      <Typography component="h1" variant="h5" textAlign={'center'}>
         Contact us
       </Typography>
-      <Box>
+      <Box component={'div'} sx={{display:'flex',flexDirection:'column', alignItems:'center'}}>
         <Button
           type='button'
           size="large"
@@ -46,7 +46,7 @@ export default function ContactPage() {
           key={'share'}
           onClick={() => shareLink()}
           startIcon={<Share sx={{ color: "white" }}
-          />}>Share this site</Button>
+          />}>Share this</Button>
         <Button
           type='button'
           size="large"
@@ -86,7 +86,7 @@ export default function ContactPage() {
       <Box
         component={'form'}
         onSubmit={handleSubmit}
-        noValidate
+        noValidate={false}
       >
         <TextField
           margin="normal"
@@ -95,6 +95,7 @@ export default function ContactPage() {
           id="email"
           label="Email Address"
           name="email"
+          type='email'
           autoComplete="email"
           autoFocus
         />
@@ -107,7 +108,6 @@ export default function ContactPage() {
           label="First Name"
           type="default"
           id="firstName"
-          autoComplete="current-password"
         />
         <TextField
           margin="normal"

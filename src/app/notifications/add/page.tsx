@@ -31,7 +31,7 @@ export default function AddNotification() {
     <ThemeProvider theme={defaultTheme} >
       <Container component="main" maxWidth="xs">
         {/* <CssBaseline /> */}
-        <Typography component="h1" variant="h5">
+        <Typography component="h1" variant="h5" textAlign={'center'}>
           Post Notice
         </Typography>
 
@@ -44,7 +44,7 @@ export default function AddNotification() {
           }}
           component={'form'}
           onSubmit={handleSubmit}
-          noValidate
+          noValidate={false}
         >
 
           <TextField
@@ -54,7 +54,7 @@ export default function AddNotification() {
             id="title"
             label="Title"
             name="title"
-            autoComplete="given_title"
+            type='default'
             autoFocus
           />
 
@@ -66,7 +66,6 @@ export default function AddNotification() {
             label="Message"
             type="default"
             id="body"
-            autoComplete="given_body"
             multiline
           />
 

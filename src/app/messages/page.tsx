@@ -4,7 +4,6 @@ import * as React from 'react';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import MessageList from './message-list';
-import { useMessages } from './hooks/use-messages';
 import Box from '@mui/material/Box';
 import ProtectedRoute from '@/components/protected-route';
 import ReactPagination from '@/components/react-pagination';
@@ -15,7 +14,6 @@ import { getMessagesAPI } from './api/getMessagesAPI';
 export default function MessagesPage(props: any) {
     const [activePage, setActivePage] = React.useState(1);
     const { state, dispatch } = React.useContext(AppContext);
-    // const { messages } = useMessages(dispatch, activePage);
     
     const [messageData, setMessageData] = React.useState<any>([]);
 
@@ -42,7 +40,6 @@ export default function MessagesPage(props: any) {
         )
     }
 
-    // let mess = state?.messages?.length > 0 ? state.messages : messages;
 
     return (
         <ProtectedRoute>

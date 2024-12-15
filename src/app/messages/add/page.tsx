@@ -9,7 +9,6 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import ThemeProvider from '@mui/material/styles/ThemeProvider';
 import createTheme from '@mui/material/styles/createTheme';
-import { getToken } from '@/utils/getToken';
 import { handleMessageSubmit } from '../utils/handleMessageSubmit';
 import { useAuth } from '@/hooks/use-auth';
 
@@ -32,7 +31,7 @@ export default function AddMessage() {
             <Container component="main" maxWidth="xs">
                 {/* <CssBaseline /> */}
 
-                    <Typography component="h1" variant="h5">
+                    <Typography component="h1" variant="h5" textAlign={'center'}>
                         Post Message
                     </Typography>
                     <Box
@@ -43,7 +42,7 @@ export default function AddMessage() {
                         alignItems: 'center',
                     }}
                         component={'form'}
-                        noValidate
+                        noValidate={false}
                         onSubmit={handleSubmit}
                     
                     >
@@ -54,6 +53,7 @@ export default function AddMessage() {
                             id="title"
                             label="Subject"
                             name="title"
+                            type="text"
                             autoFocus
                         />
                         <TextField
