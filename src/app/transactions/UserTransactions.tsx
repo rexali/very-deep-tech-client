@@ -20,9 +20,9 @@ export default function UserHistory() {
         async function getData() {
             try {
                 const transactions = await getUserHistoryAPI(userId, activePage);
-                setData(transactions);   
+                setData(transactions);
             } catch (error) {
-                console.warn(error);  
+                console.warn(error);
             }
         }
 
@@ -51,6 +51,7 @@ export default function UserHistory() {
                             <TableCell align="right">Amount &nbsp;</TableCell>
                             <TableCell align="right">Payment Method &nbsp;</TableCell>
                             <TableCell align="right">Reference &nbsp;</TableCell>
+                            <TableCell align="right">Status &nbsp;</TableCell>
                             <TableCell align="right">Action &nbsp;</TableCell>
                         </TableRow>
                     </TableHead>
@@ -60,12 +61,13 @@ export default function UserHistory() {
                                 key={transaction._id}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
-                                < TableCell align="right">{transaction?.type ?? '12-12-24'}</TableCell>
-                                <TableCell align="right">{transaction?.createdAt ?? '12-12-24'}</TableCell>
+                                < TableCell align="right">{transaction?.type}</TableCell>
+                                <TableCell align="right">{transaction?.createdAt}</TableCell>
                                 <TableCell align="right">{transaction.currency}</TableCell>
                                 <TableCell align="right">{transaction.amount}</TableCell>
                                 <TableCell align="right">{transaction.paymentMethod}</TableCell>
-                                <TableCell align="right">{transaction.referance}</TableCell>
+                                <TableCell align="right">{transaction.reference}</TableCell>
+                                <TableCell align="right">{transaction.order?.paymentStatus}</TableCell>
                                 <TableCell align="right">
                                     <Link href={'/orders/' + transaction?.order?._id}>View order</Link>
                                 </TableCell>

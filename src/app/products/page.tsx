@@ -12,7 +12,9 @@ import { useMediaQuery } from "react-responsive";
 import SearchInput from "../search/SearchInput";
 import TopbarFilter from "./components/TopbarFilter";
 import SidebarFilter from "./components/SidebarFilter";
-import SideDrawer from "@/components/common/side-drawer";
+import { getProducts } from "@/store/actions/app-actions";
+import { AppContext } from "@/context/AppContext";
+
 
 export default function ProductsPage() {
 
@@ -20,6 +22,20 @@ export default function ProductsPage() {
   const [products, setProducts] = useState<any>([]);
   const [categoryData, setCategoryData] = useState<any>([]);
   const isMobile = useMediaQuery({ maxDeviceWidth: 1023 });
+  const { dispatch } = React.useContext(AppContext);
+
+  const getProductsData = React.useCallback(async () => {
+    try {
+      let products = await getProductsAPI(activePage);
+      let categories = await getCategoriesAPI(activePage);
+      dispatch(getProducts(products));
+      setCategoryData(categories);
+      setProducts(products);
+    } catch (error) {
+      console.warn(error);
+    }
+  }, [activePage, dispatch])
+
 
   const handleSetProducts = (value: any) => {
     setProducts(value)
@@ -27,18 +43,8 @@ export default function ProductsPage() {
 
 
   useEffect(() => {
-    async function getData() {
-      try {
-        setCategoryData(await getCategoriesAPI(activePage));
-        setProducts(await getProductsAPI(activePage));
-      } catch (error) {
-        console.warn(error);
-      }
-
-    }
-    getData();
-
-  }, [activePage]);
+    getProductsData();
+  });
 
 
   if (!products.length) {
@@ -57,7 +63,7 @@ export default function ProductsPage() {
           {!isMobile && <DesktopProductCategories categoryData={categoryData} />}
           {!isMobile && <SidebarFilter handleSetProducts={handleSetProducts} activePage={activePage} />}
         </Box>
-        <ProductList products={products} />
+        <ProductList products={products} role={''} refreshProducts={getProductsData} />
       </Box>
       <Box marginTop={4} display={"flex"} justifyContent={'center'} >
         <ReactPagination

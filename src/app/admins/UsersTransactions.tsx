@@ -11,8 +11,6 @@ import Box from '@mui/material/Box';
 import { getUsersHistoryAPI } from './api/getUsersHistory';
 import Container from '@mui/material/Container';
 import Link from 'next/link';
-import Button from '@mui/material/Button';
-
 
 export default function UsersTransactions() {
   const [data, setData] = React.useState<any>([]);
@@ -48,9 +46,16 @@ export default function UsersTransactions() {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
+              <TableCell align="right">Type &nbsp;</TableCell>
               <TableCell align="right">Time &nbsp;</TableCell>
+              <TableCell align="right">Currency &nbsp;</TableCell>
               <TableCell align="right">Amount &nbsp;</TableCell>
+              <TableCell align="right">Payment Method &nbsp;</TableCell>
+              <TableCell align="right">Reference &nbsp;</TableCell>
+              <TableCell align="right">Status &nbsp;</TableCell>
               <TableCell align="right">User &nbsp;</TableCell>
+              <TableCell align="right">View &nbsp;</TableCell>
+
             </TableRow>
           </TableHead>
           <TableBody>
@@ -59,13 +64,18 @@ export default function UsersTransactions() {
                 key={transaction._id}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
-                <TableCell align="right">{transaction?.createdAt ?? '12-12-24'}</TableCell>
+                < TableCell align="right">{transaction?.type}</TableCell>
+                <TableCell align="right">{transaction?.createdAt}</TableCell>
+                <TableCell align="right">{transaction.currency}</TableCell>
                 <TableCell align="right">{transaction.amount}</TableCell>
+                <TableCell align="right">{transaction.paymentMethod}</TableCell>
+                <TableCell align="right">{transaction.reference}</TableCell>
+                <TableCell align="right">{transaction.order?.paymentStatus}</TableCell>
                 <TableCell align="right">
                   <Link href={`mailto:${transaction?.user?.email}`}>{transaction?.user?.email}</Link>
                 </TableCell>
-                <TableCell align="center">
-                  <Button size='small' onClick={() => { alert(transaction?._id) }}>Update ({transaction?.paymentStatus})</Button>
+                <TableCell align="right">
+                  <Link href={'/orders/' + transaction?.order?._id}>View order</Link>
                 </TableCell>
               </TableRow>
             ))}

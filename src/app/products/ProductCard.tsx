@@ -14,7 +14,7 @@ import { CardMedia } from '@mui/material';
 import placeholderImage from '@/assets/images/cshop.png'
 import GetQouteModal from '../qoutes/components/GetQuoteModal';
 
-export default function ProductCard({ product, role }: { product: any, role?: string }) {
+export default function ProductCard({ product, role, refreshProducts }: { product: any, role?: string, refreshProducts?: any }) {
   const [openQoute, setOpenQoute] = React.useState(false);
 
   const handleOpenQuote = () => {
@@ -79,7 +79,7 @@ export default function ProductCard({ product, role }: { product: any, role?: st
         marginRight: "auto",
       }}
     >
-      <ProductTopActions product={product} role={role} />
+      <ProductTopActions product={product} role={role} refreshProducts={refreshProducts} />
       {renderImageItem(product)}
       <CardContent>
         <Box>
@@ -96,7 +96,7 @@ export default function ProductCard({ product, role }: { product: any, role?: st
         </Box>
 
       </CardContent>
-      <ProductBottomActions product={product} role={role} />
+      <ProductBottomActions product={product} role={role} refreshProducts={refreshProducts} />
       {openQoute && <GetQouteModal closeCallback={handleOpenQuote} productId={product._id} />}
     </Card>
   );

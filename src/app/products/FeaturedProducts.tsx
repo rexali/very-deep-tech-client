@@ -1,6 +1,6 @@
 'use client'
 
-import { Container, Box } from "@mui/material";
+import { Container} from "@mui/material";
 import FeaturedProductList from "./FeaturedProductList";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import React from "react";

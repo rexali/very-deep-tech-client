@@ -21,11 +21,16 @@ export default function Page() {
         <Container
             maxWidth="md"
             component={'main'}
-            sx={{ minHeight: 420, display: "flex", justifyContent: 'center', alignItems: 'center' }}
+            sx={{ minHeight: 520, display: "flex", justifyContent: 'center', alignItems: 'center' }}
         >
             <p>Do you really want to delete this item?</p>
-            <Box textAlign={'right'} >
-
+            <Box sx={{ display: "flex", flexDirection: 'row', justifyContent: 'space-around' }} >
+                <Link href={`/${user.role === 'user' ? 'users' : 'admins'}`} >
+                    <Button onClick={() => {
+                    }} startIcon={<Close />} >
+                        Close
+                    </Button>
+                </Link>
                 <Button
                     color="warning"
                     onClick={async () => {
@@ -43,13 +48,6 @@ export default function Page() {
                     startIcon={<Remove />} >
                     Delete
                 </Button>
-
-                <Link href={`/${user.role === 'user' ? 'users' : 'admins'}`} >
-                    <Button onClick={() => {
-                    }} startIcon={<Close />} >
-                        Close
-                    </Button>
-                </Link>
             </Box>
         </Container >
     )

@@ -40,7 +40,7 @@ export default async function AppPage() {
           style={{ textDecoration: "none", color: 'green', borderColor: 'green' }}
           type="button"
           color="success"
-          href={`/products`} 
+          href={`/products`}
         >
           View all
         </Link>

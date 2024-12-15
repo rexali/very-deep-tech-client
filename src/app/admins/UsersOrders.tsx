@@ -12,25 +12,25 @@ import { getUsersOrdersAPI } from './api/getUsersOrders';
 import Container from '@mui/material/Container';
 import Link from 'next/link';
 import { Button } from '@mui/material';
+import { orderStatusAPI } from './api/orderStatusAPI';
 
 
 export default function UsersOrders() {
   const [data, setData] = React.useState<any>([]);
   const [activePage, setActivePage] = React.useState(1);
 
-  React.useEffect(() => {
-    async function getData() {
-      try {
-        setData(await getUsersOrdersAPI(activePage));
-      } catch (error) {
-        console.warn(error);
-        
-      }
-      
+  const getOrderData = React.useCallback(async () => {
+    try {
+      let orders = await getUsersOrdersAPI(activePage)
+      setData(orders);
+    } catch (error) {
+      console.warn(error);
     }
-    getData();
-
   }, [activePage])
+
+  React.useEffect(() => {
+    getOrderData();
+  })
 
   if (!data?.length) {
 
@@ -75,8 +75,36 @@ export default function UsersOrders() {
                 <TableCell align="center">
                   <Link href={'/orders/' + order._id}>View</Link>
                 </TableCell>
-                <TableCell align="center"><Button size='small' onClick={()=>{alert(order?._id)}}>Update ({order?.orderStatus})</Button></TableCell>
-                <TableCell align="center"><Button size='small' onClick={()=>{alert(order?._id)}}>Update ({order?.paymentStatus})</Button></TableCell>
+                <TableCell align="center">
+                  <Button
+                    size='small'
+                    sx={{ m: 1 }}
+                    onClick={async () => {
+                      await orderStatusAPI({ orderId: order?._id, orderStaus: 'pending', paymentStatus: 'paid' });
+                      await getOrderData();
+                    }}>
+                    Paid
+                  </Button>
+                  <Button
+                    size='small'
+                    sx={{ m: 1 }}
+                    onClick={async () => {
+                      await orderStatusAPI({ orderId: order?._id, orderStaus: 'shipped', paymentStatus: 'paid' });
+                      await getOrderData();
+                    }}>
+                    Shipped
+                  </Button>
+                  <Button
+                    size='small'
+                    sx={{ m: 1 }}
+                    onClick={
+                      async () => {
+                        await orderStatusAPI({ orderId: order?._id, orderStaus: 'delivered', paymentStatus: 'paid' });
+                        await getOrderData();
+                      }}>
+                    Delivered
+                  </Button>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>

@@ -13,7 +13,6 @@ export default function OrderList(props: any) {
                     <Grid item xs={12} md={6} key={order._id + index}>
                         <OrderCard order={order} />
                     </Grid>
-
                 )
             }
         </div>

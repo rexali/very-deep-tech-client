@@ -2,33 +2,32 @@
 
 import Container from "@mui/material/Container";
 import * as React from "react";
-import ProductList from "../products/ProductList";
 import { getUsersProductsAPI } from "./api/getUsersProductsAPI";
 import Box from "@mui/material/Box";
 import ReactPagination from "@/components/react-pagination";
 import { TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, Button } from "@mui/material";
 import Link from "next/link";
-import Favourite from '@mui/icons-material/Favorite';
+import { approveProductAPI } from "./api/approveProductAPI";
+import { featureProductAPI } from "./api/featureProductAPI";
 
 
 export default function UsersProducts() {
   const [data, setData] = React.useState<any>([]);
   const [activePage, setActivePage] = React.useState(1);
 
-  React.useEffect(() => {
-    async function getData() {
-      try {
-        const products = await getUsersProductsAPI(activePage);
-        setData(products);
-      } catch (error) {
-        console.log(error);
-      }
-
+  const getProductData = React.useCallback(async () => {
+    try {
+      const products = await getUsersProductsAPI(activePage);
+      setData(products);
+    } catch (error) {
+      console.log(error);
     }
-
-    getData();
-
   }, [activePage]);
+
+
+  React.useEffect(() => {
+    getProductData();
+  });
 
   if (!data.length) {
 
@@ -42,7 +41,6 @@ export default function UsersProducts() {
   return (
     <Box sx={{ mt: 10 }}>
       <Box>Total Products: {data[0]?.totalProducts}</Box>
-      {/* <ProductList products={data} role={'admin'} /> */}
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
@@ -70,10 +68,22 @@ export default function UsersProducts() {
                 <TableCell align="right">
                   <Link href={`mailto:${product?.user?.email}`}>{product?.user?.email}</Link>
                 </TableCell>
-                <TableCell align="center"><Button size="small" onClick={() => { alert(product._id) }}>Approve</Button></TableCell>
-                <TableCell align="center"><Button size="small" onClick={() => { alert(product._id) }}>Edit</Button></TableCell>
-                <TableCell align="center"><Button size="small" onClick={() => { alert(product._id) }}>Delete</Button></TableCell>
-                <TableCell align="center"><Button size="small" onClick={() => { alert(product._id) }}>Promote</Button></TableCell>
+                <TableCell align="center">
+                  <Button size="small" onClick={async () => {
+                    await approveProductAPI({ productId: product._id, featured: 'yes' });
+                    await getProductData();
+                  }
+                  }>
+                    Approve
+                  </Button>
+                </TableCell>
+                <TableCell align="center"><Link href={{ pathname: `/products/${product._id}/edit` }}>Edit</Link></TableCell>
+                <TableCell align="center"><Link href={{ pathname: `/products/${product._id}/delete` }}>Delete</Link></TableCell>
+                <TableCell align="center">
+                  <Button size="small" onClick={async () => {
+                    await featureProductAPI({ productId: product._id, featured: 'yes' });
+                    await getProductData();
+                  }}>Promote</Button></TableCell>
                 <TableCell align="center">
                   <Link href={'/products/' + product?._id}>View</Link>
                 </TableCell>

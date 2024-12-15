@@ -2,12 +2,12 @@
 
 import Container from "@mui/material/Container";
 import * as React from "react";
-import ProductList from "../products/ProductList";
-import { getUsersCartsAPI } from "./api/getUserCarts";
 import Box from "@mui/material/Box";
 import ReactPagination from "@/components/react-pagination";
 import { useCarts } from "../carts/hooks/useCarts";
 import { AppContext } from "@/context/AppContext";
+import { TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, Button } from "@mui/material";
+import Link from "next/link";
 
 export default function UsersProducts() {
   const [activePage, setActivePage] = React.useState(1);
@@ -26,7 +26,37 @@ export default function UsersProducts() {
   return (
     <Container maxWidth="lg" component={'main'} sx={{ mt: 8, minHeight: 420, display: "flex", justifyContent: 'center', alignItems: 'center' }}>
       <Box>Total Carts: {carts[0]?.totalCarts}</Box>
-      <ProductList products={carts} />
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>S/N </TableCell>
+              <TableCell align="right">Product Name</TableCell>
+              <TableCell align="right">Date (n) Time &nbsp;</TableCell>
+              <TableCell align="right">Owner&apos;email</TableCell>
+              <TableCell align="right">View &nbsp;</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {carts.map((product: any, i: number) => (
+              <TableRow
+                key={product._id}
+                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              >
+                <TableCell align="right">{i + 1}</TableCell>
+                <TableCell align="right">{product?.product_name}</TableCell>
+                <TableCell align="right">{product?.cartCreatedAt}</TableCell>
+                <TableCell align="right">
+                  <Link href={`mailto:${product?.cartOwner}`}>{product?.cartOwner}</Link>
+                </TableCell>
+                <TableCell align="center">
+                  <Link href={'/products/' + product?._id}>View</Link>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
       <Box marginTop={4} display={"flex"} justifyContent={'center'}>
         <ReactPagination
           activePage={activePage}

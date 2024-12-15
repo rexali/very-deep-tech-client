@@ -19,10 +19,9 @@ import { getToken } from "@/utils/getToken";
 import GetQouteModal from "@/app/qoutes/components/GetQuoteModal";
 import { goToSavedLinkpath } from "@/utils/goToSavedLinkPath";
 import { CardActions } from "@mui/material";
-import Link from "next/link";
 
 
-export default function ProductBottomActions({ product, role }: { product: any, role?: string }) {
+export default function ProductBottomActions({ product, role, refreshProducts }: { product: any, role?: string, refreshProducts:any }) {
     const [open, setOpen] = useState(false);
     const [openQoute, setOpenQoute] = useState(false);
     const [quantity, setQuantity] = useState<number>(1);
@@ -74,16 +73,18 @@ export default function ProductBottomActions({ product, role }: { product: any, 
                                     user_id: userId,
                                     quantity: quantity,
                                     price: product.product_price
-                                })
+                                });
+
                                 if (cart._id) {
                                     handleOpen();
                                 }
 
                                 let userCarts = await getUserCartsAPI(userId);
                                 dispatch(getCarts(userCarts));
+                                // refreshProducts();
 
                             } else {
-                                alert('Already added');
+                                alert('\n\n\n\n Already added');
                             }
 
                         } else {

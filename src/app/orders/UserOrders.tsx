@@ -7,7 +7,7 @@ import Box from "@mui/material/Box";
 import ReactPagination from "@/components/react-pagination";
 import { useAuth } from "@/hooks/use-auth";
 import { getUserOrdersAPI } from "../users/api/getUserOrders";
-import { TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody } from "@mui/material";
+import { TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, Button } from "@mui/material";
 import Link from "next/link";
 
 export default function UserOrders() {
@@ -47,7 +47,8 @@ export default function UserOrders() {
               <TableCell align="right">Total &nbsp;</TableCell>
               <TableCell align="right">Payment status &nbsp;</TableCell>
               <TableCell align="right">Shipping Method &nbsp;</TableCell>
-              <TableCell align="right">Actions &nbsp;</TableCell>
+              <TableCell align="right">View &nbsp;</TableCell>
+              <TableCell align="right">Cancel Order &nbsp;</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -61,8 +62,11 @@ export default function UserOrders() {
                 <TableCell align="right">{order?.total}</TableCell>
                 <TableCell align="right">{order?.paymentStatus}</TableCell>
                 <TableCell align="right">{order?.shippingMethod}</TableCell>
-                <TableCell align="right">
+                <TableCell align="center">
                   <Link href={'/orders/' + order._id}>View order</Link>
+                </TableCell>
+                <TableCell align="center">
+                  <Button size="small" onClick={() => { alert(order._id) }}>Cancel</Button>
                 </TableCell>
               </TableRow>
             ))}
