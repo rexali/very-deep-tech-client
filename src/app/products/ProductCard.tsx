@@ -83,8 +83,10 @@ export default function ProductCard({ product, role, refreshProducts }: { produc
       {renderImageItem(product)}
       <CardContent>
         <Box>
-          <Box sx={{ textOverflow: 'ellipsis', fontSize: 11, fontWeight: 'bold' }} component="div">
-            {product?.product_name}
+          <Box sx={{ width: 160, whiteSpace: 'nowrap' }} >
+            <Box sx={{ textOverflow: 'auto', fontSize: 12, fontWeight: 'bold' }} component="div">
+              {product?.product_name}
+            </Box>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: "space-between" }}>
             <Typography variant="body2" sx={{ color: 'text.secondary' }}>

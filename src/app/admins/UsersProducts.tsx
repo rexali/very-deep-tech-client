@@ -68,7 +68,7 @@ export default function UsersProducts() {
                 <TableCell align="right">
                   <Link href={`mailto:${product?.user?.email}`}>{product?.user?.email}</Link>
                 </TableCell>
-                <TableCell align="center">
+                <TableCell align="right">
                   <Button size="small" onClick={async () => {
                     await approveProductAPI({ productId: product._id, featured: 'yes' });
                     await getProductData();
@@ -77,14 +77,14 @@ export default function UsersProducts() {
                     Approve
                   </Button>
                 </TableCell>
-                <TableCell align="center"><Link href={{ pathname: `/products/${product._id}/edit` }}>Edit</Link></TableCell>
-                <TableCell align="center"><Link href={{ pathname: `/products/${product._id}/delete` }}>Delete</Link></TableCell>
-                <TableCell align="center">
+                <TableCell align="right"><Link href={{ pathname: `/products/${product._id}/edit` }}>Edit</Link></TableCell>
+                <TableCell align="right"><Link href={{ pathname: `/products/${product._id}/delete` }}>Delete</Link></TableCell>
+                <TableCell align="right">
                   <Button size="small" onClick={async () => {
                     await featureProductAPI({ productId: product._id, featured: 'yes' });
                     await getProductData();
                   }}>Promote</Button></TableCell>
-                <TableCell align="center">
+                <TableCell align="right">
                   <Link href={'/products/' + product?._id}>View</Link>
                 </TableCell>
               </TableRow>

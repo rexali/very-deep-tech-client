@@ -48,15 +48,15 @@ export default function UsersOrders() {
           <Box>Total Orders: {data[0]?.totalOrders}</Box>
           <TableHead>
             <TableRow>
-              <TableCell>User&apos;email</TableCell>
-              <TableCell align="right">Order status (OS)</TableCell>
-              <TableCell align="right">Date (n) Time &nbsp;</TableCell>
+              <TableCell>User&apos;s email</TableCell>
+              <TableCell align="right">Order Status (OS)</TableCell>
+              <TableCell align="right">Date & Time &nbsp;</TableCell>
               <TableCell align="right">Total &nbsp;</TableCell>
-              <TableCell align="right">Payment status (PS) &nbsp;</TableCell>
+              <TableCell align="right">Payment Status (PS) &nbsp;</TableCell>
               <TableCell align="right">View &nbsp;</TableCell>
-              <TableCell align="center">Update OS</TableCell>
-              <TableCell align="center">Update PS</TableCell>
-
+              <TableCell align="right" colSpan={3}>
+                Update Order Status
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -72,38 +72,44 @@ export default function UsersOrders() {
                 <TableCell align="right">{order?.createdAt ?? '12-12-24'}</TableCell>
                 <TableCell align="right">{order?.total}</TableCell>
                 <TableCell align="right">{order?.paymentStatus}</TableCell>
-                <TableCell align="center">
+                <TableCell align="right">
                   <Link href={'/orders/' + order._id}>View</Link>
                 </TableCell>
-                <TableCell align="center">
-                  <Button
-                    size='small'
-                    sx={{ m: 1 }}
-                    onClick={async () => {
-                      await orderStatusAPI({ orderId: order?._id, orderStaus: 'pending', paymentStatus: 'paid' });
-                      await getOrderData();
-                    }}>
-                    Paid
-                  </Button>
-                  <Button
-                    size='small'
-                    sx={{ m: 1 }}
-                    onClick={async () => {
-                      await orderStatusAPI({ orderId: order?._id, orderStaus: 'shipped', paymentStatus: 'paid' });
-                      await getOrderData();
-                    }}>
-                    Shipped
-                  </Button>
-                  <Button
-                    size='small'
-                    sx={{ m: 1 }}
-                    onClick={
-                      async () => {
-                        await orderStatusAPI({ orderId: order?._id, orderStaus: 'delivered', paymentStatus: 'paid' });
+                <TableCell align="right">
+                  <TableCell align="right">
+                    <Button
+                      size='small'
+                      sx={{ m: 1, }}
+                      onClick={async () => {
+                        await orderStatusAPI({ orderId: order?._id, orderStaus: 'pending', paymentStatus: 'paid' });
                         await getOrderData();
                       }}>
-                    Delivered
-                  </Button>
+                      Update to paid
+                    </Button>
+                  </TableCell>
+                  <TableCell>
+                    <Button
+                      size='small'
+                      sx={{ m: 1 }}
+                      onClick={async () => {
+                        await orderStatusAPI({ orderId: order?._id, orderStaus: 'shipped', paymentStatus: 'paid' });
+                        await getOrderData();
+                      }}>
+                      Update to shipped
+                    </Button>
+                  </TableCell>
+                  <TableCell>
+                    <Button
+                      size='small'
+                      sx={{ m: 1 }}
+                      onClick={
+                        async () => {
+                          await orderStatusAPI({ orderId: order?._id, orderStaus: 'delivered', paymentStatus: 'paid' });
+                          await getOrderData();
+                        }}>
+                      Update to delivered
+                    </Button>
+                  </TableCell>
                 </TableCell>
               </TableRow>
             ))}
