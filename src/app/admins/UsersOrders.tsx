@@ -79,6 +79,7 @@ export default function UsersOrders() {
                   <TableCell align="right">
                     <Button
                       size='small'
+                      disabled={order.orderStatus === 'shipped' ? true : false}
                       sx={{ m: 1, }}
                       onClick={async () => {
                         await orderStatusAPI({ orderId: order?._id, orderStatus: 'shipped', paymentStatus: 'paid' });
@@ -89,6 +90,7 @@ export default function UsersOrders() {
                   </TableCell>
                   <TableCell>
                     <Button
+                      disabled={order.orderStatus === 'delivered' ? true : false}
                       size='small'
                       sx={{ m: 1 }}
                       onClick={async () => {
@@ -101,6 +103,7 @@ export default function UsersOrders() {
                   <TableCell>
                     <Button
                       size='small'
+                      disabled={order.orderStatus === 'returned' ? true : false}
                       sx={{ m: 1 }}
                       onClick={
                         async () => {

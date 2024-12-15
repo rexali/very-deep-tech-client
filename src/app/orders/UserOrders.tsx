@@ -18,7 +18,7 @@ export default function UserOrders() {
   const auth = useAuth();
   const userId = auth.user?._id || getToken('_id') as string;
 
-  
+
   const getOrderData = React.useCallback(async () => {
     try {
       let orders = await getUserOrdersAPI(userId, activePage);
@@ -30,7 +30,7 @@ export default function UserOrders() {
 
 
   React.useEffect(() => {
-       getOrderData()
+    getOrderData()
   }, [getOrderData]);
 
   if (!data.length) {
@@ -72,10 +72,15 @@ export default function UserOrders() {
                   <Link href={'/orders/' + order._id}>View order</Link>
                 </TableCell>
                 <TableCell align="center">
-                  <Button size="small" onClick={async () => { 
-                        await orderStatusAPI({ orderId: order?._id, orderStatus: 'canceled', paymentStatus: '' });
-                        await getOrderData(); 
-                        }}>Cancel</Button>
+                  <Button
+                    disabled={order.orderStatus === 'delivered' || order.orderStatus === 'shipped' ? true : false}
+                    size="small"
+                    onClick={async () => {
+                      await orderStatusAPI({ orderId: order?._id, orderStatus: 'canceled', paymentStatus: '' });
+                      await getOrderData();
+                    }}>
+                    {order.orderStatus === 'canceled' ? 'Canceled' : 'Cancel'}
+                  </Button>
                 </TableCell>
               </TableRow>
             ))}

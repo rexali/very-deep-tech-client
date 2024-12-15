@@ -50,7 +50,7 @@ export default function UsersProducts() {
               <TableCell align="right">Date (n) Time &nbsp;</TableCell>
               <TableCell align="right">Owner&apos;email</TableCell>
               <TableCell align="center" colSpan={5}>
-                    Actions
+                Actions
               </TableCell>
             </TableRow>
           </TableHead>
@@ -70,11 +70,14 @@ export default function UsersProducts() {
                 <TableCell align="right">
 
                   <TableCell align="right">
-                    <Button size="small" onClick={async () => {
-                      await approveProductAPI({ productId: product._id, featured: 'yes' });
-                      await getProductData();
-                    }
-                    }>
+                    <Button
+                      size="small"
+                      disabled={product.approved === 'yes' ? true : false}
+                      onClick={async () => {
+                        await approveProductAPI({ productId: product._id, featured: 'yes' });
+                        await getProductData();
+                      }
+                      }>
                       {product?.approved === 'yes' ? 'Approved' : 'Approve'}
                     </Button>
                   </TableCell>
@@ -89,10 +92,13 @@ export default function UsersProducts() {
                   </TableCell>
 
                   <TableCell align="right">
-                    <Button size="small" onClick={async () => {
-                      await featureProductAPI({ productId: product._id, featured: 'yes' });
-                      await getProductData();
-                    }}>
+                    <Button
+                      size="small"
+                      disabled={product.featured === 'yes' ? true : false}
+                      onClick={async () => {
+                        await featureProductAPI({ productId: product._id, featured: 'yes' });
+                        await getProductData();
+                      }}>
                       {product?.featured === 'yes' ? 'Promoted' : 'Promote'}
                     </Button>
                   </TableCell>

@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import React, { useState } from "react";
 import Link from "next/link";
@@ -7,7 +7,6 @@ import { Box, Typography, Button, Container } from "@mui/material";
 import UsersMessages from "./UsersMessages";
 import UsersOrders from "./UsersOrders";
 import UsersTransactions from "./UsersTransactions";
-
 import UsersProducts from "./UsersProducts";
 import UsersProfiles from "./UsersProfiles";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -85,10 +84,8 @@ function ProductsTab() {
                     >
                         Products
                     </Typography>
-                </Box>
-                <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-                    Products<Link href={"/products/add"}><Button startIcon={<Add />}></Button></Link>
-                </Box>
+                </Box> 
+               <Link href={"/products/add"}><Button startIcon={<Add />}> Add</Button></Link>
             </Box>
 
             <UsersProducts />
