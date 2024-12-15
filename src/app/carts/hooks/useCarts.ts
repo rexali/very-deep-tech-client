@@ -25,10 +25,6 @@ export const useCarts = (dispatch: any, pageNumber: number) => {
           return [];
         }
 
-        if (!data.data.carts?.length) {
-          return [];
-        }
-
         let newcarts = data.data?.carts.map((cart: any) => {
           return {
             ...cart,

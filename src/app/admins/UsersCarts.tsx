@@ -10,11 +10,11 @@ import { TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody
 import Link from "next/link";
 
 export default function UsersProducts() {
-  const [activePage, setActivePage] = React.useState(1);
-  const {dispatch} = React.useContext(AppContext);
-  const {carts} = useCarts(dispatch,activePage);
+  const [activePage, setActivePage] = React.useState<number>(1);
+  const { dispatch } = React.useContext(AppContext);
+  const { carts } = useCarts(dispatch, activePage);
 
-  if (!carts.length) {
+  if (!carts?.length) {
 
     return (
       <Container sx={{ mt: 8 }} component={"main"} maxWidth="md">
