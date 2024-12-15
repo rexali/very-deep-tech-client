@@ -23,7 +23,8 @@ export default function DesktopProductCategories(props: any) {
                     textDecoration: 'none',
                     display: 'block',
                     marginRight: 2,
-                    marginBottom: 1
+                    marginBottom: 1,
+                    color:'black'
                 }}
                 href={`/category/?term=${catx.toLowerCase()}`}>
                 <ListItem>
@@ -38,7 +39,7 @@ export default function DesktopProductCategories(props: any) {
     return (
         <ErrorBoundary>
             <Container maxWidth="lg" component={'main'} sx={{ mt: 2 }}>
-                <p>Categories</p>
+                <p style={{textTransform:'capitalize'}}>Categories</p>
                 <List>
                     {renderListItems(categoriex)}
                 </List>

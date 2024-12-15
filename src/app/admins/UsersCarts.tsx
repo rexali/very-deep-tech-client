@@ -4,12 +4,13 @@ import Container from "@mui/material/Container";
 import * as React from "react";
 import Box from "@mui/material/Box";
 import ReactPagination from "@/components/react-pagination";
-import { useCarts } from "../carts/hooks/useCarts";
+// import { useCarts } from "../carts/hooks/useCarts";
 import { AppContext } from "@/context/AppContext";
 import { TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, Button } from "@mui/material";
 import Link from "next/link";
+import { useCarts } from "../checkout/hooks/useCarts";
 
-export default function UsersProducts() {
+export default function UsersCarts() {
   const [activePage, setActivePage] = React.useState<number>(1);
   const { dispatch } = React.useContext(AppContext);
   const { carts } = useCarts(dispatch, activePage);

@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 
 export default function HomeFallback() {
   return (
-    <Box sx={{ minHeight: 680, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    <Box sx={{ minHeight: 580, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
       <CircularProgress color='success' />
     </Box>
   );

@@ -4,10 +4,14 @@ import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
+import { useMediaQuery } from "react-responsive";
+
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
 export default function SideDrawer({ children, searchCallback }: { children: any, searchCallback: any }) {
+  const isMobile = useMediaQuery({ maxDeviceWidth: 1023 });
+
 
   const [state, setState] = React.useState({
     top: false,
@@ -30,7 +34,7 @@ export default function SideDrawer({ children, searchCallback }: { children: any
 
   const list = (anchor: Anchor) => (
     <Box
-      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 360 }}
+      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : isMobile ? 360 : 860 }}
       role="presentation"
     // onClick={toggleDrawer(anchor, false)}
     // onKeyDown={toggleDrawer(anchor, false)}
@@ -53,14 +57,14 @@ export default function SideDrawer({ children, searchCallback }: { children: any
       {(['right'] as const).map((anchor) => (
         <React.Fragment key={anchor} >
           {/* <div key={anchor} onClick={toggleDrawer(anchor, false)}> */}
-            <Drawer
-              anchor={anchor}
-              open={state[anchor]}
-              onClose={toggleDrawer(anchor, false)}
-              variant='persistent'
-            >
-              {list(anchor)}
-            </Drawer>
+          <Drawer
+            anchor={anchor}
+            open={state[anchor]}
+            onClose={toggleDrawer(anchor, false)}
+            variant='persistent'
+          >
+            {list(anchor)}
+          </Drawer>
           {/* </div> */}
         </React.Fragment>
       ))}

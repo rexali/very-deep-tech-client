@@ -4,14 +4,13 @@ import React, { useState } from "react";
 import Link from "next/link";
 import ProtectedRoute from "@/components/protected-route";
 import { Box, Typography, Button, Container } from "@mui/material";
-import UsersMessages from "../admins/UsersMessages";
-import UsersOrders from "../admins/UsersOrders";
-import UsersTransactions from "../admins/UsersTransactions";
+import UsersMessages from "./UsersMessages";
+import UsersOrders from "./UsersOrders";
+import UsersTransactions from "./UsersTransactions";
 
-import UsersProducts from "../admins/UsersProducts";
-import UsersProfiles from "../admins/UsersProfiles";
+import UsersProducts from "./UsersProducts";
+import UsersProfiles from "./UsersProfiles";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import UsersCarts from "../admins/UsersCarts";
 import "../products/styles/styles.css"
 import Add from "@material-ui/icons/Add";
 import UsersNotifications from "./UsersNotifications";
@@ -19,6 +18,7 @@ import AdminProfile from "./AdminProfile";
 import UsersQoutes from "./UsersQoutes";
 import UsersSubscriptions from "./UsersSubscriptions";
 import { useSearchParams } from "next/navigation";
+import UsersCarts from "./UsersCarts";
 
 export default function UserTabs() {
     const searchParams = useSearchParams();

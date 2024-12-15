@@ -24,7 +24,7 @@ export default function UserCarts(props: any) {
   }
 
   return (
-    <Container maxWidth="lg" component={'main'} sx={{ mt: 8, minHeight: 420, display: "flex", justifyContent: 'center', alignItems: 'center' }}>
+    <Container maxWidth="lg" component={'main'} sx={{ mt: 8}}>
       <React.Suspense fallback={<Fallback />} >
         <ProductList products={carts} />
       </React.Suspense>

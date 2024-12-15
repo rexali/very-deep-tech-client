@@ -33,7 +33,7 @@ export default function SearchPage() {
 
   return (
     <Container maxWidth="md" component={'main'} sx={{ mt: 10 }}>
-      <h2>Product(s): {term}</h2>
+      <h2>Product(s): <span style={{textTransform:'capitalize'}}>{term}</span></h2>
         <SearchList products={data}/>
         <Box marginTop={4} display={"flex"} justifyContent={'center'} >
           <ReactPagination

@@ -2,12 +2,11 @@
 import ErrorBoundary from '@/components/ErrorBoundary';
 import React, { useState } from 'react';
 import { Select, FormControl, InputLabel, MenuItem, Box } from '@mui/material';
-import { getSortedProductsAPI } from '../api/getSortedProductsAPI';
 import SideDrawer from '@/components/common/side-drawer';
 import ProductList from '../ProductList';
 import ReactPagination from "@/components/react-pagination";
 import { useSortData } from '../hooks/useSortData';
-import Fallback from '@/components/common/fallback';
+import HomeFallback from '@/components/common/HomeFallback';
 
 export default function TopbarFilter(props: any) {
     const [sort, setSort] = useState('');
@@ -49,7 +48,7 @@ export default function TopbarFilter(props: any) {
             {open && <SideDrawer searchCallback={handleOpenCallback}>
                 <Box sx={{ m: 2 }}>
                     Filtering result:
-                    {!data?.length && <Fallback item={'No product found yet. Wait..'} />}
+                    {!data?.length && <HomeFallback />}
                     <ProductList products={data} />
                     <Box marginTop={4} display={"flex"} justifyContent={'center'} >
                         <ReactPagination

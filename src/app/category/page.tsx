@@ -34,7 +34,7 @@ export default function CategoryPage() {
 
   return (
     <Container maxWidth="md" component={'main'} sx={{ mt: 10 }}>
-      <h2>Product(s): {term}</h2>
+      <h2>Product(s): <span style={{textTransform:'capitalize'}}>{term}</span></h2>
       <CategoryList products={data} />
       <Box marginTop={4} display={"flex"} justifyContent={'center'} >
         <ReactPagination
