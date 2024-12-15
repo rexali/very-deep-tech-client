@@ -55,7 +55,7 @@ export default function UsersOrders() {
               <TableCell align="right">Payment Status (PS) &nbsp;</TableCell>
               <TableCell align="right">View &nbsp;</TableCell>
               <TableCell align="center" colSpan={3}>
-                Update Order Status
+                Actions
               </TableCell>
             </TableRow>
           </TableHead>
