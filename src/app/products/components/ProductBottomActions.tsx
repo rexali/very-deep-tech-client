@@ -21,7 +21,7 @@ import { goToSavedLinkpath } from "@/utils/goToSavedLinkPath";
 import { CardActions } from "@mui/material";
 
 
-export default function ProductBottomActions({ product, role, refreshProducts }: { product: any, role?: string, refreshProducts:any }) {
+export default function ProductBottomActions({ product, role, refreshProducts }: { product: any, role?: string, refreshProducts?:any }) {
     const [open, setOpen] = useState(false);
     const [openQoute, setOpenQoute] = useState(false);
     const [quantity, setQuantity] = useState<number>(1);

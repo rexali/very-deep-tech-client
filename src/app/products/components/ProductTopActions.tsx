@@ -15,7 +15,7 @@ import { useAuth } from "@/hooks/use-auth";
 import { goToSavedLinkpath } from "@/utils/goToSavedLinkPath";
 import { CardActions } from "@mui/material";
 
-export default function ProductTopActions({ product, role, refreshProducts }: { product: any, role?: string, refreshProducts: any }) {
+export default function ProductTopActions({ product, role, refreshProducts }: { product: any, role?: string, refreshProducts?: any }) {
     const [open, setOpen] = useState(false);
     const router = useRouter();
     const auth = useAuth();
