@@ -9,23 +9,29 @@ import { useAuth } from "@/hooks/use-auth";
 import { getUserOrdersAPI } from "../users/api/getUserOrders";
 import { TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, Button } from "@mui/material";
 import Link from "next/link";
+import { orderStatusAPI } from "../admins/api/orderStatusAPI";
 
 export default function UserOrders() {
   const [data, setData] = React.useState<any>([]);
   const [activePage, setActivePage] = React.useState(1);
 
   const auth = useAuth();
-  const userId = auth.user?._id as unknown as string || getToken('_id') as string;
+  const userId = auth.user?._id || getToken('_id') as string;
 
-  React.useEffect(() => {
-    async function getData() {
+  
+  const getOrderData = React.useCallback(async () => {
+    try {
       let orders = await getUserOrdersAPI(userId, activePage);
       setData(orders);
+    } catch (error) {
+      console.warn(error);
     }
+  }, [activePage, userId]);
 
-    getData();
 
-  }, [userId, activePage]);
+  React.useEffect(() => {
+       getOrderData()
+  }, [getOrderData]);
 
   if (!data.length) {
 
@@ -57,8 +63,8 @@ export default function UserOrders() {
                 key={order._id}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
-                <TableCell align="right">{order?.orderStatus ?? 'pending'}</TableCell>
-                <TableCell align="right">{order?.createdAt ?? '12-12-24'}</TableCell>
+                <TableCell align="right">{order?.orderStatus}</TableCell>
+                <TableCell align="right">{order?.createdAt}</TableCell>
                 <TableCell align="right">{order?.total}</TableCell>
                 <TableCell align="right">{order?.paymentStatus}</TableCell>
                 <TableCell align="right">{order?.shippingMethod}</TableCell>
@@ -66,7 +72,10 @@ export default function UserOrders() {
                   <Link href={'/orders/' + order._id}>View order</Link>
                 </TableCell>
                 <TableCell align="center">
-                  <Button size="small" onClick={() => { alert(order._id) }}>Cancel</Button>
+                  <Button size="small" onClick={async () => { 
+                        await orderStatusAPI({ orderId: order?._id, orderStatus: 'canceled', paymentStatus: '' });
+                        await getOrderData(); 
+                        }}>Cancel</Button>
                 </TableCell>
               </TableRow>
             ))}

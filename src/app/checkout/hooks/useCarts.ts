@@ -35,11 +35,13 @@ export const useCarts = (dispatch: any, pageNumber: number) => {
                       product: {
                         ...cart.product,
                         cartId: cart._id,
-                        cartQuantity: cart.quantity,
-                        totalCarts: cart.totalCarts
+                        cartQuantity: cart?.quantity,
+                        totalCarts: cart?.totalCarts,
+                        cartCreatedAt: cart?.createdAt,
+                        cartOwner: cart?.user?.email
                       }
                     }
-                  });
+                  }); 
           
                   const productsInCarts = newcarts.map((cart: any) => cart.product);
                   dispatch(getCarts(productsInCarts));

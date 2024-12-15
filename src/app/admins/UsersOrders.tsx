@@ -30,7 +30,7 @@ export default function UsersOrders() {
 
   React.useEffect(() => {
     getOrderData();
-  })
+  }, [getOrderData])
 
   if (!data?.length) {
 
@@ -43,7 +43,7 @@ export default function UsersOrders() {
 
   return (
     <Box>
-       <Box>Total Orders: {data[0]?.totalOrders}</Box>
+      <Box>Total Orders: {data[0]?.totalOrders}</Box>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
@@ -68,8 +68,8 @@ export default function UsersOrders() {
                 <TableCell component="th" scope="order">
                   <Link href={`mailto:${order?.user?.email}`}>{order?.user?.email}</Link>
                 </TableCell>
-                <TableCell align="right">{order?.orderStatus ?? 'pending'}</TableCell>
-                <TableCell align="right">{order?.createdAt ?? '12-12-24'}</TableCell>
+                <TableCell align="right">{order?.orderStatus}</TableCell>
+                <TableCell align="right">{order?.createdAt}</TableCell>
                 <TableCell align="right">{order?.total}</TableCell>
                 <TableCell align="right">{order?.paymentStatus}</TableCell>
                 <TableCell align="right">
@@ -81,21 +81,21 @@ export default function UsersOrders() {
                       size='small'
                       sx={{ m: 1, }}
                       onClick={async () => {
-                        await orderStatusAPI({ orderId: order?._id, orderStatus: 'pending', paymentStatus: 'paid' });
+                        await orderStatusAPI({ orderId: order?._id, orderStatus: 'shipped', paymentStatus: 'paid' });
                         await getOrderData();
                       }}>
-                     <span style={{fontSize:12}}>Pending to paid</span>
+                      <span style={{ fontSize: 12 }}>{order.orderStatus === 'pending' ? 'Ship' : 'Shipped'}</span>
                     </Button>
                   </TableCell>
                   <TableCell>
                     <Button
                       size='small'
-                      sx={{ m: 1}}
+                      sx={{ m: 1 }}
                       onClick={async () => {
-                        await orderStatusAPI({ orderId: order?._id, orderStatus: 'shipped', paymentStatus: 'paid' });
+                        await orderStatusAPI({ orderId: order?._id, orderStatus: 'delivered', paymentStatus: 'paid' });
                         await getOrderData();
                       }}>
-                        <span style={{fontSize:12}}>Paid to shipped</span>
+                      <span style={{ fontSize: 12 }}>{order.orderStatus === 'shipped' ? 'Deliver' : 'Delivered'}</span>
                     </Button>
                   </TableCell>
                   <TableCell>
@@ -104,10 +104,10 @@ export default function UsersOrders() {
                       sx={{ m: 1 }}
                       onClick={
                         async () => {
-                          await orderStatusAPI({ orderId: order?._id, orderStatus: 'delivered', paymentStatus: 'paid' });
+                          await orderStatusAPI({ orderId: order?._id, orderStatus: 'returned', paymentStatus: 'reversed' });
                           await getOrderData();
                         }}>
-                      <span style={{fontSize:12}}>Shipped to delivered</span>
+                      <span style={{ fontSize: 12 }}>{order.orderStatus === 'delivered' ? 'Return' : 'Returned'}</span>
                     </Button>
                   </TableCell>
                 </TableCell>
