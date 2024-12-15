@@ -14,7 +14,7 @@ export default function DesktopProductCategories(props: any) {
     const renderListItems = (data: any) => {
         return data.map((catx: string, i: number) =>
             <Link
-                key={i}
+                key={i}    
                 style={{
                     maxWidth: '100%',
                     maxHeight: '100%',
