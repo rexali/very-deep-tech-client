@@ -1,6 +1,6 @@
 'use client'
 import Image from 'next/image';
-import placeholderImage from '@/assets/images/cshop.png'
+import placeholderImage from '@/assets/images/photo.jpeg'
 import * as React from "react";
 
 export default function CardImage(props: any) {
