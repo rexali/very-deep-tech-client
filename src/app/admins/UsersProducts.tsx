@@ -49,11 +49,14 @@ export default function UsersProducts() {
               <TableCell align="right">product Name</TableCell>
               <TableCell align="right">Date (n) Time &nbsp;</TableCell>
               <TableCell align="right">Owner&apos;email</TableCell>
-              <TableCell align="right">Approve</TableCell>
-              <TableCell align="right">Edit &nbsp;</TableCell>
-              <TableCell align="right">Delete &nbsp;</TableCell>
-              <TableCell align="right">Promote &nbsp;</TableCell>
-              <TableCell align="right">View &nbsp;</TableCell>
+              <TableCell align="right" colSpan={5} rowSpan={2}>
+                <TableCell colSpan={5}>Actions</TableCell>
+                <TableCell align="right">Approve</TableCell>
+                <TableCell align="right">Edit &nbsp;</TableCell>
+                <TableCell align="right">Delete &nbsp;</TableCell>
+                <TableCell align="right">Promote &nbsp;</TableCell>
+                <TableCell align="right">View &nbsp;</TableCell>
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -68,24 +71,41 @@ export default function UsersProducts() {
                 <TableCell align="right">
                   <Link href={`mailto:${product?.user?.email}`}>{product?.user?.email}</Link>
                 </TableCell>
+
                 <TableCell align="right">
-                  <Button size="small" onClick={async () => {
-                    await approveProductAPI({ productId: product._id, featured: 'yes' });
-                    await getProductData();
-                  }
-                  }>
-                    Approve
-                  </Button>
-                </TableCell>
-                <TableCell align="right"><Link href={{ pathname: `/products/${product._id}/edit` }}>Edit</Link></TableCell>
-                <TableCell align="right"><Link href={{ pathname: `/products/${product._id}/delete` }}>Delete</Link></TableCell>
-                <TableCell align="right">
-                  <Button size="small" onClick={async () => {
-                    await featureProductAPI({ productId: product._id, featured: 'yes' });
-                    await getProductData();
-                  }}>Promote</Button></TableCell>
-                <TableCell align="right">
-                  <Link href={'/products/' + product?._id}>View</Link>
+
+                  <TableCell align="right">
+                    <Button size="small" onClick={async () => {
+                      await approveProductAPI({ productId: product._id, featured: 'yes' });
+                      await getProductData();
+                    }
+                    }>
+                      {product.approved ? 'Approved' : 'Approve'}
+                    </Button>
+                  </TableCell>
+
+                  <TableCell align="right">
+                    <Link href={{ pathname: `/products/${product._id}/edit` }}>Edit</Link>
+                  </TableCell>
+
+
+                  <TableCell align="right">
+                    <Link href={{ pathname: `/products/${product._id}/delete` }}>Delete</Link>
+                  </TableCell>
+
+                  <TableCell align="right">
+                    <Button size="small" onClick={async () => {
+                      await featureProductAPI({ productId: product._id, featured: 'yes' });
+                      await getProductData();
+                    }}>
+                      {product?.featured ? 'Promoted' : 'Promote'}
+                    </Button>
+                  </TableCell>
+
+                  <TableCell align="right">
+                    <Link href={'/products/' + product?._id}>View</Link>
+                  </TableCell>
+
                 </TableCell>
               </TableRow>
             ))}

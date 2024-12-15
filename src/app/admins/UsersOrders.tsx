@@ -54,7 +54,7 @@ export default function UsersOrders() {
               <TableCell align="right">Total &nbsp;</TableCell>
               <TableCell align="right">Payment Status (PS) &nbsp;</TableCell>
               <TableCell align="right">View &nbsp;</TableCell>
-              <TableCell align="right" colSpan={3}>
+              <TableCell align="center" colSpan={3}>
                 Update Order Status
               </TableCell>
             </TableRow>
@@ -84,7 +84,7 @@ export default function UsersOrders() {
                         await orderStatusAPI({ orderId: order?._id, orderStaus: 'pending', paymentStatus: 'paid' });
                         await getOrderData();
                       }}>
-                      Update to paid
+                      Pending to paid
                     </Button>
                   </TableCell>
                   <TableCell>
@@ -95,7 +95,7 @@ export default function UsersOrders() {
                         await orderStatusAPI({ orderId: order?._id, orderStaus: 'shipped', paymentStatus: 'paid' });
                         await getOrderData();
                       }}>
-                      Update to shipped
+                      Paid to shipped
                     </Button>
                   </TableCell>
                   <TableCell>
@@ -107,7 +107,7 @@ export default function UsersOrders() {
                           await orderStatusAPI({ orderId: order?._id, orderStaus: 'delivered', paymentStatus: 'paid' });
                           await getOrderData();
                         }}>
-                      Update to delivered
+                      Shipped to delivered
                     </Button>
                   </TableCell>
                 </TableCell>
