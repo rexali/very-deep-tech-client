@@ -230,7 +230,7 @@ export default function CheckoutForm({
                 </FormControl>
                 {
                     directPayment &&
-                    (<Box sx={{ backgroundColor: 'green', color: "white" }}>
+                    (<Box sx={{ backgroundColor: 'green', color: "white", borderRadius: 5 }}>
                         <p>&nbsp;&nbsp;Bank: Jaiz Bank</p>
                         <p>&nbsp;&nbsp;Acct. Number: 0016938829</p>
                         <p>&nbsp;&nbsp;Name: Siniotech Information and Communication...</p>
@@ -238,7 +238,7 @@ export default function CheckoutForm({
                 }
                 {
                     cashAndCarry &&
-                    (<Box sx={{ backgroundColor: 'green', color: "white" }}>
+                    (<Box sx={{ backgroundColor: 'green', color: "white", borderRadius: 5 }}>
                         <p>&nbsp;&nbsp;Visit: Siniotech Ltd</p>
                         <p>&nbsp;&nbsp;Address: 230 Naibawa Gasa A, Titi Dan Hassan, Kumbotso, Kano Sate</p>
                         <p>&nbsp;&nbsp;Call: 07016807004</p>
@@ -246,7 +246,7 @@ export default function CheckoutForm({
                 }
                 {
                     callToOrder &&
-                    (<Box sx={{ backgroundColor: 'green', color: "white" }}>
+                    (<Box sx={{ backgroundColor: 'green', color: "white", borderRadius: 5 }}>
                         <p>&nbsp;&nbsp;Call: 07016807004</p>
                         <p>&nbsp;&nbsp;Visit: Siniotech Ltd</p>
                         <p>&nbsp;&nbsp;Address: 230 Naibawa Gasa A, Titi Dan Hassan, Kumbotso, Kano Sate</p>

@@ -23,6 +23,7 @@ import Notifications from '@mui/icons-material/Notifications';
 import Message from '@mui/icons-material/Message';
 import { useAuth } from '@/hooks/use-auth';
 import { useRouter } from 'next/navigation';
+import CardImage from '@/app/products/components/CardImage';
 
 const pages = [
   'About',
@@ -76,7 +77,7 @@ function NavBar(props: any) {
 
   const isMobile = useMediaQuery({ maxDeviceWidth: 1023 });
   let categoryData = props?.categoryData ?? [];
-  let categories = categoryData.map((categoryData: { product_category: any; })=>categoryData.product_category)
+  let categories = categoryData.map((categoryData: { product_category: any; }) => categoryData.product_category)
   const categoriex = Array.from(new Set(categories));
 
   return <AppBar position={isMobile ? "fixed" : "static"} sx={{ backgroundColor: 'green' }}>
@@ -185,15 +186,16 @@ function NavBar(props: any) {
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
               {
                 user?.photo ?
-                  <Image
+                  <CardImage
                     src={`${SERVER_URL}/uploads/${user.photo}`}
+                    alt="Account"
                     width={30}
                     height={30}
-                    alt="Account"
                     style={{
                       borderRadius: 20,
                     }}
-                  /> : <Avatar />
+                  />
+                  : <Avatar />
               }
             </IconButton>
           </Tooltip>
