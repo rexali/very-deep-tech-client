@@ -76,7 +76,7 @@ export default function UserOrders() {
                     disabled={order.orderStatus === 'delivered' || order.orderStatus === 'shipped' ? true : false}
                     size="small"
                     onClick={async () => {
-                      await orderStatusAPI({ orderId: order?._id, orderStatus: 'canceled', paymentStatus: '' });
+                      await orderStatusAPI({ orderId: order?._id, orderStatus: 'canceled', paymentStatus: 'pending' });
                       await getOrderData();
                     }}>
                     {order.orderStatus === 'canceled' ? 'Canceled' : 'Cancel'}

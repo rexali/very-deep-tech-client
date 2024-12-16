@@ -54,7 +54,7 @@ export default function UsersOrders() {
               <TableCell align="right">Total &nbsp;</TableCell>
               <TableCell align="right">Payment Status (PS) &nbsp;</TableCell>
               <TableCell align="right">View &nbsp;</TableCell>
-              <TableCell align="center" colSpan={3}>
+              <TableCell align="center" colSpan={4}>
                 Actions
               </TableCell>
             </TableRow>
@@ -79,38 +79,59 @@ export default function UsersOrders() {
                   <TableCell align="right">
                     <Button
                       size='small'
-                      disabled={order.orderStatus === 'shipped' ? true : false}
                       sx={{ m: 1, }}
                       onClick={async () => {
-                        await orderStatusAPI({ orderId: order?._id, orderStatus: 'shipped', paymentStatus: 'paid' });
+                        await orderStatusAPI({
+                          orderId: order?._id,
+                          orderStatus: 'shipped',
+                          paymentStatus: 'paid'
+                        });
                         await getOrderData();
                       }}>
-                      <span style={{ fontSize: 12 }}>{order.orderStatus === 'pending' ? 'Ship' : 'Shipped'}</span>
+                      <span style={{ fontSize: 12 }}>{
+                        order.orderStatus === 'delivered' ||
+                          order.orderStatus === 'returned' ? 'Ship' : 'Shipped'
+                      }</span>
                     </Button>
                   </TableCell>
                   <TableCell>
                     <Button
-                      disabled={order.orderStatus === 'delivered' ? true : false}
+                      disabled={order.orderStatus === 'canceled' ? true : false}
                       size='small'
                       sx={{ m: 1 }}
                       onClick={async () => {
                         await orderStatusAPI({ orderId: order?._id, orderStatus: 'delivered', paymentStatus: 'paid' });
                         await getOrderData();
                       }}>
-                      <span style={{ fontSize: 12 }}>{order.orderStatus === 'shipped' ? 'Deliver' : 'Delivered'}</span>
+                      <span style={{ fontSize: 12 }}>{
+                        order.orderStatus === 'shipped' ||
+                          order.orderStatus === 'returned' ? 'Deliver' : 'Delivered'
+                      }</span>
                     </Button>
                   </TableCell>
                   <TableCell>
                     <Button
+                      disabled={order.orderStatus === 'shipped' ? true : false}
                       size='small'
-                      disabled={order.orderStatus === 'returned' ? true : false}
                       sx={{ m: 1 }}
                       onClick={
                         async () => {
                           await orderStatusAPI({ orderId: order?._id, orderStatus: 'returned', paymentStatus: 'reversed' });
                           await getOrderData();
                         }}>
-                      <span style={{ fontSize: 12 }}>{order.orderStatus === 'delivered' ? 'Return' : 'Returned'}</span>
+                      <span style={{ fontSize: 12 }}>{
+                        order.orderStatus === 'delivered' ? 'Return' : 'Returned'
+                      }</span>
+                    </Button>
+                  </TableCell>
+                  <TableCell align="center">
+                    <Button
+                      size="small"
+                      onClick={async () => {
+                        await orderStatusAPI({ orderId: order?._id, orderStatus: 'canceled', paymentStatus: order.paymentStatus });
+                        await getOrderData();
+                      }}>
+                      {order.orderStatus === 'canceled' ? 'Canceled' : 'Cancel'}
                     </Button>
                   </TableCell>
                 </TableCell>

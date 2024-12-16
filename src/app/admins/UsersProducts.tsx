@@ -27,7 +27,7 @@ export default function UsersProducts() {
 
   React.useEffect(() => {
     getProductData();
-  });
+  }, [getProductData]);
 
   if (!data.length) {
 
@@ -62,7 +62,7 @@ export default function UsersProducts() {
               >
                 <TableCell align="right">{i + 1}</TableCell>
                 <TableCell align="right">{product?.product_name}</TableCell>
-                <TableCell align="right">{product?.createdAt ?? '12-12-24'}</TableCell>
+                <TableCell align="right">{product?.createdAt}</TableCell>
                 <TableCell align="right">
                   <Link href={`mailto:${product?.user?.email}`}>{product?.user?.email}</Link>
                 </TableCell>
@@ -74,7 +74,7 @@ export default function UsersProducts() {
                       size="small"
                       disabled={product.approved === 'yes' ? true : false}
                       onClick={async () => {
-                        await approveProductAPI({ productId: product._id, featured: 'yes' });
+                        await approveProductAPI({ productId: product._id, approved: 'yes' });
                         await getProductData();
                       }
                       }>
@@ -99,7 +99,7 @@ export default function UsersProducts() {
                         await featureProductAPI({ productId: product._id, featured: 'yes' });
                         await getProductData();
                       }}>
-                      {product?.featured === 'yes' ? 'Promoted' : 'Promote'}
+                      {product?.featured === 'yes' ? 'Featured' : 'Feature'}
                     </Button>
                   </TableCell>
 
