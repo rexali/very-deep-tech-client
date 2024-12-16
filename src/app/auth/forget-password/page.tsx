@@ -57,6 +57,7 @@ export default function ForgetPassword() {
               label="Email Address"
               name="email"
               autoComplete="email"
+              type='email'
               placeholder='enter email'
               autoFocus
             />

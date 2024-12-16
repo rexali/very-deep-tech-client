@@ -58,7 +58,8 @@ export default function SignIn() {
           </Typography>
           <Box component="form"
             onSubmit={handleSubmit}
-            noValidate sx={{ mt: 1 }}>
+            noValidate ={false} 
+            sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
@@ -66,7 +67,8 @@ export default function SignIn() {
               id="email"
               label="Email Address"
               name="email"
-              autoComplete="email"
+              type='email'
+              autoComplete='email'
               autoFocus
             />
             <TextField
@@ -77,7 +79,7 @@ export default function SignIn() {
               label="Password"
               type="password"
               id="password"
-              autoComplete="current-password"
+              autoComplete="password"
             />
             {error && (<Box className={styles.formError} textAlign={'center'}>{error.toUpperCase()}</Box>)}
             {success && (<Box className={styles.formSuccess} textAlign={'center'}>{success.toUpperCase()}</Box>)}

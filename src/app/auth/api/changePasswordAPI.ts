@@ -18,7 +18,7 @@ const changePasswordAPI = async (passwordData: {
             },
         });
 
-        return data;
+        return data.data;
     } catch (error) {
         console.warn(error);
     }

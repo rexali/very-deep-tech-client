@@ -30,7 +30,7 @@ export default function BottomNavigation() {
     </Grid>))
 
     return (
-        <Container component="main" maxWidth="lg" sx={{ mt: 5, mb: 5 }} >
+        <Container component="main" maxWidth="lg" sx={{ mt: 5, mb: 8 }} >
             <Box sx={{ position: "relative", bottom: 0, left: 0, right: 0, m: 1, }}>
                 <Grid container spacing={1}>
                     {renderGridItems}

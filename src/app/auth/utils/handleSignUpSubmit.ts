@@ -34,11 +34,13 @@ export const handleSignUpSubmit = (
                 if (result.status === "success") {
                     // send success message
                     setLoading('');
+                    setSignUpError('');
                     setSignUpSuccess(result.status +'. You can now sign in. Link below');
                     router.replace('/auth/signin');
                 } else {
                     // send failure message
                     setLoading('');
+                    setSignUpError('');
                     setSignUpSuccess(result.status);
                 }
             })).catch((err) => {
@@ -53,6 +55,9 @@ export const handleSignUpSubmit = (
                     setLoading('');
                 }, 10000);
             })
+        }else{
+            setSignUpError('Password and confirm password mismatch');
+            setSignUpSuccess('');
         }
 
     } catch (error: any) {

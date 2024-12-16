@@ -52,7 +52,12 @@ export default function SignUp() {
                     <Typography component="h1" variant="h5">
                         Sign up
                     </Typography>
-                    <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
+                    <Box 
+                    component="form" 
+                    onSubmit={handleSubmit}
+                    noValidate={false} 
+                    sx={{ mt: 3 }}
+                    >
                         <Grid container spacing={2}>
                             <Grid item xs={12} sm={6}>
                                 <TextField
@@ -62,6 +67,7 @@ export default function SignUp() {
                                     fullWidth
                                     id="first_name"
                                     label="First Name"
+                                    type='text'
                                     autoFocus
                                 />
                             </Grid>
@@ -72,6 +78,7 @@ export default function SignUp() {
                                     id="last_name"
                                     label="Last Name"
                                     name="last_name"
+                                    type='text'
                                     autoComplete="family-name"
                                 />
                             </Grid>
@@ -81,6 +88,7 @@ export default function SignUp() {
                                     fullWidth
                                     id="email"
                                     label="Email Address"
+                                    type='email'
                                     name="email"
                                     autoComplete="email"
                                 />
@@ -93,7 +101,7 @@ export default function SignUp() {
                                     label="Password"
                                     type="password"
                                     id="password"
-                                    autoComplete="new-password"
+                                    autoComplete="password"
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -104,7 +112,7 @@ export default function SignUp() {
                                     label="Confirm Password"
                                     type="password"
                                     id="confirm_password"
-                                    autoComplete="new-password"
+                                    autoComplete="password"
                                 />
                             </Grid>
                             <Grid item xs={12}>

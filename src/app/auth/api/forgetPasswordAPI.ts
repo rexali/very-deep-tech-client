@@ -13,7 +13,7 @@ const forgetPasswordAPI = async (forgetData: { email: any }) => {
             },
         });
 
-        return data;
+        return data.data;
     } catch (error) {
         console.warn(error);
     }
