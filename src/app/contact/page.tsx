@@ -14,15 +14,19 @@ import Email from "@mui/icons-material/Email";
 import Phone from "@mui/icons-material/Phone";
 import Place from "@mui/icons-material/Place";
 import { shareLink } from "@/utils/shareLink";
+import { useAuth } from '@/hooks/use-auth';
+import { getToken } from '@/utils/getToken';
 
 export default function ContactPage() {
   const [error, setError] = React.useState('');
   const [success, setSuccess] = React.useState('');
   const [loading, setLoading] = React.useState('');
+  const auth = useAuth();
+  const userId = auth.user._id || getToken('_id') as string;
 
   const handleSubmit = async (event: any) => {
     setLoading('Sending data..');
-    await handleMessageSubmit(event, setSuccess, setError, setLoading);
+    await handleMessageSubmit(event, setSuccess, setError, setLoading, userId);
   }
 
   return (
@@ -35,7 +39,7 @@ export default function ContactPage() {
       <Typography component="h1" variant="h5" textAlign={'center'}>
         Contact us
       </Typography>
-      <Box component={'div'} sx={{display:'flex',flexDirection:'column', alignItems:'center'}}>
+      <Box component={'div'} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <Button
           type='button'
           size="large"

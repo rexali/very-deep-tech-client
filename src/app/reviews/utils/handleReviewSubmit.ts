@@ -2,9 +2,9 @@ import { createReviewAPI } from "../api/createReviewAPI";
 import { isBoughtByUserAPI } from "../api/isBoughtByUserAPI";
 import { goToSavedLinkpath } from "@/utils/goToSavedLinkPath";
 
-const handleReviewSubmit = async (event: any, setPostSuccess: any, setPostError: any) => {
+const handleReviewSubmit = async (event: any, setPostSuccess: any, setPostError: any, setLoading:any) => {
     event.preventDefault();
-
+    
     const {
         user_id,
         product_id,
@@ -19,8 +19,10 @@ const handleReviewSubmit = async (event: any, setPostSuccess: any, setPostError:
         ratingScore: Number(rating_score.value)
     }
     if (reviewData.userId) {
+        
         if (await isBoughtByUserAPI(reviewData.userId, reviewData.productId)) {
-            await createReviewAPI(reviewData, setPostSuccess, setPostError);
+            setLoading('Sending data.. ')
+            await createReviewAPI(reviewData, setPostSuccess, setPostError, setLoading);
         } else {
             alert(`\n\n\n\n Buy this product first, and post a review thereafter`)
         }

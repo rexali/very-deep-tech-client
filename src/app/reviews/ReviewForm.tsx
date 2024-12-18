@@ -10,11 +10,12 @@ import { handleReviewSubmit } from './utils/handleReviewSubmit';
 export default function ReviewForm(props: any) {
     const [error, setError] = React.useState('');
     const [success, setSuccess] = React.useState('');
+    const [loading, setLoading] = React.useState('');
 
     return (
         <Box
             component="form"
-            onSubmit={async (evt) => await handleReviewSubmit(evt, setSuccess, setError)}
+            onSubmit={async (evt) => await handleReviewSubmit(evt, setSuccess, setError, setLoading)}
             noValidate={false}
             sx={{ mt: 1 }}
         >
@@ -25,7 +26,7 @@ export default function ReviewForm(props: any) {
                 defaultValue={props.userId}
                 hidden
             />
-             <input
+            <input
                 required
                 name="product_id"
                 id="product_id"
@@ -52,6 +53,8 @@ export default function ReviewForm(props: any) {
             />
             {success && <Box textAlign={"center"} sx={{ color: "green" }}>{success.toUpperCase()}</Box>}
             {error && <Box textAlign={"center"} sx={{ color: "red" }}>{error.toUpperCase()}</Box>}
+            {loading && <Box textAlign={"center"} sx={{ color: "green" }}>{error.toUpperCase()}</Box>}
+
             <Button
                 type="submit"
                 fullWidth

@@ -20,7 +20,7 @@ const style = {
 
 export default function ApproveModal({ cb, closeCallback }: { cb: any, closeCallback: any }) {
     const [open, setOpen] = React.useState(true);
-    const [result, setResult] = React.useState({ affectedRows: 0 });
+    const [result, setResult] = React.useState(false);
 
     const handleOpen = () => setOpen(true);
     const handleClose = () => {
@@ -44,7 +44,7 @@ export default function ApproveModal({ cb, closeCallback }: { cb: any, closeCall
                 <Box sx={style}>
                     {/* <Box sx={{ textAlign: 'right' }}> <Button onClick={() => closeCallback(false)} >X</Button></Box> */}
                     <Typography id="modal-modal-title" variant="h6" component="h2" textAlign={'center'}>
-                        {result?.affectedRows !== 1 ? "Want to approve this item?" : "Approval successful"}
+                        {!result? "Want to approve this item?" : "Approval successful"}
                     </Typography>
                     <Typography id="modal-modal-description" sx={{ mt: 2, display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                         <Button variant='contained' onClick={() => closeCallback(false)} color='success'>No</Button>

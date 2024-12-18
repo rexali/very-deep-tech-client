@@ -1,6 +1,6 @@
 import { BASE_URL, SERVER_URL } from "@/constants/url";
 
-const createReviewAPI = async (data: any, setPostSuccess: any, setPostError: any) => {
+const createReviewAPI = async (data: any, setPostSuccess: any, setPostError: any, setLoading: any) => {
     try {
         let response = await fetch(`${SERVER_URL}/ratings`, {
             method: "POST",
@@ -20,6 +20,12 @@ const createReviewAPI = async (data: any, setPostSuccess: any, setPostError: any
     } catch (error: any) {
         setPostError("Error! " + error.message);
         console.warn(error);
+    } finally {
+        setTimeout(() => {
+            setLoading('')
+            setPostSuccess('');
+            setPostSuccess('');
+        }, 20000);
     }
 }
 
