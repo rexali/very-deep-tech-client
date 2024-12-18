@@ -14,9 +14,7 @@ const handleProductEditSubmit = async (event: any, setPostSuccess: any, setPostE
             product_weight,
             product_size,
             product_code,
-            product_demos_links,
-            product_photos_links,
-            product_photos
+            product_demos_links
         } = event.target.elements;
 
         let formData = new Form();
@@ -40,8 +38,6 @@ const handleProductEditSubmit = async (event: any, setPostSuccess: any, setPostE
         formData.append('product_size', product_size.value);
         formData.append('product_code', product_code.value);
         formData.append('product_demos_links', product_demos_links.value);
-        formData.append('product_photos_links', product_photos_links.value);
-        formData.append('product_photos', product_photos.value);
         await updateProductAPI(formData, setPostSuccess, setPostError, setLoading);
 
     } catch (error) {

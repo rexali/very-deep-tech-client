@@ -28,7 +28,7 @@ export default function AddMessage() {
 
     return (
         <ThemeProvider theme={defaultTheme} >
-            <Container component="main" maxWidth="xs">
+            <Container component="main" maxWidth="md">
                 {/* <CssBaseline /> */}
 
                     <Typography component="h1" variant="h5" textAlign={'center'}>

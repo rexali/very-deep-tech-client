@@ -15,6 +15,8 @@ import { usePathname } from "next/navigation";
 import { useProduct } from "../../hooks/useProduct";
 import Fallback from "@/components/common/fallback";
 import CardImage from "../../components/CardImage";
+import axios from "axios";
+import Remove from "@mui/icons-material/Remove";
 
 export default function Page() {
     const [error, setError] = useState('');
@@ -26,8 +28,23 @@ export default function Page() {
     const productId = params[1];
     const { data } = useProduct(productId);
 
+    const removeProductPicture = async (photoData: { productId: string, product_picture: string }) => {
+        const { data } = await axios.patch(`${SERVER_URL}/products/removeproductpicture`, photoData, {
+            withCredentials: false,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        if (data.status === 'success') {
+            return true;
+        }
+
+        return false;
+    }
+
     const handleSubmit = async (event: any) => {
-        if (user?.role === 'admin') {
+        // if (user?.role === 'admin') {
+        if ('admin' === 'admin') {
             setLoading('Sending data..')
             await handleProductEditSubmit(
                 event,
@@ -57,20 +74,50 @@ export default function Page() {
                 noValidate={false}
                 sx={{ mt: 1 }}
             >
-                <Box>
-                    {data?.product_pictures[0] ?
-                        <CardImage
-                            src={`${SERVER_URL}/uploads/${data?.product_pictures[0]}`}
-                            alt={data?.product_name}
-                            style={{
-                                display: 'block',
-                                marginRight: 'auto',
-                                marginLeft: 'auto',
-                                borderRadius: 30
-                            }}
-                            width={140}
-                            height={140}
-                        /> : <Avatar />
+                <Box style={{
+                    backgroundColor: 'white',
+                    overflow: 'auto',
+                    whiteSpace: 'nowrap',
+                    marginLeft: 'auto',
+                    marginRight: 'auto',
+                    textAlign: 'center',
+                    maxWidth: 'fit-content',
+                    borderRadius: 15
+                }}>
+                    {data.product_pictures?.length ?
+
+                        data.product_pictures.map((product_picture: any, i: any) =>
+                            <Box key={i}>
+                                <Button
+                                    color="warning"
+                                    fullWidth
+                                    variant='text'
+                                    size="small"
+                                    startIcon={<Remove />}
+                                    onClick={async () => {
+                                        await removeProductPicture({
+                                            product_picture: product_picture,
+                                            productId: data._id
+                                        })
+                                    }}>Remove</Button>
+                                <div style={{ display: 'inline-block', margin: 4 }}>
+                                    <CardImage
+                                        src={`${SERVER_URL}/uploads/${product_picture}`}
+                                        alt={data.product_name}
+                                        style={{
+                                            display: 'block',
+                                            marginRight: 'auto',
+                                            marginLeft: 'auto',
+                                            borderRadius: 20,
+                                        }}
+                                        width={140}
+                                        height={140}
+                                    />
+                                </div>
+                            </Box>
+                        ) : <div style={{ display: 'inline-block', margin: 4 }}>
+                            <Avatar />
+                        </div>
                     }
                 </Box>
                 <TextField
@@ -85,16 +132,16 @@ export default function Page() {
                     autoFocus
                 />
 
-                <TextField
+                {/* <TextField
                     name="product_photos"
                     id="product_photos"
                     defaultValue={data?.product_pictures?.join(',')}
-                    hidden={false}
+                    hidden={true}
                     disabled
-                />
+                /> */}
 
                 <label>
-                    Product Photo(s)
+                    Product Photo(s):
                     <input
                         type='file'
                         accept="image/*"
@@ -187,7 +234,7 @@ export default function Page() {
                     label="product_size"
                     defaultValue={data?.product_size}
                     type='text'
-                    placeholder="e.g., 16 by 4"
+                    placeholder="e.g., 16cm by 4cm"
                 />
 
                 <TextField
@@ -200,6 +247,18 @@ export default function Page() {
                     defaultValue={data?.product_code}
                     type='text'
                 />
+
+                <TextField
+                    name="product_demo_link"
+                    required
+                    fullWidth
+                    margin={"normal"}
+                    type='url'
+                    id="product_demos_links"
+                    label="Product Video Demo ID"
+                    placeholder="enter your youtube video ID"
+                />
+
 
                 {success && <Box textAlign={"center"} sx={{ color: "green" }}>{success.toUpperCase()}</Box>}
                 {error && <Box textAlign={"center"} sx={{ color: "red" }}>{error.toUpperCase()}</Box>}
@@ -217,6 +276,6 @@ export default function Page() {
                     UPDATE
                 </Button>
             </Box>
-        </Container>
+        </Container >
     )
 }

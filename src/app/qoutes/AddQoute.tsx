@@ -31,6 +31,7 @@ export function AddQoute(props: any) {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                type='email'
                 autoFocus
             />
 

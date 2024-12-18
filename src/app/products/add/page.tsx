@@ -32,12 +32,12 @@ export default function AddProduct() {
 
     return (
         <Container maxWidth="md" component={'main'}>
-            <Typography component="h1" variant="h5" textAlign={'center'}>
+            <Typography component="h1" variant="h5" sx={{ mt: 15 }} textAlign={'center'}>
                 Add product
             </Typography>
             <Box
                 sx={{
-                    mt: 15,
+                    mt: 5,
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
@@ -163,22 +163,12 @@ export default function AddProduct() {
                     required
                     fullWidth
                     margin={"normal"}
-                    type='url'
+                    type='text'
                     id="product_demos_links"
-                    label="Product Video Demo Link"
-                    placeholder="Copy and paste url"
+                    label="Product Video Demo ID"
+                    placeholder="enter your youtube video ID"
                 />
 
-                <TextField
-                    name="product_photos_links"
-                    required
-                    fullWidth
-                    margin={"normal"}
-                    id="product_photos_links"
-                    label="Other product photos links"
-                    type="text"
-                    placeholder="Copy and paste url, seperate it with comma"
-                />
 
                 {success && <Box textAlign={"center"} sx={{ color: "green" }}>{success.toUpperCase()}</Box>}
                 {error && <Box textAlign={"center"} sx={{ color: "red" }}>{error.toUpperCase()}</Box>}
