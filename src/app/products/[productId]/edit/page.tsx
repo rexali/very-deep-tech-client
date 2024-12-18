@@ -87,20 +87,8 @@ export default function Page() {
                     {data.product_pictures?.length ?
 
                         data.product_pictures.map((product_picture: any, i: any) =>
-                            <Box key={i}>
-                                <Button
-                                    color="warning"
-                                    fullWidth
-                                    variant='text'
-                                    size="small"
-                                    startIcon={<Remove />}
-                                    onClick={async () => {
-                                        await removeProductPicture({
-                                            product_picture: product_picture,
-                                            productId: data._id
-                                        })
-                                    }}>Remove</Button>
-                                <div style={{ display: 'inline-block', margin: 4 }}>
+                            <div key={i} style={{ display: 'inline-block', margin: 4 }}>
+                                <Box sx={{ display: "flex", flexDirection: "column" }}>
                                     <CardImage
                                         src={`${SERVER_URL}/uploads/${product_picture}`}
                                         alt={data.product_name}
@@ -113,8 +101,20 @@ export default function Page() {
                                         width={140}
                                         height={140}
                                     />
-                                </div>
-                            </Box>
+                                    <Button
+                                        color="warning"
+                                        fullWidth
+                                        variant='text'
+                                        size="small"
+                                        startIcon={<Remove />}
+                                        onClick={async () => {
+                                            await removeProductPicture({
+                                                product_picture: product_picture,
+                                                productId: data._id
+                                            })
+                                        }}>Remove</Button>
+                                </Box>
+                            </div>
                         ) : <div style={{ display: 'inline-block', margin: 4 }}>
                             <Avatar />
                         </div>
@@ -253,7 +253,7 @@ export default function Page() {
                     required
                     fullWidth
                     margin={"normal"}
-                    type='url'
+                    type='text'
                     id="product_demos_links"
                     label="Product Video Demo ID"
                     placeholder="enter your youtube video ID"

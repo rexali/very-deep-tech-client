@@ -38,6 +38,8 @@ const handleProductEditSubmit = async (event: any, setPostSuccess: any, setPostE
         formData.append('product_size', product_size.value);
         formData.append('product_code', product_code.value);
         formData.append('product_demos_links', product_demos_links.value);
+        formData.append('productId', productId);
+
         await updateProductAPI(formData, setPostSuccess, setPostError, setLoading);
 
     } catch (error) {
