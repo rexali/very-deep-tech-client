@@ -4,12 +4,11 @@ import Send from "@material-ui/icons/Send";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import { handleProductEditSubmit } from "../../utils/handleProductEdit.Submit";
 import Container from "@mui/material/Container";
 import { SERVER_URL } from "@/constants/url";
 import Avatar from "@mui/material/Avatar";
-import { useAuth } from "@/hooks/use-auth";
 import Typography from "@mui/material/Typography";
 import { usePathname, useRouter } from "next/navigation";
 import { useProduct } from "../../hooks/useProduct";
@@ -22,11 +21,11 @@ export default function Page() {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
     const [loading, setLoading] = React.useState('');
-    const { user } = useAuth();
     const pathname = usePathname();
     const params = pathname.split('/').filter(param => param !== '');
     const productId = params[1];
     const { data } = useProduct(productId);
+    const [deleteResult, setDeleteResult] = useState(false);
     const router = useRouter();
 
     const removeProductPicture = async (photoData: { productId: string, product_picture: string }) => {
@@ -37,13 +36,12 @@ export default function Page() {
                 'Content-Type': 'application/json',
             },
         });
+
         if (data.status === 'success') {
-            router.refresh();
-            alert(`\n\n\n\n Deleted successfully`);
+
             return true;
         }
 
-        alert(`\n\n\n\n Failed`);
         return false;
     }
 
@@ -113,11 +111,11 @@ export default function Page() {
                                         size="small"
                                         startIcon={<Remove />}
                                         onClick={async () => {
-                                            await removeProductPicture({
-                                                product_picture: product_picture,
-                                                productId: data._id
-                                            })
-                                        }}>Remove</Button>
+                                            setDeleteResult(await removeProductPicture({ productId: productId, product_picture: product_picture }));
+                                            router.refresh();
+                                        }}>
+                                        {!deleteResult ? 'Remove' : 'Removed'}
+                                    </Button>
                                 </Box>
                             </div>
                         ) : <div style={{ display: 'inline-block', margin: 4 }}>
@@ -136,14 +134,6 @@ export default function Page() {
                     type='text'
                     autoFocus
                 />
-
-                {/* <TextField
-                    name="product_photos"
-                    id="product_photos"
-                    defaultValue={data?.product_pictures?.join(',')}
-                    hidden={true}
-                    disabled
-                /> */}
 
                 <label>
                     Product Photo(s):
@@ -261,6 +251,7 @@ export default function Page() {
                     type='text'
                     id="product_demos_links"
                     label="Product Video Demo ID"
+                    defaultValue={data?.product_demo_links}
                     placeholder="enter your youtube video ID"
                 />
 
