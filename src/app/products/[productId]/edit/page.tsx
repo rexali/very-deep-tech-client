@@ -244,7 +244,7 @@ export default function Page() {
                 />
 
                 <TextField
-                    name="product_demo_links"
+                    name="product_demos_links"
                     required
                     fullWidth
                     margin={"normal"}
