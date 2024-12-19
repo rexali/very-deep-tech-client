@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { SERVER_URL } from "@/constants/url";
 
-export const useProduct = (productId: string) => {
+export const useProduct = (productId: string, reload?: boolean) => {
     const [data, setData] = useState<any>({});
 
     React.useEffect(() => {
@@ -20,7 +20,7 @@ export const useProduct = (productId: string) => {
             }
         };
         fetchData();
-    }, [productId]);
+    }, [productId,reload]);
 
     return { data };
 }

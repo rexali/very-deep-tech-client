@@ -79,7 +79,7 @@ export default function UsersOrders() {
                   <TableCell align="right">
                     <Button
                       size='small'
-                      disabled={order.orderStatus === 'returned' || order.orderStatus === 'shipped' ? true : false}
+                      disabled={order.orderStatus === 'returned' || order.orderStatus === 'delivered' || order.orderStatus === 'shipped' ? true : false}
                       sx={{ m: 1, }}
                       onClick={async () => {
                         await orderStatusAPI({
@@ -96,11 +96,15 @@ export default function UsersOrders() {
                   </TableCell>
                   <TableCell>
                     <Button
-                      disabled={order.orderStatus === 'pending' || order.orderStatus === 'returned' ? true : false}
+                      disabled={order.orderStatus === 'pending' || order.orderStatus === 'returned' || order.orderStatus === 'delivered' ? true : false}
                       size='small'
                       sx={{ m: 1 }}
                       onClick={async () => {
-                        await orderStatusAPI({ orderId: order?._id, orderStatus: 'delivered', paymentStatus: 'paid' });
+                        await orderStatusAPI({
+                          orderId: order?._id,
+                          orderStatus: 'delivered',
+                          paymentStatus: 'paid'
+                        });
                         await getOrderData();
                       }}>
                       <span style={{ fontSize: 12 }}>{
@@ -110,12 +114,16 @@ export default function UsersOrders() {
                   </TableCell>
                   <TableCell>
                     <Button
-                      disabled={order.orderStatus === 'pending' || order.orderStatus === 'shipped' ? true : false}
+                      disabled={order.orderStatus === 'pending' || order.orderStatus === 'shipped' || order.orderStatus === 'returned' ? true : false}
                       size='small'
                       sx={{ m: 1 }}
                       onClick={
                         async () => {
-                          await orderStatusAPI({ orderId: order?._id, orderStatus: 'returned', paymentStatus: 'reversed' });
+                          await orderStatusAPI({
+                            orderId: order?._id,
+                            orderStatus: 'returned',
+                            paymentStatus: 'reversed'
+                          });
                           await getOrderData();
                         }}>
                       <span style={{ fontSize: 12 }}>{
@@ -128,7 +136,11 @@ export default function UsersOrders() {
                       disabled={order.orderStatus === 'canceled' ? true : false}
                       size="small"
                       onClick={async () => {
-                        await orderStatusAPI({ orderId: order?._id, orderStatus: 'canceled', paymentStatus: order.paymentStatus });
+                        await orderStatusAPI({
+                          orderId: order?._id,
+                          orderStatus: 'canceled',
+                          paymentStatus: order.paymentStatus
+                        });
                         await getOrderData();
                       }}>
                       {order.orderStatus === 'canceled' ? 'Canceled' : 'Cancel'}

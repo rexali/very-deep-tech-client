@@ -4,7 +4,7 @@ import Send from "@material-ui/icons/Send";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import React, { useState} from "react";
+import React, { useState } from "react";
 import { handleProductEditSubmit } from "../../utils/handleProductEdit.Submit";
 import Container from "@mui/material/Container";
 import { SERVER_URL } from "@/constants/url";
@@ -24,7 +24,8 @@ export default function Page() {
     const pathname = usePathname();
     const params = pathname.split('/').filter(param => param !== '');
     const productId = params[1];
-    const { data } = useProduct(productId);
+    const [reload, setReload] = useState(false);
+    const { data } = useProduct(productId,reload);
     const [deleteResult, setDeleteResult] = useState(false);
     const router = useRouter();
 
@@ -37,18 +38,18 @@ export default function Page() {
                     'Content-Type': 'application/json',
                 },
             });
-    
+
             if (data.status === 'success') {
-    
+
                 return true;
             }
-    
+
             return false;
-        } catch (error:any) {
+        } catch (error: any) {
             console.log(error);
             return false;
         }
-      
+
     }
 
     const handleSubmit = async (event: any) => {
@@ -118,8 +119,8 @@ export default function Page() {
                                         startIcon={<Remove />}
                                         onClick={async () => {
                                             setDeleteResult(await removeProductPicture({ productId: productId, product_picture: product_picture }));
-                                            router.refresh();
-                                        }}>
+                                            setReload(true);
+                                       }}>
                                         {!deleteResult ? 'Remove' : 'Removed'}
                                     </Button>
                                 </Box>
