@@ -4,18 +4,18 @@ import Send from "@material-ui/icons/Send";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { handleProductEditSubmit } from "../../utils/handleProductEdit.Submit";
 import Container from "@mui/material/Container";
 import { SERVER_URL } from "@/constants/url";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
-import { usePathname, useRouter } from "next/navigation";
-import { useProduct } from "../../hooks/useProduct";
+import { usePathname } from "next/navigation";
 import Fallback from "@/components/common/fallback";
 import CardImage from "../../components/CardImage";
-import axios from "axios";
 import Remove from "@mui/icons-material/Remove";
+import { getProductAPI } from "../../api/getProductAPI";
+import { removeProductPicture } from "../../api/removeProductPictureAPI";
 
 export default function Page() {
     const [error, setError] = useState('');
@@ -24,34 +24,21 @@ export default function Page() {
     const pathname = usePathname();
     const params = pathname.split('/').filter(param => param !== '');
     const productId = params[1];
-    const [reload, setReload] = useState(false);
-    const { data } = useProduct(productId,reload);
-    const [deleteResult, setDeleteResult] = useState(false);
-    const router = useRouter();
+    const [data, setData]= useState<any>({});
 
-    const removeProductPicture = async (photoData: { productId: string, product_picture: string }) => {
+    const getProductData = useCallback(async ()=>{
         try {
-            const { data } = await axios.patch(`${SERVER_URL}/products/removeproductpicture`, photoData, {
-                withCredentials: false,
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                },
-            });
-
-            if (data.status === 'success') {
-
-                return true;
-            }
-
-            return false;
-        } catch (error: any) {
-            console.log(error);
-            return false;
+            setData(await getProductAPI(productId));
+        } catch (error) {
+            console.warn(error);
         }
+    },[productId]);
 
-    }
+    useEffect(()=>{
+     getProductData();
+    },[getProductData])
 
+    
     const handleSubmit = async (event: any) => {
         // if (user?.role === 'admin') {
         if ('admin' === 'admin') {
@@ -70,7 +57,7 @@ export default function Page() {
 
 
     if (!Object.keys(data)?.length) {
-        return <Fallback item={'No product details found'} />
+        return <Fallback item={'No product details found yet. Wait..'} />
     }
 
     return (
@@ -117,11 +104,13 @@ export default function Page() {
                                         variant='text'
                                         size="small"
                                         startIcon={<Remove />}
-                                        onClick={async () => {
-                                            setDeleteResult(await removeProductPicture({ productId: productId, product_picture: product_picture }));
-                                            setReload(true);
+                                        onClick={async (event) => {
+                                            await removeProductPicture({ productId: productId, product_picture: product_picture });
+                                            event.currentTarget.disabled=true;
+                                            event.currentTarget.textContent='REMOVED';
+                                            await getProductData();
                                        }}>
-                                        {!deleteResult ? 'Remove' : 'Removed'}
+                                        Remove
                                     </Button>
                                 </Box>
                             </div>
