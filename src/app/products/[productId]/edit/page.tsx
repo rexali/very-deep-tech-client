@@ -11,7 +11,7 @@ import { SERVER_URL } from "@/constants/url";
 import Avatar from "@mui/material/Avatar";
 import { useAuth } from "@/hooks/use-auth";
 import Typography from "@mui/material/Typography";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useProduct } from "../../hooks/useProduct";
 import Fallback from "@/components/common/fallback";
 import CardImage from "../../components/CardImage";
@@ -27,18 +27,23 @@ export default function Page() {
     const params = pathname.split('/').filter(param => param !== '');
     const productId = params[1];
     const { data } = useProduct(productId);
+    const router = useRouter();
 
     const removeProductPicture = async (photoData: { productId: string, product_picture: string }) => {
         const { data } = await axios.patch(`${SERVER_URL}/products/removeproductpicture`, photoData, {
             withCredentials: false,
             headers: {
-                'Content-Type': 'application/json'
-            }
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
         });
         if (data.status === 'success') {
+            router.refresh();
+            alert(`\n\n\n\n Deleted successfully`);
             return true;
         }
 
+        alert(`\n\n\n\n Failed`);
         return false;
     }
 
@@ -249,7 +254,7 @@ export default function Page() {
                 />
 
                 <TextField
-                    name="product_demo_link"
+                    name="product_demo_links"
                     required
                     fullWidth
                     margin={"normal"}

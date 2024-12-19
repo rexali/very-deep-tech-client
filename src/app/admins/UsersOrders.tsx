@@ -79,6 +79,7 @@ export default function UsersOrders() {
                   <TableCell align="right">
                     <Button
                       size='small'
+                      disabled={order.orderStatus === 'returned' || order.orderStatus === 'shipped' ? true : false}
                       sx={{ m: 1, }}
                       onClick={async () => {
                         await orderStatusAPI({
@@ -89,14 +90,13 @@ export default function UsersOrders() {
                         await getOrderData();
                       }}>
                       <span style={{ fontSize: 12 }}>{
-                        order.orderStatus === 'delivered' ||
-                          order.orderStatus === 'returned' ? 'Ship' : 'Shipped'
+                        order.orderStatus === 'pending' ? 'Ship' : 'Shipped'
                       }</span>
                     </Button>
                   </TableCell>
                   <TableCell>
                     <Button
-                      disabled={order.orderStatus === 'canceled' ? true : false}
+                      disabled={order.orderStatus === 'pending' || order.orderStatus === 'returned' ? true : false}
                       size='small'
                       sx={{ m: 1 }}
                       onClick={async () => {
@@ -104,14 +104,13 @@ export default function UsersOrders() {
                         await getOrderData();
                       }}>
                       <span style={{ fontSize: 12 }}>{
-                        order.orderStatus === 'shipped' ||
-                          order.orderStatus === 'returned' ? 'Deliver' : 'Delivered'
+                        order.orderStatus === 'shipped' ? 'Deliver' : 'Delivered'
                       }</span>
                     </Button>
                   </TableCell>
                   <TableCell>
                     <Button
-                      disabled={order.orderStatus === 'shipped' ? true : false}
+                      disabled={order.orderStatus === 'pending' || order.orderStatus === 'shipped' ? true : false}
                       size='small'
                       sx={{ m: 1 }}
                       onClick={
@@ -126,6 +125,7 @@ export default function UsersOrders() {
                   </TableCell>
                   <TableCell align="center">
                     <Button
+                      disabled={order.orderStatus === 'canceled' ? true : false}
                       size="small"
                       onClick={async () => {
                         await orderStatusAPI({ orderId: order?._id, orderStatus: 'canceled', paymentStatus: order.paymentStatus });

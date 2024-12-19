@@ -73,10 +73,10 @@ export default function UserOrders() {
                 </TableCell>
                 <TableCell align="center">
                   <Button
-                    disabled={order.orderStatus === 'delivered' || order.orderStatus === 'shipped' ? true : false}
+                    disabled={order.orderStatus === 'delivered' || order.orderStatus === 'shipped' || order.orderStatus === 'canceled' ? true : false}
                     size="small"
                     onClick={async () => {
-                      await orderStatusAPI({ orderId: order?._id, orderStatus: 'canceled', paymentStatus: 'pending' });
+                      await orderStatusAPI({ orderId: order?._id, orderStatus: 'canceled', paymentStatus: order?.paymentStatus === 'paid' ? 'Pay to be returned' : 'No pay to be returned' });
                       await getOrderData();
                     }}>
                     {order.orderStatus === 'canceled' ? 'Canceled' : 'Cancel'}

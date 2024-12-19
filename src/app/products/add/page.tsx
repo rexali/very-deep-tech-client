@@ -159,7 +159,7 @@ export default function AddProduct() {
                 />
 
                 <TextField
-                    name="product_demo_link"
+                    name="product_demo_links"
                     required
                     fullWidth
                     margin={"normal"}

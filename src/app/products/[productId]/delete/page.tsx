@@ -21,7 +21,7 @@ export default function Page() {
         <Container
             maxWidth="md"
             component={'main'}
-            sx={{ minHeight: 520, display: "flex", justifyContent: 'center', alignItems: 'center' }}
+            sx={{ minHeight: 520, display: "flex", flexDirection:'column', justifyContent: 'space-between', alignItems: 'center' }}
         >
             <Box component={'div'} width={'100%'} textAlign={'center'}>Do you really want to delete this item?</Box>
 
