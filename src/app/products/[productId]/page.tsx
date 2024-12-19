@@ -186,7 +186,7 @@ export default async function ProductDetailPage({ params }: { params: { productI
                           borderRadius: 20,
                         }}
                         width={345}
-                        height={245}
+                        height={345}
                       />
                     </div>) : links.map((link, i) =>
                       <div key={i} style={{ display: 'inline-block', margin: 10 }}>

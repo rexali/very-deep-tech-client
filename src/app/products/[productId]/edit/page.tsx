@@ -29,20 +29,26 @@ export default function Page() {
     const router = useRouter();
 
     const removeProductPicture = async (photoData: { productId: string, product_picture: string }) => {
-        const { data } = await axios.patch(`${SERVER_URL}/products/removeproductpicture`, photoData, {
-            withCredentials: false,
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-        });
-
-        if (data.status === 'success') {
-
-            return true;
+        try {
+            const { data } = await axios.patch(`${SERVER_URL}/products/removeproductpicture`, photoData, {
+                withCredentials: false,
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+            });
+    
+            if (data.status === 'success') {
+    
+                return true;
+            }
+    
+            return false;
+        } catch (error:any) {
+            console.log(error);
+            return false;
         }
-
-        return false;
+      
     }
 
     const handleSubmit = async (event: any) => {
@@ -250,11 +256,10 @@ export default function Page() {
                     margin={"normal"}
                     type='text'
                     id="product_demos_links"
-                    label="Product Video Demo ID"
-                    defaultValue={data?.product_demo_links}
+                    label="Product Demo Video ID"
+                    defaultValue={data?.product_demos_links}
                     placeholder="enter your youtube video ID"
                 />
-
 
                 {success && <Box textAlign={"center"} sx={{ color: "green" }}>{success.toUpperCase()}</Box>}
                 {error && <Box textAlign={"center"} sx={{ color: "red" }}>{error.toUpperCase()}</Box>}
