@@ -10,8 +10,9 @@ const updateProductAPI = async (productData: any, setPostSuccess: any, setPostEr
             withCredentials: false,
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json',
+                'Content-Type':'multipart/form-data'
             },
+
 
         });
         if (data.status === "success") {

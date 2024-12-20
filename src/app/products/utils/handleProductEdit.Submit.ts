@@ -18,7 +18,7 @@ const handleProductEditSubmit = async (event: any, setPostSuccess: any, setPostE
         } = event.target.elements;
 
         let formData = new Form();
-
+        
         try {
             let filesObject = document.querySelector('#product_pictures') as any;
             for (let file of filesObject.files) {

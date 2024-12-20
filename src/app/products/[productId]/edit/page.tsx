@@ -43,13 +43,7 @@ export default function Page() {
         // if (user?.role === 'admin') {
         if ('admin' === 'admin') {
             setLoading('Sending data..')
-            await handleProductEditSubmit(
-                event,
-                setSuccess,
-                setError,
-                setLoading,
-                productId
-            )
+            await handleProductEditSubmit(event,setSuccess,setError,setLoading,productId)
         } else {
             setLoading('You are not unauthorized')
         }
@@ -105,10 +99,15 @@ export default function Page() {
                                         size="small"
                                         startIcon={<Remove />}
                                         onClick={async (event) => {
-                                            await removeProductPicture({ productId: productId, product_picture: product_picture });
-                                            event.currentTarget.disabled=true;
-                                            event.currentTarget.textContent='REMOVED';
-                                            await getProductData();
+                                            try {
+                                                await removeProductPicture({ productId: productId, product_picture: product_picture }); 
+                                                await getProductData();  
+                                                event.currentTarget.disabled=true;
+                                                event.currentTarget.textContent='REMOVED'; 
+                                            } catch (error) {
+                                                console.error(error);
+                                            }
+                                            
                                        }}>
                                         Remove
                                     </Button>

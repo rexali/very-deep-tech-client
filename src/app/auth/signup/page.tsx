@@ -116,7 +116,7 @@ export default function SignUp() {
                                 />
                             </Grid>
                             <Grid item xs={12}>
-                                {error && (<Box className={styles.formError} textAlign={'center'}>{error.toUpperCase()}</Box>)}
+                                {error && (<Box className={styles.formError} textAlign={'center'}>{error.toLowerCase()}</Box>)}
                                 {success && (<Box className={styles.formSuccess} textAlign={'center'}>{success.toLowerCase()}</Box>)}
                                 {loading && <Box textAlign={"center"} sx={{ color: "green" }}>{loading.toUpperCase()}</Box>}
                                 <FormControlLabel

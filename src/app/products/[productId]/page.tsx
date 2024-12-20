@@ -44,7 +44,7 @@ export default async function ProductDetailPage({ params }: { params: { productI
   ]
 
   if (!Object?.keys(product).length) {
-    return <Fallback item={'No item found yet'} />
+    return <Fallback item={'No product details found yet. Wait..'} />
   }
 
   return (
