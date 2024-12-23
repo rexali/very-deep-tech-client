@@ -16,7 +16,7 @@ const handleChangePasswordSubmit = async (
         const confirm_password = data.get('confirm_password') as string;
         const password = data.get('current_password') as string;
 
-        if (confirm_password === password) {
+        if (confirm_password === password && rcode && email) {
 
             const passwordData = {
                 email: email,
@@ -34,6 +34,9 @@ const handleChangePasswordSubmit = async (
                 setLoading('');
             }
 
+        } else {
+            failureCallback("Error! Password mismatch");
+            setLoading('');
         }
     } catch (error: any) {
         console.warn(error);

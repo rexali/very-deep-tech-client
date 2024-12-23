@@ -17,7 +17,7 @@ export default function UserCarts(props: any) {
 
   const { user } = useAuth();
   const userId = user?._id || getToken('_id') as string; 
-  const { carts } = useUserCarts(userId, dispatch, activePage);
+  const { carts } = useUserCarts(userId, dispatch, activePage); 
 
   if (!carts?.length) {
     return <Fallback item={"No product in your cart yet"} />

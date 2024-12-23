@@ -16,14 +16,13 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 export default function CartPage() {
 
   const [activePage, setActivePage] = useState<number>(1);
+  let [products, setProducts] = useState<any>([]);
   const { dispatch } = useContext(AppContext);
   const { user } = useAuth();
   const userId = user?._id || getToken('_id') as string;
-  const [products, setProducts] = useState<Array<any>>([]);
   const router = useRouter();
 
   const getCartData = useCallback(async () => {
-    if (userId) {
       try {
         let productsInCart = await getUserCartsAPI(userId, activePage);
         dispatch(getCarts(productsInCart));
@@ -31,34 +30,38 @@ export default function CartPage() {
       } catch (error) {
         console.warn(error);
       }
-    } else {
-      router.push('/auth/signin');
-    }
-  }, [activePage, dispatch, router, userId])
 
+  }, [activePage, dispatch, userId])
+
+  
   useEffect(() => {
 
     getCartData();
 
   }, [getCartData, userId])
 
+  if (userId) {
 
-  if (!products?.length) {
-    return <Fallback item={"No product in your cart yet"} />
+    if (!products?.length) {
+      return <Fallback item={"No product in your cart yet"} />
+    }
+
+    return (
+      <ErrorBoundary>
+        <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }} >
+          <Box>Carts: {products[0]?.totalCarts}</Box>
+          <CartList
+            products={products}
+            activePage={activePage}
+            setActivePage={setActivePage}
+            totalCarts={products[0]?.totalCarts}
+            refreshCart={getCartData}
+          />
+        </Container>
+      </ErrorBoundary>
+    )
+  } else {
+    router.push('/auth/signin?next='+goToSavedLinkpath(1));
   }
 
-  return (
-    <ErrorBoundary>
-      <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }} >
-        <Box>Carts: {products[0]?.totalCarts}</Box>
-        <CartList
-          products={products}
-          activePage={activePage}
-          setActivePage={setActivePage}
-          totalCarts={products[0]?.totalCarts}
-          refreshCart={getCartData}
-        />
-      </Container>
-    </ErrorBoundary>
-  )
 }
