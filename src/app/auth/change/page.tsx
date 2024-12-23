@@ -17,7 +17,7 @@ import Fallback from '@/components/common/fallback';
 const defaultTheme = createTheme();
 
 export default function ChangePassword() {
-  const rCode = useSearchParams().get('rCode') as string;
+  const rcode = useSearchParams().get('rcode') as string;
   const email = useSearchParams().get('email') as string;
   const [error, setError] = React.useState('');
   const [success, setSuccess] = React.useState('');
@@ -27,7 +27,7 @@ export default function ChangePassword() {
     // give user feedback
     setLoading("Sending data...");
     try {
-      await handleChangePasswordSubmit(event, email, rCode, setSuccess, setError)
+      await handleChangePasswordSubmit(event, email, rcode, setSuccess, setError, setLoading)
     } catch (error) {
       console.warn(error);
     }

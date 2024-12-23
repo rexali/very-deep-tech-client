@@ -53,7 +53,8 @@ export default function CheckoutForm({
                 setError,
                 setLoading,
                 orderData,
-                transactionData
+                transactionData,
+                userId
             );
         } else {
             router.replace('/auth/signin?next=' + goToSavedLinkpath());
@@ -231,25 +232,25 @@ export default function CheckoutForm({
                 {
                     directPayment &&
                     (<Box sx={{ backgroundColor: 'green', color: "white", borderRadius: 5 }}>
-                        <p>&nbsp;&nbsp;Bank: Jaiz Bank</p>
-                        <p>&nbsp;&nbsp;Acct. Number: 0016938829</p>
-                        <p>&nbsp;&nbsp;Name: Siniotech Information and Communication...</p>
+                        <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}><span>Bank Name:</span> Jaiz Bank</Box>
+                        <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}><span>Acct. Number:</span> 0016938829</Box>
+                        <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}><span>Acct. Name:</span> Siniotech Ltd</Box>
                     </Box>)
                 }
                 {
                     cashAndCarry &&
                     (<Box sx={{ backgroundColor: 'green', color: "white", borderRadius: 5 }}>
-                        <p>&nbsp;&nbsp;Visit: Siniotech Ltd</p>
-                        <p>&nbsp;&nbsp;Address: 230 Naibawa Gasa A, Titi Dan Hassan, Kumbotso, Kano Sate</p>
-                        <p>&nbsp;&nbsp;Call: 07016807004</p>
+                        <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}><span>Visit:</span>Siniotech Ltd</Box>
+                        <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}><span>Address:</span>230 Naibawa Gasa A, Line Dan Hassan, Kumbotso, Kano Sate</Box>
+                        <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}><span>Call:</span>07016807004</Box>
                     </Box>)
                 }
                 {
                     callToOrder &&
                     (<Box sx={{ backgroundColor: 'green', color: "white", borderRadius: 5 }}>
-                        <p>&nbsp;&nbsp;Call: 07016807004</p>
-                        <p>&nbsp;&nbsp;Visit: Siniotech Ltd</p>
-                        <p>&nbsp;&nbsp;Address: 230 Naibawa Gasa A, Titi Dan Hassan, Kumbotso, Kano Sate</p>
+                        <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}><span>Call:</span> 07016807004</Box>
+                        <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}><span>Visit:</span> Siniotech Ltd</Box>
+                        <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}><span>Address:</span>230 Naibawa Gasa A,Line Dan Hassan, Kumbotso, Kano Sate</Box>
                     </Box>)
                 }
                 {success && <Box textAlign={"center"} sx={{ backgroundColor: 'green', color: "white", padding: 2, borderRadius: 2 }}>{success.toUpperCase()}</Box>}

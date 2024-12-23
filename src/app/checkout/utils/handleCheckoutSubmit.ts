@@ -2,6 +2,7 @@
 
 import { sendOrderAndTransaction } from "@/app/payment/sendOrderAndTransaction";
 import { payWithPaystack } from "@/services/payWithPaystack";
+import { updateUserProfileAPI } from "../../users/api/updateUserProfile";
 
 const handleCheckoutSubmit = async (
     event: any,
@@ -9,7 +10,8 @@ const handleCheckoutSubmit = async (
     setPostError: any,
     setLoading: any,
     orderData: any,
-    transactionData?: any
+    transactionData?: any,
+    userId?: any
 ) => {
 
     event.preventDefault();
@@ -42,82 +44,94 @@ const handleCheckoutSubmit = async (
         tax: tax.value,
         method: payment_method.value
     }
+    try {
+        await updateUserProfileAPI({
+            firtName: contactData.firstName,
+            lastName: contactData.lastName,
+            streetAddress: contactData.address,
+            localGovt: contactData.localGovt,
+            state: contactData.state,
+            user: userId
+        }, setPostSuccess, setPostError, setLoading);
 
-    switch (contactData.method) {
-        case 'paystack':
-        case 'ussd':
-        case 'opay':
-        case 'bank-transfer':
-        case 'card':
-            payWithPaystack(
-                contactData.email ?? '',
-                contactData.amount ?? 0,
-                orderData,
-                transactionData,
-                setPostSuccess,
-                setPostError,
-                setLoading
-            );
-            break;
+        switch (contactData.method) {
+            case 'paystack':
+            case 'ussd':
+            case 'opay':
+            case 'bank-transfer':
+            case 'card':
+                payWithPaystack(
+                    contactData.email ?? '',
+                    contactData.amount ?? 0,
+                    orderData,
+                    transactionData,
+                    setPostSuccess,
+                    setPostError,
+                    setLoading
+                );
+                break;
 
-        case 'pay-on-delivery':
-            await sendOrderAndTransaction(
-                orderData,
-                { ...transactionData, paymentMethod: 'Pay on Delivery' },
-                setPostSuccess,
-                setPostError,
-                setLoading
-            );
-            break;
+            case 'pay-on-delivery':
+                await sendOrderAndTransaction(
+                    orderData,
+                    { ...transactionData, paymentMethod: 'Pay on Delivery' },
+                    setPostSuccess,
+                    setPostError,
+                    setLoading
+                );
+                break;
 
-        case 'direct-bank-transfer':
-            await sendOrderAndTransaction(
-                orderData,
-                { ...transactionData, paymentMethod: 'Direct Bank Transfer' },
-                setPostSuccess,
-                setPostError,
-                setLoading
-            );
-            alert(
-                'Use the details below to make your payment'
-            );
-            break;
+            case 'direct-bank-transfer':
+                await sendOrderAndTransaction(
+                    orderData,
+                    { ...transactionData, paymentMethod: 'Direct Bank Transfer' },
+                    setPostSuccess,
+                    setPostError,
+                    setLoading
+                );
+                alert(
+                    'Use the details below to make your payment'
+                );
+                break;
 
-        case 'call-to-order':
-            await sendOrderAndTransaction(
-                orderData,
-                { ...transactionData, paymentMethod: 'Call to Order' },
-                setPostSuccess,
-                setPostError,
-                setLoading
-            );
+            case 'call-to-order':
+                await sendOrderAndTransaction(
+                    orderData,
+                    { ...transactionData, paymentMethod: 'Call to Order' },
+                    setPostSuccess,
+                    setPostError,
+                    setLoading
+                );
 
-            alert(
-                'Use the details below to call us'
-            );
+                alert(
+                    'Use the details below to call us'
+                );
 
-            break;
+                break;
 
-        case 'cash-and-carry':
-            await sendOrderAndTransaction(
-                orderData,
-                { ...transactionData, paymentMethod: 'Cash and Carry' },
-                setPostSuccess,
-                setPostError,
-                setLoading
-            );
+            case 'cash-and-carry':
+                await sendOrderAndTransaction(
+                    orderData,
+                    { ...transactionData, paymentMethod: 'Cash and Carry' },
+                    setPostSuccess,
+                    setPostError,
+                    setLoading
+                );
 
-            alert(
-                'Use the detail below to visit us and tap checkout'
-            );
+                alert(
+                    'Use the detail below to visit us and tap checkout'
+                );
 
-            break;
+                break;
 
-        default:
-            console.log('I am the default');
-            break;
+            default:
+                console.log('I am the default');
+                break;
+        }
+
+    } catch (error) {
+        console.log(error)
     }
-
 
 };
 

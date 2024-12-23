@@ -5,9 +5,10 @@ import { changePasswordAPI } from "../api/changePasswordAPI";
 const handleChangePasswordSubmit = async (
     event: React.FormEvent<HTMLFormElement>,
     email: string,
-    rCode: string,
+    rcode: string,
     successCallback: any,
-    failureCallback: any
+    failureCallback: any,
+    setLoading: any
 ) => {
     try {
         event.preventDefault();
@@ -16,24 +17,34 @@ const handleChangePasswordSubmit = async (
         const password = data.get('current_password') as string;
 
         if (confirm_password === password) {
+
             const passwordData = {
                 email: email,
-                rCode: rCode,
+                rcode: rcode,
                 password,
                 old_password: data.get('old_password') as string,
             };
 
             const result = await changePasswordAPI(passwordData);
-            if (result.status) {
-                successCallback("Success: Log in to your account now")
+            if (result.status === 'success') {
+                successCallback("Success: Log in to your account now");
+                setLoading('');
             } else {
-                failureCallback("Error!")
+                failureCallback("Error!");
+                setLoading('');
             }
 
         }
     } catch (error: any) {
         console.warn(error);
-        failureCallback("Error! " + error.message)
+        failureCallback("Error! " + error.message);
+        setLoading('');
+    } finally {
+        setTimeout(() => {
+            successCallback("");
+            failureCallback("");
+            setLoading('');
+        }, 20000);
     }
 
 };

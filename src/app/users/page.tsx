@@ -23,6 +23,7 @@ import { getToken } from "@/utils/getToken";
 import UserOrders from "../orders/UserOrders";
 import UserTransactions from "../transactions/UserTransactions";
 import { useSearchParams } from "next/navigation";
+import ErrorBoundary from "@/components/ErrorBoundary";
 
 export default function UserTabs() {
     const searchParams = useSearchParams();
@@ -30,7 +31,7 @@ export default function UserTabs() {
     let [tabName, setTabName] = useState(tabId ?? 'profile');
     const [cart, setCart] = useState<any>([]);
 
-    const { dispatch } = useContext(AppContext);
+    const { state, dispatch } = useContext(AppContext);
     const auth = useAuth();
     const userId = auth.user?._id || getToken('_id') as string;
 
@@ -42,15 +43,16 @@ export default function UserTabs() {
     const { user, error, isLoading } = useProfile(userId);
 
     const getData = useCallback(async () => {
+        let initialCarts = state.carts;
         try {
             let userCarts = await getUserCartsAPI(userId);
-            dispatch(getCarts(userCarts));
+            dispatch(getCarts([...initialCarts, ...userCarts]));
             setCart(userCarts)
         } catch (error) {
             console.warn(error);
         }
 
-    }, [dispatch, userId])
+    }, [dispatch, state.carts, userId])
 
 
     useEffect(() => {
@@ -58,35 +60,37 @@ export default function UserTabs() {
     }, [getData]);
 
     return (
-        <ProtectedRoute>
-            <div className="containerx" style={styles.minheight}>
-                <div className="scrollmenu" style={styles.marginTop}>
-                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('profile')} href={""} ><small>Profile</small></Link>
-                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('products')} href={""} ><small>Products</small></Link>
-                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('messages')} href={""} ><small>Messages</small></Link>
-                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('notifications')} href={""} ><small>Notifications </small></Link>
-                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('favourites')} href={""} ><small>Favourites</small></Link>
-                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('cart')} href={""} ><small>Cart</small></Link>
-                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('orders')} href={""} ><small>Orders</small></Link>
-                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('transactions')} href={""} ><small>Transactions</small></Link>
-                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('settings')} href={""} ><small>Settings</small></Link>
-                </div>
+        <ErrorBoundary>
+            <ProtectedRoute>
+                <div className="containerx" style={styles.minheight}>
+                    <div className="scrollmenu" style={styles.marginTop}>
+                        <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('profile')} href={""} ><small>Profile</small></Link>
+                        <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('products')} href={""} ><small>Products</small></Link>
+                        <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('messages')} href={""} ><small>Messages</small></Link>
+                        <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('notifications')} href={""} ><small>Notifications </small></Link>
+                        <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('favourites')} href={""} ><small>Favourites</small></Link>
+                        <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('cart')} href={""} ><small>Cart</small></Link>
+                        <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('orders')} href={""} ><small>Orders</small></Link>
+                        <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('transactions')} href={""} ><small>Transactions</small></Link>
+                        <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('settings')} href={""} ><small>Settings</small></Link>
+                    </div>
 
-                <div className="tab-content">
-                    <div className="tab-pane container active" id="profile">
-                        {tabName === 'profile' ? <ProfileTab user={user} /> : ''}
-                        {tabName === 'products' ? <ProductsTab /> : ''}
-                        {tabName === 'messages' ? <MessagesTab /> : ''}
-                        {tabName === 'notifications' ? <NotificationsTab /> : ''}
-                        {tabName === 'favourites' ? <FavouritesTab /> : ''}
-                        {tabName === 'cart' ? <CartTab cart={cart} /> : ''}
-                        {tabName === 'orders' ? <OrderTab /> : ''}
-                        {tabName === 'transactions' ? <TransactionTab /> : ''}
-                        {tabName === 'settings' ? <SettingsTab /> : ''}
+                    <div className="tab-content">
+                        <div className="tab-pane container active" id="profile">
+                            {tabName === 'profile' ? <ProfileTab user={user} /> : ''}
+                            {tabName === 'products' ? <ProductsTab /> : ''}
+                            {tabName === 'messages' ? <MessagesTab /> : ''}
+                            {tabName === 'notifications' ? <NotificationsTab /> : ''}
+                            {tabName === 'favourites' ? <FavouritesTab /> : ''}
+                            {tabName === 'cart' ? <CartTab cart={cart} /> : ''}
+                            {tabName === 'orders' ? <OrderTab /> : ''}
+                            {tabName === 'transactions' ? <TransactionTab /> : ''}
+                            {tabName === 'settings' ? <SettingsTab /> : ''}
+                        </div>
                     </div>
                 </div>
-            </div>
-        </ProtectedRoute>
+            </ProtectedRoute>
+        </ErrorBoundary>
     );
 }
 

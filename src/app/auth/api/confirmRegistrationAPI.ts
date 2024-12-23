@@ -3,7 +3,7 @@
 import { SERVER_URL } from "@/constants/url";
 import axios from "axios";
 
-const confirmRegistrationAPI = async (confirmData: { rCode: any, email: any }) => {
+const confirmRegistrationAPI = async (confirmData: { rcode: any, email: any }) => {
 
     try {
         let { data } = await axios.post(`${SERVER_URL}/confirm`, confirmData, {
@@ -13,7 +13,7 @@ const confirmRegistrationAPI = async (confirmData: { rCode: any, email: any }) =
             },
         });
 
-        return data.data;
+        return data;
     } catch (error) {
         console.warn(error);
     }

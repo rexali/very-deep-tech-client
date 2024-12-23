@@ -1,6 +1,10 @@
 'use client'
 
 import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+
+
 import { useEffect } from "react";
 
 export default function Error({ error, reset }: { error: Error & { digest?: string }, reset: () => void }) {
@@ -10,15 +14,24 @@ export default function Error({ error, reset }: { error: Error & { digest?: stri
     }, [error])
 
     return (
-        <Container maxWidth={'md'} component={'main'} sx={{ minHeight: 420, display: "flex", justifyContent: 'center', alignItems: 'center' }}>
-            <h2 style={{ width: '100%' }}>Something went wrong</h2><br />
-            <p style={{ width: '100%' }}>
-                <button
-                    onClick={() => reset()}
-                >
-                    Try again
-                </button>
-            </p>
-        </Container>
+        <html lang="en">
+        <body>
+            <Container maxWidth={'md'} component={'main'} >
+            <Box sx={{ minHeight: 420, display: "flex", flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <h2>Something went wrong</h2><br />
+                        <p style={{ display: "flex", flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center' }}><span>Name:</span> {error.name}</p><br />
+                        <p style={{ display: "flex", flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center' }}><span>Message:</span> {error.message}</p><br />
+                        <Button
+                            size="large"
+                            variant='contained'
+                            sx={{ display: 'block' }}
+                            onClick={() => reset()}
+                        >
+                            Try again
+                        </Button>
+                    </Box>
+            </Container>
+        </body>
+    </html>
     )
 }

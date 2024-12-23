@@ -16,11 +16,13 @@ export default function Error({ error, reset }: { error: Error & { digest?: stri
         <html lang="en">
             <body>
                 <Container maxWidth={'md'} component={'main'} >
-                    <Box sx={{ minHeight: 420, display: "flex", justifyContent: 'center', alignItems: 'center' }}>
+                    <Box sx={{ minHeight: 420, display: "flex", flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center' }}>
                         <h2>Something went wrong</h2><br />
-                        <p>name: {error.name}</p><br />
-                        <p>message: {error.message}</p><br />
+                        <p style={{ display: "flex", flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center' }}><span>Name:</span> {error.name}</p><br />
+                        <p style={{ display: "flex", flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center' }}><span>Message:</span> {error.message}</p><br />
                         <Button
+                            size="large"
+                            variant='contained'
                             sx={{ display: 'block' }}
                             onClick={() => reset()}
                         >

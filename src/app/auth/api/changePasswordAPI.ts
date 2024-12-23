@@ -4,7 +4,7 @@ import { SERVER_URL } from "@/constants/url";
 import axios from "axios";
 
 const changePasswordAPI = async (passwordData: {
-    rCode: string,
+    rcode: string,
     email: string,
     password: string,
     old_password: string,
@@ -18,7 +18,7 @@ const changePasswordAPI = async (passwordData: {
             },
         });
 
-        return data.data;
+        return data;
     } catch (error) {
         console.warn(error);
     }

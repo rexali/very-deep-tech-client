@@ -25,7 +25,7 @@ export default function ForgetPassword() {
     // give user feedback
     setLoading("Sending data...");
     try {
-      await handleForgetPasswordSubmit(event, setSuccess, setError)
+      await handleForgetPasswordSubmit(event, setSuccess, setError, setLoading)
     } catch (error) {
       console.warn(error);
     }

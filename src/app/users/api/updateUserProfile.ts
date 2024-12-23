@@ -1,7 +1,7 @@
 import { SERVER_URL } from "@/constants/url";
 import axios from "axios";
 
-const updateUserProfileAPI = async (profileData: any, setPostSuccess: any, setPostError: any, setLoading:any) => {
+const updateUserProfileAPI = async (profileData: any, setPostSuccess?: any, setPostError?: any, setLoading?:any) => {
 
     try {
         let { data } = await axios.patch(`${SERVER_URL}/profiles`, profileData, {

@@ -17,6 +17,7 @@ import RecommendedProducts from './products/RecommendedProducts';
 import NewProducts from './products/NewProducts';
 import { getInitialDataAPI } from './api/getInitialDataAPI';
 import ProductCategories from './products/ProductCategory';
+import ErrorBoundary from '@/components/ErrorBoundary';
 // import { useMediaQuery } from "react-responsive";
 
 export default async function AppPage() {
@@ -29,62 +30,64 @@ export default async function AppPage() {
   }
 
   return (
-    <main>
-      {/* <CssBaseline /> */}
-      <SearchInput /> <br />
-      <ProductCategories categoryData={data?.categoryData} />
-      <MarketingMessage /> <br />
-      <FeaturedProducts products={data?.featuredData} />
-      <Box margin={2} padding={2} display={"flex"} justifyContent={'center'}>
-        <Link
-          style={{ textDecoration: "none", color: 'green', borderColor: 'green' }}
-          type="button"
-          color="success"
-          href={`/products`}
-        >
-          View all
-        </Link>
-      </Box>
-      <PopularProducts products={data?.popularData} />
-      <Box marginTop={2} padding={2} display={"flex"} justifyContent={'center'}>
-        <Link
-          style={{ textDecoration: "none", color: 'green', borderColor: 'green' }}
-          type="button"
-          color="success"
-          href={`/products`}
-        >
-          View all
-        </Link>
-      </Box>
-      <RecommendedProducts />
-      <Box marginTop={2} padding={2} display={"flex"} justifyContent={'center'}>
-        <Link
-          style={{ textDecoration: "none", color: 'green', borderColor: 'green' }}
-          type="button"
-          color="success"
-          href={`/products`}
-        >
-          View all
-        </Link>
-      </Box>
-      <NewProducts products={data?.productData} />
-      <Box marginTop={2} padding={2} display={"flex"} justifyContent={'center'}>
-        <Link
-          style={{ textDecoration: "none", color: 'green', borderColor: 'green' }}
-          type="button"
-          color="success"
-          href={`/products`}
-        >
-          View all
-        </Link>
-      </Box>
-      <Testimonials />
-      <Portfolios />
-      <Team />
-      <FAQHowItWorks />
-      <Partners />
-      <CreateSubscription />
-      <Copyright sx={{ mt: 4, mb: 4 }} />
-    </main>
+    <ErrorBoundary>
+      <main>
+        {/* <CssBaseline /> */}
+        <SearchInput /> <br />
+        <ProductCategories categoryData={data?.categoryData} />
+        <MarketingMessage /> <br />
+        <FeaturedProducts products={data?.featuredData} />
+        <Box margin={2} padding={2} display={"flex"} justifyContent={'center'}>
+          <Link
+            style={{ textDecoration: "none", color: 'green', borderColor: 'green' }}
+            type="button"
+            color="success"
+            href={`/products`}
+          >
+            View all
+          </Link>
+        </Box>
+        <PopularProducts products={data?.popularData} />
+        <Box marginTop={2} padding={2} display={"flex"} justifyContent={'center'}>
+          <Link
+            style={{ textDecoration: "none", color: 'green', borderColor: 'green' }}
+            type="button"
+            color="success"
+            href={`/products`}
+          >
+            View all
+          </Link>
+        </Box>
+        <RecommendedProducts />
+        <Box marginTop={2} padding={2} display={"flex"} justifyContent={'center'}>
+          <Link
+            style={{ textDecoration: "none", color: 'green', borderColor: 'green' }}
+            type="button"
+            color="success"
+            href={`/products`}
+          >
+            View all
+          </Link>
+        </Box>
+        <NewProducts products={data?.productData} />
+        <Box marginTop={2} padding={2} display={"flex"} justifyContent={'center'}>
+          <Link
+            style={{ textDecoration: "none", color: 'green', borderColor: 'green' }}
+            type="button"
+            color="success"
+            href={`/products`}
+          >
+            View all
+          </Link>
+        </Box>
+        <Testimonials />
+        <Portfolios />
+        <Team />
+        <FAQHowItWorks />
+        <Partners />
+        <CreateSubscription />
+        <Copyright sx={{ mt: 4, mb: 4 }} />
+      </main>
+    </ErrorBoundary>
   );
 }
