@@ -61,7 +61,7 @@ export default function CartPage() {
       </ErrorBoundary>
     )
   } else {
-    router.push('/auth/signin?next='+goToSavedLinkpath(1));
+    router.push('/auth/signin?next=/carts?page='+activePage);
   }
 
 }
