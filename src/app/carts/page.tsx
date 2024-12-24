@@ -8,12 +8,11 @@ import { useAuth } from '@/hooks/use-auth';
 import { getToken } from "@/utils/getToken";
 import { getUserCartsAPI } from "../users/api/getUserCarts";
 import { getCarts } from "@/store/actions/app-actions";
-import { useRouter } from "next/navigation";
-import { goToSavedLinkpath } from "@/utils/goToSavedLinkPath";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import CartList from "./CartList";
 import ErrorBoundary from "@/components/ErrorBoundary";
 
-export default function CartPage() {
+export  function CartPage() {
 
   const [activePage, setActivePage] = useState<number>(1);
   let [products, setProducts] = useState<any>([]);
@@ -21,19 +20,26 @@ export default function CartPage() {
   const { user } = useAuth();
   const userId = user?._id || getToken('_id') as string;
   const router = useRouter();
+  const searchParams = useSearchParams() as any;
+  const pathname = usePathname();
+
+  function goToNextPage(){
+    const params = new URLSearchParams(searchParams);
+    return `${pathname}?${params.toString()}`;
+  }
 
   const getCartData = useCallback(async () => {
-      try {
-        let productsInCart = await getUserCartsAPI(userId, activePage);
-        dispatch(getCarts(productsInCart));
-        setProducts(productsInCart);
-      } catch (error) {
-        console.warn(error);
-      }
+    try {
+      let productsInCart = await getUserCartsAPI(userId, activePage);
+      dispatch(getCarts(productsInCart));
+      setProducts(productsInCart);
+    } catch (error) {
+      console.warn(error);
+    }
 
   }, [activePage, dispatch, userId])
 
-  
+
   useEffect(() => {
 
     getCartData();
@@ -61,7 +67,7 @@ export default function CartPage() {
       </ErrorBoundary>
     )
   } else {
-    router.push('/auth/signin?next=/carts?page='+activePage);
+    router.push(`/auth/signin?next=${goToNextPage}`);
   }
 
 }
