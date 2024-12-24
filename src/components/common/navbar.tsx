@@ -22,7 +22,7 @@ import { AppContext } from '@/context/AppContext';
 import Notifications from '@mui/icons-material/Notifications';
 import Message from '@mui/icons-material/Message';
 import { useAuth } from '@/hooks/use-auth';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import CardImage from '@/app/products/components/CardImage';
 import ErrorBoundary from '../ErrorBoundary';
 
@@ -80,6 +80,21 @@ function NavBar(props: any) {
   let categoryData = props?.categoryData ?? [];
   let categories = categoryData.map((categoryData: { product_category: any; }) => categoryData.product_category)
   const categoriex = Array.from(new Set(categories));
+
+
+  const searchParams = useSearchParams() as any;
+  const pathname = usePathname();
+
+  function goToNextPage() {
+    if (user?._id) {
+      router.replace('/users');
+    } else {
+      const params = new URLSearchParams(searchParams);
+      let next = `${pathname}?${params.toString()}`;
+      router.replace(`/auth/signin?next=${next}`)
+    }
+
+  }
 
   return (
     <ErrorBoundary>
@@ -173,10 +188,10 @@ function NavBar(props: any) {
               ))}
             </Box>
             {/* Carts components */}
-            {!isMobile && <Link href={'/carts'} style={{ marginRight: 16, color: "white", textDecoration: "none" }} >
+            {!isMobile && <Link href={'#'} onClick={goToNextPage} style={{ marginRight: 16, color: "white", textDecoration: "none" }} >
               <Button sx={{ color: "white" }} startIcon={<Cart />}>Cart</Button><sup style={{ color: "yellow" }}>{state?.carts[0]?.totalCarts !== 0 ? state?.carts[0]?.totalCarts : ''}</sup>
             </Link>}
-            {isMobile && <Link href={'/carts'} style={{ color: "white", textDecoration: "none" }} >
+            {isMobile && <Link href={'#'} onClick={goToNextPage} style={{ color: "white", textDecoration: "none" }} >
               <Cart sx={{ fontSize: 18, }} /><sup style={{ color: "yellow", marginRight: 10 }}>{state?.carts[0]?.totalCarts !== 0 ? state?.carts[0]?.totalCarts : ''}</sup>
             </Link>}
             {/* end */}

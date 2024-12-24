@@ -23,9 +23,10 @@ export default function CartPage() {
   const searchParams = useSearchParams() as any;
   const pathname = usePathname();
 
-  function goToNextPage(){
+  function goToNextPage() {
     const params = new URLSearchParams(searchParams);
-    return `${pathname}?${params.toString()}`;
+    let next = `${pathname}?${params.toString()}`;
+    return next;
   }
 
   const getCartData = useCallback(async () => {
@@ -46,28 +47,23 @@ export default function CartPage() {
 
   }, [getCartData, userId])
 
-  if (userId) {
-
-    if (!products?.length) {
-      return <Fallback item={"No product in your cart yet"} />
-    }
-
-    return (
-      <ErrorBoundary>
-        <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }} >
-          <Box>Carts: {products[0]?.totalCarts}</Box>
-          <CartList
-            products={products}
-            activePage={activePage}
-            setActivePage={setActivePage}
-            totalCarts={products[0]?.totalCarts}
-            refreshCart={getCartData}
-          />
-        </Container>
-      </ErrorBoundary>
-    )
-  } else {
-    router.push(`/auth/signin?next=${goToNextPage}`);
+  if (!products?.length) {
+    return <Fallback item={"No product in your cart yet"} />
   }
+
+  return (
+    <ErrorBoundary>
+      <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }} >
+        <Box>Carts: {products[0]?.totalCarts}</Box>
+        <CartList
+          products={products}
+          activePage={activePage}
+          setActivePage={setActivePage}
+          totalCarts={products[0]?.totalCarts}
+          refreshCart={getCartData}
+        />
+      </Container>
+    </ErrorBoundary>
+  )
 
 }
