@@ -24,6 +24,7 @@ import UserOrders from "../orders/UserOrders";
 import UserTransactions from "../transactions/UserTransactions";
 import { useSearchParams } from "next/navigation";
 import ErrorBoundary from "@/components/ErrorBoundary";
+import ProtectedUserRoute from "@/components/ProtectedUserRoute";
 
 export default function UserTabs() {
     const searchParams = useSearchParams();
@@ -61,7 +62,7 @@ export default function UserTabs() {
 
     return (
         <ErrorBoundary>
-            <ProtectedRoute>
+            <ProtectedUserRoute>
                 <div className="containerx" style={styles.minheight}>
                     <div className="scrollmenu" style={styles.marginTop}>
                         <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('profile')} href={""} ><small>Profile</small></Link>
@@ -89,7 +90,7 @@ export default function UserTabs() {
                         </div>
                     </div>
                 </div>
-            </ProtectedRoute>
+            </ProtectedUserRoute>
         </ErrorBoundary>
     );
 }

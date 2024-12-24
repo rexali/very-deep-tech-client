@@ -241,7 +241,7 @@ export default function CheckoutForm({
                     cashAndCarry &&
                     (<Box sx={{ backgroundColor: 'green', color: "white", borderRadius: 5 }}>
                         <Box><span>&nbsp;&nbsp;Visit: </span>Siniotech Ltd</Box>
-                        <Box><span>&nbsp;&nbsp;Address: </span>230 Naibawa Gasa A, Line Dan Hassan, Kumbotso, Kano Sate</Box>
+                        <Box><span>&nbsp;&nbsp;Address: </span><span style={{textAlign:'center'}}>230 Naibawa Gasa A,Line Dan Hassan, Kumbotso, Kano Sate</span></Box>
                         <Box><span>&nbsp;&nbsp;Call: </span>07016807004</Box>
                     </Box>)
                 }
@@ -250,7 +250,7 @@ export default function CheckoutForm({
                     (<Box sx={{ backgroundColor: 'green', color: "white", borderRadius: 5 }}>
                         <Box><span>&nbsp;&nbsp; Call: </span> 07016807004</Box>
                         <Box><span>&nbsp;&nbsp; Visit: </span> Siniotech Ltd</Box>
-                        <Box><span>&nbsp;&nbsp; Address: </span>230 Naibawa Gasa A,Line Dan Hassan, Kumbotso, Kano Sate</Box>
+                        <Box><span>&nbsp;&nbsp; Address: </span><span style={{textAlign:'center'}}>230 Naibawa Gasa A,Line Dan Hassan, Kumbotso, Kano Sate</span></Box>
                     </Box>)
                 }
                 {success && <Box textAlign={"center"} sx={{ backgroundColor: 'green', color: "white", padding: 2, borderRadius: 2 }}>{success.toUpperCase()}</Box>}

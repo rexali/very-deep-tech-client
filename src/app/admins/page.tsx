@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import ProtectedRoute from "@/components/protected-route";
 import { Box, Typography, Button, Container } from "@mui/material";
 import UsersMessages from "./UsersMessages";
 import UsersOrders from "./UsersOrders";
@@ -18,6 +17,7 @@ import UsersQoutes from "./UsersQoutes";
 import UsersSubscriptions from "./UsersSubscriptions";
 import { useSearchParams } from "next/navigation";
 import UsersCarts from "./UsersCarts";
+import ProtectedAdminRoute from "@/components/ProtectedAdminRoute";
 
 export default function UserTabs() {
     const searchParams = useSearchParams();
@@ -37,7 +37,7 @@ export default function UserTabs() {
     }
 
     return (
-        <ProtectedRoute>
+        <ProtectedAdminRoute>
             <div className="containerx" style={styles.minheight}>
 
                 <div className="scrollmenu" style={styles.marginTop}>
@@ -68,7 +68,7 @@ export default function UserTabs() {
                     </div>
                 </div>
             </div>
-        </ProtectedRoute>
+        </ProtectedAdminRoute>
     );
 }
 
