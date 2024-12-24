@@ -87,11 +87,11 @@ function NavBar(props: any) {
 
   function goToNextPage() {
     if (user?._id) {
-      router.replace('/users');
+      router.push('/carts');
     } else {
       const params = new URLSearchParams(searchParams);
       let next = `${pathname}?${params.toString()}`;
-      router.replace(`/auth/signin?next=${next}`)
+      router.push(`/auth/signin?next=${next}`)
     }
 
   }
@@ -188,12 +188,16 @@ function NavBar(props: any) {
               ))}
             </Box>
             {/* Carts components */}
-            {!isMobile && <Link href={'#'} onClick={goToNextPage} style={{ marginRight: 16, color: "white", textDecoration: "none" }} >
-              <Button sx={{ color: "white" }} startIcon={<Cart />}>Cart</Button><sup style={{ color: "yellow" }}>{state?.carts[0]?.totalCarts !== 0 ? state?.carts[0]?.totalCarts : ''}</sup>
-            </Link>}
-            {isMobile && <Link href={'#'} onClick={goToNextPage} style={{ color: "white", textDecoration: "none" }} >
-              <Cart sx={{ fontSize: 18, }} /><sup style={{ color: "yellow", marginRight: 10 }}>{state?.carts[0]?.totalCarts !== 0 ? state?.carts[0]?.totalCarts : ''}</sup>
-            </Link>}
+            {
+              !isMobile && (
+                <span><Button onClick={()=>goToNextPage()} size='small' sx={{ color: "white", marginRight: 16, }} startIcon={<Cart />}>Cart</Button><sup style={{ color: "yellow" }}>{state?.carts[0]?.totalCarts !== 0 ? state?.carts[0]?.totalCarts : ''}</sup></span>
+              )
+            }
+
+            {isMobile && (
+              <span onClick={()=>goToNextPage()}><Cart sx={{ fontSize: 18, }} /><sup style={{ color: "yellow", marginRight: 10 }}>{state?.carts[0]?.totalCarts !== 0 ? state?.carts[0]?.totalCarts : ''}</sup></span>
+            )
+            }
             {/* end */}
             {/* Messages component */}
             {!isMobile && <Link href={'/messages/user'} style={{ marginRight: 16, display: user?._id ? '' : 'none' }} ><Message sx={{ color: "white" }} /></Link>}
@@ -207,13 +211,13 @@ function NavBar(props: any) {
                       <CardImage
                         src={`${SERVER_URL}/uploads/${user.photo}`}
                         alt="Account"
-                        width={30}
-                        height={30}
+                        width={25}
+                        height={25}
                         style={{
                           borderRadius: 20,
                         }}
                       />
-                      : <Avatar />
+                      : <Avatar sx={{ width: 25, height: 25 }} />
                   }
                 </IconButton>
               </Tooltip>
