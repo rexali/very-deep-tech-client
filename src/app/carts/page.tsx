@@ -12,7 +12,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import CartList from "./CartList";
 import ErrorBoundary from "@/components/ErrorBoundary";
 
-export  function CartPage() {
+export default function CartPage() {
 
   const [activePage, setActivePage] = useState<number>(1);
   let [products, setProducts] = useState<any>([]);
