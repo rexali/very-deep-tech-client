@@ -8,7 +8,6 @@ import { useAuth } from '@/hooks/use-auth';
 import { getToken } from "@/utils/getToken";
 import { getUserCartsAPI } from "../users/api/getUserCarts";
 import { getCarts } from "@/store/actions/app-actions";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import CartList from "./CartList";
 import ErrorBoundary from "@/components/ErrorBoundary";
 
@@ -19,16 +18,7 @@ export default function CartPage() {
   const { dispatch } = useContext(AppContext);
   const { user } = useAuth();
   const userId = user?._id || getToken('_id') as string;
-  const router = useRouter();
-  const searchParams = useSearchParams() as any;
-  const pathname = usePathname();
-
-  function goToNextPage() {
-    const params = new URLSearchParams(searchParams);
-    let next = `${pathname}?${params.toString()}`;
-    return next;
-  }
-
+  
   const getCartData = useCallback(async () => {
     try {
       let productsInCart = await getUserCartsAPI(userId, activePage);

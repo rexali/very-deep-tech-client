@@ -18,11 +18,14 @@ import UsersSubscriptions from "./UsersSubscriptions";
 import { useSearchParams } from "next/navigation";
 import UsersCarts from "./UsersCarts";
 import ProtectedAdminRoute from "@/components/ProtectedAdminRoute";
+import SearchInput from "../search/SearchInput";
+import UserCarts from "../users/UserCart";
+import CartPage from "../carts/page";
 
 export default function UserTabs() {
     const searchParams = useSearchParams();
     const tabId = searchParams.get('tabId') || window.sessionStorage.getItem('tabId');
-    
+
     let [tabName, setTabName] = useState(tabId ?? 'admin');
 
     const openTab = (tabname: any) => {
@@ -41,16 +44,18 @@ export default function UserTabs() {
             <div className="containerx" style={styles.minheight}>
 
                 <div className="scrollmenu" style={styles.marginTop}>
-                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('admin')} href={""} ><small>Your profile</small></Link>
-                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('profiles')} href={""} ><small>User Profiles</small></Link>
+                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('sell')} href={""} ><small>Sell</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('products')} href={""} ><small>Products</small></Link>
-                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('messages')} href={""} ><small>Messages</small></Link>
+                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('yourcart')} href={""} ><small>Your cart</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('transactions')} href={""} ><small>Transactions</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('carts')} href={""} ><small>Carts</small></Link>
-                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('notifications')} href={""} ><small>Notifications</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('orders')} href={""} ><small>Orders</small></Link>
-                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('subscriptions')} href={""} ><small>Subscriptions</small></Link>
+                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('messages')} href={""} ><small>Messages</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('qoutes')} href={""} ><small>Qoutes</small></Link>
+                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('admin')} href={""} ><small>Your profile</small></Link>
+                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('profiles')} href={""} ><small>Users&apos; Profiles</small></Link>
+                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('notifications')} href={""} ><small>Notifications</small></Link>
+                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('subscriptions')} href={""} ><small>Subscriptions</small></Link>
                 </div>
 
                 <div className="tab-content">
@@ -65,12 +70,54 @@ export default function UserTabs() {
                         {tabName === 'carts' ? <CartTab /> : ''}
                         {tabName === 'orders' ? <OrderTab /> : ''}
                         {tabName === 'subscriptions' ? <SubscriptionsTab /> : ''}
+                        {tabName === 'sell' ? <SellTab /> : ''}
+                        {tabName === 'yourcart' ? <YourCartTab /> : ''}
+
+
                     </div>
                 </div>
             </div>
         </ProtectedAdminRoute>
     );
 }
+
+
+
+function SellTab() {
+
+    return (
+       <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+            <Box component={'div'} textAlign={'left'} >
+                <Typography
+                    color='success'
+                >
+                    Sell product(s)
+                </Typography>
+            </Box>
+
+            <SearchInput />
+            <UsersProducts />
+        </Box>
+    )
+}
+
+
+function YourCartTab() {
+
+    return (
+            <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+                <Box component={'div'} textAlign={'left'} >
+                    <Typography
+                        color='success'
+                    >
+                        Your cart(s)
+                    </Typography>
+                </Box>
+            <CartPage />
+        </Box>
+    )
+}
+
 
 function ProductsTab() {
 
@@ -84,8 +131,8 @@ function ProductsTab() {
                     >
                         Products
                     </Typography>
-                </Box> 
-               <Link href={"/products/add"}><Button startIcon={<Add />}> Add</Button></Link>
+                </Box>
+                <Link href={"/products/add"}><Button startIcon={<Add />}> Add</Button></Link>
             </Box>
 
             <UsersProducts />

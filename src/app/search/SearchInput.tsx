@@ -10,13 +10,15 @@ import Link from 'next/link';
 import { useDebouncedCallback } from 'use-debounce'
 
 export default function SearchInput() {
-  const [data, setData] = React.useState([]);
+  const [data, setData] = React.useState<any>([]);
   const [term, setTerm] = React.useState();
 
   const handleSearch = useDebouncedCallback(async (term) => {
     setData(await instantSearchProductAPI(term));
   }, 400);
 
+  let productNames= data.map((product:any)=>product.product_name);
+ 
   return (
     <Paper
       component="form"
@@ -41,7 +43,7 @@ export default function SearchInput() {
       </IconButton>
       <Paper>
         {
-          data?.map((name, i) => <Link key={i} style={{ textDecoration: "none", color: 'black', textAlign: 'center', margin: 4, display: "block", padding: 4 }} href={"/search?term=" + name}>{name}</Link>)
+          productNames?.map((name:any, i:number) => <Link key={i} style={{ textDecoration: "none", color: 'black', textAlign: 'center', margin: 4, display: "block", padding: 4 }} href={"/search?term=" + name}>{name}</Link>)
         }
       </Paper>
     </Paper>

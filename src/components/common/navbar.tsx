@@ -215,10 +215,10 @@ function NavBar(props: any) {
                         height={30}
                         style={{
                           borderRadius: 20,
-                          marginLeft: 4
+                          marginLeft: 2
                         }}
                       />
-                      : <Avatar sx={{ width: 30, height: 30, ml: 4 }} />
+                      : <Avatar sx={{ width: 30, height: 30, ml: 2 }} />
                   }
                 </IconButton>
               </Tooltip>

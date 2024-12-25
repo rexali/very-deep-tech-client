@@ -218,15 +218,16 @@ export default function CheckoutForm({
 
                         }}
                     >
-                        <FormControlLabel value={'call-to-order'} control={<Radio />} label='Call to Order'></FormControlLabel>
-                        <FormControlLabel value={'cash-and-carry'} control={<Radio />} label='Cash and Carry'></FormControlLabel>
-                        <FormControlLabel value={'pay-on-delivery'} control={<Radio />} label='Pay on Delivery'></FormControlLabel>
-                        <FormControlLabel value={'direct-bank-transfer'} control={<Radio />} label='Direct Bank Transfer'></FormControlLabel>
+                        <FormControlLabel value={'pos'} control={<Radio />} label='POS'></FormControlLabel>
+                        <FormControlLabel value={'cash-and-carry'} control={<Radio />} label='Cash'></FormControlLabel>
+                        <FormControlLabel value={'pay-on-delivery'} control={<Radio />} label='Pay on delivery'></FormControlLabel>
+                        <FormControlLabel value={'call-to-order'} control={<Radio />} label='Call to place order'></FormControlLabel>
+                        <FormControlLabel value={'direct-bank-transfer'} control={<Radio />} label='Direct bank transfer'></FormControlLabel>
                         <FormControlLabel value={'paystack'} control={<Radio />} label='Paystack'></FormControlLabel>
-                        <FormControlLabel value={'ussd'} control={<Radio />} label='Paystack USSD'></FormControlLabel>
-                        <FormControlLabel value={'opay'} control={<Radio />} label='Paystack Opay'></FormControlLabel>
-                        <FormControlLabel value={'card'} control={<Radio />} label='Paystack Card'></FormControlLabel>
-                        <FormControlLabel value={'bank-transfer'} control={<Radio />} label='Paystack Bank transfer'></FormControlLabel>
+                        <FormControlLabel value={'ussd'} control={<Radio />} label='USSD via Paystack'></FormControlLabel>
+                        <FormControlLabel value={'opay'} control={<Radio />} label='Opay via Paystack'></FormControlLabel>
+                        <FormControlLabel value={'card'} control={<Radio />} label='Card via Paystack'></FormControlLabel>
+                        <FormControlLabel value={'bank-transfer'} control={<Radio />} label='Bank transfer via Paystack'></FormControlLabel>
                     </RadioGroup>
                 </FormControl>
                 {

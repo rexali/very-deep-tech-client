@@ -13,7 +13,7 @@ export const instantSearchProductAPI = async (term: string, pageNumber?: string)
         });
         const result = await response.json();
 
-        return result.data?.products.map((product:any)=>product.product_name);
+        return result.data?.products;    //.map((product:any)=>product.product_name);
     } catch (error) {
         console.log(error);
     }

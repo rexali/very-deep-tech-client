@@ -71,6 +71,16 @@ const handleCheckoutSubmit = async (
                 );
                 break;
 
+            case 'pos':
+                await sendOrderAndTransaction(
+                    orderData,
+                    { ...transactionData, paymentMethod: 'POS' },
+                    setPostSuccess,
+                    setPostError,
+                    setLoading
+                );
+                break;
+
             case 'pay-on-delivery':
                 await sendOrderAndTransaction(
                     orderData,
@@ -97,7 +107,7 @@ const handleCheckoutSubmit = async (
             case 'call-to-order':
                 await sendOrderAndTransaction(
                     orderData,
-                    { ...transactionData, paymentMethod: 'Call to Order' },
+                    { ...transactionData, paymentMethod: 'Call to Place Order' },
                     setPostSuccess,
                     setPostError,
                     setLoading
@@ -112,7 +122,7 @@ const handleCheckoutSubmit = async (
             case 'cash-and-carry':
                 await sendOrderAndTransaction(
                     orderData,
-                    { ...transactionData, paymentMethod: 'Cash and Carry' },
+                    { ...transactionData, paymentMethod: 'Cash' },
                     setPostSuccess,
                     setPostError,
                     setLoading

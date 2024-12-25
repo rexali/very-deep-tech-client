@@ -16,15 +16,17 @@ import CardImage from "../../components/CardImage";
 import Remove from "@mui/icons-material/Remove";
 import { getProductAPI } from "../../api/getProductAPI";
 import { removeProductPicture } from "../../api/removeProductPictureAPI";
+import { useAuth } from "@/hooks/use-auth";
 
 export default function Page() {
+    const {user} = useAuth();
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
     const [loading, setLoading] = React.useState('');
+    const [data, setData]= useState<any>({});
     const pathname = usePathname();
     const params = pathname.split('/').filter(param => param !== '');
     const productId = params[1];
-    const [data, setData]= useState<any>({});
 
     const getProductData = useCallback(async ()=>{
         try {
@@ -40,8 +42,7 @@ export default function Page() {
 
     
     const handleSubmit = async (event: any) => {
-        // if (user?.role === 'admin') {
-        if ('admin' === 'admin') {
+        if (user?.role === 'admin') {
             setLoading('Sending data..')
             await handleProductEditSubmit(event,setSuccess,setError,setLoading,productId)
         } else {
