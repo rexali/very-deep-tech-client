@@ -11,7 +11,7 @@ import SearchList from '../search/SearchList';
 import { instantSearchProductAPI } from '../search/api/instantSearchAPI';
 import ProductsPage from '../products/page';
 
-export default function SearchInput() {
+export default function SellProducts() {
     const [data, setData] = React.useState([]);
     const [term, setTerm] = React.useState();
 

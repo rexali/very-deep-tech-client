@@ -18,9 +18,8 @@ import UsersSubscriptions from "./UsersSubscriptions";
 import { useSearchParams } from "next/navigation";
 import UsersCarts from "./UsersCarts";
 import ProtectedAdminRoute from "@/components/ProtectedAdminRoute";
-import SearchInput from "../search/SearchInput";
-import UserCarts from "../users/UserCart";
 import CartPage from "../carts/page";
+import SellProducts from "./SellProducts";
 
 export default function UserTabs() {
     const searchParams = useSearchParams();
@@ -95,8 +94,7 @@ function SellTab() {
                 </Typography>
             </Box>
 
-            <SearchInput />
-            <UsersProducts />
+            <SellProducts />
         </Box>
     )
 }
