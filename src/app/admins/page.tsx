@@ -83,7 +83,7 @@ export default function UserTabs() {
 function SellTab() {
 
     return (
-       <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+        <Box>
             <Box component={'div'} textAlign={'left'} >
                 <Typography
                     color='success'
@@ -101,14 +101,14 @@ function SellTab() {
 function YourCartTab() {
 
     return (
-            <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-                <Box component={'div'} textAlign={'left'} >
-                    <Typography
-                        color='success'
-                    >
-                        Your cart(s)
-                    </Typography>
-                </Box>
+        <Box>
+            <Box component={'div'} textAlign={'left'} >
+                <Typography
+                    color='success'
+                >
+                    Your cart(s)
+                </Typography>
+            </Box>
             <CartPage />
         </Box>
     )

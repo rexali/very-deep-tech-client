@@ -19,11 +19,11 @@ export default function SellProducts() {
     }, 400);
 
     return (
-        <Box marginTop={10} display={"flex"} justifyContent={'center'}>
+        <Box marginTop={10} >
             <Paper
                 component="form"
-                sx={{ p: '2px 2px', maxWidth: 300 }}
-                action={"/search"}
+                sx={{ p: '2px 2px', maxWidth: 300, mt: 2, mr: 'auto', ml: 'auto' }}
+            // action={"/search"}
             >
                 <InputBase
                     sx={{ ml: 1, flex: 1 }}
@@ -38,7 +38,10 @@ export default function SellProducts() {
                     }
                     }
                 />
-                <IconButton type="submit" sx={{ p: '10px' }} aria-label="search" >
+                <IconButton
+                    // type="submit" 
+                    sx={{ p: '10px' }}
+                    aria-label="search" >
                     <SearchIcon />
                 </IconButton>
             </Paper>
