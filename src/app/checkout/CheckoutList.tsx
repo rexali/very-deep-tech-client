@@ -70,7 +70,7 @@ export default function CheckoutList(props: any) {
                             return <Grid key={product._id} item xs={12} md={6}><CheckoutCard product={product} /></Grid>
                         })}
                     </Grid>
-                    <Box sx={{ display: 'flex', flexDirection: "row", justifyContent: "space-between" }}>Total <span>{cartTotal}</span></Box>
+                    <Box sx={{ display: 'flex', flexDirection: "row", justifyContent: "space-between" }}>Total <span>&#x20A6; {cartTotal}</span></Box>
                 </Grid>
 
                 <Grid item xs={12} md={4} sx={{ marginTop: 1 }}>

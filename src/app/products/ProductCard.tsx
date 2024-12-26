@@ -90,7 +90,7 @@ export default function ProductCard({ product, role, refreshProducts }: { produc
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: "space-between" }}>
             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-              N {product?.product_price}
+            &#x20A6; {product?.product_price}
             </Typography>
             <Link href={'#'} style={{ fontSize: 10, textDecoration: 'none', alignSelf: 'center' }} onClick={() => setOpenQoute(true)}>Get Qoutes</Link>
           </Box>

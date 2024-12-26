@@ -46,7 +46,7 @@ export default function CheckoutCard({ product}: { product: any}) {
             {product?.product_name}
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-           {product?.cartQuantity} x  N {product?.product_price}
+           {product?.cartQuantity} x  &#x20A6; {product?.product_price}
           </Typography>
         </CardContent>
       </Box>

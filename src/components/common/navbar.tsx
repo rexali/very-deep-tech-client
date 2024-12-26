@@ -194,7 +194,7 @@ function NavBar(props: any) {
             }
 
             {isMobile && (
-              <span onClick={() => goToNextPage()}><Cart sx={{ fontSize: 18, mr:8 }} /><sup style={{ color: "yellow" }}>{state?.carts[0]?.totalCarts !== 0 && state?.carts[0]?.totalCarts !== undefined ? state?.carts[0]?.totalCarts : ''}</sup></span>
+              <span style={{ marginRight: 4 }} onClick={() => goToNextPage()}><Cart sx={{ fontSize: 18 }} /><sup style={{ color: "yellow" }}>{state?.carts[0]?.totalCarts !== 0 && state?.carts[0]?.totalCarts !== undefined ? state?.carts[0]?.totalCarts : ''}</sup></span>
             )
             }
             {/* end */}

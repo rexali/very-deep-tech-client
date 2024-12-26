@@ -49,7 +49,7 @@ export default function UsersTransactions() {
               <TableCell align="right">Type &nbsp;</TableCell>
               <TableCell align="right">Time &nbsp;</TableCell>
               <TableCell align="right">Currency &nbsp;</TableCell>
-              <TableCell align="right">Amount &nbsp;</TableCell>
+              <TableCell align="right">Amount (&#x20A6;) &nbsp;</TableCell>
               <TableCell align="right">Payment Method &nbsp;</TableCell>
               <TableCell align="right">Reference &nbsp;</TableCell>
               <TableCell align="right">Status &nbsp;</TableCell>

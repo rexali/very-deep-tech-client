@@ -51,7 +51,7 @@ export default function UsersOrders() {
               <TableCell>User&apos;s email</TableCell>
               <TableCell align="right">Order Status (OS)</TableCell>
               <TableCell align="right">Date & Time &nbsp;</TableCell>
-              <TableCell align="right">Total &nbsp;</TableCell>
+              <TableCell align="right">Total (&#x20A6;)</TableCell>
               <TableCell align="right">Payment Status (PS) &nbsp;</TableCell>
               <TableCell align="right">View &nbsp;</TableCell>
               <TableCell align="center" colSpan={4}>

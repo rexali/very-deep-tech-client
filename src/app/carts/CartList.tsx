@@ -29,7 +29,7 @@ export default function CartList(props: any) {
                     return <Grid key={product._id} item xs={12} md={6}><CartCard product={product} refreshCart={props?.refreshCart} /></Grid>
                 })}
             </Grid>
-            <Box sx={{ m: 1, display: 'flex', flexDirection: "row", justifyContent: "space-between" }}>Total <span>{cartTotal}</span></Box>
+            <Box sx={{ m: 1, display: 'flex', flexDirection: "row", justifyContent: "space-between" }}>Total <span>&#x20A6; {cartTotal}</span></Box>
             <Box marginTop={4} display={"flex"} justifyContent={'center'} >
                 <ReactPagination
                     activePage={props?.activePage}

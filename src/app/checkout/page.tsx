@@ -10,7 +10,6 @@ import { getToken } from "@/utils/getToken";
 import { getUserCartsAPI } from "../users/api/getUserCarts";
 import { getCarts } from "@/store/actions/app-actions";
 import { useRouter } from "next/navigation";
-import { goToSavedLinkpath } from "@/utils/goToSavedLinkPath";
 import ErrorBoundary from "@/components/ErrorBoundary";
 
 export default function CheckoutPage() {
@@ -25,8 +24,8 @@ export default function CheckoutPage() {
   const getCartData = useCallback(async () => {
     try {
       let productsInCart = await getUserCartsAPI(userId, activePage);
-      dispatch(getCarts(productsInCart));
-      setProducts(productsInCart);
+      dispatch(getCarts([...productsInCart]));
+      setProducts((c: any) => [...c, ...productsInCart]);
     } catch (error) {
       console.warn(error)
     }

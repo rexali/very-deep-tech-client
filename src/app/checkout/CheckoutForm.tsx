@@ -218,11 +218,11 @@ export default function CheckoutForm({
 
                         }}
                     >
-                        <FormControlLabel value={'pos'} control={<Radio />} label='POS'></FormControlLabel>
-                        <FormControlLabel value={'cash-and-carry'} control={<Radio />} label='Cash'></FormControlLabel>
+                        {auth.user.role === 'admin' && <FormControlLabel value={'pos'} control={<Radio />} label='POS'></FormControlLabel>}
+                        {auth.user.role === 'admin' && <FormControlLabel value={'cash-and-carry'} control={<Radio />} label='Cash'></FormControlLabel>}
+                        {auth.user.role === 'admin' && <FormControlLabel value={'direct-bank-transfer'} control={<Radio />} label='Direct bank transfer'></FormControlLabel>}
                         <FormControlLabel value={'pay-on-delivery'} control={<Radio />} label='Pay on delivery'></FormControlLabel>
-                        <FormControlLabel value={'call-to-order'} control={<Radio />} label='Call to place order'></FormControlLabel>
-                        <FormControlLabel value={'direct-bank-transfer'} control={<Radio />} label='Direct bank transfer'></FormControlLabel>
+                        <FormControlLabel value={'call-to-order'} control={<Radio />} label='Call to place an order'></FormControlLabel>
                         <FormControlLabel value={'paystack'} control={<Radio />} label='Paystack'></FormControlLabel>
                         <FormControlLabel value={'ussd'} control={<Radio />} label='USSD via Paystack'></FormControlLabel>
                         <FormControlLabel value={'opay'} control={<Radio />} label='Opay via Paystack'></FormControlLabel>
@@ -242,7 +242,7 @@ export default function CheckoutForm({
                     cashAndCarry &&
                     (<Box sx={{ backgroundColor: 'green', color: "white", borderRadius: 5 }}>
                         <Box><span>&nbsp;&nbsp;Visit: </span>Siniotech Ltd</Box>
-                        <Box><span>&nbsp;&nbsp;Address: </span><span style={{textAlign:'center'}}>230 Naibawa Gasa A,Line Dan Hassan, Kumbotso, Kano Sate</span></Box>
+                        <Box><span>&nbsp;&nbsp;Address: </span><span style={{ textAlign: 'center' }}>230 Naibawa Gasa A,Line Dan Hassan, Kumbotso, Kano Sate</span></Box>
                         <Box><span>&nbsp;&nbsp;Call: </span>07016807004</Box>
                     </Box>)
                 }
@@ -251,7 +251,7 @@ export default function CheckoutForm({
                     (<Box sx={{ backgroundColor: 'green', color: "white", borderRadius: 5 }}>
                         <Box><span>&nbsp;&nbsp; Call: </span> 07016807004</Box>
                         <Box><span>&nbsp;&nbsp; Visit: </span> Siniotech Ltd</Box>
-                        <Box><span>&nbsp;&nbsp; Address: </span><span style={{textAlign:'center'}}>230 Naibawa Gasa A,Line Dan Hassan, Kumbotso, Kano Sate</span></Box>
+                        <Box><span>&nbsp;&nbsp; Address: </span><span style={{ textAlign: 'center' }}>230 Naibawa Gasa A,Line Dan Hassan, Kumbotso, Kano Sate</span></Box>
                     </Box>)
                 }
                 {success && <Box textAlign={"center"} sx={{ backgroundColor: 'green', color: "white", padding: 2, borderRadius: 2 }}>{success.toUpperCase()}</Box>}
