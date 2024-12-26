@@ -22,8 +22,9 @@ export default function CartPage() {
   const getCartData = useCallback(async () => {
     try {
       let productsInCart = await getUserCartsAPI(userId, activePage);
-      dispatch(getCarts(productsInCart));
-      setProducts((c: any) => [...c, productsInCart]);
+      dispatch(getCarts([...productsInCart]));
+      setProducts((c: any) => [...c, ...productsInCart]);
+
     } catch (error) {
       console.warn(error);
     }

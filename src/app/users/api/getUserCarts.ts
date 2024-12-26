@@ -4,6 +4,7 @@ import axios from "axios";
 const getUserCartsAPI = async (userId: string, page: number = 1) => {
     try {
         let { data } = await axios.get(`${SERVER_URL}/carts/pages/${page}/users/${userId}`, {
+            withCredentials:false,
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
@@ -13,23 +14,23 @@ const getUserCartsAPI = async (userId: string, page: number = 1) => {
             return [];
         }
 
-        if (!data.data.carts?.length) {
+        if (!data.data?.carts?.length) {
             return [];
         }
 
-        let newcarts = data.data?.carts.map((cart: any) => {
+        let newcarts = data.data?.carts?.map((cart: any) => {
             return {
                 ...cart,
                 product: {
-                    ...cart.product,
-                    cartId: cart._id,
-                    cartQuantity: cart.quantity,
-                    totalCarts: cart.totalCarts
+                    ...cart?.product,
+                    cartId: cart?._id,
+                    cartQuantity: cart?.quantity,
+                    totalCarts: cart?.totalCarts
                 }
             }
         });
 
-        const productsInCarts = newcarts.map((cart: any) => cart.product);
+        const productsInCarts = newcarts.map((cart: any) => cart?.product);
 
         return productsInCarts;
     } catch (error) {

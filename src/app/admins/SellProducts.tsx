@@ -9,7 +9,6 @@ import { useDebouncedCallback } from 'use-debounce'
 import Box from '@mui/material/Box';
 import SearchList from '../search/SearchList';
 import { instantSearchProductAPI } from '../search/api/instantSearchAPI';
-import ProductsPage from '../products/page';
 
 export default function SellProducts() {
     const [data, setData] = React.useState([]);
@@ -20,7 +19,7 @@ export default function SellProducts() {
     }, 400);
 
     return (
-        <Box sx={{mt: 10, marginLeft: "auto", marginRight: "auto"}}>
+        <Box marginTop={10} display={"flex"} justifyContent={'center'}>
             <Paper
                 component="form"
                 sx={{ p: '2px 2px', maxWidth: 300 }}
@@ -43,7 +42,7 @@ export default function SellProducts() {
                     <SearchIcon />
                 </IconButton>
             </Paper>
-            <Box zIndex={2}><SearchList products={data} /></Box>
+            <SearchList products={data} />
         </Box>
     );
 }
