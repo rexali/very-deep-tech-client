@@ -11,7 +11,6 @@ import Container from '@mui/material/Container';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AWFLogo from '@/components/AWFLogo';
-import Image from 'next/image';
 import { useMediaQuery } from 'react-responsive';
 import Cart from '@mui/icons-material/ShoppingCart';
 import { handleSignOut } from '@/app/auth/utils/handleSignOut';
@@ -190,12 +189,12 @@ function NavBar(props: any) {
             {/* Carts components */}
             {
               !isMobile && (
-                <span><Button onClick={() => goToNextPage()} size='small' sx={{ color: "white", marginRight: 16, }} startIcon={<Cart />}>Cart</Button><sup style={{ color: "yellow" }}>{state?.carts[0]?.totalCarts !== 0 ? state?.carts[0]?.totalCarts : ''}</sup></span>
+                <span><Button onClick={() => goToNextPage()} size='small' sx={{ color: "white", marginRight: 16, }} startIcon={<Cart />}>Cart</Button><sup style={{ color: "yellow" }}>{state?.carts[0]?.totalCarts !== 0 && state?.carts[0]?.totalCarts !== undefined? state?.carts[0]?.totalCarts : ''}</sup></span>
               )
             }
 
             {isMobile && (
-              <span onClick={() => goToNextPage()}><Cart sx={{ fontSize: 18, }} /><sup style={{ color: "yellow", marginRight: 10 }}>{state?.carts[0]?.totalCarts !== 0 ? state?.carts[0]?.totalCarts : ''}</sup></span>
+              <span onClick={() => goToNextPage()}><Cart sx={{ fontSize: 18, }} /><sup style={{ color: "yellow", marginRight: 10 }}>{state?.carts[0]?.totalCarts !== 0 && state?.carts[0]?.totalCarts !== undefined ? state?.carts[0]?.totalCarts : ''}</sup></span>
             )
             }
             {/* end */}

@@ -20,15 +20,15 @@ export default function SellProducts() {
     }, 400);
 
     return (
-        <Box>
+        <Box sx={{mt: 10, marginLeft: "auto", marginRight: "auto"}}>
             <Paper
                 component="form"
-                sx={{ p: '2px 2px', maxWidth: 300, mt: 10, marginLeft: "auto", marginRight: "auto" }}
+                sx={{ p: '2px 2px', maxWidth: 300 }}
                 action={"/search"}
             >
                 <InputBase
                     sx={{ ml: 1, flex: 1 }}
-                    placeholder="Search products"
+                    placeholder="Search products to sell.."
                     inputProps={{ 'aria-label': 'search products' }}
                     name='term'
                     defaultValue={term}
@@ -44,7 +44,6 @@ export default function SellProducts() {
                 </IconButton>
             </Paper>
             <Box zIndex={2}><SearchList products={data} /></Box>
-            <ProductsPage />
         </Box>
     );
 }

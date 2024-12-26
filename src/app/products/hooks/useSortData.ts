@@ -9,7 +9,7 @@ export const useSortData = (page: number, sort: string) => {
             try {
                 let data = await fetch(`${SERVER_URL}/sortings?page=${page}&sort=${sort}`).then(res => res.json());
                 if (data.data === null) {
-                    return []
+                    setData([]);
                 }
                 setData(data.data.products);
             } catch (error) {

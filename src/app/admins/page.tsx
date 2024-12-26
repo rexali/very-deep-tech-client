@@ -71,8 +71,6 @@ export default function UserTabs() {
                         {tabName === 'subscriptions' ? <SubscriptionsTab /> : ''}
                         {tabName === 'sell' ? <SellTab /> : ''}
                         {tabName === 'yourcart' ? <YourCartTab /> : ''}
-
-
                     </div>
                 </div>
             </div>

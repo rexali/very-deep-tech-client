@@ -18,12 +18,12 @@ export default function CartPage() {
   const { dispatch } = useContext(AppContext);
   const { user } = useAuth();
   const userId = user?._id || getToken('_id') as string;
-  
+
   const getCartData = useCallback(async () => {
     try {
       let productsInCart = await getUserCartsAPI(userId, activePage);
       dispatch(getCarts(productsInCart));
-      setProducts(productsInCart);
+      setProducts((c: any) => [...c, productsInCart]);
     } catch (error) {
       console.warn(error);
     }
@@ -35,7 +35,7 @@ export default function CartPage() {
 
     getCartData();
 
-  }, [getCartData, userId])
+  }, [getCartData])
 
   if (!products?.length) {
     return <Fallback item={"No product in your cart yet"} />

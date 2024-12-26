@@ -10,7 +10,7 @@ export const ActionTypes = {
   POST_FAVOURITE: "POST_FAVOURITE"
 };
 
-export const getCarts = (cartsData: any) => ({
+export const getCarts = (cartsData: any) => ({ 
   type: ActionTypes.GET_CARTS,
   payload: cartsData,
 });
