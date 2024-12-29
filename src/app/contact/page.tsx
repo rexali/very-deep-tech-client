@@ -16,6 +16,9 @@ import Place from "@mui/icons-material/Place";
 import { shareLink } from "@/utils/shareLink";
 import { useAuth } from '@/hooks/use-auth';
 import { getToken } from '@/utils/getToken';
+import { useRouter } from 'next/navigation';
+import { useMediaQuery } from "react-responsive";
+
 
 export default function ContactPage() {
   const [error, setError] = React.useState('');
@@ -23,10 +26,23 @@ export default function ContactPage() {
   const [loading, setLoading] = React.useState('');
   const auth = useAuth();
   const userId = auth.user._id || getToken('_id') as string;
+  const router = useRouter();
+  const isMobile = useMediaQuery({ maxDeviceWidth: 1023 });
+
 
   const handleSubmit = async (event: any) => {
     setLoading('Sending data..');
-    await handleMessageSubmit(event, setSuccess, setError, setLoading, userId);
+    event.preventDefault();
+    const {
+      title,
+      comment
+    } = event.target.elements;
+    if (isMobile) {
+      router.push(`mailto://siniotech@gmail.com/?subject=${title}&body=${comment}`);
+    } else {
+      await handleMessageSubmit(event, setSuccess, setError, setLoading, userId);
+    }
+
   }
 
   return (
@@ -39,7 +55,7 @@ export default function ContactPage() {
       <Typography component="h1" variant="h5" textAlign={'center'}>
         Contact us
       </Typography>
-      <Box component={'div'} sx={{ display: 'flex', flexDirection: 'column', alignContent:'center', justifyContent: 'space-between' }}>
+      <Box component={'div'} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
         <Button
           type='button'
           size="large"
@@ -89,10 +105,10 @@ export default function ContactPage() {
 
       <Box
         component={'form'}
-        onSubmit={handleSubmit}
+        // onSubmit={handleSubmit}
         noValidate={false}
       >
-        <TextField
+        {!isMobile && < TextField
           margin="normal"
           required
           fullWidth
@@ -102,9 +118,9 @@ export default function ContactPage() {
           type='email'
           autoComplete="email"
           autoFocus
-        />
+        />}
 
-        <TextField
+        {!isMobile && <TextField
           margin="normal"
           required
           fullWidth
@@ -113,7 +129,8 @@ export default function ContactPage() {
           type="default"
           id="firstName"
         />
-        <TextField
+        }
+        {!isMobile && <TextField
           margin="normal"
           required
           fullWidth
@@ -122,6 +139,7 @@ export default function ContactPage() {
           type="default"
           id="lastName"
         />
+        }
         <TextField
           margin="normal"
           required

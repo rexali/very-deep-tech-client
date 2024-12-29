@@ -47,9 +47,9 @@ export default function UserTabs() {
                 <div className="scrollmenu" style={styles.marginTop}>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('sell')} href={""} ><small>Sell</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('yourcart')} href={""} >
-                        <small>My cart<sup>{state?.carts?.length !== 0 && state?.carts?.length !== undefined ? state.carts.length : ''}</sup></small>
+                        <small>My cart<sup style={{ color: "yellow" }}>{state?.carts?.length !== 0 && state?.carts?.length !== undefined ? state.carts.length : ''}</sup></small>
                     </Link>
-                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('products')} href={""} ><small>Add product</small></Link>
+                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('products')} href={""} ><small>Product(s)</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('transactions')} href={""} ><small>Sales</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('orders')} href={""} ><small>Orders</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('carts')} href={""} ><small>Carts</small></Link>
@@ -76,7 +76,7 @@ export default function UserTabs() {
                         {tabName === 'subscriptions' ? <SubscriptionsTab /> : ''}
                         {tabName === 'sell' ? <SellTab /> : ''}
                         {tabName === 'yourcart' ? <YourCartTab /> : ''}
-                        {tabName === 'report' ? <YourCartTab /> : ''}
+                        {tabName === 'report' ? <ReportTab /> : ''}
 
                     </div>
                 </div>
@@ -152,7 +152,7 @@ function ProductsTab() {
                         Products
                     </Typography>
                 </Box>
-                <Link href={"/products/add"}><Button startIcon={<Add />}> Add</Button></Link>
+                <Link href={"/products/add"}><Button startIcon={<Add />}> Add product</Button></Link>
             </Box>
 
             <UsersProducts />

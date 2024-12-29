@@ -32,28 +32,28 @@ export default function BottomNavbar() {
                 bgcolor: 'green'
             }}>
                 <Box textAlign={'center'}>
-                    <Button sx={{ p: 2 }} key={'share'} onClick={() => shareLink()} startIcon={<Share sx={{ color: "white" }} />}></Button><br/>
-                    <span style={{fontSize:10}}>Share</span>
+                    <Button sx={{ pl: 2, pr: 2 }} key={'share'} onClick={() => shareLink()} startIcon={<Share sx={{ color: "white" }} />}></Button><br />
+                    <span style={{ fontSize: 10 }}>Share</span>
                 </Box>
                 <Box textAlign={'center'}>
-                    <Button sx={{ p: 2 }} key={"email"} href="mailto:alybaba2009@gmail.com" startIcon={<Email sx={{ color: "white" }} />}></Button><br/>
-                    <span style={{fontSize:10}}>Email</span>
+                    <Button sx={{ pl: 2, pr: 2 }} key={"email"} href="mailto:alybaba2009@gmail.com" startIcon={<Email sx={{ color: "white" }} />}></Button><br />
+                    <span style={{ fontSize: 10 }}>Email</span>
                 </Box>
                 <Box textAlign={'center'}>
-                    <Button sx={{ p: 2 }} key={"tel"} href="tel:08065899144" startIcon={<Phone sx={{ color: "white" }} />}></Button><br/>
-                    <span style={{fontSize:10}}>Tel</span>
+                    <Button sx={{ pl: 2, pr: 2 }} key={"tel"} href="tel:08065899144" startIcon={<Phone sx={{ color: "white" }} />}></Button><br />
+                    <span style={{ fontSize: 10 }}>Tel</span>
                 </Box>
                 <Box textAlign={'center'}>
-                    <Button sx={{ p: 2 }} key={"sms"} href="sms://08065899144" startIcon={<SMS sx={{ color: "white" }} />}></Button><br/>
-                    <span style={{fontSize:10}}>SMS</span>
+                    <Button sx={{ pl: 2, pr: 2 }} key={"sms"} href="sms://08065899144" startIcon={<SMS sx={{ color: "white" }} />}></Button><br />
+                    <span style={{ fontSize: 10 }}>SMS</span>
                 </Box>
                 <Box textAlign={'center'}>
-                    <Button sx={{ p: 2 }} key={"sms"} href="https://wa.me/+2347016807004?text=Hi" startIcon={<SMS sx={{ color: "white" }} />}></Button><br/>
-                    <span style={{fontSize:10}}>Whatsapp</span>
+                    <Button sx={{ pl: 2, pr: 2 }} key={"sms"} href="https://wa.me/+2347016807004?text=Hi" startIcon={<Whatsapp sx={{ color: "white" }} />}></Button><br />
+                    <span style={{ fontSize: 10 }}>Whatsapp</span>
                 </Box>
                 <Box textAlign={'center'}>
-                    <Button sx={{ p: 2 }} key={"loc"} href="http://maps.google.com/?q= 19 Almubarak Waqf Foundation, Guda Abdullahi Road, Farm Center, Kano State" startIcon={<Place sx={{ color: "white" }} />}></Button><br/>
-                    <span style={{fontSize:10}}>Map</span>
+                    <Button sx={{ pl: 2, pr: 2 }} key={"loc"} href="http://maps.google.com/?q= 19 Almubarak Waqf Foundation, Guda Abdullahi Road, Farm Center, Kano State" startIcon={<Place sx={{ color: "white" }} />}></Button><br />
+                    <span style={{ fontSize: 10 }}>Map</span>
                 </Box>
             </Box>
             }
