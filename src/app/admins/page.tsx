@@ -44,17 +44,17 @@ export default function UserTabs() {
 
                 <div className="scrollmenu" style={styles.marginTop}>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('sell')} href={""} ><small>Sell</small></Link>
-                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('yourcart')} href={""} ><small>Your cart</small></Link>
+                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('yourcart')} href={""} ><small>My cart</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('products')} href={""} ><small>Add product</small></Link>
-                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('transactions')} href={""} ><small>Transactions</small></Link>
+                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('transactions')} href={""} ><small>Sales</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('orders')} href={""} ><small>Orders</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('carts')} href={""} ><small>Carts</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('messages')} href={""} ><small>Messages</small></Link>
-                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('qoutes')} href={""} ><small>Qoutes</small></Link>
-                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('admin')} href={""} ><small>Your profile</small></Link>
-                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('profiles')} href={""} ><small>Users&apos; Profiles</small></Link>
-                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('notifications')} href={""} ><small>Notifications</small></Link>
-                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('subscriptions')} href={""} ><small>Subscriptions</small></Link>
+                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('qoutes')} href={""} ><small>Quotes</small></Link>
+                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('admin')} href={""} ><small>My profile</small></Link>
+                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('profiles')} href={""} ><small>Profiles</small></Link>
+                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('notifications')} href={""} ><small>Notice</small></Link>
+                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('subscriptions')} href={""} ><small>Subscribers</small></Link>
                 </div>
 
                 <div className="tab-content">
@@ -106,7 +106,7 @@ function YourCartTab() {
                 <Typography
                     color='success'
                 >
-                    Your cart(s)
+                    My cart
                 </Typography>
             </Box>
             <CartPage />
@@ -144,7 +144,7 @@ function ProfileTab() {
                 <Typography
                     color='success'
                 >
-                    Users profiles
+                    Profiles
                 </Typography>
             </Box>
             <UsersProfiles />
@@ -160,7 +160,7 @@ function QoutesTab() {
                 <Typography
                     color='success'
                 >
-                    Qoutes
+                    Quotes
                 </Typography>
             </Box>
             <UsersQoutes />
@@ -177,7 +177,7 @@ function SubscriptionsTab() {
                 <Typography
                     color='success'
                 >
-                    Subscriptions
+                    Subscribers
                 </Typography>
             </Box>
             <UsersSubscriptions />
@@ -193,7 +193,7 @@ function AdminProfileTab() {
                 <Typography
                     color='success'
                 >
-                    Your profile
+                    My profile
                 </Typography>
             </Box>
             <AdminProfile />
@@ -218,7 +218,7 @@ function NotificationTab() {
     return (
         <Container >
             <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-                Notifications <Link href={"/notifications/add"}><Button startIcon={<Add />}></Button></Link>
+                Notifications <Link href={"/notifications/add"}><Button startIcon={<Add />}> Notice</Button></Link>
             </Box>
             <UsersNotifications />
         </Container>
@@ -234,7 +234,7 @@ function TransactionTab() {
                 <Typography
                     color='success'
                 >
-                    Transactions
+                    Sales
                 </Typography>
             </Box>
 

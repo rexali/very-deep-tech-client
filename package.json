@@ -60,6 +60,7 @@
   },
   "devDependencies": {
     "@types/cookie": "^0.5.4",
+    "@types/lodash": "^4.17.13",
     "@types/paystack": "^2.0.4",
     "@types/react-js-pagination": "^3.0.7",
     "@types/react-swipeable-views": "^0.13.2",

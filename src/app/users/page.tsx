@@ -65,14 +65,14 @@ export default function UserTabs() {
             <ProtectedUserRoute>
                 <div className="containerx" style={styles.minheight}>
                     <div className="scrollmenu" style={styles.marginTop}>
-                        <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('profile')} href={""} ><small>Profile</small></Link>
-                        <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('products')} href={""} ><small>Products</small></Link>
+                        <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('profile')} href={""} ><small>My profile</small></Link>
+                        <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('products')} href={""} ><small>My products</small></Link>
                         <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('messages')} href={""} ><small>Messages</small></Link>
                         <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('notifications')} href={""} ><small>Notifications </small></Link>
-                        <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('favourites')} href={""} ><small>Favourites</small></Link>
+                        <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('favourites')} href={""} ><small>My favourites</small></Link>
                         <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('cart')} href={""} ><small>Cart</small></Link>
-                        <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('orders')} href={""} ><small>Orders</small></Link>
-                        <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('transactions')} href={""} ><small>Transactions</small></Link>
+                        <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('orders')} href={""} ><small>My orders</small></Link>
+                        <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('transactions')} href={""} ><small>My transactions</small></Link>
                         <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('settings')} href={""} ><small>Settings</small></Link>
                     </div>
 
@@ -135,7 +135,7 @@ function ProfileTab(props: any) {
                 <Typography
                     color='success'
                 >
-                    Your profile
+                    My profile
                 </Typography>
             </Box>
             <UserProfile user={props?.user} />
@@ -150,7 +150,7 @@ function MessagesTab() {
                 <Typography
                     color='success'
                 >
-                    Your message(s)
+                    Message(s)
                 </Typography>
             </Box>
             <UserMessages />
@@ -183,7 +183,7 @@ function FavouritesTab() {
                 <Typography
                     color='success'
                 >
-                    Your favourite(s)
+                    My favourite(s)
                 </Typography>
             </Box>
             <UserFavourites />
@@ -200,7 +200,7 @@ function CartTab(props: any) {
                 <Typography
                     color='success'
                 >
-                    Your cart
+                    My cart
                 </Typography>
             </Box>
 
@@ -218,7 +218,7 @@ function OrderTab() {
                 <Typography
                     color='success'
                 >
-                    Your order(s)
+                    My order(s)
                 </Typography>
             </Box>
             {/* <UserOrders /> */}
@@ -237,7 +237,7 @@ function TransactionTab() {
                 <Typography
                     color='success'
                 >
-                    Your transaction(s)
+                    My transaction(s)
                 </Typography>
             </Box>
             {/* <UserHistory /> */}
