@@ -189,12 +189,12 @@ function NavBar(props: any) {
             {/* Carts components */}
             {
               !isMobile && (
-                <span><Button onClick={() => goToNextPage()} size='small' sx={{ color: "white", marginRight: 4, }} startIcon={<Cart />}>Cart</Button><sup style={{ color: "yellow" }}>{state?.carts[0]?.totalCarts !== 0 && state?.carts[0]?.totalCarts !== undefined ? state.carts[0].totalCarts : ''}</sup></span>
+                <span style={{ marginRight: 16 }}><Button onClick={() => goToNextPage()} size='small' sx={{ color: "white" }} startIcon={<Cart />}>Cart</Button><sup style={{ color: "yellow" }}>{state?.carts[0]?.totalCarts !== 0 && state?.carts[0]?.totalCarts !== undefined ? state.carts[0].totalCarts : ''}</sup></span>
               )
             }
 
             {isMobile && (
-              <span style={{ marginRight: 4 }} onClick={() => goToNextPage()}><Cart sx={{ fontSize: 18 }} /><sup style={{ color: "yellow" }}>{state?.carts[0]?.totalCarts !== 0 && state?.carts[0]?.totalCarts !== undefined ? state?.carts[0]?.totalCarts : ''}</sup></span>
+              <span style={{ marginRight: 10}} onClick={() => goToNextPage()}><Cart sx={{ fontSize: 18 }} /><sup style={{ color: "yellow" }}>{state?.carts[0]?.totalCarts !== 0 && state?.carts[0]?.totalCarts !== undefined ? state?.carts[0]?.totalCarts : ''}</sup></span>
             )
             }
             {/* end */}
