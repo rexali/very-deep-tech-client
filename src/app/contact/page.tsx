@@ -32,12 +32,12 @@ export default function ContactPage() {
 
   const handleSubmit = async (event: any) => {
     setLoading('Sending data..');
-    event.preventDefault();
     const {
       title,
       comment
     } = event.target.elements;
     if (isMobile) {
+      event.preventDefaul();
       router.push(`mailto://siniotech@gmail.com/?subject=${title}&body=${comment}`);
     } else {
       await handleMessageSubmit(event, setSuccess, setError, setLoading, userId);
@@ -47,15 +47,12 @@ export default function ContactPage() {
 
   return (
     <Container component="main" maxWidth="xs" sx={{
-      marginTop: 8,
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center'
+      marginTop: 8
     }}>
       <Typography component="h1" variant="h5" textAlign={'center'}>
         Contact us
       </Typography>
-      <Box component={'div'} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+      <Box component={'div'} textAlign={'center'} ml={'auto'} mr={'auto'}>
         <Button
           type='button'
           size="large"
@@ -105,7 +102,7 @@ export default function ContactPage() {
 
       <Box
         component={'form'}
-        // onSubmit={handleSubmit}
+        onSubmit={handleSubmit}
         noValidate={false}
       >
         {!isMobile && < TextField
