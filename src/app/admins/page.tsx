@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Link from "next/link";
 import { Box, Typography, Button, Container } from "@mui/material";
 import UsersMessages from "./UsersMessages";
@@ -20,10 +20,12 @@ import UsersCarts from "./UsersCarts";
 import ProtectedAdminRoute from "@/components/ProtectedAdminRoute";
 import CartPage from "../carts/page";
 import SellProducts from "./SellProducts";
+import { AppContext } from "@/context/AppContext";
 
 export default function UserTabs() {
     const searchParams = useSearchParams();
     const tabId = searchParams.get('tabId') || window.sessionStorage.getItem('tabId');
+    const { state } = useContext(AppContext)
 
     let [tabName, setTabName] = useState(tabId ?? 'sell');
 
@@ -44,7 +46,9 @@ export default function UserTabs() {
 
                 <div className="scrollmenu" style={styles.marginTop}>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('sell')} href={""} ><small>Sell</small></Link>
-                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('yourcart')} href={""} ><small>My cart</small></Link>
+                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('yourcart')} href={""} >
+                        <small>My cart<sup>{state?.carts?.length !== 0 && state?.carts?.length !== undefined ? state.carts.length : ''}</sup></small>
+                    </Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('products')} href={""} ><small>Add product</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('transactions')} href={""} ><small>Sales</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('orders')} href={""} ><small>Orders</small></Link>

@@ -39,7 +39,7 @@ export default function ContactPage() {
       <Typography component="h1" variant="h5" textAlign={'center'}>
         Contact us
       </Typography>
-      <Box component={'div'} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <Box component={'div'} sx={{ display: 'flex', flexDirection: 'column', alignContent:'center', justifyContent: 'space-between' }}>
         <Button
           type='button'
           size="large"

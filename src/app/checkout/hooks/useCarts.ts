@@ -44,7 +44,7 @@ export const useCarts = (dispatch: any, pageNumber: number) => {
                   }); 
           
                   const productsInCarts = newcarts.map((cart: any) => cart.product);
-                  dispatch(getCarts(productsInCarts));
+                  // dispatch(getCarts([...productsInCarts]));
                   setCarts(productsInCarts);
 
             } catch (error) {
