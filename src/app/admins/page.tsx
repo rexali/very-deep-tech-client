@@ -53,6 +53,7 @@ export default function UserTabs() {
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('transactions')} href={""} ><small>Sales</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('orders')} href={""} ><small>Orders</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('carts')} href={""} ><small>Carts</small></Link>
+                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('report')} href={""} ><small>Report</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('messages')} href={""} ><small>Messages</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('qoutes')} href={""} ><small>Quotes</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('admin')} href={""} ><small>My profile</small></Link>
@@ -75,6 +76,8 @@ export default function UserTabs() {
                         {tabName === 'subscriptions' ? <SubscriptionsTab /> : ''}
                         {tabName === 'sell' ? <SellTab /> : ''}
                         {tabName === 'yourcart' ? <YourCartTab /> : ''}
+                        {tabName === 'report' ? <YourCartTab /> : ''}
+
                     </div>
                 </div>
             </div>
@@ -83,6 +86,23 @@ export default function UserTabs() {
 }
 
 
+
+function ReportTab() {
+
+    return (
+        <Box>
+            <Box component={'div'} textAlign={'left'} >
+                <Typography
+                    color='success'
+                >
+                    Report
+                </Typography>
+            </Box>
+
+            <div>Coming soon</div>
+        </Box>
+    )
+}
 
 function SellTab() {
 
