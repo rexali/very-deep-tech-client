@@ -52,7 +52,7 @@ export default function UserHistory() {
                             <TableCell align="right">Payment Method &nbsp;</TableCell>
                             <TableCell align="right">Reference &nbsp;</TableCell>
                             <TableCell align="right">Status &nbsp;</TableCell>
-                            <TableCell align="right">Action &nbsp;</TableCell>
+                            <TableCell align="right">Action &nbsp;</TableCell>  
                         </TableRow>
                     </TableHead>
                     <TableBody>
