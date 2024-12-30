@@ -6,7 +6,7 @@ import { getSubscriptionsAPI } from "./api/getSubscriptionsAPI";
 import ReactPagination from "@/components/react-pagination";
 import Link from "next/link";
 
-export default function QoutesPage() {
+export default function UsersSubscriptionsTable() {
     const [data, setData] = useState<any>([]);
     const [activePage, setActivePage] = React.useState(1);
 
@@ -25,7 +25,7 @@ export default function QoutesPage() {
                     <TableHead>
                         <TableRow>
                             <TableCell align="right">S/N &nbsp;</TableCell>
-                            <TableCell align="right">Email &nbsp;</TableCell>
+                            <TableCell align="right">Subscriber&apos;s email &nbsp;</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>

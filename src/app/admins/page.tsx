@@ -14,7 +14,7 @@ import Add from "@material-ui/icons/Add";
 import UsersNotifications from "./UsersNotifications";
 import AdminProfile from "./AdminProfile";
 import UsersQoutes from "./UsersQoutes";
-import UsersSubscriptions from "./UsersSubscriptions";
+// import UsersSubscriptions from "./UsersSubscriptions";
 import { useSearchParams } from "next/navigation";
 import UsersCarts from "./UsersCarts";
 import ProtectedAdminRoute from "@/components/ProtectedAdminRoute";
@@ -22,6 +22,7 @@ import CartPage from "../carts/page";
 import SellProducts from "./SellProducts";
 import { AppContext } from "@/context/AppContext";
 import ReportPage from "./Report";
+import UsersSubscriptionsTable from "../subscriptions/UserSubscriptions";
 
 export default function UserTabs() {
     const searchParams = useSearchParams();
@@ -207,7 +208,7 @@ function SubscriptionsTab() {
                     Subscribers
                 </Typography>
             </Box>
-            <UsersSubscriptions />
+            <UsersSubscriptionsTable />
         </Container>
     )
 }
