@@ -21,6 +21,7 @@ import ProtectedAdminRoute from "@/components/ProtectedAdminRoute";
 import CartPage from "../carts/page";
 import SellProducts from "./SellProducts";
 import { AppContext } from "@/context/AppContext";
+import ReportPage from "./Report";
 
 export default function UserTabs() {
     const searchParams = useSearchParams();
@@ -100,6 +101,8 @@ function ReportTab() {
             </Box>
 
             <div>Coming soon</div>
+
+            <ReportPage />
         </Box>
     )
 }
