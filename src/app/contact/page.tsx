@@ -19,7 +19,6 @@ import { getToken } from '@/utils/getToken';
 import { useRouter } from 'next/navigation';
 import { useMediaQuery } from "react-responsive";
 
-
 export default function ContactPage() {
   const [error, setError] = React.useState('');
   const [success, setSuccess] = React.useState('');
@@ -31,15 +30,15 @@ export default function ContactPage() {
 
 
   const handleSubmit = async (event: any) => {
-    setLoading('Sending data..');
+    event.preventDefault();
     const {
       title,
       comment
     } = event.target.elements;
     if (isMobile) {
-      event.preventDefaul();
       router.push(`mailto://siniotech@gmail.com/?subject=${title}&body=${comment}`);
     } else {
+      setLoading('Sending data..');
       await handleMessageSubmit(event, setSuccess, setError, setLoading, userId);
     }
 

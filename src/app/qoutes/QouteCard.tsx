@@ -7,7 +7,7 @@ export default function QouteCard({ qoute }: { qoute: any }) {
         <Card sx={{ maxWidth: 345, margin: 1 }}>
             <CardContent>
                 <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-                    <Box>
+                    <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                         <Typography gutterBottom variant="body2" component="div">
                             <Link href={'mailto:' + qoute?.email}>Reply</Link>
                         </Typography>

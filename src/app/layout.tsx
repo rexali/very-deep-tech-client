@@ -40,6 +40,7 @@ export default async function RootLayout({
             </React.Suspense>
           </AppProvider>
         </AuthProvider>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js" async></script>
       </body>
     </html>
   );
