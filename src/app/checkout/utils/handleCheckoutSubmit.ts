@@ -48,7 +48,7 @@ const handleCheckoutSubmit = async (
     try {
 
         const formData = new Form()
-        formData.append('firtName', contactData.firstName);
+        formData.append('firstName', contactData.firstName);
         formData.append('lastName', contactData.lastName);
         formData.append('streetAddress', contactData.address);
         formData.append('localGovt', contactData.localGovt);
