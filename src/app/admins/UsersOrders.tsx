@@ -69,7 +69,7 @@ export default function UsersOrders() {
                   <Link href={`mailto:${order?.user?.email}`}>{order?.user?.email}</Link>
                 </TableCell>
                 <TableCell align="right">{order?.orderStatus}</TableCell>
-                <TableCell align="right">{order?.createdAt}</TableCell>
+                <TableCell align="right">{order?.createdAt?.split('T')[0]}</TableCell>
                 <TableCell align="right">{order?.total}</TableCell>
                 <TableCell align="right">{order?.paymentStatus}</TableCell>
                 <TableCell align="right">

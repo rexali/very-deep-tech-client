@@ -62,7 +62,7 @@ export default function UserHistory() {
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
                                 < TableCell align="right">{transaction?.type}</TableCell>
-                                <TableCell align="right">{transaction?.createdAt}</TableCell>
+                                <TableCell align="right">{transaction?.createdAt?.split('T')[0]}</TableCell>
                                 <TableCell align="right">{transaction.currency}</TableCell>
                                 <TableCell align="right">{transaction.amount}</TableCell>
                                 <TableCell align="right">{transaction.paymentMethod}</TableCell>

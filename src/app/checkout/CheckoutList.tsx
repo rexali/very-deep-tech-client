@@ -19,7 +19,7 @@ export default function CheckoutList(props: any) {
         .map((product: any) => Number(product.product_price) * Number(product.cartQuantity))
         .reduce((prev: any, cur: any) => {
             return prev + cur;
-        }, 0);
+        }, 0); 
 
     const orderItems = props.products.map((product: any) => ({
         product: product._id,

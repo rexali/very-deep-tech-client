@@ -255,7 +255,7 @@ function MessagesTab() {
     return (
         <Container>
             <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-                Messages<Link href={"/messages/add"}><Button startIcon={<Add />}></Button></Link>
+                Messages<Link href={"/messages/add"}><Button startIcon={<Add />}>Send message</Button></Link>
             </Box>
             <UsersMessages />
         </Container>
@@ -268,7 +268,7 @@ function NotificationTab() {
     return (
         <Container >
             <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-                Notifications <Link href={"/notifications/add"}><Button startIcon={<Add />}> Notice</Button></Link>
+                Notifications <Link href={"/notifications/add"}><Button startIcon={<Add />}>Send notice</Button></Link>
             </Box>
             <UsersNotifications />
         </Container>

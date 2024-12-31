@@ -26,14 +26,14 @@ export function payWithPaystack(
         onSuccess: async (transaction) => {
             setLoading('Sending data..');
             try {
-                // payment complete
-                const orderId = await createOrderAPI({ ...orderData, paymentStatus: 'paid' }); // callback to handle add order and transaction data
-               
-                if (orderId) {
-                    setPostSuccess("Order success");
-                    setLoading('')
+                // callback to handle add order data
+                const orderId = await createOrderAPI(orderData);
 
-                    console.log("Order success")
+                if (orderId) {
+                    // setPostSuccess("Order success");
+                    setLoading('');
+                    console.log("Order success");
+                    // callback to handle transaction data
                     const transactionId = await createTransactionAPI({
                         ...transactionData,
                         orderId,
@@ -41,7 +41,7 @@ export function payWithPaystack(
                     });
 
                     if (transactionId) {
-                        setPostSuccess("Transaction success")
+                        setPostSuccess("success")
                         setLoading('')
 
                         await clearUserCartsAPI(getToken("_id"));
@@ -71,7 +71,7 @@ export function payWithPaystack(
                 }, 10000);
             }
 
-        }, 
+        },
         onCancel: () => {
             // user close pop up
             () => {

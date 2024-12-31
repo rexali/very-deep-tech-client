@@ -62,7 +62,7 @@ export default function UsersProducts() {
               >
                 <TableCell align="right">{i + 1}</TableCell>
                 <TableCell align="right">{product?.product_name}</TableCell>
-                <TableCell align="right">{product?.createdAt}</TableCell>
+                <TableCell align="right">{product?.createdAt?.split('T')[0]}</TableCell>
                 <TableCell align="right">
                   <Link href={`mailto:${product?.user?.email}`}>{product?.user?.email}</Link>
                 </TableCell>

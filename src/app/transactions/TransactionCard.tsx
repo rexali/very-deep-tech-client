@@ -10,13 +10,13 @@ export default function TransactionCard({ transaction }: { transaction: any }) {
                 <CardContent >
                     <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                         <Typography gutterBottom variant="body2" component="div">
-                            <Link href={'mailto:' + transaction?.user.email}>{transaction?.user.email ?? "Lizard"}</Link>
+                            <Link href={'mailto:' + transaction?.user.email}>{transaction?.user?.email}</Link>
                         </Typography>
                         <Typography gutterBottom variant="body2" component="div">
-                            N {transaction?.amount ?? 10}
+                            N {transaction?.amount}
                         </Typography>
                         <Typography gutterBottom variant="body2" component="div">
-                            {transaction?.createdAt ?? '12-12-202..'}
+                            {transaction?.createdAt?.split('T')[0]}
                         </Typography>
                         <Typography gutterBottom variant="body2" component="div">
                             <Link href={'/orders/' + transaction?.order?._id}>View order</Link>

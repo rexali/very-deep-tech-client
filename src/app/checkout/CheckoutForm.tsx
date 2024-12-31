@@ -13,6 +13,8 @@ import { useAuth } from '@/hooks/use-auth';
 import { getToken } from '@/utils/getToken';
 import { goToSavedLinkpath } from '@/utils/goToSavedLinkPath';
 import { useRouter } from 'next/navigation';
+import { AppContext } from '@/context/AppContext';
+import { getCarts } from '@/store/actions/app-actions';
 
 export default function CheckoutForm({
     tax,
@@ -40,7 +42,8 @@ export default function CheckoutForm({
     const [callToOrder, setCallToOrder] = React.useState(false);
     const auth = useAuth();
     const userId = auth.user?._id as unknown as string || getToken('_id') as string;
-    const router = useRouter()
+    const router = useRouter();
+    const { dispatch } = React.useContext(AppContext);
 
     const { user } = useProfile(userId);
 
@@ -56,9 +59,16 @@ export default function CheckoutForm({
                 transactionData,
                 userId
             );
+            // empty cart
+            dispatch(getCarts([]));
+
         } else {
             router.replace('/auth/signin?next=' + goToSavedLinkpath());
         }
+    }
+
+    if (success === 'success') {
+        router.push('/checkout/thankyou');
     }
 
     return (
@@ -105,6 +115,7 @@ export default function CheckoutForm({
                     type='email'
                     label="Email Address"
                     defaultValue={user?.user.email}
+                    disabled
                 />
 
                 <TextField

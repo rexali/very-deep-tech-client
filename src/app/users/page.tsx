@@ -66,11 +66,11 @@ export default function UserTabs() {
                 <div className="containerx" style={styles.minheight}>
                     <div className="scrollmenu" style={styles.marginTop}>
                         <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('profile')} href={""} ><small>My profile</small></Link>
-                        <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('products')} href={""} ><small>My products</small></Link>
+                        {/* <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('products')} href={""} ><small>My products</small></Link> */}
                         <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('messages')} href={""} ><small>Messages</small></Link>
                         <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('notifications')} href={""} ><small>Notifications </small></Link>
-                        <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('favourites')} href={""} ><small>My favourites</small></Link>
-                        <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('cart')} href={""} ><small>Cart</small></Link>
+                        <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('favourites')} href={""} ><small>My wish</small></Link>
+                        <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('cart')} href={""} ><small>My cart</small></Link>
                         <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('orders')} href={""} ><small>My orders</small></Link>
                         <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('transactions')} href={""} ><small>My transactions</small></Link>
                         <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('settings')} href={""} ><small>Settings</small></Link>

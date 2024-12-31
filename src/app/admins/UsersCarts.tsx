@@ -45,7 +45,7 @@ export default function UsersCarts() {
               >
                 <TableCell align="right">{i + 1}</TableCell>
                 <TableCell align="right">{product?.product_name}</TableCell>
-                <TableCell align="right">{product?.cartCreatedAt}</TableCell>
+                <TableCell align="right">{product?.cartCreatedAt?.split('T')[0]}</TableCell>
                 <TableCell align="right">
                   <Link href={`mailto:${product?.cartOwner}`}>{product?.cartOwner}</Link>
                 </TableCell>

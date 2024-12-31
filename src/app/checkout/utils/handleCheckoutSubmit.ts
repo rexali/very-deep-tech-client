@@ -3,6 +3,7 @@
 import { sendOrderAndTransaction } from "@/app/payment/sendOrderAndTransaction";
 import { payWithPaystack } from "@/services/payWithPaystack";
 import { updateUserProfileAPI } from "../../users/api/updateUserProfile";
+import Form from 'form-data';
 
 const handleCheckoutSubmit = async (
     event: any,
@@ -45,14 +46,16 @@ const handleCheckoutSubmit = async (
         method: payment_method.value
     }
     try {
-        await updateUserProfileAPI({
-            firtName: contactData.firstName,
-            lastName: contactData.lastName,
-            streetAddress: contactData.address,
-            localGovt: contactData.localGovt,
-            state: contactData.state,
-            user: userId
-        }, setPostSuccess, setPostError, setLoading);
+
+        const formData = new Form()
+        formData.append('firtName', contactData.firstName);
+        formData.append('lastName', contactData.lastName);
+        formData.append('streetAddress', contactData.address);
+        formData.append('localGovt', contactData.localGovt);
+        formData.append('state', contactData.state);
+        formData.append('user', userId);
+
+        await updateUserProfileAPI(formData, setPostSuccess, setPostError, setLoading);
 
         switch (contactData.method) {
             case 'paystack':
@@ -63,7 +66,7 @@ const handleCheckoutSubmit = async (
                 payWithPaystack(
                     contactData.email ?? '',
                     contactData.amount ?? 0,
-                    orderData,
+                    { ...orderData, paymentStatus: 'paid' },
                     transactionData,
                     setPostSuccess,
                     setPostError,
@@ -73,7 +76,7 @@ const handleCheckoutSubmit = async (
 
             case 'pos':
                 await sendOrderAndTransaction(
-                    orderData,
+                    { ...orderData, paymentStatus: 'paid' },
                     { ...transactionData, paymentMethod: 'POS' },
                     setPostSuccess,
                     setPostError,
@@ -100,7 +103,7 @@ const handleCheckoutSubmit = async (
                     setLoading
                 );
                 alert(
-                    'Use the details below to make your payment'
+                    'Use the details below for direct bank transfer'
                 );
                 break;
 
@@ -121,15 +124,11 @@ const handleCheckoutSubmit = async (
 
             case 'cash-and-carry':
                 await sendOrderAndTransaction(
-                    orderData,
+                    { ...orderData, paymentStatus: 'paid' },
                     { ...transactionData, paymentMethod: 'Cash' },
                     setPostSuccess,
                     setPostError,
                     setLoading
-                );
-
-                alert(
-                    'Use the detail below to visit us and tap checkout'
                 );
 
                 break;
