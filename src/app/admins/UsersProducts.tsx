@@ -46,9 +46,9 @@ export default function UsersProducts() {
           <TableHead>
             <TableRow>
               <TableCell>S/N </TableCell>
-              <TableCell align="right">product Name</TableCell>
-              <TableCell align="right">Date (n) Time &nbsp;</TableCell>
-              <TableCell align="right">Owner&apos;email</TableCell>
+              <TableCell align="right">Product</TableCell>
+              <TableCell align="right">Date</TableCell>
+              <TableCell align="right">Owner</TableCell>
               <TableCell align="center" colSpan={5}>
                 Actions
               </TableCell>

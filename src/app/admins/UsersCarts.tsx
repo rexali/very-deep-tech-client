@@ -31,10 +31,10 @@ export default function UsersCarts() {
           <TableHead>
             <TableRow>
               <TableCell>S/N </TableCell>
-              <TableCell align="right">Product Name</TableCell>
-              <TableCell align="right">Date & Time &nbsp;</TableCell>
-              <TableCell align="right">Owner&apos;s email</TableCell>
-              <TableCell align="right">View &nbsp;</TableCell>
+              <TableCell align="right">Product</TableCell>
+              <TableCell align="right">Date</TableCell>
+              <TableCell align="right">Owner</TableCell>
+              <TableCell align="right">View</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

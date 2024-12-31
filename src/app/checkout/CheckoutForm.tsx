@@ -15,6 +15,7 @@ import { goToSavedLinkpath } from '@/utils/goToSavedLinkPath';
 import { useRouter } from 'next/navigation';
 import { AppContext } from '@/context/AppContext';
 import { getCarts } from '@/store/actions/app-actions';
+import ThankYouPage from './thankyou/page';
 
 export default function CheckoutForm({
     tax,
@@ -68,7 +69,8 @@ export default function CheckoutForm({
     }
 
     if (success === 'success') {
-        router.push('/checkout/thankyou');
+        // router.push('/checkout/thankyou');
+        return <ThankYouPage />
     }
 
     return (

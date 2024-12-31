@@ -48,13 +48,13 @@ export default function UserOrders() {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell align="right">Order status</TableCell>
-              <TableCell align="right">Date (n) Time &nbsp;</TableCell>
-              <TableCell align="right">Total &nbsp;</TableCell>
-              <TableCell align="right">Payment status &nbsp;</TableCell>
-              <TableCell align="right">Shipping Method &nbsp;</TableCell>
-              <TableCell align="right">View &nbsp;</TableCell>
-              <TableCell align="right">Cancel Order &nbsp;</TableCell>
+              <TableCell align="right">Status</TableCell>
+              <TableCell align="right">Date</TableCell>
+              <TableCell align="right">Total</TableCell>
+              <TableCell align="right">Pay Status</TableCell>
+              <TableCell align="right">Ship Method</TableCell>
+              <TableCell align="right">View</TableCell>
+              <TableCell align="right">Action</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -69,7 +69,7 @@ export default function UserOrders() {
                 <TableCell align="right">{order?.paymentStatus}</TableCell>
                 <TableCell align="right">{order?.shippingMethod}</TableCell>
                 <TableCell align="center">
-                  <Link href={'/orders/' + order._id}>View order</Link>
+                  <Link href={'/orders/' + order._id}>View</Link>
                 </TableCell>
                 <TableCell align="center">
                   <Button

@@ -58,6 +58,7 @@ export function useAuth() {
                     setUser((c) => res.data);
                     saveToken("_id", res.data._id);
                     saveToken("email", res.data.email);
+                    saveToken("role", res.data.role);
                     // dispatch the sign-in action 
                     dispatch(signIn({ ...res.data }));
                 } else {
