@@ -1,3 +1,4 @@
+'use client';
 import { Container } from "@mui/material";
 import React from "react";
 import { Chart } from "react-google-charts";

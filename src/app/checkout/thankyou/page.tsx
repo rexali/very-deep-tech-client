@@ -1,3 +1,5 @@
+'use client';
+
 import { getToken } from "@/utils/getToken";
 import { Alert, Box, Container } from "@mui/material";
 import Link from "next/link";
