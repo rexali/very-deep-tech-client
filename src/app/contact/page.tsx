@@ -36,7 +36,7 @@ export default function ContactPage() {
       comment
     } = event.target.elements;
     if (isMobile) {
-      router.push(`mailto:siniotech@gmail.com/?subject=${title.value}&body=${comment.value}`);
+      router.push(`mailto:siniotech@gmail.com?subject=${title.value}&body=${comment.value}`);
     } else {
       setLoading('Sending data..');
       await handleMessageSubmit(event, setSuccess, setError, setLoading, userId);

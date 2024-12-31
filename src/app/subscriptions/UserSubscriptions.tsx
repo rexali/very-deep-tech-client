@@ -16,7 +16,15 @@ export default function UsersSubscriptionsTable() {
         }
         getData();
 
-    }, [activePage])
+    }, [activePage]);
+
+
+    if (!data.length) {
+        <Container component={"main"} maxWidth="md" sx={{ mt: 8, minHeight: 420, display: "flex", justifyContent: 'center', alignItems: 'center' }}>
+            <Box textAlign={'center'}>No subscription(s) found</Box>
+        </Container>
+    }
+
 
     return (
         <Container component={'main'} sx={{ mt: 10 }}>

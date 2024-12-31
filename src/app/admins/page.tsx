@@ -23,6 +23,7 @@ import SellProducts from "./SellProducts";
 import { AppContext } from "@/context/AppContext";
 import ReportPage from "./Report";
 import UsersSubscriptionsTable from "../subscriptions/UserSubscriptions";
+import AnalyticsPage from "./Analytics";
 
 export default function UserTabs() {
     const searchParams = useSearchParams();
@@ -56,6 +57,7 @@ export default function UserTabs() {
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('orders')} href={""} ><small>Orders</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('carts')} href={""} ><small>Carts</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('report')} href={""} ><small>Report</small></Link>
+                    <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('analytics')} href={""} ><small>Analytics</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('messages')} href={""} ><small>Messages</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('qoutes')} href={""} ><small>Quotes</small></Link>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('admin')} href={""} ><small>My profile</small></Link>
@@ -79,6 +81,7 @@ export default function UserTabs() {
                         {tabName === 'sell' ? <SellTab /> : ''}
                         {tabName === 'yourcart' ? <YourCartTab /> : ''}
                         {tabName === 'report' ? <ReportTab /> : ''}
+                        {tabName === 'analytics' ? <AnalyticsTab /> : ''}
 
                     </div>
                 </div>
@@ -104,6 +107,25 @@ function ReportTab() {
             <div>Coming soon</div>
 
             <ReportPage />
+        </Box>
+    )
+}
+
+function AnalyticsTab() {
+
+    return (
+        <Box>
+            <Box component={'div'} textAlign={'left'} >
+                <Typography
+                    color='success'
+                >
+                    Analytics
+                </Typography>
+            </Box>
+
+            <div>Coming soon</div>
+
+            <AnalyticsPage />
         </Box>
     )
 }
