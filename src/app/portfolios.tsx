@@ -32,9 +32,9 @@ const images = [
 ];
     
     return (
-        <Container component="main" maxWidth="md" sx={{mt:10}}>
+        <Container component="main" maxWidth="lg" sx={{mt:10}}>
             <h2>Portfolio</h2>
-            <Typography>What we have done</Typography>
+            <Typography>What we have done</Typography><br/>
             <CarouselView images={images} />
         </Container>
     );

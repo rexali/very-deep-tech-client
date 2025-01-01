@@ -32,9 +32,9 @@ export default function Team() {
     ];
     
     return (
-        <Container component="main" maxWidth="md" sx={{mt:10}}>
+        <Container component="main" maxWidth="lg" sx={{mt:10}}>
             <h2>Team</h2>
-            <Typography>Our experts</Typography>
+            <Typography>Our experts</Typography><br/>
             <CarouselView images={images} />
         </Container>
     );

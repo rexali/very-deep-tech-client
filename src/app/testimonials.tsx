@@ -32,10 +32,10 @@ export default function Testimonials() {
     ];
 
     return (
-        <Container component="main" maxWidth="md" sx={{ mt: 10 }}>
+        <Container component="main" maxWidth="lg" sx={{ mt: 10 }}>
             <h2>Testimonials</h2>
-            <Typography>What people say</Typography>
-            <CarouselView images={images} />
+            <Typography>What people say</Typography><br/>
+            <CarouselView images={images}  />
         </Container>
     );
 }

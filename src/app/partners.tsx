@@ -33,9 +33,9 @@ export default function Partners() {
 
 
     return (
-        <Container component="main" maxWidth="md" sx={{ mt: 10 }}>
+        <Container component="main" maxWidth="lg" sx={{ mt: 10 }}>
             <h2>Partners</h2>
-            <Typography>Our associates</Typography>
+            <Typography>Our associates</Typography><br/>
             <CarouselView images={images} />
         </Container>
     );
