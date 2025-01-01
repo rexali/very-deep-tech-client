@@ -55,7 +55,6 @@ export default function AppPage() {
             {!isMobile && <DesktopProductCategories categoryData={data?.categoryData} />}
           </Box>
           <Box>
-            {/* <FeaturedProducts products={data?.featuredData} /> */}
              <Box>Featured</Box>
             <FeaturedProductList products={data?.featuredData} />
             <Box margin={2} padding={2} display={"flex"} justifyContent={'center'}>
