@@ -56,6 +56,7 @@ export default function AppPage() {
           </Box>
           <Box>
             {/* <FeaturedProducts products={data?.featuredData} /> */}
+             <Box>Featured</Box>
             <FeaturedProductList products={data?.featuredData} />
             <Box margin={2} padding={2} display={"flex"} justifyContent={'center'}>
               <Link
@@ -67,6 +68,7 @@ export default function AppPage() {
                 View all
               </Link>
             </Box>
+            <Box>Popular</Box>
             <PopularProductList products={data?.popularData} />
             <Box marginTop={2} padding={2} display={"flex"} justifyContent={'center'}>
               <Link
@@ -78,6 +80,7 @@ export default function AppPage() {
                 View all
               </Link>
             </Box>
+            <Box>Recommended</Box>
             <RecommendedProductList />
             <Box marginTop={2} padding={2} display={"flex"} justifyContent={'center'}>
               <Link
@@ -89,6 +92,7 @@ export default function AppPage() {
                 View all
               </Link>
             </Box>
+            <Box>New</Box>
             <NewProductList products={data?.productData} />
             <Box marginTop={2} padding={2} display={"flex"} justifyContent={'center'}>
               <Link

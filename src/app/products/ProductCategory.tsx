@@ -17,7 +17,7 @@ export default function ProductCategories(props: any) {
   }
 
   return (
-    <Container component="main" maxWidth="md">
+    <Container component="main" maxWidth="lg">
       <div className="scrollmenu" >
         {
           categories.map((category: any, i: number) => <a key={category + i} href={`/category/?term=${category.toLowerCase()}`}>{category}</a>)

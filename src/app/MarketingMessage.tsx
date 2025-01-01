@@ -9,7 +9,7 @@ import React from "react"
 export default function MarketingMessage() {
   
   return (
-    <Container component="main" maxWidth="md">
+    <Container component="main" maxWidth="lg">
       <Box sx={{
         flexGrow: 1,
         display: "flex",
