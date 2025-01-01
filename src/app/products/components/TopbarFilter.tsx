@@ -19,16 +19,15 @@ export default function TopbarFilter(props: any) {
         setSort(value)
         setOpen(true);
     }
- 
+
     const handleOpenCallback = (value: boolean) => {
         setOpen(value);
     }
     return (
         <ErrorBoundary>
             <Box sx={{ minWidth: 60 }}>
-                Filter: 
                 <FormControl>
-                    <InputLabel id='filterLabel'>Sort by...</InputLabel>
+                    <InputLabel id='filterLabel'>Sort by</InputLabel>
                     <Select
                         labelId='sort'
                         id='sort_item'
@@ -36,6 +35,7 @@ export default function TopbarFilter(props: any) {
                         size='small'
                         value={sort}
                         label={'Sort'}
+                        variant='filled'
                         onChange={handleFilter}
                     >
                         <MenuItem value={''}>Sort by</MenuItem>
