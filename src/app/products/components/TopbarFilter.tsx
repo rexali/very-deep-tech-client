@@ -27,7 +27,7 @@ export default function TopbarFilter(props: any) {
         <ErrorBoundary>
             <Box sx={{ minWidth: 60 }}>
                 <FormControl>
-                    <InputLabel id='filterLabel'>Sort</InputLabel>
+                    <InputLabel id='filterLabel'>Sort by...</InputLabel>
                     <Select
                         labelId='sort'
                         id='sort_item'
@@ -47,7 +47,7 @@ export default function TopbarFilter(props: any) {
             </Box>
             {open && <SideDrawer searchCallback={handleOpenCallback}>
                 <Box sx={{ m: 2 }}>
-                    Filtering result:
+                    Result:
                     {!data?.length && <HomeFallback />}
                     <ProductList products={data} />
                     <Box marginTop={4} display={"flex"} justifyContent={'center'} >

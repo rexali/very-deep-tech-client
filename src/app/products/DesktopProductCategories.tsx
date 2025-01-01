@@ -29,7 +29,7 @@ export default function DesktopProductCategories(props: any) {
                 href={`/category/?term=${catx.toLowerCase()}`}>
                 <ListItem>
                     {/* <ListItemButton> */}
-                    <ListItemText primary={catx} />
+                    <ListItemText style={{textTransform:'capitalize'}} primary={catx} />
                     {/* </ListItemButton> */}
                 </ListItem>
             </Link>
@@ -39,7 +39,7 @@ export default function DesktopProductCategories(props: any) {
     return (
         <ErrorBoundary>
             <Container maxWidth="lg" component={'main'} sx={{ mt: 2 }}>
-                <p style={{textTransform:'capitalize'}}>Categories</p>
+                <p>CATEGORIES</p>
                 <List>
                     {renderListItems(categoriex)}
                 </List>

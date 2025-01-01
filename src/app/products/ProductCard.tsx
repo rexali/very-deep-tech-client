@@ -11,7 +11,7 @@ import ProductBottomActions from './components/ProductBottomActions';
 import Image from 'next/image';
 import { SERVER_URL } from '@/constants/url';
 import { CardMedia } from '@mui/material';
-import placeholderImage from '@/assets/images/photo.jpeg'
+import placeholderImage from '@/assets/images/photo.jpeg';
 import GetQouteModal from '../qoutes/components/GetQuoteModal';
 
 export default function ProductCard({ product, role, refreshProducts }: { product: any, role?: string, refreshProducts?: any }) {
@@ -94,7 +94,7 @@ export default function ProductCard({ product, role, refreshProducts }: { produc
             </Typography>
             <Link href={'#'} style={{ fontSize: 10, textDecoration: 'none', alignSelf: 'center' }} onClick={() => setOpenQoute(true)}>Get Qoutes</Link>
           </Box>
-          <Rating name="read-only" size='small' value={product?.averageRating ?? 1} readOnly />
+          <Rating name="read-only" size='small' value={product?.averageRating} readOnly />
         </Box>
 
       </CardContent>

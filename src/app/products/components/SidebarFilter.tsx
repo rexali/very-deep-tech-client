@@ -31,24 +31,24 @@ export default function SidebarFilter(props: any) {
     return (
         <ErrorBoundary>
             <FormControl sx={{ m: 2 }}>
-                <FormLabel id='payment_method'>Price Range</FormLabel>
+                <FormLabel id='payment_method'>Price range</FormLabel>
                 <RadioGroup
                     aria-labelledby='demo-controlled-radio-button-group'
                     name='price_range'
                     value={range}
                     onChange={handlePriceRange}
                 >
-                    <FormControlLabel value={'0-5000'} control={<Radio />} sx={{ fontSize: 14 }} label='N 0 - 5000'></FormControlLabel>
-                    <FormControlLabel value={'5000-10000'} control={<Radio />} sx={{ fontSize: 14 }} label='N 5000 - 10000'></FormControlLabel>
-                    <FormControlLabel value={'10000-50000'} control={<Radio />} sx={{ fontSize: 14 }} label='N 10000 - 50000'></FormControlLabel>
-                    <FormControlLabel value={'50000-100000'} control={<Radio />} sx={{ fontSize: 14 }} label='N 50000 - 100000'></FormControlLabel>
-                    <FormControlLabel value={'100000-above'} control={<Radio />} sx={{ fontSize: 14 }} label='N 100000 - above'></FormControlLabel>
+                    <FormControlLabel value={'0-5000'} control={<Radio />} sx={{ fontSize: 10 }} label='N 0 - 5000' />
+                    <FormControlLabel value={'5000-10000'} control={<Radio />} sx={{ fontSize: 10 }} label='N 5000 - 10000' />
+                    <FormControlLabel value={'10000-50000'} control={<Radio />} sx={{ fontSize: 10 }} label='N 10000 - 50000' />
+                    <FormControlLabel value={'50000-100000'} control={<Radio />} sx={{ fontSize: 10 }} label='N 50000 - 100000' />
+                    <FormControlLabel value={'100000-above'} control={<Radio />} sx={{ fontSize: 10 }} label='N 100000 - above' />
                 </RadioGroup>
             </FormControl>
             {
                 open && <SideDrawer searchCallback={handleOpenCallback} >
                     <Box sx={{ m: 2 }}>
-                        Filtering result:
+                        Result:
                         <Suspense fallback={<HomeFallback />}>
                             <ProductList products={data} />
                         </Suspense>
