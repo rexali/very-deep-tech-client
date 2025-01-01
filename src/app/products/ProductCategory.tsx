@@ -1,6 +1,5 @@
 'use client'
 
-import { Container } from "@mui/material";
 import "./styles/styles.css";
 import React from "react";
 import { useMediaQuery } from "react-responsive";
@@ -17,12 +16,10 @@ export default function ProductCategories(props: any) {
   }
 
   return (
-    <Container component="main" maxWidth="lg">
-      <div className="scrollmenu" >
-        {
-          categories.map((category: any, i: number) => <a key={category + i} href={`/category/?term=${category.toLowerCase()}`}>{category}</a>)
-        }
-      </div>
-    </Container>
+    <div className="scrollmenu" >
+      {
+        categories.map((category: any, i: number) => <a key={category + i} href={`/category/?term=${category.toLowerCase()}`}>{category}</a>)
+      }
+    </div>
   )
 }
