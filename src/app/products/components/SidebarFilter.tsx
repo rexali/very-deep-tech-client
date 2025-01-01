@@ -38,11 +38,11 @@ export default function SidebarFilter(props: any) {
                     value={range}
                     onChange={handlePriceRange}
                 >
-                    <FormControlLabel value={'0-5000'} control={<Radio />} sx={{ fontSize: 10 }} label='N 0 - 5000' />
-                    <FormControlLabel value={'5000-10000'} control={<Radio />} sx={{ fontSize: 10 }} label='N 5000 - 10000' />
-                    <FormControlLabel value={'10000-50000'} control={<Radio />} sx={{ fontSize: 10 }} label='N 10000 - 50000' />
-                    <FormControlLabel value={'50000-100000'} control={<Radio />} sx={{ fontSize: 10 }} label='N 50000 - 100000' />
-                    <FormControlLabel value={'100000-above'} control={<Radio />} sx={{ fontSize: 10 }} label='N 100000 - above' />
+                    <FormControlLabel value={'0-5000'} control={<Radio />} style={{ fontSize: 10 }} label='N 0 - 5000' />
+                    <FormControlLabel value={'5000-10000'} control={<Radio />} style={{ fontSize: 10 }} label='N 5000 - 10000' />
+                    <FormControlLabel value={'10000-50000'} control={<Radio />} style={{ fontSize: 10 }} label='N 10000 - 50000' />
+                    <FormControlLabel value={'50000-100000'} control={<Radio />} style={{ fontSize: 10 }} label='N 50000 - 100000' />
+                    <FormControlLabel value={'100000-above'} control={<Radio />} style={{ fontSize: 10 }} label='N 100000 - above' />
                 </RadioGroup>
             </FormControl>
             {
