@@ -38,11 +38,11 @@ export default function SidebarFilter(props: any) {
                     value={range}
                     onChange={handlePriceRange}
                 >
-                    <FormControlLabel value={'0-5000'} control={<Radio />} label={<Typography variant='body1' sx={{ color: 'text.secondary' }}>&#x20A6; 0 - 5000'</Typography>} />
-                    <FormControlLabel value={'5000-10000'} control={<Radio />} label={<Typography variant='body1' sx={{ color: 'text.secondary' }}>&#x20A6; 5,000 - 10000'</Typography>} />
-                    <FormControlLabel value={'10000-50000'} control={<Radio />} label={<Typography variant='body1' sx={{ color: 'text.secondary' }}>&#x20A6; 10,000 - 50,000'</Typography>} />
-                    <FormControlLabel value={'50000-100000'} control={<Radio />} label={<Typography variant='body1' sx={{ color: 'text.secondary' }}>&#x20A6; 50,000 - 100,000'</Typography>} />
-                    <FormControlLabel value={'100000-above'} control={<Radio />} label={<Typography variant='body1' sx={{ color: 'text.secondary' }}>&#x20A6; 100,000 - above'</Typography>} />
+                    <FormControlLabel value={'0-5000'} control={<Radio />} label={<Typography variant='body1' sx={{ color: 'text.secondary' }}>&#x20A6; 0 - 5000</Typography>} />
+                    <FormControlLabel value={'5000-10000'} control={<Radio />} label={<Typography variant='body1' sx={{ color: 'text.secondary' }}>&#x20A6; 5,000 - 10000</Typography>} />
+                    <FormControlLabel value={'10000-50000'} control={<Radio />} label={<Typography variant='body1' sx={{ color: 'text.secondary' }}>&#x20A6; 10,000 - 50,000</Typography>} />
+                    <FormControlLabel value={'50000-100000'} control={<Radio />} label={<Typography variant='body1' sx={{ color: 'text.secondary' }}>&#x20A6; 50,000 - 100,000</Typography>} />
+                    <FormControlLabel value={'100000-above'} control={<Radio />} label={<Typography variant='body1' sx={{ color: 'text.secondary' }}>&#x20A6; 100,000 - above</Typography>} />
                 </RadioGroup>
             </FormControl>
             {
