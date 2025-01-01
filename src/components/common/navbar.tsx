@@ -249,13 +249,13 @@ function NavBar(props: any) {
 
 
                 {
-                  user?._id && <MenuItem key={"signup"} onClick={handleCloseUserMenu}>
+                  user?._id && <MenuItem key={"account"} onClick={handleCloseUserMenu}>
                     <Link style={{ textDecoration: "none" }} href={`/users`}>Account</Link>
                   </MenuItem>
                 }
 
                 {
-                  user?._id && <MenuItem key={"signup"} onClick={handleCloseUserMenu}>
+                  user?._id && <MenuItem key={"logout"} onClick={handleCloseUserMenu}>
                     <Link onClick={() => handleSignOut(router)} style={{ textDecoration: "none" }} href={'#'}>Logout</Link>
                   </MenuItem>
                 }

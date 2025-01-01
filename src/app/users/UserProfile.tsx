@@ -38,7 +38,7 @@ export default function UserProfile(props: any) {
   };
 
   React.useEffect(() => {
-    setUser(props.user ?? {});
+    setUser((c: any) => ({...c, ...props.user }));
   }, [props.user]);
 
   if (!Object.keys(user).length) {

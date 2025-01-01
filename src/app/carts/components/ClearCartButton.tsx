@@ -9,7 +9,7 @@ import { getToken } from "@/utils/getToken";
 export default function ClearCartButton(props: any) {
 
     const auth = useAuth();
-    const userId = auth.user?._id as unknown as string || getToken('_id') as string;
+    const userId = auth.user?._id || getToken('_id') as string;
 
     return (
         <Button

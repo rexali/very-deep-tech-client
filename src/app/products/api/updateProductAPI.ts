@@ -13,7 +13,6 @@ const updateProductAPI = async (productData: any, setPostSuccess: any, setPostEr
                 'Content-Type':'multipart/form-data'
             },
 
-
         });
         if (data.status === "success") {
             setLoading('');

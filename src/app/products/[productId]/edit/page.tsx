@@ -19,32 +19,46 @@ import { removeProductPicture } from "../../api/removeProductPictureAPI";
 import { useAuth } from "@/hooks/use-auth";
 
 export default function Page() {
-    const {user} = useAuth();
+    const { user } = useAuth();
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
     const [loading, setLoading] = React.useState('');
-    const [data, setData]= useState<any>({});
+    const [data, setData] = useState<any>({});
     const pathname = usePathname();
     const params = pathname.split('/').filter(param => param !== '');
     const productId = params[1];
 
-    const getProductData = useCallback(async ()=>{
+    const getProductData = useCallback(async () => {
         try {
-            setData(await getProductAPI(productId));
+            let product = await getProductAPI(productId)
+            setData((c: any) => ({ ...c, ...product }));
         } catch (error) {
             console.warn(error);
         }
-    },[productId]);
+    }, [productId]);
 
-    useEffect(()=>{
-     getProductData();
-    },[getProductData])
+    useEffect(() => {
+        getProductData();
+    }, [getProductData]);
 
-    
+
+    const removePictureAndGetProductData = async (event: any, productId: string, product_picture: string) => {
+        try {
+            await removeProductPicture({ productId: productId, product_picture: product_picture });
+            await getProductData();
+            event.currentTarget.disabled = true;
+            event.currentTarget.textContent = 'REMOVED';
+        } catch (error) {
+            console.error(error);
+        }
+
+    }
+
+
     const handleSubmit = async (event: any) => {
         if (user?.role === 'admin') {
             setLoading('Sending data..')
-            await handleProductEditSubmit(event,setSuccess,setError,setLoading,productId)
+            await handleProductEditSubmit(event, setSuccess, setError, setLoading, productId)
         } else {
             setLoading('You are not unauthorized')
         }
@@ -100,16 +114,8 @@ export default function Page() {
                                         size="small"
                                         startIcon={<Remove />}
                                         onClick={async (event) => {
-                                            try {
-                                                await removeProductPicture({ productId: productId, product_picture: product_picture }); 
-                                                await getProductData();  
-                                                event.currentTarget.disabled=true;
-                                                event.currentTarget.textContent='REMOVED'; 
-                                            } catch (error) {
-                                                console.error(error);
-                                            }
-                                            
-                                       }}>
+                                            await removePictureAndGetProductData(event, productId, product_picture)
+                                        }}>
                                         Remove
                                     </Button>
                                 </Box>
