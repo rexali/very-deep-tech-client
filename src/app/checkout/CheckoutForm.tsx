@@ -42,7 +42,7 @@ export default function CheckoutForm({
     const [cashAndCarry, setCashAndCarry] = React.useState(false);
     const [callToOrder, setCallToOrder] = React.useState(false);
     const auth = useAuth();
-    const userId = auth.user?._id as unknown as string || getToken('_id') as string;
+    const userId = auth.user?._id || getToken('_id') as string;
     const router = useRouter();
     const { dispatch } = React.useContext(AppContext);
 
