@@ -26,7 +26,7 @@ export default function SearchInput() {
   return (
     <Paper
       component="form"
-      sx={{ p: '2px 2px', maxWidth: 250, mt: isMobile ? 2 : 0, mr: !isMobile ? 2 : 0 }}
+      sx={{ p: '2px 2px', maxWidth: 300, mt: isMobile ? 2 : 0, mr: !isMobile ? 2 : 0 }}
       action={"/search"}
     >
       <InputBase
