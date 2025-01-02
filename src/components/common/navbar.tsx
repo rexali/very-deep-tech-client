@@ -24,6 +24,7 @@ import { useAuth } from '@/hooks/use-auth';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import CardImage from '@/app/products/components/CardImage';
 import ErrorBoundary from '../ErrorBoundary';
+import SearchInput from '@/app/search/SearchInput';
 
 const pages = [
   'About',
@@ -186,6 +187,8 @@ function NavBar(props: any) {
               </Link>
               ))}
             </Box>
+            {/* search bar */}
+            {!isMobile && <SearchInput />}
             {/* Carts components */}
             {
               !isMobile && (
@@ -194,14 +197,14 @@ function NavBar(props: any) {
             }
 
             {isMobile && (
-              <span style={{ marginRight: 10}} onClick={() => goToNextPage()}><Cart sx={{ fontSize: 18 }} /><sup style={{ color: "yellow" }}>{state?.carts[0]?.totalCarts !== 0 && state?.carts[0]?.totalCarts !== undefined ? state?.carts[0]?.totalCarts : ''}</sup></span>
+              <span style={{ marginRight: 10 }} onClick={() => goToNextPage()}><Cart sx={{ fontSize: 18 }} /><sup style={{ color: "yellow" }}>{state?.carts[0]?.totalCarts !== 0 && state?.carts[0]?.totalCarts !== undefined ? state?.carts[0]?.totalCarts : ''}</sup></span>
             )
             }
             {/* end */}
             {/* Messages component */}
-            {!isMobile && <Link href={'/messages/user'} style={{ marginRight: 16, display: user?._id ? '' : 'none' }} ><Message sx={{ color: "white" }} /></Link>}
+            {!isMobile && <Link href={'/messages/user'} style={{ marginRight: 16, display: user?._id ? '' : 'none' }} ><Button sx={{ color: "white" }} startIcon={<Message />}>Messages</Button></Link>}
             {/* Notification component */}
-            {!isMobile && <Link href='/notifications' style={{ marginRight: 16, display: user?._id ? '' : 'none' }} ><Notifications sx={{ color: "white" }} /></Link>}
+            {!isMobile && <Link href='/notifications' style={{ marginRight: 16, display: user?._id ? '' : 'none' }} ><Button sx={{ color: "white" }} startIcon={<Notifications />}>Notifications</Button></Link>}
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open menu">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -263,7 +266,7 @@ function NavBar(props: any) {
                 {menus.map((menu, index) => (
                   <MenuItem key={menu} onClick={handleCloseUserMenu}>
                     {
-                      user?._id && <Link style={{ textDecoration: "none" }} key={index + "s"} href={`/${menu === 'Messages' ? menu.toLowerCase() + '/user' : menu.toLowerCase()}`}>{menu}</Link>
+                      user?._id && <Link style={{ textDecoration: "none", display: !isMobile ? 'none' : '' }} key={index + "s"} href={`/${menu === 'Messages' ? menu.toLowerCase() + '/user' : menu.toLowerCase()}`}>{menu}</Link>
                     }
                   </MenuItem>
                 ))}

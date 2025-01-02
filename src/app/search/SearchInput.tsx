@@ -7,22 +7,26 @@ import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import { instantSearchProductAPI } from './api/instantSearchAPI';
 import Link from 'next/link';
-import { useDebouncedCallback } from 'use-debounce'
+import { useDebouncedCallback } from 'use-debounce';
+import { useMediaQuery } from "react-responsive";
+
 
 export default function SearchInput() {
   const [data, setData] = React.useState<any>([]);
   const [term, setTerm] = React.useState();
+  const isMobile = useMediaQuery({ maxDeviceWidth: 1023 });
+
 
   const handleSearch = useDebouncedCallback(async (term) => {
     setData(await instantSearchProductAPI(term));
   }, 400);
 
-  let productNames= data.map((product:any)=>product.product_name);
- 
+  let productNames = data.map((product: any) => product.product_name);
+
   return (
     <Paper
       component="form"
-      sx={{ p: '2px 2px', maxWidth: 300, mt: 10, marginLeft: "auto", marginRight: "auto" }}
+      sx={{ p: '2px 2px', maxWidth: 250, mt: isMobile ? 2 : 0, mr: !isMobile ? 2 : 0 }}
       action={"/search"}
     >
       <InputBase
@@ -38,12 +42,12 @@ export default function SearchInput() {
         }
         }
       />
-      <IconButton type="submit" sx={{ p: '10px' }} aria-label="search" >
+      <IconButton type="submit" sx={{ p: '2px' }} aria-label="search" >
         <SearchIcon />
       </IconButton>
       <Paper>
         {
-          productNames?.map((name:any, i:number) => <Link key={i} style={{ textDecoration: "none", color: 'black', textAlign: 'center', margin: 4, display: "block", padding: 4 }} href={"/search?term=" + name}>{name}</Link>)
+          productNames?.map((name: any, i: number) => <Link key={i} style={{ textDecoration: "none", color: 'black', textAlign: 'center', margin: 4, display: "block", padding: 4 }} href={"/search?term=" + name}>{name}</Link>)
         }
       </Paper>
     </Paper>

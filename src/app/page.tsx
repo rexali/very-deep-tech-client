@@ -10,12 +10,8 @@ import Testimonials from './testimonials';
 import Portfolios from './portfolios';
 import Team from './team';
 import Partners from './partners';
-import FeaturedProducts from './products/FeaturedProducts';
-import PopularProducts from './products/PopularProducts';
 import Link from 'next/link';
 import Box from '@mui/material/Box';
-import RecommendedProducts from './products/RecommendedProducts';
-import NewProducts from './products/NewProducts';
 import { getInitialDataAPI } from './api/getInitialDataAPI';
 import ProductCategories from './products/ProductCategory';
 import ErrorBoundary from '@/components/ErrorBoundary';
@@ -47,7 +43,7 @@ export default function AppPage() {
     <ErrorBoundary>
       <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }} >
         {/* <CssBaseline /> */}
-        <SearchInput /> <br />
+        {isMobile && <Box display={"flex"} justifyContent={'center'}><SearchInput  /></Box>} <br/>
         <ProductCategories categoryData={data?.categoryData} />
         <MarketingMessage /> <br />
         <Box marginTop={4} display={"flex"} flexDirection={'row'} justifyContent={'space-between'} >
