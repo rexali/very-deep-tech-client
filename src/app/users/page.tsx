@@ -73,7 +73,7 @@ export default function UserTabs() {
                         <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('cart')} href={""} ><small>My cart</small></Link>
                         <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('orders')} href={""} ><small>My orders</small></Link>
                         <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('transactions')} href={""} ><small>My transactions</small></Link>
-                        <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('settings')} href={""} ><small>Settings</small></Link>
+                        {/* <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('settings')} href={""} ><small>Settings</small></Link> */}
                     </div>
 
                     <div className="tab-content">

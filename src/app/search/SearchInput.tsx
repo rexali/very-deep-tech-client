@@ -45,7 +45,7 @@ export default function SearchInput() {
       <IconButton type="submit" sx={{ p: '2px' }} aria-label="search" >
         <SearchIcon />
       </IconButton>
-      <Paper>
+      <Paper sx={{zIndex:9999}}>
         {
           productNames?.map((name: any, i: number) => <Link key={i} style={{ textDecoration: "none", color: 'black', textAlign: 'center', margin: 4, display: "block", padding: 4 }} href={"/search?term=" + name}>{name}</Link>)
         }
