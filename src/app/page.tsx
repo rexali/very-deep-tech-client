@@ -24,11 +24,11 @@ import NewProductList from './products/NewProductList';
 import RecommendedProductList from './products/RecommendedProductList';
 import useSWR from 'swr';
 import { SERVER_URL } from '@/constants/url';
+import HomeFallback from '@/components/common/HomeFallback';
+import Fallback from '@/components/common/fallback';
 
 export default function AppPage() {
   const isMobile = useMediaQuery({ maxDeviceWidth: 1023 });
-  // const [data, setData] = React.useState<any>({});
-
 
   const fetchInitialData = async (url: string) => {
     try {
@@ -42,20 +42,15 @@ export default function AppPage() {
     }
   }
 
-  const { data, error, isLoading } = useSWR(`${SERVER_URL}/products/${1}/initial`, fetchInitialData);
+  const { data, isLoading, error } = useSWR(`${SERVER_URL}/products/${1}/initial`, fetchInitialData);
 
+  if (error) {
+    return <Fallback item={'failed to load'} />
+  }
 
-  // useEffect(() => {
-  //   (async () => {
-  //     try {
-  //       let initData = await getInitialDataAPI() ?? {};
-  //       setData(initData)
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   })();
-  // }, []);
-
+  if (isLoading) {
+    return <HomeFallback />
+  }
 
   return (
     <ErrorBoundary>
@@ -94,7 +89,7 @@ export default function AppPage() {
               </Link>
             </Box>
             <Box>Recommended</Box>
-            <RecommendedProductList products={data?.recommendedData}/>
+            <RecommendedProductList products={data?.recommendedData} />
             <Box marginTop={2} padding={2} display={"flex"} justifyContent={'center'}>
               <Link
                 style={{ textDecoration: "none", color: 'green', borderColor: 'green' }}
