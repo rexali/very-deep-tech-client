@@ -25,23 +25,12 @@ import useSWR from 'swr';
 import { SERVER_URL } from '@/constants/url';
 import HomeFallback from '@/components/common/HomeFallback';
 import Fallback from '@/components/common/fallback';
+import { fetchInitialDataAPI } from './api/fetchInitialDataAPI';
 
 export default function AppPage() {
   const isMobile = useMediaQuery({ maxDeviceWidth: 1023 });
 
-  const fetchInitialData = async (url: string) => {
-    try {
-      let data = await fetch(url).then(res => res.json());
-      if (data.data === null) {
-        return {};
-      }
-      return data.data;
-    } catch (error) {
-      console.warn(error);
-    }
-  }
-
-  const { data, isLoading, error } = useSWR(`${SERVER_URL}/products/${1}/initial`, fetchInitialData);
+  const { data, isLoading, error } = useSWR(`${SERVER_URL}/products/${1}/initial`, fetchInitialDataAPI);
 
   if (error) {
     return <Fallback item={'failed to load'} />
