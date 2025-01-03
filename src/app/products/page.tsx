@@ -57,7 +57,7 @@ export default function ProductsPage() {
       <h3 style={{ display: 'flex', flexDirection: 'row', justifyContent: "space-between" }}>
         Products <TopbarFilter handleSetProducts={handleSetProducts} activePage={activePage} />
       </h3>
-      <SearchInput />
+      {<Box display={"flex"} justifyContent={'center'}><SearchInput /></Box>}
       <Box marginTop={4} display={"flex"} flexDirection={'row'} justifyContent={'space-between'} >
         <Box>
           {!isMobile && <DesktopProductCategories categoryData={categoryData} />}

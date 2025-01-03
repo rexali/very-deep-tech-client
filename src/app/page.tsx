@@ -41,7 +41,7 @@ export default function AppPage() {
       console.warn(error);
     }
   }
-  
+
   const { data, error, isLoading } = useSWR(`${SERVER_URL}/products/${1}/initial`, fetchInitialData);
 
 
@@ -94,7 +94,7 @@ export default function AppPage() {
               </Link>
             </Box>
             <Box>Recommended</Box>
-            <RecommendedProductList />
+            <RecommendedProductList products={data?.recommendedData}/>
             <Box marginTop={2} padding={2} display={"flex"} justifyContent={'center'}>
               <Link
                 style={{ textDecoration: "none", color: 'green', borderColor: 'green' }}
