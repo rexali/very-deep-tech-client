@@ -12,7 +12,6 @@ import Team from './team';
 import Partners from './partners';
 import Link from 'next/link';
 import Box from '@mui/material/Box';
-import { getInitialDataAPI } from './api/getInitialDataAPI';
 import ProductCategories from './products/ProductCategory';
 import ErrorBoundary from '@/components/ErrorBoundary';
 import Container from '@mui/material/Container';

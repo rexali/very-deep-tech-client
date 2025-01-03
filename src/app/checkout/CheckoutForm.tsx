@@ -105,6 +105,8 @@ export default function CheckoutForm({
                     id="last_name"
                     label="Last Name"
                     defaultValue={user?.lastName}
+                    autoFocus
+
                 />
 
                 <TextField
@@ -118,6 +120,8 @@ export default function CheckoutForm({
                     label="Email Address"
                     defaultValue={user?.user.email}
                     disabled
+                    autoFocus
+
                 />
 
                 <TextField
@@ -129,6 +133,8 @@ export default function CheckoutForm({
                     id="street_address"
                     label="Address"
                     defaultValue={user?.streetAddress}
+                    autoFocus
+
                 />
 
                 <TextField
@@ -140,6 +146,8 @@ export default function CheckoutForm({
                     id="local_govt"
                     label="Local Govt"
                     defaultValue={user?.localGovt}
+                    autoFocus
+
                 />
 
                 <TextField
@@ -151,6 +159,8 @@ export default function CheckoutForm({
                     id="state"
                     label="State"
                     defaultValue={user?.state}
+                    autoFocus
+
                 />
 
                 <TextField
@@ -175,6 +185,8 @@ export default function CheckoutForm({
                     label="Shipping Cost"
                     defaultValue={shippingCost}
                     disabled
+                    autoFocus
+
                 />
 
                 <TextField
