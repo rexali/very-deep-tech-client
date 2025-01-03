@@ -22,28 +22,46 @@ import FeaturedProductList from './products/FeaturedProductList';
 import PopularProductList from './products/PopularProductList';
 import NewProductList from './products/NewProductList';
 import RecommendedProductList from './products/RecommendedProductList';
+import useSWR from 'swr';
+import { SERVER_URL } from '@/constants/url';
 
 export default function AppPage() {
   const isMobile = useMediaQuery({ maxDeviceWidth: 1023 });
-  const [data, setData] = React.useState<any>({});
+  // const [data, setData] = React.useState<any>({});
 
-  useEffect(() => {
-    (async () => {
-      try {
-        let initData = await getInitialDataAPI() ?? {};
-        setData(initData)
-      } catch (error) {
-        console.log(error);
+
+  const fetchInitialData = async (url: string) => {
+    try {
+      let data = await fetch(url).then(res => res.json());
+      if (data.data === null) {
+        return {};
       }
-    })();
-  }, []);
+      return data.data;
+    } catch (error) {
+      console.warn(error);
+    }
+  }
+  
+  const { data, error, isLoading } = useSWR(`${SERVER_URL}/products/${1}/initial`, fetchInitialData);
+
+
+  // useEffect(() => {
+  //   (async () => {
+  //     try {
+  //       let initData = await getInitialDataAPI() ?? {};
+  //       setData(initData)
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   })();
+  // }, []);
 
 
   return (
     <ErrorBoundary>
       <Container maxWidth="lg" component={'main'} sx={{ mt: 10 }} >
         {/* <CssBaseline /> */}
-        {isMobile && <Box display={"flex"} justifyContent={'center'}><SearchInput  /></Box>} <br/>
+        {isMobile && <Box display={"flex"} justifyContent={'center'}><SearchInput /></Box>} <br />
         <ProductCategories categoryData={data?.categoryData} />
         <MarketingMessage /> <br />
         <Box marginTop={4} display={"flex"} flexDirection={'row'} justifyContent={'space-between'} >
@@ -51,7 +69,7 @@ export default function AppPage() {
             {!isMobile && <DesktopProductCategories categoryData={data?.categoryData} />}
           </Box>
           <Box>
-             <Box>Featured</Box>
+            <Box>Featured</Box>
             <FeaturedProductList products={data?.featuredData} />
             <Box margin={2} padding={2} display={"flex"} justifyContent={'center'}>
               <Link

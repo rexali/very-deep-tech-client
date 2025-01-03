@@ -7,7 +7,6 @@ import Update from "@material-ui/icons/Update";
 import * as React from "react";
 import { getUserProfileAPI } from "../users/api/getUserProfileAPI";
 import { handleProfileUpdate } from "../users/utils/handleProfileUpdate";
-import Image from "next/image";
 import Fallback from "@/components/common/fallback";
 import { useAuth } from "@/hooks/use-auth";
 import { SERVER_URL } from "@/constants/url";
