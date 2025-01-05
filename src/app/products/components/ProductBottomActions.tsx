@@ -19,7 +19,7 @@ import { getToken } from "@/utils/getToken";
 import GetQouteModal from "@/app/qoutes/components/GetQuoteModal";
 import { goToSavedLinkpath } from "@/utils/goToSavedLinkPath";
 import { CardActions } from "@mui/material";
-import { Toaster, toast } from "sonner";
+import { toast } from "sonner";
 
 
 export default function ProductBottomActions({ product, role, refreshProducts }: { product: any, role?: string, refreshProducts?: any }) {
@@ -101,7 +101,6 @@ export default function ProductBottomActions({ product, role, refreshProducts }:
                 body: "Product added to cart successfully"
             }} closeCallback={handleOpen} />}
             {openQoute && <GetQouteModal closeCallback={handleOpenQuote} productId={product._id} />}
-            <Toaster />
         </Box>
     )
 }

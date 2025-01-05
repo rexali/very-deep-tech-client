@@ -14,7 +14,6 @@ import { addToWishListOrRemove } from "@/app/favourites/utils/addToWishListOrRem
 import { useAuth } from "@/hooks/use-auth";
 import { goToSavedLinkpath } from "@/utils/goToSavedLinkPath";
 import { CardActions } from "@mui/material";
-import { toast, Toaster } from "sonner";
 
 export default function ProductTopActions({ product, role, refreshProducts }: { product: any, role?: string, refreshProducts?: any }) {
     const [open, setOpen] = useState(false);
@@ -56,7 +55,6 @@ export default function ProductTopActions({ product, role, refreshProducts }: { 
                     if (userId) {
                         await addToWishListOrRemove(userId, product._id, handleOpen);
                         refreshProducts();
-                        toast.success('Success');
                     } else {
                         router.push('/auth/signin?next=' + goToSavedLinkpath(''));
                     }
@@ -67,9 +65,8 @@ export default function ProductTopActions({ product, role, refreshProducts }: { 
             </Button>
             {open && <StatusModal message={{
                 title: "Favourite Alert",
-                body: "Product added to wish list"
+                body: "Added to wish list"
             }} closeCallback={handleOpen} />}
-            <Toaster />
         </CardActions>
     )
 }

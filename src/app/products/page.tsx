@@ -14,6 +14,7 @@ import TopbarFilter from "./components/TopbarFilter";
 import SidebarFilter from "./components/SidebarFilter";
 import { getProducts } from "@/store/actions/app-actions";
 import { AppContext } from "@/context/AppContext";
+import { Toaster } from "sonner";
 
 
 export default function ProductsPage() {
@@ -73,6 +74,7 @@ export default function ProductsPage() {
           pageRangeDisplayed={5}
           onchangeCallback={(v: any) => setActivePage(v)} />
       </Box>
+      <Toaster />
     </Container>
   )
 }
