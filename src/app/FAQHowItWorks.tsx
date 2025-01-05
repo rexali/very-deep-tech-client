@@ -10,9 +10,7 @@ export default function FAQHowItWorks() {
 
     return (
         <Container component="main" maxWidth="lg" sx={{ mt: 10 }} >
-            <Typography component={"h1"} sx={{ fontWeight: "bold", mb: 2}}>
-                Frequently Asked Questions(F. A. Q.)
-            </Typography>
+            <h2 style={{ marginBottom: 4 }}>Frequently Asked Questions(F. A. Q.)</h2>
             <Box sx={{ mt: 5 }}>
                 <Grid container rowSpacing={1} columnSpacing={4}>
                     <Grid item xs={12} md={6}>
