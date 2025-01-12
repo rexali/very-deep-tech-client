@@ -32,7 +32,7 @@ import { Toaster } from 'sonner';
 export default function AppPage() {
   const isMobile = useMediaQuery({ maxDeviceWidth: 1023 });
 
-  const { data, isLoading, error } = useSWR(`${SERVER_URL}/products/${1}/initial`, fetchInitialDataAPI);
+  const { data, isLoading, error } = useSWR(`${SERVER_URL}/initial?page=${1}&subdomain=maindomain`, fetchInitialDataAPI);
 
   if (error) {
     return <Fallback item={'failed to load'} />
