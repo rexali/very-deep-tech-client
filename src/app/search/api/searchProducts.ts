@@ -4,7 +4,7 @@ import {SERVER_URL } from "@/constants/url";
 
 const searchProducts = async (term: any, pageNumber: any = 1) => {
    try {
-      let response = await fetch(`${SERVER_URL}/search?term=${term}&page=${pageNumber}&subdomains=maindomain`, {
+      let response = await fetch(`${SERVER_URL}/search?term=${term}&page=${pageNumber}&subdomain=maindomain`, {
          method: "GET",
          mode: 'cors',
          headers: {
