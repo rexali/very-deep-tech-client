@@ -75,7 +75,7 @@ export default async function ProductDetailPage({ params }: { params: { productI
               >
                 {product.product_pictures?.length ?
 
-                  product.product_pictures.slice(0,2).map((product_picture: any, i: any) =>
+                  product.product_pictures.slice(0, 2).map((product_picture: any, i: any) =>
                     <div key={i} style={{ display: 'inline-block', margin: 4 }}>
                       <CardImage
                         src={`${SERVER_URL}/uploads/${product_picture}`}
@@ -175,7 +175,7 @@ export default async function ProductDetailPage({ params }: { params: { productI
 
                 {product.product_pictures?.length ?
 
-                  product.product_pictures.reverse().slice(0,3).map((product_picture: any, i: any) =>
+                  product.product_pictures.reverse().slice(0, 3).map((product_picture: any, i: any) =>
                     <div key={i} style={{ display: 'inline-block', margin: 10 }}>
                       <CardImage
                         src={`${SERVER_URL}/uploads/${product_picture}`}
@@ -226,7 +226,7 @@ export default async function ProductDetailPage({ params }: { params: { productI
           View all
         </Link>
       </Box>
-      <Toaster/>
+      <Toaster />
     </Box>
   );
 }
