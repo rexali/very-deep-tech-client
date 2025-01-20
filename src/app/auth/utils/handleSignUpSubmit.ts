@@ -22,6 +22,8 @@ export const handleSignUpSubmit = (
     const { first_name, last_name, email, password, confirm_password, remember_me } = event.target.elements;
     //   check if user password and confirm password before posting user data   
     if (password.value === confirm_password.value) {
+
+        setLoading('Sending data..');
         // call handleSignUp method and collect user data
         signUpAPI(
             first_name.value,

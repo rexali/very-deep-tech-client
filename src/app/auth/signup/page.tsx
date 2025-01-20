@@ -29,8 +29,7 @@ export default function SignUp() {
     const [loading, setLoading] = React.useState('');
     const router =useRouter();
 
-    const handleSubmit = async (event: any) => {
-        setLoading('Sending data..');
+    const handleSubmit = (event: any) => {
         handleSignUpSubmit(event, setError, setSuccess, setLoading, router)
     };
 
