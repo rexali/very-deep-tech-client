@@ -5,9 +5,10 @@ import React, { useCallback } from "react";
 import { Chart } from "react-google-charts";
 import { getUsersHistoryAPI } from "./api/getUsersHistory";
 import ErrorBoundary from "@/components/ErrorBoundary";
+import HomeFallback from "@/components/common/HomeFallback";
 
 export default function AnalyticsPage() {
-  const [data, setData] = React.useState<any>([]);
+  const [data, setData] = React.useState<any>({});
 
   const testData = [
     ["Day", "Sales"],
@@ -75,6 +76,10 @@ export default function AnalyticsPage() {
     vAxis: { title: "Sales" },
     legend: "none",
   };
+
+  if (!Object.keys(data)) {
+    return <HomeFallback />
+  }
 
   return (
 
