@@ -93,7 +93,7 @@ export default function AnalyticsPage() {
               chartType='ColumnChart'
               width="100%"
               height="400px"
-              data={data.generateSalesReportObj}
+              data={JSON.parse(data.generateSalesReportObj)}
               options={optionDay}
             />
           </Grid>
@@ -104,7 +104,7 @@ export default function AnalyticsPage() {
               chartType='ColumnChart'
               width="100%"
               height="400px"
-              data={data.generateWeeklyReportObj}
+              data={JSON.parse(data.generateWeeklyReportObj)}
               options={optionWeek}
             />
           </Grid>
@@ -115,7 +115,7 @@ export default function AnalyticsPage() {
               chartType='ColumnChart'
               width="100%"
               height="400px"
-              data={data.generateMonthlyReportObj}
+              data={JSON.parse(data.generateMonthlyReportObj)}
               options={optionMonth}
             />
           </Grid>
@@ -126,7 +126,7 @@ export default function AnalyticsPage() {
               chartType='ColumnChart'
               width="100%"
               height="400px"
-              data={data.generateQuarterlyReportObj}
+              data={JSON.parse(data.generateQuarterlyReportObj)}
               options={optionQuarter}
             />
           </Grid>
