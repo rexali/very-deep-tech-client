@@ -104,8 +104,6 @@ function ReportTab() {
                 </Typography>
             </Box>
 
-            <div>Coming soon</div>
-
             <ReportPage />
         </Box>
     )
@@ -122,8 +120,6 @@ function AnalyticsTab() {
                     Analytics
                 </Typography>
             </Box>
-
-            <div>Coming soon</div>
 
             <AnalyticsPage />
         </Box>

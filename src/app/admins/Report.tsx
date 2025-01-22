@@ -6,12 +6,12 @@ import { getUsersHistoryAPI } from "./api/getUsersHistory";
 import ErrorBoundary from "@/components/ErrorBoundary";
 
 export default function ReportPage() {
-  const [data, setData] = React.useState<any>([]);
+  const [data, setData] = React.useState<any>({});
 
   const getData = useCallback(async function getData() {
     try {
       let data = await getUsersHistoryAPI();
-      setData(data.transactions);
+      setData(data);
     } catch (error) {
       console.error(error);
     }
@@ -32,14 +32,16 @@ export default function ReportPage() {
 
   const getTotalSales = (data: any) => {
 
-    return data.slice(1,).map((d: any) => d[1]).reduce((prev: any, curr: any) => prev + curr, 0);
+    return data?.slice(1,).map((d: any) => d[1]).reduce((prev: any, curr: any) => prev + curr, 0);
   }
 
-  const dailyTotalSales = getTotalSales(data.generateSalesReportObj);
-  const weeklyTotalSales = getTotalSales(data.generateWeeklySalesReportObj);
-  const monthlyTotalSales = getTotalSales(data.generateMonthlySalesReportObj);
-  const quarterlyTotalSales = getTotalSales(data.generateQuarterlySalesReportObj);
+  const dailyTotalSales = getTotalSales(data?.generateSalesReportObj);
+  const weeklyTotalSales = getTotalSales(data?.generateWeeklySalesReportObj);
+  const monthlyTotalSales = getTotalSales(data?.generateMonthlySalesReportObj);
+  const quarterlyTotalSales = getTotalSales(data?.generateQuarterlySalesReportObj);
   const yearlyTotalSales = getTotalSales(testData);
+
+  
 
   return (
     <ErrorBoundary>
@@ -56,7 +58,7 @@ export default function ReportPage() {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {data?.generateSalesReportObj.slice(1,).map((data: any, i: number) => (
+                  {data?.generateSalesReportObj?.slice(1,).map((data: any, i: number) => (
                     <TableRow
                       key={data._id}
                       sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -84,7 +86,7 @@ export default function ReportPage() {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {data?.generateWeeklyReportObj.slice(1,).map((data: any, i: number) => (
+                  {data?.generateWeeklyReportObj?.slice(1,).map((data: any, i: number) => (
                     <TableRow
                       key={data._id}
                       sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -113,7 +115,7 @@ export default function ReportPage() {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {data?.generateMonthlyReportObj.slice(1,).map((data: any, i: number) => (
+                  {data?.generateMonthlyReportObj?.slice(1,).map((data: any, i: number) => (
                     <TableRow
                       key={data._id}
                       sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -142,7 +144,7 @@ export default function ReportPage() {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {data?.generateQuarterlyReportObj.slice(1,).map((data: any, i: number) => (
+                  {data?.generateQuarterlyReportObj?.slice(1,).map((data: any, i: number) => (
                     <TableRow
                       key={data._id}
                       sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -170,7 +172,7 @@ export default function ReportPage() {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {testData.slice(1,).map((data: any, i: number) => (
+                  {testData?.slice(1,).map((data: any, i: number) => (
                     <TableRow
                       key={data._id}
                       sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
