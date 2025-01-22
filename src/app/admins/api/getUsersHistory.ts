@@ -7,7 +7,7 @@ const getUsersHistoryAPI = async (page: number = 1) => {
         if (data.data === null) {
             return [];
         }
-        return data.data?.transactions;
+        return data.data;
     } catch (error) {
         console.warn(error);
     }
