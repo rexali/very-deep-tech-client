@@ -32,6 +32,8 @@ export default function AnalyticsPage() {
     getData();
   }, []);
 
+  console.log(data);
+
   const options = {
     title: "Sales from Monday to Friday",
     hAxis: { title: "Day" },

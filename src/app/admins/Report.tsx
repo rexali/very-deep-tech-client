@@ -42,6 +42,8 @@ export default function ReportPage() {
   const quarterlyTotalSales = getTotalSales(data?.generateQuarterlySalesReportObj);
   const yearlyTotalSales = getTotalSales(testData);
 
+  console.log(data);
+  
   if (!Object.keys(data)) {
     return <HomeFallback />
   }
