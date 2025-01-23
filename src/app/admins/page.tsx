@@ -14,7 +14,6 @@ import Add from "@material-ui/icons/Add";
 import UsersNotifications from "./UsersNotifications";
 import AdminProfile from "./AdminProfile";
 import UsersQoutes from "./UsersQoutes";
-// import UsersSubscriptions from "./UsersSubscriptions";
 import { useSearchParams } from "next/navigation";
 import UsersCarts from "./UsersCarts";
 import ProtectedAdminRoute from "@/components/ProtectedAdminRoute";
@@ -45,7 +44,7 @@ export default function UserTabs() {
 
     return (
         <ProtectedAdminRoute>
-            <div className="containerx" style={styles.minheight}>
+            <div className="container" style={styles.minheight}>
 
                 <div className="scrollmenu" style={styles.marginTop}>
                     <Link style={styles.navTabs} data-toggle="tab" onClick={() => openTab('sell')} href={""} ><small>Sell</small></Link>

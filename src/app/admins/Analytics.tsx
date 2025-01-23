@@ -6,6 +6,7 @@ import { Chart } from "react-google-charts";
 import { getUsersHistoryAPI } from "./api/getUsersHistory";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import HomeFallback from "@/components/common/HomeFallback";
+import { BarChart } from "@mui/x-charts/BarChart";
 
 export default function AnalyticsPage() {
   const [data, setData] = React.useState<any>({});
@@ -19,7 +20,7 @@ export default function AnalyticsPage() {
     ["Friday", 800],
   ];
 
-  const getData = useCallback(async function getData() {
+  const getData = useCallback(async () => {
     try {
       let data = await getUsersHistoryAPI();
       setData(data);
@@ -95,18 +96,28 @@ export default function AnalyticsPage() {
               chartType='ColumnChart'
               width="100%"
               height="400px"
-              data={JSON.parse(data.generateSalesReportObj)}
+              data={data.generateSalesReportObj}
               options={optionDay}
             />
           </Grid>
 
           <Grid item xs={12} sm={12} md={6} lg={6}>
             <p>Weekly Sales</p>
+            <BarChart xAxis={[{
+              id: "barCategories",
+              scaleType: 'band',
+              data: data.generateWeeklySalesReportObj?.slice(1,)?.map((el: any) => el[0])
+            }]}
+              series={[{
+                data: data.generateWeeklySalesReportObj?.slice(1,)?.map((el: any) => el[1])
+              }]}
+              width={500}
+              height={300} />
             <Chart
               chartType='ColumnChart'
               width="100%"
               height="400px"
-              data={JSON.parse(data.generateWeeklyReportObj)}
+              data={data.generateWeeklySalesReportObj}
               options={optionWeek}
             />
           </Grid>
@@ -117,7 +128,7 @@ export default function AnalyticsPage() {
               chartType='ColumnChart'
               width="100%"
               height="400px"
-              data={JSON.parse(data.generateMonthlyReportObj)}
+              data={data.generateMonthlySalesReportObj}
               options={optionMonth}
             />
           </Grid>
@@ -128,7 +139,7 @@ export default function AnalyticsPage() {
               chartType='ColumnChart'
               width="100%"
               height="400px"
-              data={JSON.parse(data.generateQuarterlyReportObj)}
+              data={data.generateQuarterlySalesReportObj}
               options={optionQuarter}
             />
           </Grid>

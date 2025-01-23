@@ -9,7 +9,7 @@ import HomeFallback from "@/components/common/HomeFallback";
 export default function ReportPage() {
   const [data, setData] = React.useState<any>({});
 
-  const getData = useCallback(async function getData() {
+  const getData = useCallback(async () => {
     try {
       let data = await getUsersHistoryAPI();
       setData(data);
@@ -43,7 +43,7 @@ export default function ReportPage() {
   const yearlyTotalSales = getTotalSales(testData);
 
   console.log(data);
-  
+
   if (!Object.keys(data)) {
     return <HomeFallback />
   }
@@ -52,10 +52,10 @@ export default function ReportPage() {
     <ErrorBoundary>
       <Container maxWidth="md" component={'main'} sx={{ mt: 10 }}>
         <Grid container rowSpacing={1} columnSpacing={4}>
-          <Box sx={{ m: 10 }}>Daily Sales</Box>
           <Grid item xs={12} sm={12} md={6} lg={6}>
+          <Box sx={{ m: 5 }}>Daily Sales</Box>
             <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <Table sx={{minWidth:320}} aria-label="simple table">
                 <TableHead>
                   <TableRow>
                     <TableCell align="left">Day</TableCell>
@@ -63,12 +63,12 @@ export default function ReportPage() {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {(data?.generateSalesReportObj)?.slice(1,).map((da: any, i: number) => (
+                  {(data?.generateSalesReportObj)?.slice(1,)?.map((da: any, i: number) => (
                     <TableRow
                       key={i + "day"}
                       sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
-                      <TableCell align="right">{da[0]}</TableCell>
+                      <TableCell align="left">{da[0]}</TableCell>
                       <TableCell align="right">{da[1]}</TableCell>
                     </TableRow>
                   ))}
@@ -80,10 +80,10 @@ export default function ReportPage() {
               </Table>
             </TableContainer>
           </Grid>
-          <Box sx={{ m: 10 }}>Weekly Sales</Box>
           <Grid item xs={12} sm={12} md={6} lg={6}>
+          <Box sx={{ m: 5 }}>Weekly Sales</Box>
             <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <Table sx={{minWidth:320}} aria-label="simple table">
                 <TableHead>
                   <TableRow>
                     <TableCell align="left">Week</TableCell>
@@ -91,12 +91,12 @@ export default function ReportPage() {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {data?.generateWeeklyReportObj?.slice(1,).map((da: any, i: number) => (
+                  {data?.generateWeeklySalesReportObj?.slice(1,)?.map((da: any, i: number) => (
                     <TableRow
                       key={i + 'week'}
                       sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
-                      <TableCell align="right">{da[0]}</TableCell>
+                      <TableCell align="left">{da[0]}</TableCell>
                       <TableCell align="right">{da[1]}</TableCell>
                     </TableRow>
                   ))}
@@ -109,10 +109,10 @@ export default function ReportPage() {
             </TableContainer>
           </Grid>
 
-          <Box sx={{ m: 10 }}>Monthly Sales</Box>
           <Grid item xs={12} sm={12} md={6} lg={6}>
+          <Box sx={{ m: 5 }}>Monthly Sales</Box>
             <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <Table sx={{ minWidth:320}} aria-label="simple table">
                 <TableHead>
                   <TableRow>
                     <TableCell align="left">Month</TableCell>
@@ -120,12 +120,12 @@ export default function ReportPage() {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {data?.generateMonthlyReportObj?.slice(1,).map((da: any, i: number) => (
+                  {data?.generateMonthlySalesReportObj?.slice(1,)?.map((da: any, i: number) => (
                     <TableRow
                       key={i + "month"}
                       sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
-                      <TableCell align="right">{da[0]}</TableCell>
+                      <TableCell align="left">{da[0]}</TableCell>
                       <TableCell align="right">{da[1]}</TableCell>
                     </TableRow>
                   ))}
@@ -138,10 +138,10 @@ export default function ReportPage() {
             </TableContainer>
           </Grid>
 
-          <Box sx={{ m: 10 }}>Quarterly Sales</Box>
           <Grid item xs={12} sm={12} md={6} lg={6}>
+          <Box sx={{ m: 5 }}>Quarterly Sales</Box>
             <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <Table sx={{ minWidth:320}} aria-label="simple table">
                 <TableHead>
                   <TableRow>
                     <TableCell align="left">Quarter</TableCell>
@@ -149,12 +149,12 @@ export default function ReportPage() {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {data?.generateQuarterlyReportObj?.slice(1,).map((da: any, i: number) => (
+                  {data?.generateQuarterlySalesReportObj?.slice(1,)?.map((da: any, i: number) => (
                     <TableRow
                       key={i + "quarter"}
                       sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
-                      <TableCell align="right">{da[0]}</TableCell>
+                      <TableCell align="left">{new Date(da[0])?.getMonth()}</TableCell>
                       <TableCell align="right">{da[1]}</TableCell>
                     </TableRow>
                   ))}
@@ -166,10 +166,10 @@ export default function ReportPage() {
               </Table>
             </TableContainer>
           </Grid>
-          <Box sx={{ m: 10 }}>Yearly Sales</Box>
           <Grid item xs={12} sm={12} md={6} lg={6}>
+          <Box sx={{ m: 5 }}>Yearly Sales</Box>
             <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <Table sx={{ minWidth:320 }} aria-label="simple table">
                 <TableHead>
                   <TableRow>
                     <TableCell align="left">Year</TableCell>
@@ -177,12 +177,12 @@ export default function ReportPage() {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {testData?.slice(1,).map((da: any, i: number) => (
+                  {testData?.map((da: any, i: number) => (
                     <TableRow
                       key={i + "year"}
                       sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
-                      <TableCell align="right">{da[0]}</TableCell>
+                      <TableCell align="left">{da[0]}</TableCell>
                       <TableCell align="right">{da[1]}</TableCell>
                     </TableRow>
                   ))}
