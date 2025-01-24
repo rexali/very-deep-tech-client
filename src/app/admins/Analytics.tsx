@@ -6,7 +6,7 @@ import { Chart } from "react-google-charts";
 import { getUsersHistoryAPI } from "./api/getUsersHistory";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import HomeFallback from "@/components/common/HomeFallback";
-import { BarChart } from "@mui/x-charts/BarChart";
+// import { BarChart } from "@mui/x-charts/BarChart";
 
 export default function AnalyticsPage() {
   const [data, setData] = React.useState<any>({});
@@ -43,7 +43,21 @@ export default function AnalyticsPage() {
   };
 
   const optionDay = {
-    title: "Daily Sales",
+    title: "A-Day Sales",
+    hAxis: { title: "Day" },
+    vAxis: { title: "Sales" },
+    legend: "none",
+  };
+
+  const optionDayOfTheWeek = {
+    title: "Day-of-the-Week Sales",
+    hAxis: { title: "Day" },
+    vAxis: { title: "Sales" },
+    legend: "none",
+  };
+  
+  const optionDayOfTheMonth = {
+    title: "Day-of-the-Month Sales",
     hAxis: { title: "Day" },
     vAxis: { title: "Sales" },
     legend: "none",
@@ -51,7 +65,7 @@ export default function AnalyticsPage() {
 
 
   const optionWeek = {
-    title: "Week Sales",
+    title: "Weekly Sales",
     hAxis: { title: "Week" },
     vAxis: { title: "Sales" },
     legend: "none",
@@ -91,7 +105,7 @@ export default function AnalyticsPage() {
         <Grid container rowSpacing={1} columnSpacing={4}>
 
           <Grid item xs={12} sm={12} md={6} lg={6}>
-            <p>Daily Sales</p>
+            <p>A-Day Sales</p>
             <Chart
               chartType='ColumnChart'
               width="100%"
@@ -102,24 +116,24 @@ export default function AnalyticsPage() {
           </Grid>
 
           <Grid item xs={12} sm={12} md={6} lg={6}>
-            <p>Daily Sales (Day of the Month)</p>
+            <p>Day-of-the-Month Sales</p>
             <Chart
               chartType='ColumnChart'
               width="100%"
               height="400px"
               data={data.generateDaySalesReportObj}
-              options={optionDay}
+              options={optionDayOfTheMonth}
             />
           </Grid>
 
           <Grid item xs={12} sm={12} md={6} lg={6}>
-            <p>Daily Sales (Sun - Sat)</p>
+            <p>Day-of-the-Week Sales</p>
             <Chart
               chartType='ColumnChart'
               width="100%"
               height="400px"
               data={data.generateMondayToSundaySalesReportObj}
-              options={optionDay}
+              options={optionDayOfTheWeek}
             />
           </Grid>
 
@@ -176,7 +190,7 @@ export default function AnalyticsPage() {
           </Grid>
 
           <Grid item xs={12} sm={12} md={6} lg={6}>
-            <p>Yearly Sales</p>
+            <p>Test Sales</p>
             <Chart
               chartType='ColumnChart'
               width="100%"

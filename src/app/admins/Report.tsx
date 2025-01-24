@@ -56,9 +56,9 @@ export default function ReportPage() {
       <Container maxWidth="md" component={'main'} sx={{ mt: 10 }}>
         <Grid container rowSpacing={1} columnSpacing={4}>
           <Grid item xs={12} sm={12} md={6} lg={6}>
-          <Box sx={{ m: 5 }}>Daily Sales</Box>
+            <Box sx={{ m: 5 }}>Day-by-Day Sales</Box>
             <TableContainer component={Paper}>
-              <Table sx={{minWidth:320}} aria-label="simple table">
+              <Table sx={{ minWidth: 320 }} aria-label="simple table">
                 <TableHead>
                   <TableRow>
                     <TableCell align="left">Day</TableCell>
@@ -84,9 +84,9 @@ export default function ReportPage() {
             </TableContainer>
           </Grid>
           <Grid item xs={12} sm={12} md={6} lg={6}>
-          <Box sx={{ m: 5 }}>Daily Sales</Box>
+            <Box sx={{ m: 5 }}>Day-of-the-Month Sales</Box>
             <TableContainer component={Paper}>
-              <Table sx={{minWidth:320}} aria-label="simple table">
+              <Table sx={{ minWidth: 320 }} aria-label="simple table">
                 <TableHead>
                   <TableRow>
                     <TableCell align="left">Day</TableCell>
@@ -112,9 +112,9 @@ export default function ReportPage() {
             </TableContainer>
           </Grid>
           <Grid item xs={12} sm={12} md={6} lg={6}>
-          <Box sx={{ m: 5 }}>Daily Sales</Box>
+            <Box sx={{ m: 5 }}>Day-of-the-Week Sales</Box>
             <TableContainer component={Paper}>
-              <Table sx={{minWidth:320}} aria-label="simple table">
+              <Table sx={{ minWidth: 320 }} aria-label="simple table">
                 <TableHead>
                   <TableRow>
                     <TableCell align="left">Day</TableCell>
@@ -140,9 +140,9 @@ export default function ReportPage() {
             </TableContainer>
           </Grid>
           <Grid item xs={12} sm={12} md={6} lg={6}>
-          <Box sx={{ m: 5 }}>Weekly Sales</Box>
+            <Box sx={{ m: 5 }}>Weekly Sales</Box>
             <TableContainer component={Paper}>
-              <Table sx={{minWidth:320}} aria-label="simple table">
+              <Table sx={{ minWidth: 320 }} aria-label="simple table">
                 <TableHead>
                   <TableRow>
                     <TableCell align="left">Week</TableCell>
@@ -169,9 +169,9 @@ export default function ReportPage() {
           </Grid>
 
           <Grid item xs={12} sm={12} md={6} lg={6}>
-          <Box sx={{ m: 5 }}>Monthly Sales</Box>
+            <Box sx={{ m: 5 }}>Monthly Sales</Box>
             <TableContainer component={Paper}>
-              <Table sx={{ minWidth:320}} aria-label="simple table">
+              <Table sx={{ minWidth: 320 }} aria-label="simple table">
                 <TableHead>
                   <TableRow>
                     <TableCell align="left">Month</TableCell>
@@ -198,9 +198,9 @@ export default function ReportPage() {
           </Grid>
 
           <Grid item xs={12} sm={12} md={6} lg={6}>
-          <Box sx={{ m: 5 }}>Quarterly Sales</Box>
+            <Box sx={{ m: 5 }}>Quarterly Sales</Box>
             <TableContainer component={Paper}>
-              <Table sx={{ minWidth:320}} aria-label="simple table">
+              <Table sx={{ minWidth: 320 }} aria-label="simple table">
                 <TableHead>
                   <TableRow>
                     <TableCell align="left">Quarter</TableCell>
@@ -226,9 +226,9 @@ export default function ReportPage() {
             </TableContainer>
           </Grid>
           <Grid item xs={12} sm={12} md={6} lg={6}>
-          <Box sx={{ m: 5 }}>Yearly Sales</Box>
+            <Box sx={{ m: 5 }}>Yearly Sales</Box>
             <TableContainer component={Paper}>
-              <Table sx={{ minWidth:320 }} aria-label="simple table">
+              <Table sx={{ minWidth: 320 }} aria-label="simple table">
                 <TableHead>
                   <TableRow>
                     <TableCell align="left">Year</TableCell>
@@ -236,7 +236,7 @@ export default function ReportPage() {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {data?.generateYearlySalesReportObj?.map((da: any, i: number) => (
+                  {data?.generateYearlySalesReportObj?.slice(1,)?.map((da: any, i: number) => (
                     <TableRow
                       key={i + "year"}
                       sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -254,9 +254,9 @@ export default function ReportPage() {
             </TableContainer>
           </Grid>
           <Grid item xs={12} sm={12} md={6} lg={6}>
-          <Box sx={{ m: 5 }}>Test Sales</Box>
+            <Box sx={{ m: 5 }}>Test Sales</Box>
             <TableContainer component={Paper}>
-              <Table sx={{ minWidth:320 }} aria-label="simple table">
+              <Table sx={{ minWidth: 320 }} aria-label="simple table">
                 <TableHead>
                   <TableRow>
                     <TableCell align="left">Year</TableCell>
@@ -264,7 +264,7 @@ export default function ReportPage() {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {testData?.map((da: any, i: number) => (
+                  {testData?.slice(1,)?.map((da: any, i: number) => (
                     <TableRow
                       key={i + "year"}
                       sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
