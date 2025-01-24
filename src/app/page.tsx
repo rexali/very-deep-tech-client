@@ -49,61 +49,64 @@ export default function AppPage() {
         {isMobile && <Box display={"flex"} justifyContent={'center'}><SearchInput /></Box>} <br />
         <ProductCategories categoryData={data?.categoryData} />
         <MarketingMessage /> <br />
-        <Box marginTop={4} display={"flex"} flexDirection={'row'} justifyContent={'space-between'} >
-          <Box>
-            {!isMobile && <DesktopProductCategories categoryData={data?.categoryData} />}
-          </Box>
-          <Box>
-            <Box>Featured</Box>
-            <FeaturedProductList products={data?.featuredData} />
-            <Box margin={2} padding={2} display={"flex"} justifyContent={'center'}>
-              <Link
-                style={{ textDecoration: "none", color: 'green', borderColor: 'green' }}
-                type="button"
-                color="success"
-                href={`/products`}
-              >
-                View all
-              </Link>
+        <Grid container rowSpacing={1} columnSpacing={4}>
+          <Grid sx={{ display: { xs: 'none', md: 'block', lg: 'block' } }} item xs={12} sm={12} md={2} lg={2}>
+            <DesktopProductCategories categoryData={data?.categoryData} />
+          </Grid>
+          <Grid item xs={12} sm={12} md={10} lg={10}>
+            <Box>
+              <Box marginTop={2} display={"flex"} flexDirection={'row'} justifyContent={'space-between'}>
+                <span>Featured</span>
+                <Link
+                  style={{ textDecoration: "none", color: 'green', borderColor: 'green' }}
+                  type="button"
+                  color="success"
+                  href={`/products`}
+                >
+                  View all
+                </Link>
+              </Box>
+              <FeaturedProductList products={data?.featuredData} />
+              <Box marginTop={2} display={"flex"} flexDirection={'row'} justifyContent={'space-between'}>
+                <span>Popular</span>
+                <Link
+                  style={{ textDecoration: "none", color: 'green', borderColor: 'green' }}
+                  type="button"
+                  color="success"
+                  href={`/products`}
+                >
+                  View all
+                </Link>
+              </Box>
+              <PopularProductList products={data?.popularData} />
+              <Box marginTop={2} display={"flex"} flexDirection={'row'} justifyContent={'space-between'}>
+                <span>Recommended</span>
+                <Link
+                  style={{ textDecoration: "none", color: 'green', borderColor: 'green' }}
+                  type="button"
+                  color="success"
+                  href={`/products`}
+                >
+                  View all
+                </Link>
+              </Box>
+              <RecommendedProductList products={data?.recommendedData} />
+              <Box marginTop={2} display={"flex"} flexDirection={'row'} justifyContent={'space-between'}>
+                <span>New</span>
+                <Link
+                  style={{ textDecoration: "none", color: 'green', borderColor: 'green' }}
+                  type="button"
+                  color="success"
+                  href={`/products`}
+                >
+                  View all
+                </Link>
+              </Box>
+              <NewProductList products={data?.productData} />
             </Box>
-            <Box>Popular</Box>
-            <PopularProductList products={data?.popularData} />
-            <Box marginTop={2} padding={2} display={"flex"} justifyContent={'center'}>
-              <Link
-                style={{ textDecoration: "none", color: 'green', borderColor: 'green' }}
-                type="button"
-                color="success"
-                href={`/products`}
-              >
-                View all
-              </Link>
-            </Box>
-            <Box>Recommended</Box>
-            <RecommendedProductList products={data?.recommendedData} />
-            <Box marginTop={2} padding={2} display={"flex"} justifyContent={'center'}>
-              <Link
-                style={{ textDecoration: "none", color: 'green', borderColor: 'green' }}
-                type="button"
-                color="success"
-                href={`/products`}
-              >
-                View all
-              </Link>
-            </Box>
-            <Box>New</Box>
-            <NewProductList products={data?.productData} />
-            <Box marginTop={2} padding={2} display={"flex"} justifyContent={'center'}>
-              <Link
-                style={{ textDecoration: "none", color: 'green', borderColor: 'green' }}
-                type="button"
-                color="success"
-                href={`/products`}
-              >
-                View all
-              </Link>
-            </Box>
-          </Box>
-        </Box>
+          </Grid>
+        </Grid>
+
         <Box>
           <Grid container rowSpacing={1} columnSpacing={4}>
             <Grid item xs={12} sm={12} md={6} lg={6}>

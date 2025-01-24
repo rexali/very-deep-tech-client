@@ -6,7 +6,7 @@ import { Chart } from "react-google-charts";
 import { getUsersHistoryAPI } from "./api/getUsersHistory";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import HomeFallback from "@/components/common/HomeFallback";
-// import { BarChart } from "@mui/x-charts/BarChart";
+import { BarChart } from "@mui/x-charts/BarChart";
 
 export default function AnalyticsPage() {
   const [data, setData] = React.useState<any>({});
@@ -106,8 +106,9 @@ export default function AnalyticsPage() {
             {/* <BarChart xAxis={[{
               id: "barCategories",
               scaleType: 'band',
-              data: data.generateWeeklySalesReportObj?.slice(1,)?.map((el: any) => el[0])}]}
-              series={[{ data: data.generateWeeklySalesReportObj?.slice(1,)?.map((el: any) => el[1])}]}
+              data: data.generateWeeklySalesReportObj?.slice(1,)?.map((el: any) => el[0])
+            }]}
+              series={[{ data: data.generateWeeklySalesReportObj?.slice(1,)?.map((el: any) => el[1]) }]}
               width={500}
               height={300} /> */}
             <Chart
