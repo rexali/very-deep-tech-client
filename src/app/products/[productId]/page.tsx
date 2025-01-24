@@ -121,7 +121,7 @@ export default async function ProductDetailPage({ params }: { params: { productI
                 {product.product_description ?? "Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica"}
               </Typography>
             </Grid>
-            <Grid item xs={12} md={12}>
+            <Grid item xs={12} md={6}>
               <Typography gutterBottom variant="h5" component="div">
                 Shipping Info:
               </Typography>
@@ -129,7 +129,7 @@ export default async function ProductDetailPage({ params }: { params: { productI
                 {"We will take care of the shipping of the item and its return in case  of any damages (to the item and you wish to return) during transit"}
               </Typography>
             </Grid>
-            <Grid item xs={12} md={12}>
+            <Grid item xs={12} md={6}>
               <Typography gutterBottom variant="h5" component="div">
                 Payment Method(s):
               </Typography>
@@ -145,7 +145,7 @@ export default async function ProductDetailPage({ params }: { params: { productI
               </Typography>
             </Grid>
 
-            <Grid item xs={12} md={12}>
+            <Grid item xs={12} md={6}>
               <Typography gutterBottom variant="h5" component="div">
                 Product Demo:
               </Typography>
@@ -156,7 +156,7 @@ export default async function ProductDetailPage({ params }: { params: { productI
               </Typography>
             </Grid>
             {/* Add multiple and scrollable images here using carousel or scrollmenu */}
-            <Grid item xs={12} md={12}>
+            <Grid item xs={12} md={6}>
               <Typography gutterBottom variant="h5" component="div">
                 Other Photo(s):
               </Typography>
