@@ -102,6 +102,28 @@ export default function AnalyticsPage() {
           </Grid>
 
           <Grid item xs={12} sm={12} md={6} lg={6}>
+            <p>Daily Sales (Day of the Month)</p>
+            <Chart
+              chartType='ColumnChart'
+              width="100%"
+              height="400px"
+              data={data.generateDaySalesReportObj}
+              options={optionDay}
+            />
+          </Grid>
+
+          <Grid item xs={12} sm={12} md={6} lg={6}>
+            <p>Daily Sales (Sun - Sat)</p>
+            <Chart
+              chartType='ColumnChart'
+              width="100%"
+              height="400px"
+              data={data.generateMondayToSundaySalesReportObj}
+              options={optionDay}
+            />
+          </Grid>
+
+          <Grid item xs={12} sm={12} md={6} lg={6}>
             <p>Weekly Sales</p>
             {/* <BarChart xAxis={[{
               id: "barCategories",
@@ -139,6 +161,17 @@ export default function AnalyticsPage() {
               height="400px"
               data={data.generateQuarterlySalesReportObj}
               options={optionQuarter}
+            />
+          </Grid>
+
+          <Grid item xs={12} sm={12} md={6} lg={6}>
+            <p>Yearly Sales</p>
+            <Chart
+              chartType='ColumnChart'
+              width="100%"
+              height="400px"
+              data={data.generateYearlySalesReportObj}
+              options={optionYear}
             />
           </Grid>
 
