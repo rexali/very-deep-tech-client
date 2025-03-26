@@ -10,13 +10,13 @@ import HomeFallback from '@/components/common/HomeFallback';
 import { getInitialDataAPI } from './api/getInitialDataAPI';
 
 const metadata: Metadata = {
-  title: { absolute: "Cash Waqf", template: "%s | an Islamic endowment" },
-  description: "It provide different waqf-funded causes to support",
+  title: { absolute: "A shop", template: "%s | an multiple shops for you" },
+  description: "It provide you with different niche shops with different subdomain",
   viewport: {
     width: "device-width",
     initialScale: 1.0
   },
-  keywords: ["waqf", "endowment", 'Islamic endowment', 'awqaf', 'cash waqf'],
+  keywords: ["shop", "store", 'ecommerce', 'online shop', 'multitenanat shop'],
 }
 
 export default async function RootLayout({

@@ -106,7 +106,7 @@ export default async function ProductDetailPage({ params }: { params: { productI
                 <Typography gutterBottom variant="h5" component="div">
                   <span>Name: {product.product_name}</span>
                 </Typography>
-                <Rating name="read-only" value={product?.averageRating ?? 3} readOnly />
+                <Rating name="read-only" value={product?.averageRating} readOnly />
                 <Typography gutterBottom variant="h5" component="div" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                   <span>Price: &#x20A6; {product.product_price}</span><Link href={'tel:07016807004'} style={{ fontSize: 12, textDecoration: 'none' }}>Tel: 07016807004</Link>
                 </Typography>
